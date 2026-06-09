@@ -8,7 +8,7 @@ export function Header() {
   const [isOnHomeHero, setIsOnHomeHero] = useState(true);
 
   useEffect(() => {
-    function handleScroll() {
+    function updateScrollState() {
       const lenis = (window as unknown as Record<string, unknown>).__lenis as { scroll: number } | undefined;
       if (!lenis) return;
       const scrollY = lenis.scroll;
@@ -19,16 +19,17 @@ export function Header() {
 
     function onLenisReady(e: CustomEvent) {
       const lenis = e.detail.lenis;
-      handleScroll();
-      lenis.on("scroll", handleScroll);
+      updateScrollState();
+      lenis.on("scroll", updateScrollState);
     }
 
     window.addEventListener("lenis-ready", onLenisReady as EventListener);
-    // Try once in case already ready
+
+    // Also check immediately in case lenis is already ready
     const existingLenis = (window as unknown as Record<string, unknown>).__lenis as { scroll: number; on: (e: string, fn: () => void) => void } | undefined;
     if (existingLenis) {
-      handleScroll();
-      existingLenis.on("scroll", handleScroll);
+      updateScrollState();
+      existingLenis.on("scroll", updateScrollState);
     }
 
     return () => {

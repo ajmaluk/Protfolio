@@ -152,8 +152,115 @@ export function IntroSection() {
 
         <div className="home__intro-service-wrap">
           <div className="home__intro-service">
-            <div className="home__intro-service-marquee-wrap black" />
-            <div className="home__intro-service-marquee-wrap orange" />
+            {/* Black Marquee: scrolls right (reverse) */}
+            <div className="home__intro-service-marquee-wrap black">
+              <div className="marquee">
+                <div 
+                  className="marquee-inner" 
+                  style={{ display: "flex", animation: "marquee-reverse 20s linear infinite" }}
+                >
+                  <div className="marquee-inner-item">
+                    <div className="home__intro-service-marquee">
+                      <div className="home__intro-service-marquee-item">
+                        <h3 className="fw-semi heading h3 upper">8 years of experience</h3>
+                        <div className="ic ic-32 anim-rot">
+                          <img src="/images/asterisk.svg" alt="asterisk" className="img" />
+                        </div>
+                      </div>
+                      <div className="home__intro-service-marquee-item">
+                        <h3 className="fw-semi heading h3 upper">senior designer</h3>
+                        <div className="ic ic-32 anim-rot">
+                          <img src="/images/asterisk.svg" alt="asterisk" className="img" />
+                        </div>
+                      </div>
+                      <div className="home__intro-service-marquee-item">
+                        <h3 className="fw-semi heading h3 upper">Over 100 customers</h3>
+                        <div className="ic ic-32 anim-rot">
+                          <img src="/images/asterisk.svg" alt="asterisk" className="img" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="marquee-inner-item">
+                    <div className="home__intro-service-marquee">
+                      <div className="home__intro-service-marquee-item">
+                        <h3 className="fw-semi heading h3 upper">8 years of experience</h3>
+                        <div className="ic ic-32 anim-rot">
+                          <img src="/images/asterisk.svg" alt="asterisk" className="img" />
+                        </div>
+                      </div>
+                      <div className="home__intro-service-marquee-item">
+                        <h3 className="fw-semi heading h3 upper">senior designer</h3>
+                        <div className="ic ic-32 anim-rot">
+                          <img src="/images/asterisk.svg" alt="asterisk" className="img" />
+                        </div>
+                      </div>
+                      <div className="home__intro-service-marquee-item">
+                        <h3 className="fw-semi heading h3 upper">Over 100 customers</h3>
+                        <div className="ic ic-32 anim-rot">
+                          <img src="/images/asterisk.svg" alt="asterisk" className="img" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Orange Marquee: scrolls left (normal) */}
+            <div className="home__intro-service-marquee-wrap orange">
+              <div className="marquee">
+                <div 
+                  className="marquee-inner" 
+                  style={{ display: "flex", animation: "marquee 20s linear infinite" }}
+                >
+                  <div className="marquee-inner-item">
+                    <div className="home__intro-service-marquee">
+                      <div className="home__intro-service-marquee-item">
+                        <h3 className="fw-semi heading h3 upper">Product Design</h3>
+                        <div className="ic ic-32 anim-rot">
+                          <img src="/images/asterisk.svg" alt="asterisk" className="img" />
+                        </div>
+                      </div>
+                      <div className="home__intro-service-marquee-item">
+                        <h3 className="fw-semi heading h3 upper">Brand design &amp; Strategy</h3>
+                        <div className="ic ic-32 anim-rot">
+                          <img src="/images/asterisk.svg" alt="asterisk" className="img" />
+                        </div>
+                      </div>
+                      <div className="home__intro-service-marquee-item">
+                        <h3 className="fw-semi heading h3 upper">Visual design</h3>
+                        <div className="ic ic-32 anim-rot">
+                          <img src="/images/asterisk.svg" alt="asterisk" className="img" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="marquee-inner-item">
+                    <div className="home__intro-service-marquee">
+                      <div className="home__intro-service-marquee-item">
+                        <h3 className="fw-semi heading h3 upper">Product Design</h3>
+                        <div className="ic ic-32 anim-rot">
+                          <img src="/images/asterisk.svg" alt="asterisk" className="img" />
+                        </div>
+                      </div>
+                      <div className="home__intro-service-marquee-item">
+                        <h3 className="fw-semi heading h3 upper">Brand design &amp; Strategy</h3>
+                        <div className="ic ic-32 anim-rot">
+                          <img src="/images/asterisk.svg" alt="asterisk" className="img" />
+                        </div>
+                      </div>
+                      <div className="home__intro-service-marquee-item">
+                        <h3 className="fw-semi heading h3 upper">Visual design</h3>
+                        <div className="ic ic-32 anim-rot">
+                          <img src="/images/asterisk.svg" alt="asterisk" className="img" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
           <div className="home__intro-service-blur">
             <div className="home__intro-service-blur-inner">

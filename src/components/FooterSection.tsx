@@ -3,9 +3,8 @@
 export function FooterSection() {
   return (
     <div className="home-footer-hero">
-      <div className="home-footer-hero-wrap">
-        <div className="home-footer-hero-empty-block" />
-
+      <div className="home-footer-hero-empty-block" />
+      <div className="home-footer-hero-wrap grid-1-1">
         <section className="home__hero-clone-wrap">
           <div className="home__hero-clone">
             <div className="home__hero-clone-main">

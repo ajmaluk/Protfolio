@@ -346,18 +346,28 @@ export function IntroSection() {
         >
           <div
             className="marquee-inner-item"
-            style={{ width: "max-content", display: "flex", flex: "none" }}
+            style={{ width: "max-content", display: "flex", flex: "none", alignItems: "center", gap: "4rem", paddingRight: "4rem" }}
           >
-            {statsData.map((item) => (
-              <h3 key={item} className="fw-semi heading h3 upper">{item}</h3>
+            {statsData.map((item, idx) => (
+              <div key={idx} style={{ display: "flex", alignItems: "center", gap: "4rem" }}>
+                <h3 className="fw-semi heading h3 upper" style={{ whiteSpace: "nowrap" }}>{item}</h3>
+                <div className="ic ic-32 anim-rot" style={{ width: "3.2rem", height: "3.2rem", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                  <img src="/images/asterisk.svg" alt="asterisk" className="img" />
+                </div>
+              </div>
             ))}
           </div>
           <div
             className="marquee-inner-item"
-            style={{ width: "max-content", display: "flex", flex: "none" }}
+            style={{ width: "max-content", display: "flex", flex: "none", alignItems: "center", gap: "4rem", paddingRight: "4rem" }}
           >
-            {statsData.map((item) => (
-              <h3 key={item} className="fw-semi heading h3 upper">{item}</h3>
+            {statsData.map((item, idx) => (
+              <div key={idx} style={{ display: "flex", alignItems: "center", gap: "4rem" }}>
+                <h3 className="fw-semi heading h3 upper" style={{ whiteSpace: "nowrap" }}>{item}</h3>
+                <div className="ic ic-32 anim-rot" style={{ width: "3.2rem", height: "3.2rem", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                  <img src="/images/asterisk.svg" alt="asterisk" className="img" />
+                </div>
+              </div>
             ))}
           </div>
         </div>

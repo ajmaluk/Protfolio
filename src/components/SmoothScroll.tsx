@@ -29,15 +29,15 @@ export function SmoothScroll() {
       const bgMainWrap = document.querySelector(".home__hero-bg-main-wrap") as HTMLElement | null;
       const innerBg = document.querySelector(".home__hero-bg-main-inner-bg") as HTMLElement | null;
       const progress = Math.min(scrollY / heroHeight, 1);
-      const scale = 1 + progress * 0.15;
-      const topOpacity = Math.max(0, 1 - scrollY / (heroHeight * 1.5));
+      const scale = 1 + progress * 0.45;
+      const topOpacity = Math.max(0, 1 - Math.pow(progress, 2));
 
       if (bgMainWrap) {
         bgMainWrap.style.transform = `scale(${scale})`;
         bgMainWrap.style.opacity = `${topOpacity}`;
       }
       if (innerBg) {
-        innerBg.style.transform = `scale(${1 + progress * 0.08})`;
+        innerBg.style.transform = `scale(${1 + progress * 0.25})`; // Combined with scale gives a nice zoom effect
       }
 
       // Bottom Clone Hero Parallax using Bounding Rect

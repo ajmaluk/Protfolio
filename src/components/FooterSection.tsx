@@ -77,12 +77,10 @@ export function FooterSection() {
             <div className="home__hero-clone-bg grid-1-1">
               <div className="home__hero-clone-bg-main">
                 <div className="home__hero-clone-bg-main-inner" data-canvas-wrap>
-                  <div className="home__hero-clone-bg-main-ratio" />
                   <div className="home__hero-clone-bg-main-inner placeholder">
                     <img src="/images/home-hero-trans.png" alt="a man" />
                   </div>
                 </div>
-                <div className="home__hero-clone-gradient-mb" />
               </div>
               <div className="home__hero-clone-bg-under">
                 <img src="/images/home-hero-bg.jpg" alt="a man" />
@@ -149,6 +147,12 @@ export function FooterSection() {
                         <a href="mailto:hello@valentincheval.design" className="footer__marquee-link">hello<span className="cl-txt-orange">@</span>valentincheval.design</a>
                       </h2>
                     </div>
+                    <div className="marquee-inner-item" style={{ width: "max-content", display: "flex", flex: "none" }}>
+                      <h2 className="heading h2 footer__marquee">
+                        <a href="mailto:hello@valentincheval.design" className="footer__marquee-link">hello<span className="cl-txt-orange">@</span>valentincheval.design</a>
+                        <a href="mailto:hello@valentincheval.design" className="footer__marquee-link">hello<span className="cl-txt-orange">@</span>valentincheval.design</a>
+                      </h2>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -156,7 +160,7 @@ export function FooterSection() {
           </div>
 
           <div className="footer__bg">
-            <img src="/images/footer-bg-gr2.png" alt="a gradient dark orange" />
+            <img src="/images/footer-bg-gr2.png" alt="a gradient dark orange" className="footer__bg-img" />
           </div>
         </div>
       </footer>

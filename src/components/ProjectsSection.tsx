@@ -383,7 +383,7 @@ export function ProjectsSection() {
                 {/* Right Side Content & Info */}
                 <div className="home__project-sub-info">
                   {/* Year block on desktop & mobile */}
-                  <div className="home__project-year is-desk is-mob">
+                  <div className="home__project-year is-desk is-mb">
                     <p className="cl-txt-desc fw-med home__project-label">Year</p>
                     <div className="heading h5 fw-med cl-txt-title home__project-year-current">
                       {projects.map((proj, idx) => (

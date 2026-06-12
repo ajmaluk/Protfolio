@@ -89,11 +89,10 @@ export function IntroSection() {
           </div>
 
           <div className="home__intro-main">
-            <div className="home__intro-bg-gradient" />
             <div className="heading h4 home__intro-main-txt">
               {introMainText}
             </div>
-            <a href="/about" className="btn btn-circle arrow-hover home__intro-btn">
+            <a href="/about" className="btn-circle arrow-hover home__intro-btn">
               <div className="ic-arr-wrap" style={{ "--size": 3.2 } as React.CSSProperties}>
                 <div className="arr-main ic" style={{ "--size": 3.2 } as React.CSSProperties}>
                   <svg width="100%" viewBox="0 0 20 20" fill="none">
@@ -127,25 +126,17 @@ export function IntroSection() {
 
           <div className="home__intro-awards" style={{ "--itemLength": 4 } as React.CSSProperties}>
             <h3 className="heading h4 cl-txt-title upper home__intro-awards-title">Awards</h3>
-            <div className="home__intro-awards-wrap">
-              <div className="home__intro-awards-listing">
-                {awardsData.map((award, index) => (
-                  <div key={award.name} className="home__intro-award">
-                    <span className="line" />
-                    <div className="home__intro-award-inner">
-                      <p className="fs-24 cl-txt-desc home__intro-award-name">{award.name}</p>
-                      <p className="cl-txt-disable home__intro-award-year">{award.year}</p>
-                      <p className="cl-txt-disable home__intro-award-category">{award.category}</p>
-                    </div>
-                    <div className="home__intro-award-logo-mb">
-                      <img src={award.logoMbSrc} alt="award logo" width={120} height={120} className="img img-fill" />
-                    </div>
-                    <div className="home__intro-award-logo">
-                      <img src={award.src} alt="award logo" width={award.width} height={award.height} className="img img-fit" />
-                    </div>
+            <div className="home__intro-awards-listing">
+              {awardsData.map((award, index) => (
+                <div key={award.name} className="home__intro-award">
+                  <span className="home__intro-award-line" />
+                  <div className="home__intro-award-inner">
+                    <p className="home__intro-award-name">{award.name}</p>
+                    <p className="home__intro-award-year">{award.year}</p>
+                    <p className="home__intro-award-category">{award.category}</p>
                   </div>
-                ))}
-              </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -287,7 +278,7 @@ export function IntroSection() {
             style={{ width: "max-content", display: "flex", flex: "none" }}
           >
             {statsData.map((item) => (
-              <h3 key={item}>{item}</h3>
+              <h3 key={item} className="fw-semi heading h3 upper">{item}</h3>
             ))}
           </div>
           <div
@@ -295,7 +286,7 @@ export function IntroSection() {
             style={{ width: "max-content", display: "flex", flex: "none" }}
           >
             {statsData.map((item) => (
-              <h3 key={item}>{item}</h3>
+              <h3 key={item} className="fw-semi heading h3 upper">{item}</h3>
             ))}
           </div>
         </div>

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import { NoiseOverlay } from "@/components/NoiseOverlay";
+import { SiteLoader } from "@/components/SiteLoader";
 import "./globals.css";
 
 const matter = localFont({
@@ -42,11 +43,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
+      <body className={`${matter.variable}`}>
         <SmoothScroll />
         <NoiseOverlay />
+        <SiteLoader />
         {children}
       </body>
     </html>
   );
 }
+

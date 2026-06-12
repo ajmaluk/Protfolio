@@ -6,8 +6,18 @@ import { cn } from "@/lib/utils";
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOnHomeHero, setIsOnHomeHero] = useState(true);
+  const [greeting, setGreeting] = useState("Good evening!");
 
   useEffect(() => {
+    const hour = new Date().getHours();
+    if (hour < 12) {
+      setGreeting("Good morning!");
+    } else if (hour < 17) {
+      setGreeting("Good afternoon!");
+    } else {
+      setGreeting("Good evening!");
+    }
+
     function updateScrollState() {
       const lenis = (window as unknown as Record<string, unknown>).__lenis as { scroll: number } | undefined;
       if (!lenis) return;
@@ -54,7 +64,7 @@ export function Header() {
           style={{ gridColumn: "1 / 4", gridRow: "1 / 2" }}
         >
           <p className="header__greating heading fw-med h5">
-            Good evening!
+            {greeting}
           </p>
           <h2 className="heading h5 fw-med header__name">
             <div className="header__name-wrap">

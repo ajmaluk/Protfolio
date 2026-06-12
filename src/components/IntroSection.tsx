@@ -60,9 +60,49 @@ const statsData = [
   "Visual design",
 ];
 
-const introMainText = "Financial services should be intuitive, accessible, and empowering. I use human-centered design to create solutions that resonate with customers.By applying design thinking, branding, and strategic planning, I've helped banks, fintechs, and crypto businesses improve customer experience, increase engagement, and drive growth.My goal is to create financial experiences that are not only efficient but also enjoyable. I believe finance should be a positive force in people's lives.";
+import { useEffect, useState, useRef } from "react";
+
+const introMainText = "Financial services should be intuitive, accessible, and empowering. I use human-centered design to create solutions that resonate with customers. By applying design thinking, branding, and strategic planning, I've helped banks, fintechs, and crypto businesses improve customer experience, increase engagement, and drive growth. My goal is to create financial experiences that are not only efficient but also enjoyable. I believe finance should be a positive force in people's lives.";
 
 export function IntroSection() {
+  const [activeAwardIndex, setActiveAwardIndex] = useState(0);
+  const textRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const textElement = textRef.current;
+    if (!textElement) return;
+
+    const handleScroll = () => {
+      const rect = textElement.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
+      
+      // Calculate progress of text element scroll through viewport
+      const totalHeight = rect.height + viewportHeight;
+      const current = viewportHeight - rect.top;
+      const progress = Math.max(0, Math.min(1, current / totalHeight));
+      
+      textElement.style.setProperty("--scroll-progress", progress.toString());
+    };
+
+    const lenis = (window as unknown as Record<string, unknown>).__lenis as { on: (e: string, fn: () => void) => void; off: (e: string, fn: () => void) => void } | undefined;
+    if (lenis) {
+      lenis.on("scroll", handleScroll);
+    } else {
+      window.addEventListener("scroll", handleScroll);
+    }
+    handleScroll();
+
+    return () => {
+      if (lenis) {
+        lenis.off("scroll", handleScroll);
+      } else {
+        window.removeEventListener("scroll", handleScroll);
+      }
+    };
+  }, []);
+
+  const words = introMainText.split(" ");
+
   return (
     <div className="home__intro-wrap">
       <section className="home__intro">
@@ -89,8 +129,21 @@ export function IntroSection() {
           </div>
 
           <div className="home__intro-main">
-            <div className="heading h4 home__intro-main-txt">
-              {introMainText}
+            <div 
+              ref={textRef} 
+              className="heading h4 home__intro-main-txt"
+              style={{ "--total-words": words.length } as React.CSSProperties}
+            >
+              <span className="home__intro-main-label">(Intro)</span>
+              {words.map((word, index) => (
+                <span 
+                  key={index} 
+                  className="reveal-word" 
+                  style={{ "--word-index": index } as React.CSSProperties}
+                >
+                  {word}{" "}
+                </span>
+              ))}
             </div>
             <a href="/about" className="btn-circle arrow-hover home__intro-btn">
               <div className="ic-arr-wrap" style={{ "--size": 3.2 } as React.CSSProperties}>
@@ -124,15 +177,33 @@ export function IntroSection() {
             />
           </div>
 
+          {/* Awards Visual display in the middle column */}
+          <div className="home__intro-awards-visual">
+            <div className="awards-visual-inner">
+              <img
+                src={activeAwardIndex === 0 ? "/images/awards-sphere.png" : awardsData[activeAwardIndex].src}
+                alt={awardsData[activeAwardIndex].name}
+                className="awards-visual-img"
+              />
+            </div>
+          </div>
+
           <div className="home__intro-awards" style={{ "--itemLength": 4 } as React.CSSProperties}>
             <h3 className="heading h4 cl-txt-title upper home__intro-awards-title">Awards</h3>
             <div className="home__intro-awards-listing">
               {awardsData.map((award, index) => (
-                <div key={award.name} className="home__intro-award">
+                <div 
+                  key={award.name} 
+                  className={`home__intro-award ${index === activeAwardIndex ? "active" : ""}`}
+                  onMouseEnter={() => setActiveAwardIndex(index)}
+                >
                   <span className="home__intro-award-line" />
                   <div className="home__intro-award-inner">
                     <p className="home__intro-award-name">{award.name}</p>
-                    <p className="home__intro-award-year">{award.year}</p>
+                    <p className="home__intro-award-year">
+                      {award.year}
+                      {index === activeAwardIndex && <span className="home__intro-award-dot" />}
+                    </p>
                     <p className="home__intro-award-category">{award.category}</p>
                   </div>
                 </div>

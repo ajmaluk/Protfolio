@@ -1220,12 +1220,14 @@ h6, .h6 { font-size: var(--fs-h6); line-height: var(--lh-h6); }
   position: relative;
   z-index: 4;
   margin-top: calc(-100vh - var(--padding-top));
+  padding-top: 14rem;
 }
 
 @media screen and (max-width: 767px) {
   .home__intro {
     --padding-top: 0;
     margin-top: 0;
+    padding-top: 4rem;
   }
 }
 
@@ -1272,6 +1274,17 @@ h6, .h6 { font-size: var(--fs-h6); line-height: var(--lh-h6); }
 
 .home__intro-main-txt {
   margin-bottom: 6rem;
+  --scroll-progress: 0;
+}
+
+.reveal-word {
+  opacity: calc(
+    clamp(0.15, 1 - abs(var(--scroll-progress) - (var(--word-index) / var(--total-words))) * 4.5, 1)
+  );
+  filter: blur(calc(clamp(0px, (abs(var(--scroll-progress) - (var(--word-index) / var(--total-words))) - 0.04) * 12px, 5px)));
+  transition: opacity 0.15s ease-out, filter 0.15s ease-out;
+  display: inline-block;
+  white-space: pre;
 }
 
 @media screen and (max-width: 991px) {
@@ -1442,6 +1455,47 @@ h6, .h6 { font-size: var(--fs-h6); line-height: var(--lh-h6); }
   grid-area: 1/1/2/2;
 }
 
+.home__intro-awards-visual {
+  grid-column: 5/9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 4rem;
+  padding-bottom: 6rem;
+}
+
+.awards-visual-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20rem;
+  height: 20rem;
+}
+
+.awards-visual-img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  animation: visual-fade 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+@keyframes visual-fade {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .home__intro-awards-visual {
+    display: none;
+  }
+}
+
 .home__intro-awards {
   padding-top: 4rem;
   padding-bottom: 6rem;
@@ -1503,9 +1557,21 @@ h6, .h6 { font-size: var(--fs-h6); line-height: var(--lh-h6); }
   transition: color 0.3s ease;
 }
 
-.home__intro-award:hover .home__intro-award-name {
+.home__intro-award:hover .home__intro-award-name,
+.home__intro-award.active .home__intro-award-name {
   color: var(--cl-dm-title);
 }
+
+.home__intro-award-dot {
+  display: inline-block;
+  width: 0.6rem;
+  height: 0.6rem;
+  background-color: var(--cl-orange);
+  border-radius: 50%;
+  margin-left: 1.2rem;
+  vertical-align: middle;
+}
+
 
 .home__intro-award-year {
   font-size: var(--fs-14, 1.4rem);

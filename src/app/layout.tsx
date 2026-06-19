@@ -18,6 +18,7 @@ const matter = localFont({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://valentincheval.design"),
   title: "Valentin Cheval | UX/UI & Brand Design Leader",
   description:
     "I'm an award winning product designer specialized in financial products. I working for Financial Products in Fintech, crypto and Web3.",

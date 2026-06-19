@@ -1,3 +1,12 @@
+import type { ProjectDetail } from "@/data/projects";
+
+// Re-export for convenience so existing consumers can keep importing from "@/types".
+export type { ProjectDetail };
+
+/**
+ * @deprecated Prefer `ProjectDetail` from `@/data/projects`. Kept for backward
+ * compatibility with components that still import `Project`.
+ */
 export interface Project {
   id: string;
   name: string;

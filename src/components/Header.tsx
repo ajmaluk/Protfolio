@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { cn } from "@/lib/utils";
 
 export function Header() {
@@ -13,6 +14,10 @@ export function Header() {
     hour < 12 ? "Good morning!" : hour < 17 ? "Good afternoon!" : "Good evening!";
 
   useEffect(() => {
+    let attachedLenis:
+      | { scroll: number; on: (e: string, fn: () => void) => void; off: (e: string, fn: () => void) => void }
+      | undefined;
+
     function updateScrollState() {
       const lenis = (window as unknown as Record<string, unknown>).__lenis as { scroll: number } | undefined;
       if (!lenis) return;
@@ -24,20 +29,25 @@ export function Header() {
 
     function onLenisReady(e: CustomEvent) {
       const lenis = e.detail.lenis;
+      attachedLenis = lenis;
       updateScrollState();
       lenis.on("scroll", updateScrollState);
     }
 
     window.addEventListener("lenis-ready", onLenisReady as EventListener);
 
-    const existingLenis = (window as unknown as Record<string, unknown>).__lenis as { scroll: number; on: (e: string, fn: () => void) => void } | undefined;
+    const existingLenis = (window as unknown as Record<string, unknown>).__lenis as { scroll: number; on: (e: string, fn: () => void) => void; off: (e: string, fn: () => void) => void } | undefined;
     if (existingLenis) {
+      attachedLenis = existingLenis;
       updateScrollState();
       existingLenis.on("scroll", updateScrollState);
     }
 
     return () => {
       window.removeEventListener("lenis-ready", onLenisReady as EventListener);
+      if (attachedLenis) {
+        attachedLenis.off("scroll", updateScrollState);
+      }
     };
   }, []);
 
@@ -55,6 +65,18 @@ export function Header() {
     };
   }, [menuOpen]);
 
+  // Close overlay on Escape
+  useEffect(() => {
+    if (!menuOpen) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMenuOpen(false);
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [menuOpen]);
+
+  const closeMenu = () => setMenuOpen(false);
+
   return (
     <header
       id="header"
@@ -68,14 +90,11 @@ export function Header() {
     >
       <div className="header__blur" />
       <div className="container grid">
-        <div
-          className="header__logo"
-          style={{ gridColumn: "1 / 4", gridRow: "1 / 2" }}
-        >
-          <p className="header__greating fs-16">
+        <div className="header__logo">
+          <p className="header__greating fs-16" aria-hidden={!isOnHomeHero}>
             {greeting}
           </p>
-          <h2 className="heading h5 fw-med header__name">
+          <Link href="/" className="heading h5 fw-med header__name" aria-label="Valentin Cheval — Home">
             <div className="header__name-wrap">
               <div className="cl-txt-title">Valentin</div>
               <div>Product</div>
@@ -84,13 +103,10 @@ export function Header() {
               <div>Designer</div>
               <div>Cheval</div>
             </div>
-          </h2>
+          </Link>
         </div>
 
-        <div
-          className="header__socials hide-mb"
-          style={{ gridColumn: "9 / 11" }}
-        >
+        <div className="header__socials hide-mb">
           <span className="cl-txt-title fs-14 fw-med" style={{ marginRight: "3.2rem" }}>
             Socials
           </span>
@@ -102,10 +118,7 @@ export function Header() {
           <a href="#" className="txt-link hover-un header__social fs-14"> tw </a>
         </div>
 
-        <div
-          className="header__menu hide-mb"
-          style={{ gridColumn: "13 / 16", display: "flex", alignItems: "center", gap: "0", justifyContent: "flex-end" }}
-        >
+        <div className="header__menu hide-mb">
           <a href="#" className="txt-link hover-un fs-14">Index</a>
           <span className="splash cl-txt-disable fs-14" style={{ margin: "0 .6rem" }}>/</span>
           <a href="#" className="txt-link hover-un fs-14">About</a>
@@ -122,8 +135,9 @@ export function Header() {
 
         <button
           className={cn("header__toggle hide-dk cl-txt-title fs-16 fw-med", menuOpen && "open")}
-          style={{ gridColumn: "4 / 5", justifySelf: "end" }}
           onClick={() => setMenuOpen(!menuOpen)}
+          aria-label={menuOpen ? "Close menu" : "Open menu"}
+          aria-expanded={menuOpen}
         >
           <span className="header__toggle-open">Menu</span>
           <span className="header__toggle-close">Close</span>
@@ -131,31 +145,37 @@ export function Header() {
       </div>
 
       {menuOpen && (
-        <div className="header__menu-overlay" onClick={() => setMenuOpen(false)}>
+        <div
+          className="header__menu-overlay"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Site navigation"
+          onClick={closeMenu}
+        >
           <div className="header__menu-overlay-inner" onClick={(e) => e.stopPropagation()}>
             <div className="container">
               <div className="header__menu-overlay-nav">
-                <a href="#" className="header__menu-overlay-link" onClick={() => setMenuOpen(false)}>Index</a>
-                <a href="#" className="header__menu-overlay-link" onClick={() => setMenuOpen(false)}>About</a>
-                <a href="#" className="header__menu-overlay-link" onClick={() => setMenuOpen(false)}>Projects</a>
+                <a href="#" className="header__menu-overlay-link" onClick={closeMenu}>Index</a>
+                <a href="#" className="header__menu-overlay-link" onClick={closeMenu}>About</a>
+                <a href="#" className="header__menu-overlay-link" onClick={closeMenu}>Projects</a>
               </div>
               <div className="header__menu-overlay-socials">
                 <p className="header__menu-overlay-label">Socials</p>
-                <a href="#" className="header__menu-overlay-social-link">LinkedIn</a>
-                <a href="#" className="header__menu-overlay-social-link">Dribbble</a>
-                <a href="#" className="header__menu-overlay-social-link">Twitter/X</a>
+                <a href="#" className="header__menu-overlay-social-link" onClick={closeMenu}>LinkedIn</a>
+                <a href="#" className="header__menu-overlay-social-link" onClick={closeMenu}>Dribbble</a>
+                <a href="#" className="header__menu-overlay-social-link" onClick={closeMenu}>Twitter/X</a>
               </div>
               <div className="header__menu-overlay-contact">
                 <p className="header__menu-overlay-label">Text me</p>
-                <a href="mailto:hello@valentincheval.design" className="header__menu-overlay-contact-link">Email</a>
-                <a href="https://wa.me/84822235564" className="header__menu-overlay-contact-link">WhatsApp</a>
-                <a href="https://t.me/84822235564" className="header__menu-overlay-contact-link">Telegram</a>
+                <a href="mailto:hello@valentincheval.design" className="header__menu-overlay-contact-link" onClick={closeMenu}>Email</a>
+                <a href="https://wa.me/84822235564" className="header__menu-overlay-contact-link" target="_blank" rel="noopener noreferrer" onClick={closeMenu}>WhatsApp</a>
+                <a href="https://t.me/84822235564" className="header__menu-overlay-contact-link" target="_blank" rel="noopener noreferrer" onClick={closeMenu}>Telegram</a>
               </div>
               <div className="header__menu-overlay-cta">
                 <a
                   href="mailto:hello@valentincheval.design"
                   className="header__menu-overlay-cta-link"
-                  onClick={() => setMenuOpen(false)}
+                  onClick={closeMenu}
                 >
                   Let&apos;s talk!
                 </a>

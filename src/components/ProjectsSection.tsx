@@ -1,49 +1,15 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import Link from "next/link"
 import { cn } from "@/lib/utils"
-
-const projects = [
-  {
-    id: "bitmex",
-    name: "Bitmex",
-    thumbnail: "/images/bitmex-cover.jpg",
-    year: "23",
-    roles: [
-      { title: "Head of Design" },
-      { title: "Brand Strategy" }
-    ],
-    description:
-      "BitMEX is one of the key leader in centralized exchange, founded in 2014. As head of Design, I helped reposition their brand strategy.",
-  },
-  {
-    id: "defichain",
-    name: "Defichain",
-    thumbnail: "/images/define-hero.jpg",
-    year: "20",
-    roles: [
-      { title: "Lead Product Designer" }
-    ],
-    description:
-      "DefiScan is an ERC-20 explorer solution for DefiMetachain the ethereum blockchain solution for Defichain.",
-  },
-  {
-    id: "tymebank",
-    name: "Tyme Bank",
-    thumbnail: "/images/gotymebank.jpg",
-    year: "21",
-    roles: [
-      { title: "Lead Product Designer" }
-    ],
-    description:
-      "One of the fastest digital bank in SEA and Africa, Tyme Bank is an ambitious young bank. I worked as a lead product designer, focusing on their investment product suite and branding",
-  },
-]
+import { projects, type ProjectDetail } from "@/data/projects"
 
 export function ProjectsSection() {
   const [activeIndex, setActiveIndex] = useState(0)
   const [nameGridStyle, setNameGridStyle] = useState<React.CSSProperties>({})
   const [touchStartX, setTouchStartX] = useState<number | null>(null)
+  const [touchStartY, setTouchStartY] = useState<number | null>(null)
 
   useEffect(() => {
     const mainSection = document.querySelector(".home__project-main")
@@ -234,14 +200,18 @@ export function ProjectsSection() {
 
   const handleTouchStart = (e: React.TouchEvent) => {
     setTouchStartX(e.touches[0].clientX)
+    setTouchStartY(e.touches[0].clientY)
   }
 
   const handleTouchMove = (e: React.TouchEvent) => {
-    if (touchStartX === null) return
+    if (touchStartX === null || touchStartY === null) return
     const currentX = e.touches[0].clientX
+    const currentY = e.touches[0].clientY
     const diffX = touchStartX - currentX
-    
-    if (Math.abs(diffX) > 50) {
+    const diffY = touchStartY - currentY
+
+    // Only treat as a horizontal swipe if horizontal motion clearly dominates
+    if (Math.abs(diffX) > 50 && Math.abs(diffX) > Math.abs(diffY) * 1.5) {
       if (diffX > 0) {
         if (activeIndex < projects.length - 1) {
           handleDotClick(activeIndex + 1)
@@ -252,6 +222,7 @@ export function ProjectsSection() {
         }
       }
       setTouchStartX(null)
+      setTouchStartY(null)
     }
   }
 
@@ -280,13 +251,23 @@ export function ProjectsSection() {
                 <div className="home__project-slide">
                   {projects.map((proj, idx) => (
                     <div
-                      key={idx}
+                      key={proj.id}
                       className={cn("home__project-slide-item-wrap", idx === activeIndex && "active")}
                       onClick={() => handleDotClick(idx)}
+                      role="button"
+                      tabIndex={0}
+                      aria-label={`Jump to ${proj.name}`}
+                      aria-pressed={idx === activeIndex}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter" || e.key === " ") {
+                          e.preventDefault();
+                          handleDotClick(idx);
+                        }
+                      }}
                     >
                       <div className="home__project-slide-item">
                         <div className="home__project-slide-item-img">
-                          <img src={proj.thumbnail} alt="" />
+                          <img src={proj.thumbnail} alt={`${proj.name} cover`} width={132} height={200} loading="lazy" />
                         </div>
                         <div className="home__project-slide-item-progress">
                           <div className="home__project-slide-item-progress-bg" />
@@ -317,24 +298,30 @@ export function ProjectsSection() {
                       </div>
                     </div>
 
+                    <h3 className="visually-hidden">
+                      Viewing project: {projects[activeIndex].name}
+                    </h3>
+
                     <div className="grid-1-1 home__project-name-grid" style={nameGridStyle}>
                       {projects.map((proj, idx) => (
-                        <h4
-                          key={idx}
+                        <button
+                          key={proj.id}
+                          type="button"
                           className={cn(
-                            "heading h3 fw-med upper cl-txt-title home__project-name-txt",
-                            idx === activeIndex && "active"
+                            "heading h3 fw-med upper home__project-name-txt",
+                            idx === activeIndex ? "cl-txt-title active" : "cl-txt-desc"
                           )}
                           onClick={() => handleDotClick(idx)}
                           data-cursor-text="View"
-                          style={{ cursor: "pointer" }}
+                          aria-label={`View ${proj.name} project`}
+                          aria-pressed={idx === activeIndex}
                         >
                           {proj.name}
-                        </h4>
+                        </button>
                       ))}
                     </div>
 
-                    <a href="/projects" className="cl-txt-orange fs-20 fw-med arrow-hover home__project-link mod-mb">
+                    <Link href="/projects" className="cl-txt-orange fs-20 fw-med arrow-hover home__project-link mod-mb">
                       <span className="txt-link cl-txt-orange">All projects</span>
                       <div className="ic-arr-wrap ic-20" style={{ "--size": 1.6 } as React.CSSProperties}>
                         <div className="arr-main ic" style={{ "--size": 1.6 } as React.CSSProperties}>
@@ -350,7 +337,7 @@ export function ProjectsSection() {
                           </svg>
                         </div>
                       </div>
-                    </a>
+                    </Link>
                   </div>
 
                   {/* Year block on tablet */}
@@ -372,7 +359,7 @@ export function ProjectsSection() {
                     <div className="home__project-thumbnail-listing">
                       {projects.map((proj, idx) => (
                         <div
-                          key={idx}
+                          key={proj.id}
                           className="home__project-thumbnail-img"
                           data-cursor-text="View"
                           style={{
@@ -387,7 +374,14 @@ export function ProjectsSection() {
                         >
                           <div className="home__project-thumbnail-img-wrap">
                             <div className="home__project-thumbnail-img-inner">
-                              <img src={proj.thumbnail} alt={proj.name} />
+                              <img
+                                src={proj.thumbnail}
+                                alt={idx === activeIndex ? `${proj.name} project preview` : ""}
+                                aria-hidden={idx !== activeIndex}
+                                width={1280}
+                                height={800}
+                                loading="lazy"
+                              />
                             </div>
                           </div>
                         </div>
@@ -415,9 +409,9 @@ export function ProjectsSection() {
                     <p className="cl-txt-desc fw-med home__project-label">Role</p>
                     <div className="home__project-role-listing">
                       {projects.map((proj, idx) => (
-                        <div key={idx} className={cn("home__project-role-listing-inner", idx === activeIndex && "active")}>
-                          {proj.roles.map((role, rIdx) => (
-                            <p key={rIdx} className="fs-20 cl-txt-sub">{role.title}</p>
+                        <div key={proj.id} className={cn("home__project-role-listing-inner", idx === activeIndex && "active")}>
+                          {proj.services.map((role, rIdx) => (
+                            <h4 key={rIdx} className="fs-20 cl-txt-sub">{role}</h4>
                           ))}
                         </div>
                       ))}
@@ -436,7 +430,7 @@ export function ProjectsSection() {
                     ))}
                   </div>
 
-                  <a href="/projects" className="cl-txt-orange fs-20 fw-med arrow-hover home__project-link">
+                  <Link href="/projects" className="cl-txt-orange fs-20 fw-med arrow-hover home__project-link">
                     <span className="txt-link cl-txt-orange">All projects</span>
                     <div className="ic-arr-wrap ic-20" style={{ "--size": 1.6 } as React.CSSProperties}>
                       <div className="arr-main ic" style={{ "--size": 1.6 } as React.CSSProperties}>
@@ -452,27 +446,47 @@ export function ProjectsSection() {
                         </svg>
                       </div>
                     </div>
-                  </a>
+                  </Link>
                 </div>
 
                 {/* Arrows visible only on mobile/tablet */}
                 <div className="home__project-navigation">
-                  <div 
+                  <div
                     className={cn("home__project-navigation-arrow prev", activeIndex === 0 && "disable")}
                     onClick={() => activeIndex > 0 && handleDotClick(activeIndex - 1)}
+                    role="button"
+                    tabIndex={activeIndex === 0 ? -1 : 0}
+                    aria-label="Previous project"
+                    aria-disabled={activeIndex === 0}
+                    onKeyDown={(e) => {
+                      if ((e.key === "Enter" || e.key === " ") && activeIndex > 0) {
+                        e.preventDefault();
+                        handleDotClick(activeIndex - 1);
+                      }
+                    }}
                   >
                     <div className="ic ic-20">
-                      <svg width="100%" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <svg width="100%" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                         <path d="M2.6 8.00003H14M6.19998 3.80005L2 8.00003L6.19998 12.2" stroke="currentColor" strokeWidth="1.13137" strokeMiterlimit="10" strokeLinecap="square"></path>
                       </svg>
                     </div>
                   </div>
-                  <div 
+                  <div
                     className={cn("home__project-navigation-arrow next", activeIndex === projects.length - 1 && "disable")}
                     onClick={() => activeIndex < projects.length - 1 && handleDotClick(activeIndex + 1)}
+                    role="button"
+                    tabIndex={activeIndex === projects.length - 1 ? -1 : 0}
+                    aria-label="Next project"
+                    aria-disabled={activeIndex === projects.length - 1}
+                    onKeyDown={(e) => {
+                      if ((e.key === "Enter" || e.key === " ") && activeIndex < projects.length - 1) {
+                        e.preventDefault();
+                        handleDotClick(activeIndex + 1);
+                      }
+                    }}
                   >
                     <div className="ic ic-20">
-                      <svg width="100%" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <svg width="100%" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                         <path d="M13.4 8.00003H2M9.79997 3.80005L14 8.00003L9.79997 12.2" stroke="currentColor" strokeWidth="1.13137" strokeMiterlimit="10" strokeLinecap="square"></path>
                       </svg>
                     </div>

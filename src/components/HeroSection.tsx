@@ -56,13 +56,13 @@ export function HeroSection() {
               <span className="line" />
               <div className="home__hero-awards">
                 <div className="ic home__hero-award">
-                  <img src="/images/red-dot-white.svg" alt="award logo" width={44} height={44} />
+                  <img src="/images/red-dot-white.svg" alt="Red Dot Award" width={44} height={44} />
                 </div>
                 <div className="ic home__hero-award">
-                  <img src="/images/uxdesign-white.svg" alt="award logo" width={44} height={48} />
+                  <img src="/images/uxdesign-white.svg" alt="UX Design Award" width={44} height={48} />
                 </div>
                 <div className="ic home__hero-award">
-                  <img src="/images/dfa-white.svg" alt="award logo" width={44} height={37} />
+                  <img src="/images/dfa-white.svg" alt="Design for Asia Award" width={44} height={37} />
                 </div>
               </div>
             </div>
@@ -72,7 +72,7 @@ export function HeroSection() {
                 <div className="home__hero-greating-inner">
                   <p className="home__hero-greating">Hi there! this is</p>
                   <p className="heading h5 fw-med home__hero-name">
-                    <span className="cl-txt-title">Valentin</span>
+                    <span className="cl-txt-title">Valentin</span>{" "}
                     <span>Cheval</span>
                   </p>
                 </div>
@@ -84,7 +84,7 @@ export function HeroSection() {
                 <div className="home__hero-title-txt only-mb">finance</div>
                 <div className="cl-txt-orange home__hero-title-slide">
                   <div className="home__hero-title-slide-inner">
-                    <div className="grid-1-1 slide-txt-wrap" style={{ width: "max-content" }}>
+                    <div className="grid-1-1 slide-txt-wrap">
                       {WORDS.map((word, index) => {
                         const diff = index - currentIndex
                         const isActive = index === currentIndex
@@ -105,15 +105,11 @@ export function HeroSection() {
                             key={word}
                             className="slide-txt-item heading upper"
                             style={{
-                              fontSize: "var(--fs-h1)",
-                              fontWeight: 700,
-                              lineHeight: "var(--lh-h1)",
-                              color: "var(--cl-orange)",
-                              transition: "transform 0.6s cubic-bezier(.33,1,.68,1), opacity 0.6s cubic-bezier(.33,1,.68,1)",
                               transform: `rotateX(${rotateX}deg) translate3d(0, ${translateY}px, ${translateZ}px)`,
                               opacity: isActive ? 1 : 0,
                               visibility: isActive ? "inherit" : "hidden",
                             }}
+                            aria-hidden={!isActive}
                           >
                             {word}
                           </div>
@@ -134,7 +130,8 @@ export function HeroSection() {
               <div className="home__hero-bg-main-inner-bg">
                 <img
                   src="/images/home-hero-bg.jpg"
-                  alt="a man"
+                  alt=""
+                  role="presentation"
                 />
               </div>
               <div className="home__hero-bg-main-inner-man" data-canvas-wrap>
@@ -142,7 +139,8 @@ export function HeroSection() {
                 <div className="home__hero-bg-main-inner placeholder">
                   <img
                     src="/images/home-hero-trans.png"
-                    alt="a man"
+                    alt=""
+                    role="presentation"
                   />
                 </div>
               </div>

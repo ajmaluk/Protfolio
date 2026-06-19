@@ -100,6 +100,16 @@ export function TestimonialsSection() {
                     className={cn("home__testi-item", idx === activeIndex && "active", isExpanded && "is-open")}
                     onMouseEnter={() => setActiveIndex(idx)}
                     onClick={() => handleClick(idx)}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" || e.key === " ") {
+                        e.preventDefault();
+                        handleClick(idx);
+                      }
+                    }}
+                    role="button"
+                    tabIndex={0}
+                    aria-expanded={isExpanded}
+                    aria-label={`Read ${t.name}'s testimonial`}
                     data-cursor-text={isExpanded ? "Close" : "Read"}
                   >
                     <div className="home__testi-item-inner">

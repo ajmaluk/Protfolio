@@ -5,7 +5,11 @@ import Lenis from "lenis";
 
 export function SmoothScroll() {
   useEffect(() => {
+    const wrapper = document.querySelector(".wrapper") as HTMLElement | null;
+
     const lenis = new Lenis({
+      wrapper: wrapper ?? window,
+      content: wrapper ?? document.documentElement,
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: "vertical",
@@ -31,9 +35,12 @@ export function SmoothScroll() {
       const progress = Math.min(scrollY / heroHeight, 1);
       const scale = 1 + progress * 0.45;
       
-      // Fade out over a longer scroll distance (intro section) so it stays visible behind intro text
-      const fadeProgress = Math.min(scrollY / (heroHeight * 1.8), 1);
-      const topOpacity = Math.max(0, 1 - Math.pow(fadeProgress, 2));
+      // Keep background fully visible during hero scroll, and fade it out during the intro text scroll
+      let topOpacity = 1;
+      if (scrollY > heroHeight) {
+        const fadeProgress = Math.min((scrollY - heroHeight) / (heroHeight * 0.8), 1);
+        topOpacity = Math.max(0, 1 - Math.pow(fadeProgress, 2));
+      }
 
       if (bgMainWrap) {
         bgMainWrap.style.transform = `scale(${scale})`;
@@ -61,9 +68,10 @@ export function SmoothScroll() {
 
     lenis.on("scroll", handleParallax);
 
-    setTimeout(() => {
+    // Run an initial pass after the next animation frame to ensure layout is ready
+    const initialRaf = requestAnimationFrame(() => {
       handleParallax();
-    }, 100);
+    });
 
     window.dispatchEvent(new CustomEvent("lenis-ready", { detail: { lenis } }));
 
@@ -71,6 +79,7 @@ export function SmoothScroll() {
       lenis.off("scroll", handleParallax);
       lenis.destroy();
       cancelAnimationFrame(rafId);
+      cancelAnimationFrame(initialRaf);
     };
   }, []);
 

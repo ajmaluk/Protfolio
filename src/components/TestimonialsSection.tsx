@@ -3,6 +3,14 @@
 import { useState } from "react"
 import { cn } from "@/lib/utils"
 
+const PREVIEW_PARAGRAPHS = 2
+
+function buildPreviewText(content: string, paragraphs: number) {
+  const parts = content.split("\n\n").filter(Boolean)
+  if (parts.length <= paragraphs) return content
+  return parts.slice(0, paragraphs).join("\n\n") + "..."
+}
+
 const testimonials = [
   {
     index: 1,
@@ -50,14 +58,19 @@ const testimonials = [
 
 export function TestimonialsSection() {
   const [activeIndex, setActiveIndex] = useState(0)
+  const [expanded, setExpanded] = useState<number | null>(null)
 
   const pad = (n: number) => String(n).padStart(2, "0")
+
+  const handleClick = (idx: number) => {
+    setActiveIndex(idx)
+    setExpanded(expanded === idx ? null : idx)
+  }
 
   return (
     <div className="home__testi-wrap">
       <section className="home__testi">
         <div className="container">
-          {/* Title - matches new CSS structure */}
           <h2 className="home__testi-title">
             <span className="heading h2 upper fw-bold home__testi-title-row">
               What people say
@@ -66,32 +79,62 @@ export function TestimonialsSection() {
               <span className="heading h2 upper fw-bold">About me</span>
               <span className="home__testi-title-dot">.</span>
             </span>
-            <span className="fs-20 fw-reg home__testi-title-label">(Testimonials)</span>
+            <div className="home__testi-title-meta">
+              <span className="home__testi-pagination">
+                <span className="cl-txt-title">{pad(activeIndex + 1)}</span>
+                <span className="cl-txt-disable"> / {pad(testimonials.length)}</span>
+              </span>
+              <span className="fs-20 fw-reg home__testi-title-label">(Testimonials)</span>
+            </div>
           </h2>
 
-          {/* Listing - matches new CSS structure */}
           <div className="home__testi-listing">
-            {testimonials.map((t, idx) => (
-              <div key={t.index}>
-                {/* Line separator before each item */}
-                <span className="home__testi-item-line" />
-                <div
-                  className={cn("home__testi-item", idx === activeIndex && "active")}
-                  onMouseEnter={() => setActiveIndex(idx)}
-                  onClick={() => setActiveIndex(idx)}
-                >
-                  <div className="home__testi-item-inner">
-                    <p className="home__testi-item-order heading">{pad(t.index)}.</p>
-                    <div className="home__testi-item-info">
-                      <p className="home__testi-item-name">{t.name}</p>
-                      <p className="home__testi-item-position">{t.position}</p>
+            {testimonials.map((t, idx) => {
+              const isExpanded = expanded === idx
+              const displayText = isExpanded ? t.content : buildPreviewText(t.content, PREVIEW_PARAGRAPHS)
+              const needsExpansion = t.content.split("\n\n").filter(Boolean).length > PREVIEW_PARAGRAPHS
+              return (
+                <div key={t.index} className="home__testi-item-wrap">
+                  <span className="home__testi-item-line" />
+                  <div
+                    className={cn("home__testi-item", idx === activeIndex && "active", isExpanded && "is-open")}
+                    onMouseEnter={() => setActiveIndex(idx)}
+                    onClick={() => handleClick(idx)}
+                    data-cursor-text={isExpanded ? "Close" : "Read"}
+                  >
+                    <div className="home__testi-item-inner">
+                      <p className="home__testi-item-order heading">{pad(t.index)}.</p>
+                      <div className="home__testi-item-info">
+                        <p className="home__testi-item-name">{t.name}</p>
+                        <p className="home__testi-item-position">{t.position}</p>
+                      </div>
+                      <div className="home__testi-item-quote-col">
+                        <div className="home__testi-item-quote-wrap">
+                          {displayText.split("\n\n").map((paragraph, pIdx) => (
+                            <p key={pIdx} className="home__testi-item-quote">{paragraph}</p>
+                          ))}
+                        </div>
+                        {needsExpansion && (
+                          <button
+                            type="button"
+                            className={cn("home__testi-item-toggle", isExpanded && "is-open")}
+                            onClick={(e) => { e.stopPropagation(); handleClick(idx); }}
+                            data-cursor-text={isExpanded ? "Close" : "Read more"}
+                          >
+                            <span className="home__testi-item-toggle-text">
+                              {isExpanded ? "Show less" : "Read more"}
+                            </span>
+                            <span className="home__testi-item-toggle-arrow" aria-hidden="true">
+                              {isExpanded ? "↑" : "→"}
+                            </span>
+                          </button>
+                        )}
+                      </div>
                     </div>
-                    <p className="home__testi-item-quote">{t.content}</p>
                   </div>
                 </div>
-              </div>
-            ))}
-            {/* Line after last item */}
+              )
+            })}
             <span className="home__testi-item-line" />
           </div>
         </div>

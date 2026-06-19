@@ -67,6 +67,7 @@ const introMainText = "Financial services should be intuitive, accessible, and e
 export function IntroSection() {
   const [activeAwardIndex, setActiveAwardIndex] = useState(0);
   const textRef = useRef<HTMLDivElement>(null);
+  const serviceWrapRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const textElement = textRef.current;
@@ -75,13 +76,56 @@ export function IntroSection() {
     const handleScroll = () => {
       const rect = textElement.getBoundingClientRect();
       const viewportHeight = window.innerHeight;
-      
-      // Calculate progress of text element scroll through viewport
-      const totalHeight = rect.height + viewportHeight;
-      const current = viewportHeight - rect.top;
-      const progress = Math.max(0, Math.min(1, current / totalHeight));
-      
+      const revealStart = viewportHeight * 0.22;
+      const revealDistance = Math.max(rect.height * 0.68, viewportHeight * 0.34);
+      const progress = Math.max(
+        0,
+        Math.min(1, (revealStart - rect.top) / revealDistance)
+      );
+
       textElement.style.setProperty("--scroll-progress", progress.toString());
+    };
+
+    const lenis = (window as unknown as Record<string, unknown>).__lenis as { on: (e: string, fn: () => void) => void; off: (e: string, fn: () => void) => void } | undefined;
+    if (lenis) {
+      lenis.on("scroll", handleScroll);
+    } else {
+      window.addEventListener("scroll", handleScroll);
+    }
+    handleScroll();
+
+    return () => {
+      if (lenis) {
+        lenis.off("scroll", handleScroll);
+      } else {
+        window.removeEventListener("scroll", handleScroll);
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    const serviceWrap = serviceWrapRef.current;
+    if (!serviceWrap) return;
+
+    const handleScroll = () => {
+      const rect = serviceWrap.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
+      
+      const start = viewportHeight;
+      const end = -rect.height;
+      const total = start - end;
+      
+      const current = viewportHeight - rect.top;
+      const progress = Math.max(0, Math.min(1, current / total));
+      
+      const diff = Math.abs(progress - 0.5);
+      const scale = 1.15 - diff * 0.4;
+      const translateXOrange = (progress - 0.5) * -200;
+      const translateXBlack = (progress - 0.5) * 200;
+      
+      serviceWrap.style.setProperty("--service-scale", scale.toString());
+      serviceWrap.style.setProperty("--service-trans-orange", `${translateXOrange}px`);
+      serviceWrap.style.setProperty("--service-trans-black", `${translateXBlack}px`);
     };
 
     const lenis = (window as unknown as Record<string, unknown>).__lenis as { on: (e: string, fn: () => void) => void; off: (e: string, fn: () => void) => void } | undefined;
@@ -120,7 +164,7 @@ export function IntroSection() {
                   </div>
                 </div>
               ))}
-              <a href="mailto:hello@valentincheval.design" className="home__intro-company">
+              <a href="mailto:hello@valentincheval.design" className="home__intro-company" data-cursor-text="Hello">
                 <div className="home__intro-company-secret">
                   <div className="fs-16 fw-med cl-txt-title">Your logo here</div>
                 </div>
@@ -129,16 +173,16 @@ export function IntroSection() {
           </div>
 
           <div className="home__intro-main">
-            <div 
-              ref={textRef} 
+            <div
+              ref={textRef}
               className="heading h4 home__intro-main-txt"
               style={{ "--total-words": words.length } as React.CSSProperties}
             >
               <span className="home__intro-main-label">(Intro)</span>
               {words.map((word, index) => (
-                <span 
-                  key={index} 
-                  className="reveal-word" 
+                <span
+                  key={index}
+                  className="reveal-word"
                   style={{ "--word-index": index } as React.CSSProperties}
                 >
                   {word}{" "}
@@ -166,17 +210,6 @@ export function IntroSection() {
             </a>
           </div>
 
-          <div className="home__intro-portrait">
-            <img
-              src="/images/portrait.jpg"
-              alt="Valentin Cheval"
-              width={183}
-              height={244}
-              className="img"
-              loading="lazy"
-            />
-          </div>
-
           {/* Awards Visual display in the middle column */}
           <div className="home__intro-awards-visual">
             <div className="awards-visual-inner">
@@ -192,8 +225,8 @@ export function IntroSection() {
             <h3 className="heading h4 cl-txt-title upper home__intro-awards-title">Awards</h3>
             <div className="home__intro-awards-listing">
               {awardsData.map((award, index) => (
-                <div 
-                  key={award.name} 
+                <div
+                  key={award.name}
                   className={`home__intro-award ${index === activeAwardIndex ? "active" : ""}`}
                   onMouseEnter={() => setActiveAwardIndex(index)}
                 >
@@ -212,13 +245,13 @@ export function IntroSection() {
           </div>
         </div>
 
-        <div className="home__intro-service-wrap">
+        <div ref={serviceWrapRef} className="home__intro-service-wrap">
           <div className="home__intro-service">
             {/* Black Marquee: scrolls right (reverse) */}
             <div className="home__intro-service-marquee-wrap black">
               <div className="marquee">
-                <div 
-                  className="marquee-inner" 
+                <div
+                  className="marquee-inner"
                   style={{ display: "flex", animation: "marquee-reverse 20s linear infinite" }}
                 >
                   <div className="marquee-inner-item">
@@ -272,8 +305,8 @@ export function IntroSection() {
             {/* Orange Marquee: scrolls left (normal) */}
             <div className="home__intro-service-marquee-wrap orange">
               <div className="marquee">
-                <div 
-                  className="marquee-inner" 
+                <div
+                  className="marquee-inner"
                   style={{ display: "flex", animation: "marquee 20s linear infinite" }}
                 >
                   <div className="marquee-inner-item">
@@ -338,40 +371,6 @@ export function IntroSection() {
           </div>
         </div>
       </section>
-
-      <div className="marquee" style={{ overflow: "hidden" }}>
-        <div
-          className="marquee-inner"
-          style={{ display: "flex", animation: "marquee 20s linear infinite" }}
-        >
-          <div
-            className="marquee-inner-item"
-            style={{ width: "max-content", display: "flex", flex: "none", alignItems: "center", gap: "4rem", paddingRight: "4rem" }}
-          >
-            {statsData.map((item, idx) => (
-              <div key={idx} style={{ display: "flex", alignItems: "center", gap: "4rem" }}>
-                <h3 className="fw-semi heading h3 upper" style={{ whiteSpace: "nowrap" }}>{item}</h3>
-                <div className="ic ic-32 anim-rot" style={{ width: "3.2rem", height: "3.2rem", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                  <img src="/images/asterisk.svg" alt="asterisk" className="img" />
-                </div>
-              </div>
-            ))}
-          </div>
-          <div
-            className="marquee-inner-item"
-            style={{ width: "max-content", display: "flex", flex: "none", alignItems: "center", gap: "4rem", paddingRight: "4rem" }}
-          >
-            {statsData.map((item, idx) => (
-              <div key={idx} style={{ display: "flex", alignItems: "center", gap: "4rem" }}>
-                <h3 className="fw-semi heading h3 upper" style={{ whiteSpace: "nowrap" }}>{item}</h3>
-                <div className="ic ic-32 anim-rot" style={{ width: "3.2rem", height: "3.2rem", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                  <img src="/images/asterisk.svg" alt="asterisk" className="img" />
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
     </div>
   );
 }

@@ -169,7 +169,7 @@ export function ProjectsSection() {
     }
 
     window.addEventListener("scroll", handleScroll)
-    const lenis = (window as any).__lenis
+    const lenis = (window as unknown as Record<string, unknown>).__lenis as { on: (e: string, fn: () => void) => void; off: (e: string, fn: () => void) => void } | undefined
     if (lenis) {
       lenis.on("scroll", handleScroll)
     }
@@ -224,7 +224,7 @@ export function ProjectsSection() {
     const absoluteTop = window.scrollY + rect.top
     const targetScrollY = absoluteTop + targetProgress * totalScrollable
 
-    const lenis = (window as any).__lenis
+    const lenis = (window as unknown as Record<string, unknown>).__lenis as { scrollTo: (y: number, opts: { duration: number }) => void } | undefined
     if (lenis) {
       lenis.scrollTo(targetScrollY, { duration: 1 })
     } else {
@@ -326,6 +326,7 @@ export function ProjectsSection() {
                             idx === activeIndex && "active"
                           )}
                           onClick={() => handleDotClick(idx)}
+                          data-cursor-text="View"
                           style={{ cursor: "pointer" }}
                         >
                           {proj.name}
@@ -335,6 +336,20 @@ export function ProjectsSection() {
 
                     <a href="/projects" className="cl-txt-orange fs-20 fw-med arrow-hover home__project-link mod-mb">
                       <span className="txt-link cl-txt-orange">All projects</span>
+                      <div className="ic-arr-wrap ic-20" style={{ "--size": 1.6 } as React.CSSProperties}>
+                        <div className="arr-main ic" style={{ "--size": 1.6 } as React.CSSProperties}>
+                          <svg width="100%" viewBox="0 0 20 20" fill="none">
+                            <path d="M14.375 5.625L5.625 14.375" stroke="currentColor" strokeWidth="1.875" strokeMiterlimit="10" strokeLinecap="square" strokeLinejoin="round" />
+                            <path d="M6.25 5H15V13.75" stroke="currentColor" strokeWidth="1.875" strokeMiterlimit="10" strokeLinecap="square" />
+                          </svg>
+                        </div>
+                        <div className="arr-clone ic" style={{ "--size": 1.6 } as React.CSSProperties}>
+                          <svg width="100%" viewBox="0 0 20 20" fill="none">
+                            <path d="M14.375 5.625L5.625 14.375" stroke="currentColor" strokeWidth="1.875" strokeMiterlimit="10" strokeLinecap="square" strokeLinejoin="round" />
+                            <path d="M6.25 5H15V13.75" stroke="currentColor" strokeWidth="1.875" strokeMiterlimit="10" strokeLinecap="square" />
+                          </svg>
+                        </div>
+                      </div>
                     </a>
                   </div>
 
@@ -359,6 +374,7 @@ export function ProjectsSection() {
                         <div
                           key={idx}
                           className="home__project-thumbnail-img"
+                          data-cursor-text="View"
                           style={{
                             zIndex: projects.length - idx,
                             // Mobile fallback styles
@@ -421,10 +437,21 @@ export function ProjectsSection() {
                   </div>
 
                   <a href="/projects" className="cl-txt-orange fs-20 fw-med arrow-hover home__project-link">
-                    <span className="txt-link cl-txt-orange">
-                      <div id="sticker" className="home-project-sticker"></div>
-                      All projects
-                    </span>
+                    <span className="txt-link cl-txt-orange">All projects</span>
+                    <div className="ic-arr-wrap ic-20" style={{ "--size": 1.6 } as React.CSSProperties}>
+                      <div className="arr-main ic" style={{ "--size": 1.6 } as React.CSSProperties}>
+                        <svg width="100%" viewBox="0 0 20 20" fill="none">
+                          <path d="M14.375 5.625L5.625 14.375" stroke="currentColor" strokeWidth="1.875" strokeMiterlimit="10" strokeLinecap="square" strokeLinejoin="round" />
+                          <path d="M6.25 5H15V13.75" stroke="currentColor" strokeWidth="1.875" strokeMiterlimit="10" strokeLinecap="square" />
+                        </svg>
+                      </div>
+                      <div className="arr-clone ic" style={{ "--size": 1.6 } as React.CSSProperties}>
+                        <svg width="100%" viewBox="0 0 20 20" fill="none">
+                          <path d="M14.375 5.625L5.625 14.375" stroke="currentColor" strokeWidth="1.875" strokeMiterlimit="10" strokeLinecap="square" strokeLinejoin="round" />
+                          <path d="M6.25 5H15V13.75" stroke="currentColor" strokeWidth="1.875" strokeMiterlimit="10" strokeLinecap="square" />
+                        </svg>
+                      </div>
+                    </div>
                   </a>
                 </div>
 

@@ -76,8 +76,8 @@ export function SiteLoader() {
       {/* Thin diagonal line divider */}
       <div className="loader-line">
         <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
-          <line x1="0" y1="0" x2="100" y2="100" stroke="rgba(255, 255, 255, 0.4)" strokeWidth="0.08" />
-          <line className="loader-line-active" x1="0" y1="0" x2="100" y2="100" stroke="#1d1d1d" strokeWidth="0.12" />
+          <line x1="0" y1="0" x2="100" y2="100" stroke="rgba(255, 255, 255, 0.15)" strokeWidth="0.08" />
+          <line className="loader-line-active" x1="0" y1="0" x2="100" y2="100" stroke="#ff3d00" strokeWidth="0.12" />
         </svg>
       </div>
     </div>

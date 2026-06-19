@@ -37,41 +37,12 @@ export function SmoothScroll() {
         bgMainWrap.style.opacity = `${topOpacity}`;
       }
       if (innerBg) {
-        innerBg.style.transform = `scale(${1 + progress * 0.25})`; // Combined with scale gives a nice zoom effect
-      }
-
-      // Bottom Clone Hero Parallax using Bounding Rect
-      const footerHeroSec = document.querySelector(".home-footer-hero") as HTMLElement | null;
-      const cloneBgMainInner = document.querySelector(".home__hero-clone .home__hero-clone-bg-main-inner") as HTMLElement | null;
-      const cloneBgUnderImg = document.querySelector(".home__hero-clone .home__hero-clone-bg-under img") as HTMLElement | null;
-      const cloneBgMain = document.querySelector(".home__hero-clone .home__hero-clone-bg-main") as HTMLElement | null;
-
-      if (footerHeroSec) {
-        const rect = footerHeroSec.getBoundingClientRect();
-        const emptyHeight = window.innerHeight * 1.2; // height of the empty block (120svh)
-        
-        // Calculate progress: 0 when top of footer section enters viewport, 1 when empty block has scrolled past
-        const progress = Math.max(0, Math.min((window.innerHeight - rect.top) / emptyHeight, 1));
-        const cloneScaleInner = 1 + progress * 0.08;
-        const cloneOpacity = progress;
-
-        if (cloneBgMainInner) {
-          cloneBgMainInner.style.transform = `scale(${cloneScaleInner})`;
-          cloneBgMainInner.style.opacity = `${cloneOpacity}`;
-        }
-        if (cloneBgMain) {
-          cloneBgMain.style.opacity = `${cloneOpacity}`;
-        }
-        if (cloneBgUnderImg) {
-          cloneBgUnderImg.style.transform = `scale(${1.05 * cloneScaleInner})`;
-          cloneBgUnderImg.style.opacity = `${cloneOpacity}`;
-        }
+        innerBg.style.transform = `scale(${1 + progress * 0.25})`;
       }
     }
 
     lenis.on("scroll", handleParallax);
 
-    // Initial run
     setTimeout(() => {
       handleParallax();
     }, 100);

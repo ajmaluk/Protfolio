@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import { NoiseOverlay } from "@/components/NoiseOverlay";
 import { SiteLoader } from "@/components/SiteLoader";
+import { CustomCursor } from "@/components/CustomCursor";
 import "./globals.css";
 
 const matter = localFont({
@@ -46,6 +47,7 @@ export default function RootLayout({
       <body className={`${matter.variable}`}>
         <SmoothScroll />
         <NoiseOverlay />
+        <CustomCursor />
         <SiteLoader />
         {children}
       </body>

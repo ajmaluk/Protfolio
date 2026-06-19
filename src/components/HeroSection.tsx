@@ -85,27 +85,40 @@ export function HeroSection() {
                 <div className="cl-txt-orange home__hero-title-slide">
                   <div className="home__hero-title-slide-inner">
                     <div className="grid-1-1 slide-txt-wrap" style={{ width: "max-content" }}>
-                      {WORDS.map((word, index) => (
-                        <div
-                          key={word}
-                          className="slide-txt-item heading upper"
-                          style={{
-                            fontSize: "var(--fs-h1)",
-                            fontWeight: 700,
-                            lineHeight: "var(--lh-h1)",
-                            color: "var(--cl-orange)",
-                            transition: "transform 0.6s cubic-bezier(.33,1,.68,1), opacity 0.6s cubic-bezier(.33,1,.68,1)",
-                            transform:
-                              index === currentIndex
-                                ? "rotateX(0deg) translate3d(0, 0, 0)"
-                                : "rotateX(-91deg) translate3d(0, 19px, -19px)",
-                            opacity: index === currentIndex ? 1 : 0,
-                            visibility: index === currentIndex ? "inherit" : "hidden",
-                          }}
-                        >
-                          {word}
-                        </div>
-                      ))}
+                      {WORDS.map((word, index) => {
+                        const diff = index - currentIndex
+                        const isActive = index === currentIndex
+                        let rotateX = -91
+                        let translateY = 19
+                        let translateZ = -19
+                        if (diff === 0) {
+                          rotateX = 0
+                          translateY = 0
+                          translateZ = 0
+                        } else if (diff === 1 || diff === -3) {
+                          rotateX = 91
+                          translateY = -19
+                          translateZ = 19
+                        }
+                        return (
+                          <div
+                            key={word}
+                            className="slide-txt-item heading upper"
+                            style={{
+                              fontSize: "var(--fs-h1)",
+                              fontWeight: 700,
+                              lineHeight: "var(--lh-h1)",
+                              color: "var(--cl-orange)",
+                              transition: "transform 0.6s cubic-bezier(.33,1,.68,1), opacity 0.6s cubic-bezier(.33,1,.68,1)",
+                              transform: `rotateX(${rotateX}deg) translate3d(0, ${translateY}px, ${translateZ}px)`,
+                              opacity: isActive ? 1 : 0,
+                              visibility: isActive ? "inherit" : "hidden",
+                            }}
+                          >
+                            {word}
+                          </div>
+                        )
+                      })}
                     </div>
                   </div>
                 </div>

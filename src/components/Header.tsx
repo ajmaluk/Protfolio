@@ -6,18 +6,13 @@ import { cn } from "@/lib/utils";
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOnHomeHero, setIsOnHomeHero] = useState(true);
-  const [greeting, setGreeting] = useState("Good evening!");
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const hour = new Date().getHours();
+  const greeting =
+    hour < 12 ? "Good morning!" : hour < 17 ? "Good afternoon!" : "Good evening!";
 
   useEffect(() => {
-    const hour = new Date().getHours();
-    if (hour < 12) {
-      setGreeting("Good morning!");
-    } else if (hour < 17) {
-      setGreeting("Good afternoon!");
-    } else {
-      setGreeting("Good evening!");
-    }
-
     function updateScrollState() {
       const lenis = (window as unknown as Record<string, unknown>).__lenis as { scroll: number } | undefined;
       if (!lenis) return;
@@ -35,7 +30,6 @@ export function Header() {
 
     window.addEventListener("lenis-ready", onLenisReady as EventListener);
 
-    // Also check immediately in case lenis is already ready
     const existingLenis = (window as unknown as Record<string, unknown>).__lenis as { scroll: number; on: (e: string, fn: () => void) => void } | undefined;
     if (existingLenis) {
       updateScrollState();
@@ -47,6 +41,20 @@ export function Header() {
     };
   }, []);
 
+  useEffect(() => {
+    const lenis = (window as unknown as Record<string, unknown>).__lenis as { stop: () => void; start: () => void } | undefined;
+    if (menuOpen) {
+      lenis?.stop();
+      document.body.style.overflow = "hidden";
+    } else {
+      lenis?.start();
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [menuOpen]);
+
   return (
     <header
       id="header"
@@ -54,7 +62,8 @@ export function Header() {
         "header",
         "on-home",
         isScrolled && "on-scroll",
-        isOnHomeHero && "on-home-hero"
+        isOnHomeHero && "on-home-hero",
+        menuOpen && "menu-open"
       )}
     >
       <div className="header__blur" />
@@ -63,7 +72,7 @@ export function Header() {
           className="header__logo"
           style={{ gridColumn: "1 / 4", gridRow: "1 / 2" }}
         >
-          <p className="header__greating heading fw-med h5">
+          <p className="header__greating fs-16">
             {greeting}
           </p>
           <h2 className="heading h5 fw-med header__name">
@@ -82,7 +91,7 @@ export function Header() {
           className="header__socials hide-mb"
           style={{ gridColumn: "9 / 11" }}
         >
-          <span className="cl-txt-title fs-14 fw-med upper" style={{ marginRight: "3.2rem" }}>
+          <span className="cl-txt-title fs-14 fw-med" style={{ marginRight: "3.2rem" }}>
             Socials
           </span>
           <span className="cl-txt-disable fs-14">/</span>
@@ -105,20 +114,56 @@ export function Header() {
           <a
             href="mailto:hello@valentincheval.design"
             className="cl-txt-orange header__act fs-14 fw-med"
-            style={{ marginLeft: "2rem" }}
+            style={{ marginLeft: "3.2rem" }}
           >
             Let&apos;s talk!
           </a>
         </div>
 
         <button
-          className="header__toggle hide-dk cl-txt-title fs-16 fw-med"
+          className={cn("header__toggle hide-dk cl-txt-title fs-16 fw-med", menuOpen && "open")}
           style={{ gridColumn: "4 / 5", justifySelf: "end" }}
+          onClick={() => setMenuOpen(!menuOpen)}
         >
           <span className="header__toggle-open">Menu</span>
           <span className="header__toggle-close">Close</span>
         </button>
       </div>
+
+      {menuOpen && (
+        <div className="header__menu-overlay" onClick={() => setMenuOpen(false)}>
+          <div className="header__menu-overlay-inner" onClick={(e) => e.stopPropagation()}>
+            <div className="container">
+              <div className="header__menu-overlay-nav">
+                <a href="#" className="header__menu-overlay-link" onClick={() => setMenuOpen(false)}>Index</a>
+                <a href="#" className="header__menu-overlay-link" onClick={() => setMenuOpen(false)}>About</a>
+                <a href="#" className="header__menu-overlay-link" onClick={() => setMenuOpen(false)}>Projects</a>
+              </div>
+              <div className="header__menu-overlay-socials">
+                <p className="header__menu-overlay-label">Socials</p>
+                <a href="#" className="header__menu-overlay-social-link">LinkedIn</a>
+                <a href="#" className="header__menu-overlay-social-link">Dribbble</a>
+                <a href="#" className="header__menu-overlay-social-link">Twitter/X</a>
+              </div>
+              <div className="header__menu-overlay-contact">
+                <p className="header__menu-overlay-label">Text me</p>
+                <a href="mailto:hello@valentincheval.design" className="header__menu-overlay-contact-link">Email</a>
+                <a href="https://wa.me/84822235564" className="header__menu-overlay-contact-link">WhatsApp</a>
+                <a href="https://t.me/84822235564" className="header__menu-overlay-contact-link">Telegram</a>
+              </div>
+              <div className="header__menu-overlay-cta">
+                <a
+                  href="mailto:hello@valentincheval.design"
+                  className="header__menu-overlay-cta-link"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  Let&apos;s talk!
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </header>
   );
 }

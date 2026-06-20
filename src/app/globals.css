@@ -3871,12 +3871,12 @@ h6,
   position: relative;
 }
 
-/* Footer wrap - DARK THEME */
+/* Footer wrap - LIGHT THEME */
 .footer-wrap {
   position: relative;
   z-index: 6;
   background-color: #ffffff;
-  color: var(--cl-dm-title);
+  color: #0c0d10;
   height: 100vh;
   overflow: hidden;
 }
@@ -3908,7 +3908,8 @@ h6,
 .footer__bg-img {
   position: absolute;
   width: 100%;
-  height: 100%;
+  height: 140%;
+  top: -35%;
   object-fit: cover;
 }
 
@@ -3966,11 +3967,12 @@ h6,
 }
 
 .footer__label {
-  color: rgba(12, 13, 16, 0.4);
+  color: rgba(12, 13, 16, 0.65);
   margin-bottom: .8rem;
   font-size: var(--fs-14);
   text-transform: uppercase;
   font-weight: 500;
+  letter-spacing: 0.05em;
 }
 
 @media screen and (max-width: 767px) {
@@ -4013,14 +4015,14 @@ h6,
   max-width: 34rem;
   padding-top: 4rem;
   position: relative;
-  border-top: 1px solid rgba(12, 13, 16, 0.1);
+  border-top: 1px solid rgba(12, 13, 16, 0.2);
   z-index: 4;
 }
 
 .footer__cta .line {
   position: absolute;
   top: 0;
-  background-color: rgba(12, 13, 16, 0.1);
+  background-color: rgba(12, 13, 16, 0.2);
 }
 
 @media screen and (max-width: 767px) {
@@ -4052,9 +4054,11 @@ h6,
 
 .footer__cta-label {
   margin-bottom: 1rem;
-  color: rgba(12, 13, 16, 0.4);
+  color: rgba(12, 13, 16, 0.65);
   font-size: var(--fs-14);
   text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 500;
 }
 
 .footer__cta-title {
@@ -4078,7 +4082,8 @@ h6,
   font-size: var(--fs-h4);
   line-height: var(--lh-h4);
   padding-left: 4rem;
-  z-index: 4;
+  z-index: 6;
+  position: relative;
   pointer-events: none;
 }
 
@@ -4115,12 +4120,12 @@ h6,
   grid-column: 4/11;
   grid-row: 1/5;
   align-self: end;
-  margin-left: -6rem;
-  margin-top: -10.2rem;
+  margin-left: -4rem;
+  margin-top: -6rem;
   position: relative;
   z-index: 5;
-  margin-bottom: -3.5rem;
-  height: 85rem;
+  margin-bottom: -2rem;
+  height: 75rem;
   pointer-events: none;
 }
 
@@ -4143,10 +4148,10 @@ h6,
 @media screen and (max-width: 991px) {
   .footer__main-image {
     grid-column: 3/12;
-    margin-top: 7.8rem;
+    margin-top: 4rem;
     margin-inline: 0;
-    margin-left: -15rem;
-    height: 90rem;
+    margin-left: -10rem;
+    height: 80rem;
   }
 }
 
@@ -4173,7 +4178,7 @@ h6,
   padding: 2.5rem 0 3.5rem;
   margin: 0 calc(var(--container-padding) * -1);
   position: relative;
-  z-index: 4;
+  z-index: 6;
 }
 
 @media screen and (max-width: 767px) {

@@ -9,17 +9,17 @@ export function FooterSection() {
             <div className="footer__info-item">
               <p className="fw-med footer__label">Socials</p>
               <div className="footer__socials-listing">
-                <a href="https://linkedin.com/in/valentinchevaldesign" className="fw-med txt-link hover-un cl-txt-orange footer__link" target="_blank" rel="noopener noreferrer" aria-label="Visit Valentin Cheval's LinkedIn profile">LinkedIn</a>
-                <a href="https://dribbble.com/ValentinChevalDesign" className="fw-med txt-link hover-un cl-txt-orange footer__link" target="_blank" rel="noopener noreferrer" aria-label="Visit Valentin Cheval's Dribbble profile">Dribbble</a>
-                <a href="https://x.com/valentin_cheval" className="fw-med txt-link hover-un cl-txt-orange footer__link" target="_blank" rel="noopener noreferrer" aria-label="Visit Valentin Cheval on Twitter/X">Twitter/X</a>
+                <a href="https://linkedin.com/in/valentinchevaldesign" className="fw-med txt-link hover-un footer__link" target="_blank" rel="noopener noreferrer" aria-label="Visit Valentin Cheval's LinkedIn profile">LinkedIn</a>
+                <a href="https://dribbble.com/ValentinChevalDesign" className="fw-med txt-link hover-un footer__link" target="_blank" rel="noopener noreferrer" aria-label="Visit Valentin Cheval's Dribbble profile">Dribbble</a>
+                <a href="https://x.com/valentin_cheval" className="fw-med txt-link hover-un footer__link" target="_blank" rel="noopener noreferrer" aria-label="Visit Valentin Cheval on Twitter/X">Twitter/X</a>
               </div>
             </div>
             <div className="footer__info-item">
               <p className="fw-med footer__label">Contact me</p>
               <div className="footer__socials-listing">
-                <a href="mailto:hello@valentincheval.design" className="fw-med txt-link hover-un cl-txt-orange footer__link" aria-label="Email Valentin Cheval">Email</a>
-                <a href="https://wa.me/84822235564" className="fw-med txt-link hover-un cl-txt-orange footer__link" target="_blank" rel="noopener noreferrer" aria-label="Contact Valentin Cheval on WhatsApp">WhatsApp</a>
-                <a href="https://t.me/84822235564" className="fw-med txt-link hover-un cl-txt-orange footer__link" target="_blank" rel="noopener noreferrer" aria-label="Contact Valentin Cheval on Telegram">Telegram</a>
+                <a href="mailto:hello@valentincheval.design" className="fw-med txt-link hover-un footer__link" aria-label="Email Valentin Cheval">Email</a>
+                <a href="https://wa.me/84822235564" className="fw-med txt-link hover-un footer__link" target="_blank" rel="noopener noreferrer" aria-label="Contact Valentin Cheval on WhatsApp">WhatsApp</a>
+                <a href="https://t.me/84822235564" className="fw-med txt-link hover-un footer__link" target="_blank" rel="noopener noreferrer" aria-label="Contact Valentin Cheval on Telegram">Telegram</a>
               </div>
             </div>
           </div>

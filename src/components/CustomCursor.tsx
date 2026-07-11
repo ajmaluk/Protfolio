@@ -129,21 +129,13 @@ export function CustomCursor() {
     }
 
     function onWindowLeave(e: MouseEvent) {
-      if (e.relatedTarget === null || e.relatedTarget === undefined) {
+      // Hide cursor when leaving the window entirely
+      if (e.relatedTarget === null) {
         setHidden(true);
       }
     }
     function onWindowEnter() {
       setHidden(false);
-    }
-
-    function onDocLeave(e: MouseEvent) {
-      const from = e.relatedTarget as Node | null;
-      if (!from) {
-        setHidden(true);
-      } else {
-        setHidden(false);
-      }
     }
 
     setHidden(false);
@@ -157,7 +149,6 @@ export function CustomCursor() {
     document.addEventListener("mouseup", onUp);
     window.addEventListener("mouseout", onWindowLeave);
     window.addEventListener("mouseover", onWindowEnter);
-    document.addEventListener("mouseleave", onDocLeave);
     document.addEventListener("mouseenter", onWindowEnter);
 
     return () => {
@@ -169,7 +160,6 @@ export function CustomCursor() {
       document.removeEventListener("mouseup", onUp);
       window.removeEventListener("mouseout", onWindowLeave);
       window.removeEventListener("mouseover", onWindowEnter);
-      document.removeEventListener("mouseleave", onDocLeave);
       document.removeEventListener("mouseenter", onWindowEnter);
     };
   }, []);

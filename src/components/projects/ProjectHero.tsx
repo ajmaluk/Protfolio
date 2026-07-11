@@ -8,7 +8,7 @@ interface ProjectHeroProps {
 export function ProjectHero({ project }: ProjectHeroProps) {
   return (
     <header className="projects-detail__hero">
-      <div className="projects-detail__hero-img-wrap">
+      <div className="projects-detail__hero-img-wrap" style={{ viewTransitionName: `project-img-${project.slug}` } as React.CSSProperties}>
         <img
           src={project.cover}
           alt={`${project.name} cover`}
@@ -21,7 +21,7 @@ export function ProjectHero({ project }: ProjectHeroProps) {
       <div className="projects-detail__hero-overlay" aria-hidden="true" />
 
       <div className="container projects-detail__hero-content">
-        <Link href="/projects" className="projects-detail__back-link">
+        <Link href="/projects" transitionTypes={['page-transition']} className="projects-detail__back-link">
           <span className="projects-detail__back-arrow" aria-hidden="true">
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
               <path
@@ -38,7 +38,10 @@ export function ProjectHero({ project }: ProjectHeroProps) {
 
         <div className="projects-detail__hero-title-wrap">
           <p className="projects-detail__hero-category">{project.category}</p>
-          <h1 className="heading display-1 upper fw-bold projects-detail__hero-title cl-txt-title">
+          <h1
+            className="heading display-1 upper fw-bold projects-detail__hero-title cl-txt-title"
+            style={{ viewTransitionName: `project-title-${project.slug}` } as React.CSSProperties}
+          >
             {project.name}
           </h1>
           <p className="projects-detail__hero-client">{project.client}, {project.year}</p>

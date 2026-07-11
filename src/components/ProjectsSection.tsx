@@ -16,8 +16,6 @@ export function ProjectsSection() {
     if (!mainSection) return
 
     const handleScroll = () => {
-      if (window.innerWidth <= 767) return
-
       const rect = mainSection.getBoundingClientRect()
       const viewportHeight = window.innerHeight
       const totalScrollable = rect.height - viewportHeight
@@ -25,74 +23,82 @@ export function ProjectsSection() {
       if (totalScrollable <= 0) return
 
       const progress = Math.max(0, Math.min(-rect.top / totalScrollable, 1))
+      const n = projects.length
       
-      // Snapping trigger points
-      let activeIdx = 0
-      if (progress < 0.25) {
-        activeIdx = 0
-      } else if (progress < 0.75) {
-        activeIdx = 1
-      } else {
-        activeIdx = 2
-      }
+      // Snapping trigger points — equal segments per project
+      const activeIdx = Math.min(Math.floor(progress * n), n - 1)
 
       // Update active state in React
       setActiveIndex(activeIdx)
 
-      // Set CSS variables on thumbnail images for clip-path and scale transitions
+      // --- Thumbnail clip-path transitions ---
+      // Each transition between adjacent projects occupies segSize = 1/(n-1) of total progress.
+      // transPhase ranges from 0 to n-1, with integer values meaning a transition is complete
+      // and the project at that index is fully visible.
+      const segSize = n > 1 ? 1 / (n - 1) : 1
+      const transPhase = n > 1 ? progress / segSize : 0
+      const transFloor = Math.floor(transPhase)
+      const localT = transPhase - transFloor
+      const inTransition = localT > 0 && n > 1
+
       const thumbnailImgs = document.querySelectorAll(".home__project-thumbnail-img")
       thumbnailImgs.forEach((imgEl, idx) => {
         const el = imgEl as HTMLElement
-        let clipIn = "100%"
-        let clipOut = "100%"
-        let imgTrans = "100%"
-        let imgScale = "1.4"
-        let imgDirection = "1"
+        let clipIn, clipOut, imgTrans, imgScale, imgDirection
 
-        if (idx === 0) {
-          if (progress <= 0.5) {
-            const t = progress / 0.5
+        if (inTransition) {
+          // Between two projects — one exiting, one entering
+          if (idx === transFloor) {
+            // Exiting: sliding out to the left
             clipIn = "0%"
-            clipOut = `${100 * (1 - t)}%`
-            imgTrans = `${100 * t}%`
-            imgScale = `${1 - 0.4 * t}`
+            clipOut = `${100 * (1 - localT)}%`
+            imgTrans = `${100 * localT}%`
+            imgScale = `${1 - 0.4 * localT}`
             imgDirection = "-1"
-          } else {
+          } else if (idx === transFloor + 1) {
+            // Entering: sliding in from the right
+            clipIn = `${100 * (1 - localT)}%`
+            clipOut = "100%"
+            imgTrans = `${100 * (1 - localT)}%`
+            imgScale = `${1.4 - 0.4 * localT}`
+            imgDirection = "1"
+          } else if (idx < transFloor) {
+            // Already exited
             clipIn = "0%"
             clipOut = "0%"
             imgTrans = "100%"
             imgScale = "0.6"
             imgDirection = "-1"
-          }
-        } else if (idx === 1) {
-          if (progress <= 0.5) {
-            const t = progress / 0.5
-            clipIn = `${100 * (1 - t)}%`
-            clipOut = "100%"
-            imgTrans = `${100 * (1 - t)}%`
-            imgScale = `${1.4 - 0.4 * t}`
-            imgDirection = "1"
           } else {
-            const t = (progress - 0.5) / 0.5
-            clipIn = "0%"
-            clipOut = `${100 * (1 - t)}%`
-            imgTrans = `${100 * t}%`
-            imgScale = `${1 - 0.4 * t}`
-            imgDirection = "-1"
-          }
-        } else if (idx === 2) {
-          if (progress <= 0.5) {
+            // Not yet entered
             clipIn = "100%"
             clipOut = "100%"
             imgTrans = "100%"
             imgScale = "1.4"
             imgDirection = "1"
-          } else {
-            const t = (progress - 0.5) / 0.5
-            clipIn = `${100 * (1 - t)}%`
+          }
+        } else {
+          // At a transition boundary — one project is fully visible
+          if (idx === transFloor) {
+            // Active: fully visible
+            clipIn = "0%"
             clipOut = "100%"
-            imgTrans = `${100 * (1 - t)}%`
-            imgScale = `${1.4 - 0.4 * t}`
+            imgTrans = "0%"
+            imgScale = "1"
+            imgDirection = "-1"
+          } else if (idx < transFloor) {
+            // Already exited
+            clipIn = "0%"
+            clipOut = "0%"
+            imgTrans = "100%"
+            imgScale = "0.6"
+            imgDirection = "-1"
+          } else {
+            // Not yet entered
+            clipIn = "100%"
+            clipOut = "100%"
+            imgTrans = "100%"
+            imgScale = "1.4"
             imgDirection = "1"
           }
         }
@@ -104,31 +110,16 @@ export function ProjectsSection() {
         el.style.setProperty("--imgDirection", imgDirection)
       })
 
-      // Update loader circle angles
+      // --- Loader circle angles ---
       const dotWraps = document.querySelectorAll(".home__project-slide-item-progress-inner")
+      const loaderSegSize = n > 0 ? 1 / n : 1
       dotWraps.forEach((dotEl, idx) => {
         const el = dotEl as HTMLElement
         let angle = 0
-        if (idx === 0) {
-          if (progress <= 0.33) {
-            angle = (progress / 0.33) * 360
-          } else {
-            angle = 360
-          }
-        } else if (idx === 1) {
-          if (progress < 0.33) {
-            angle = 0
-          } else if (progress <= 0.67) {
-            angle = ((progress - 0.33) / 0.34) * 360
-          } else {
-            angle = 360
-          }
-        } else if (idx === 2) {
-          if (progress < 0.67) {
-            angle = 0
-          } else {
-            angle = ((progress - 0.67) / 0.33) * 360
-          }
+        if (progress >= (idx + 1) * loaderSegSize) {
+          angle = 360
+        } else if (progress >= idx * loaderSegSize) {
+          angle = ((progress - idx * loaderSegSize) / loaderSegSize) * 360
         }
         el.style.setProperty("--angle", `${angle}deg`)
       })
@@ -184,15 +175,16 @@ export function ProjectsSection() {
     const viewportHeight = window.innerHeight
     const totalScrollable = rect.height - viewportHeight
     
-    const snapRatios = [0, 0.5, 1.0]
-    const targetProgress = snapRatios[index]
+    // Snap to the point where this project is fully visible (no transition in progress)
+    const snapRatio = projects.length > 1 ? index / (projects.length - 1) : 0
+    const targetProgress = snapRatio
     
     const absoluteTop = window.scrollY + rect.top
     const targetScrollY = absoluteTop + targetProgress * totalScrollable
 
     const lenis = (window as unknown as Record<string, unknown>).__lenis as { scrollTo: (y: number, opts: { duration: number }) => void } | undefined
     if (lenis) {
-      lenis.scrollTo(targetScrollY, { duration: 1 })
+      lenis.scrollTo(targetScrollY, { duration: 1.4 })
     } else {
       window.scrollTo({ top: targetScrollY, behavior: "smooth" })
     }
@@ -283,9 +275,9 @@ export function ProjectsSection() {
                   <div className="home__project-name-wrap">
                     <div className="fs-20 fw-med home__project-pagination">
                       <div className="cl-txt-title home__project-pagination-current">
-                        <span>0{activeIndex + 1}</span>
+                        <span>{String(activeIndex + 1).padStart(2, "0")}</span>
                       </div>
-                      <span className="cl-txt-disable">/ 03</span>
+                      <span className="cl-txt-disable">/{String(projects.length).padStart(2, "0")}</span>
                       <div className="line home__project-pagination-progress">
                         <div 
                           className="home__project-pagination-progress-inner"
@@ -321,7 +313,7 @@ export function ProjectsSection() {
                       ))}
                     </div>
 
-                    <Link href="/projects" className="cl-txt-orange fs-20 fw-med arrow-hover home__project-link mod-mb">
+                    <Link href="/projects" transitionTypes={['page-transition']} className="cl-txt-orange fs-20 fw-med arrow-hover home__project-link mod-mb">
                       <span className="txt-link cl-txt-orange">All projects</span>
                       <div className="ic-arr-wrap ic-20" style={{ "--size": 1.6 } as React.CSSProperties}>
                         <div className="arr-main ic" style={{ "--size": 1.6 } as React.CSSProperties}>
@@ -430,7 +422,7 @@ export function ProjectsSection() {
                     ))}
                   </div>
 
-                  <Link href="/projects" className="cl-txt-orange fs-20 fw-med arrow-hover home__project-link">
+                  <Link href="/projects" transitionTypes={['page-transition']} className="cl-txt-orange fs-20 fw-med arrow-hover home__project-link">
                     <span className="txt-link cl-txt-orange">All projects</span>
                     <div className="ic-arr-wrap ic-20" style={{ "--size": 1.6 } as React.CSSProperties}>
                       <div className="arr-main ic" style={{ "--size": 1.6 } as React.CSSProperties}>

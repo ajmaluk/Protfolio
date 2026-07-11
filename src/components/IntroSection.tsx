@@ -52,6 +52,7 @@ const awardsData = [
 ];
 
 import { useEffect, useState, useRef } from "react";
+import Link from "next/link";
 
 const introMainText = "Financial services should be intuitive, accessible, and empowering. I use human-centered design to create solutions that resonate with customers. By applying design thinking, branding, and strategic planning, I've helped banks, fintechs, and crypto businesses improve customer experience, increase engagement, and drive growth. My goal is to create financial experiences that are not only efficient but also enjoyable. I believe finance should be a positive force in people's lives.";
 
@@ -61,6 +62,7 @@ export function IntroSection() {
   const textRef = useRef<HTMLDivElement>(null);
   const serviceWrapRef = useRef<HTMLDivElement>(null);
   const awardsVisualRef = useRef<HTMLDivElement>(null);
+  const awardsListingRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const visualElement = awardsVisualRef.current;
@@ -102,6 +104,10 @@ export function IntroSection() {
     const textElement = textRef.current;
     if (!textElement) return;
 
+    const words = textElement.querySelectorAll<HTMLSpanElement>(".reveal-word");
+    if (words.length === 0) return;
+    const totalWords = words.length;
+
     const handleScroll = () => {
       const rect = textElement.getBoundingClientRect();
       const viewportHeight = window.innerHeight;
@@ -112,7 +118,20 @@ export function IntroSection() {
         Math.min(1, (revealStart - rect.top) / revealDistance)
       );
 
-      textElement.style.setProperty("--scroll-progress", progress.toString());
+      words.forEach((word, i) => {
+        const normalizedProgress = i / totalWords;
+        const distance = Math.abs(progress - normalizedProgress);
+
+        // Opacity: 1 at reveal point, fading to 0.1 as distance increases
+        const opacity = Math.max(0.1, Math.min(1, 1 - distance * 5.2));
+
+        // Blur: 0 near the reveal point, up to 8px further away
+        const rawBlur = (distance - 0.015) * 16;
+        const blurPx = Math.max(0, Math.min(8, rawBlur));
+
+        word.style.opacity = opacity.toString();
+        word.style.filter = blurPx > 0 ? `blur(${blurPx}px)` : "none";
+      });
     };
 
     const lenis = (window as unknown as Record<string, unknown>).__lenis as { on: (e: string, fn: () => void) => void; off: (e: string, fn: () => void) => void } | undefined;
@@ -174,6 +193,53 @@ export function IntroSection() {
     };
   }, []);
 
+  // ===== Scroll reveal for award list items =====
+  useEffect(() => {
+    const listing = awardsListingRef.current;
+    if (!listing) return;
+
+    const items = listing.querySelectorAll<HTMLElement>(".home__intro-award");
+    if (items.length === 0) return;
+
+    const handleScroll = () => {
+      const viewportHeight = window.innerHeight;
+
+      items.forEach((item) => {
+        const rect = item.getBoundingClientRect();
+        // Start revealing when the item is 80% from the bottom of viewport
+        // Complete by the time it reaches 20% from the top
+        const revealStart = viewportHeight * 0.85;
+        const revealEnd = viewportHeight * 0.15;
+        const total = revealStart - revealEnd;
+        const current = revealStart - rect.top;
+        const progress = Math.max(0, Math.min(1, current / total));
+
+        // Cubic ease-out for smooth reveal
+        const eased = 1 - Math.pow(1 - progress, 1.5);
+        
+        // Fade from 0 to 1, translateY from 30px to 0
+        item.style.opacity = eased.toString();
+        item.style.transform = `translateY(${30 * (1 - eased)}px)`;
+      });
+    };
+
+    const lenis = (window as unknown as Record<string, unknown>).__lenis as { on: (e: string, fn: () => void) => void; off: (e: string, fn: () => void) => void } | undefined;
+    if (lenis) {
+      lenis.on("scroll", handleScroll);
+    } else {
+      window.addEventListener("scroll", handleScroll);
+    }
+    handleScroll();
+
+    return () => {
+      if (lenis) {
+        lenis.off("scroll", handleScroll);
+      } else {
+        window.removeEventListener("scroll", handleScroll);
+      }
+    };
+  }, []);
+
   const words = introMainText.match(/\S+/g) ?? [];
 
   return (
@@ -205,20 +271,18 @@ export function IntroSection() {
             <div
               ref={textRef}
               className="heading h4 home__intro-main-txt"
-              style={{ "--total-words": words.length } as React.CSSProperties}
             >
               <span className="home__intro-main-label">(Intro)</span>
               {words.map((word, index) => (
                 <span
                   key={index}
                   className="reveal-word"
-                  style={{ "--word-index": index } as React.CSSProperties}
                 >
                   {word}{" "}
                 </span>
               ))}
             </div>
-            <a href="/about" className="btn-circle arrow-hover home__intro-btn">
+            <Link href="/about" transitionTypes={['page-transition']} className="btn-circle arrow-hover home__intro-btn">
               <div className="ic-arr-wrap" style={{ "--size": 3.2 } as React.CSSProperties}>
                 <div className="arr-main ic" style={{ "--size": 3.2 } as React.CSSProperties}>
                   <svg width="100%" viewBox="0 0 20 20" fill="none">
@@ -236,11 +300,11 @@ export function IntroSection() {
               <svg className="btn-circle-svg" width="100%" viewBox="0 0 100 100" fill="none">
                 <circle cx="50" cy="50" r="49" stroke="white" strokeOpacity=".1" strokeWidth="2" />
               </svg>
-            </a>
+            </Link>
           </div>
 
           {/* Awards Visual display in the middle column */}
-          <div ref={awardsVisualRef} className={`home__intro-awards-visual ${isAwardsHovered ? "visible" : ""}`}>
+          <div ref={awardsVisualRef} className={`home__intro-awards-visual ${(isAwardsHovered || activeAwardIndex > 0) ? "visible" : "visible"}`}>
             <div className="awards-visual-inner">
               <img
                 src={activeAwardIndex === 0 ? "/images/awards-sphere.png" : awardsData[activeAwardIndex].src}
@@ -258,7 +322,7 @@ export function IntroSection() {
             onMouseLeave={() => setIsAwardsHovered(false)}
           >
             <h3 className="heading h4 cl-txt-title upper home__intro-awards-title">Awards</h3>
-            <div className="home__intro-awards-listing">
+            <div ref={awardsListingRef} className="home__intro-awards-listing">
               {awardsData.map((award, index) => (
                 <div
                   key={award.name}

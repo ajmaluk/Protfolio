@@ -1,12 +1,14 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
 export function Header() {
+  const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isOnHomeHero, setIsOnHomeHero] = useState(true);
+  const [isOnHomeHero, setIsOnHomeHero] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
   const hour = new Date().getHours();
@@ -23,8 +25,12 @@ export function Header() {
       if (!lenis) return;
       const scrollY = lenis.scroll;
       setIsScrolled(scrollY > 50);
-      const heroHeight = window.innerHeight;
-      setIsOnHomeHero(scrollY < heroHeight * 0.5);
+      // Only apply hero-state logic on the home page
+      const isHome = window.location.pathname === '/';
+      if (isHome) {
+        const heroHeight = window.innerHeight;
+        setIsOnHomeHero(scrollY < heroHeight * 0.5);
+      }
     }
 
     function onLenisReady(e: CustomEvent) {
@@ -65,6 +71,11 @@ export function Header() {
     };
   }, [menuOpen]);
 
+  // Reset hero state whenever route changes
+  useEffect(() => {
+    setIsOnHomeHero(pathname === '/');
+  }, [pathname]);
+
   // Close overlay on Escape
   useEffect(() => {
     if (!menuOpen) return;
@@ -94,7 +105,7 @@ export function Header() {
           <p className="header__greating fs-16" aria-hidden={!isOnHomeHero}>
             {greeting}
           </p>
-          <Link href="/" className="heading h5 fw-med header__name" aria-label="Valentin Cheval — Home">
+          <Link href="/" transitionTypes={['page-transition']} className="heading h5 fw-med header__name" aria-label="Valentin Cheval — Home">
             <div className="header__name-wrap">
               <div className="cl-txt-title">Valentin</div>
               <div>Product</div>
@@ -111,19 +122,19 @@ export function Header() {
             Socials
           </span>
           <span className="cl-txt-disable fs-14">/</span>
-          <a href="#" className="txt-link hover-un header__social fs-14"> li </a>
+          <a href="https://linkedin.com/in/valentinchevaldesign" className="txt-link hover-un header__social fs-14" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"> li </a>
           <span className="cl-txt-disable fs-14">/</span>
-          <a href="#" className="txt-link hover-un header__social fs-14"> dr </a>
+          <a href="https://dribbble.com/ValentinChevalDesign" className="txt-link hover-un header__social fs-14" target="_blank" rel="noopener noreferrer" aria-label="Dribbble"> dr </a>
           <span className="cl-txt-disable fs-14">/</span>
-          <a href="#" className="txt-link hover-un header__social fs-14"> tw </a>
+          <a href="https://x.com/valentin_cheval" className="txt-link hover-un header__social fs-14" target="_blank" rel="noopener noreferrer" aria-label="Twitter/X"> tw </a>
         </div>
 
         <div className="header__menu hide-mb">
-          <a href="#" className="txt-link hover-un fs-14">Index</a>
+          <Link href="/" transitionTypes={['page-transition']} className={cn("txt-link hover-un fs-14", pathname === '/' && "active")}>Index</Link>
           <span className="splash cl-txt-disable fs-14" style={{ margin: "0 .6rem" }}>/</span>
-          <a href="#" className="txt-link hover-un fs-14">About</a>
+          <Link href="/about" transitionTypes={['page-transition']} className={cn("txt-link hover-un fs-14", pathname === '/about' && "active")}>About</Link>
           <span className="splash cl-txt-disable fs-14" style={{ margin: "0 .6rem" }}>/</span>
-          <a href="#" className="txt-link hover-un fs-14">Projects</a>
+          <Link href="/projects" transitionTypes={['page-transition']} className={cn("txt-link hover-un fs-14", (pathname === '/projects' || pathname.startsWith('/projects/')) && "active")}>Projects</Link>
           <a
             href="mailto:hello@valentincheval.design"
             className="cl-txt-orange header__act fs-14 fw-med"
@@ -155,15 +166,15 @@ export function Header() {
           <div className="header__menu-overlay-inner" onClick={(e) => e.stopPropagation()}>
             <div className="container">
               <div className="header__menu-overlay-nav">
-                <a href="#" className="header__menu-overlay-link" onClick={closeMenu}>Index</a>
-                <a href="#" className="header__menu-overlay-link" onClick={closeMenu}>About</a>
-                <a href="#" className="header__menu-overlay-link" onClick={closeMenu}>Projects</a>
+                <Link href="/" transitionTypes={['page-transition']} className={`header__menu-overlay-link${pathname === '/' ? ' active' : ''}`} onClick={closeMenu}>Index</Link>
+                <Link href="/about" transitionTypes={['page-transition']} className={`header__menu-overlay-link${pathname === '/about' ? ' active' : ''}`} onClick={closeMenu}>About</Link>
+                <Link href="/projects" transitionTypes={['page-transition']} className={`header__menu-overlay-link${pathname === '/projects' || pathname.startsWith('/projects/') ? ' active' : ''}`} onClick={closeMenu}>Projects</Link>
               </div>
               <div className="header__menu-overlay-socials">
                 <p className="header__menu-overlay-label">Socials</p>
-                <a href="#" className="header__menu-overlay-social-link" onClick={closeMenu}>LinkedIn</a>
-                <a href="#" className="header__menu-overlay-social-link" onClick={closeMenu}>Dribbble</a>
-                <a href="#" className="header__menu-overlay-social-link" onClick={closeMenu}>Twitter/X</a>
+                <a href="https://linkedin.com/in/valentinchevaldesign" className="header__menu-overlay-social-link" target="_blank" rel="noopener noreferrer" onClick={closeMenu}>LinkedIn</a>
+                <a href="https://dribbble.com/ValentinChevalDesign" className="header__menu-overlay-social-link" target="_blank" rel="noopener noreferrer" onClick={closeMenu}>Dribbble</a>
+                <a href="https://x.com/valentin_cheval" className="header__menu-overlay-social-link" target="_blank" rel="noopener noreferrer" onClick={closeMenu}>Twitter/X</a>
               </div>
               <div className="header__menu-overlay-contact">
                 <p className="header__menu-overlay-label">Text me</p>

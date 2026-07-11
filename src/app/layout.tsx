@@ -4,6 +4,7 @@ import { SmoothScroll } from "@/components/SmoothScroll";
 import { NoiseOverlay } from "@/components/NoiseOverlay";
 import { SiteLoader } from "@/components/SiteLoader";
 import { CustomCursor } from "@/components/CustomCursor";
+import { Header } from "@/components/Header";
 import "./globals.css";
 
 const matter = localFont({
@@ -48,6 +49,7 @@ export default function RootLayout({
       <body className={`${matter.variable}`}>
         <SmoothScroll />
         <NoiseOverlay />
+        <Header />
         <CustomCursor />
         <SiteLoader />
         {children}

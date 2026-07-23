@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { getAllProjects } from "@/data/projects";
-import { ProjectCarousel } from "@/components/projects/ProjectCarousel";
+import { ProjectsSection } from "@/components/ProjectsSection";
+import { FooterSection } from "@/components/FooterSection";
 
 export const metadata: Metadata = {
   title: "Projects | Valentin Cheval",
@@ -9,12 +9,11 @@ export const metadata: Metadata = {
 };
 
 export default function ProjectsPage() {
-  const projects = getAllProjects();
-
   return (
     <div className="wrapper">
-      <main>
-        <ProjectCarousel projects={projects} />
+      <main id="swup" className="page transition-fade" data-namespace="projects" data-infinite>
+        <ProjectsSection isProjectsPage={true} />
+        <FooterSection />
       </main>
     </div>
   );

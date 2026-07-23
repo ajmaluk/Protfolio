@@ -1,21 +1,28 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 import { cn } from "@/lib/utils"
-import { projects, type ProjectDetail } from "@/data/projects"
+import { projects } from "@/data/projects"
 
-export function ProjectsSection() {
+interface ProjectsSectionProps {
+  isProjectsPage?: boolean
+}
+
+export function ProjectsSection({ isProjectsPage = false }: ProjectsSectionProps) {
+  const router = useRouter()
+  const mainRef = useRef<HTMLDivElement>(null)
   const [activeIndex, setActiveIndex] = useState(0)
   const [nameGridStyle, setNameGridStyle] = useState<React.CSSProperties>({})
   const [touchStartX, setTouchStartX] = useState<number | null>(null)
   const [touchStartY, setTouchStartY] = useState<number | null>(null)
 
   useEffect(() => {
-    const mainSection = document.querySelector(".home__project-main")
-    if (!mainSection) return
-
     const handleScroll = () => {
+      const mainSection = mainRef.current || document.querySelector(".home__project-main")
+      if (!mainSection) return
+
       const rect = mainSection.getBoundingClientRect()
       const viewportHeight = window.innerHeight
       const totalScrollable = rect.height - viewportHeight
@@ -32,9 +39,6 @@ export function ProjectsSection() {
       setActiveIndex(activeIdx)
 
       // --- Thumbnail clip-path transitions ---
-      // Each transition between adjacent projects occupies segSize = 1/(n-1) of total progress.
-      // transPhase ranges from 0 to n-1, with integer values meaning a transition is complete
-      // and the project at that index is fully visible.
       const segSize = n > 1 ? 1 / (n - 1) : 1
       const transPhase = n > 1 ? progress / segSize : 0
       const transFloor = Math.floor(transPhase)
@@ -47,30 +51,25 @@ export function ProjectsSection() {
         let clipIn, clipOut, imgTrans, imgScale, imgDirection
 
         if (inTransition) {
-          // Between two projects — one exiting, one entering
           if (idx === transFloor) {
-            // Exiting: sliding out to the left
             clipIn = "0%"
             clipOut = `${100 * (1 - localT)}%`
             imgTrans = `${100 * localT}%`
             imgScale = `${1 - 0.4 * localT}`
             imgDirection = "-1"
           } else if (idx === transFloor + 1) {
-            // Entering: sliding in from the right
             clipIn = `${100 * (1 - localT)}%`
             clipOut = "100%"
             imgTrans = `${100 * (1 - localT)}%`
             imgScale = `${1.4 - 0.4 * localT}`
             imgDirection = "1"
           } else if (idx < transFloor) {
-            // Already exited
             clipIn = "0%"
             clipOut = "0%"
             imgTrans = "100%"
             imgScale = "0.6"
             imgDirection = "-1"
           } else {
-            // Not yet entered
             clipIn = "100%"
             clipOut = "100%"
             imgTrans = "100%"
@@ -78,23 +77,19 @@ export function ProjectsSection() {
             imgDirection = "1"
           }
         } else {
-          // At a transition boundary — one project is fully visible
           if (idx === transFloor) {
-            // Active: fully visible
             clipIn = "0%"
             clipOut = "100%"
             imgTrans = "0%"
             imgScale = "1"
             imgDirection = "-1"
           } else if (idx < transFloor) {
-            // Already exited
             clipIn = "0%"
             clipOut = "0%"
             imgTrans = "100%"
             imgScale = "0.6"
             imgDirection = "-1"
           } else {
-            // Not yet entered
             clipIn = "100%"
             clipOut = "100%"
             imgTrans = "100%"
@@ -125,19 +120,39 @@ export function ProjectsSection() {
       })
     }
 
-    window.addEventListener("scroll", handleScroll)
-    const lenis = (window as unknown as Record<string, unknown>).__lenis as { on: (e: string, fn: () => void) => void; off: (e: string, fn: () => void) => void } | undefined
-    if (lenis) {
-      lenis.on("scroll", handleScroll)
+    window.addEventListener("scroll", handleScroll, { passive: true })
+
+    let lenisObj: { on: (e: string, fn: () => void) => void; off: (e: string, fn: () => void) => void } | undefined
+
+    function attachLenis(lenisInstance: typeof lenisObj) {
+      if (lenisInstance) {
+        if (lenisObj && lenisObj !== lenisInstance) {
+          lenisObj.off("scroll", handleScroll)
+        }
+        lenisObj = lenisInstance
+        lenisObj.on("scroll", handleScroll)
+      }
     }
+
+    const existingLenis = (window as unknown as Record<string, unknown>).__lenis as typeof lenisObj
+    if (existingLenis) {
+      attachLenis(existingLenis)
+    }
+
+    const onLenisReady = (e: CustomEvent) => {
+      attachLenis(e.detail?.lenis)
+    }
+
+    window.addEventListener("lenis-ready", onLenisReady as EventListener)
 
     // Initial run
     handleScroll()
 
     return () => {
       window.removeEventListener("scroll", handleScroll)
-      if (lenis) {
-        lenis.off("scroll", handleScroll)
+      window.removeEventListener("lenis-ready", onLenisReady as EventListener)
+      if (lenisObj) {
+        lenisObj.off("scroll", handleScroll)
       }
     }
   }, [])
@@ -169,7 +184,7 @@ export function ProjectsSection() {
       return
     }
 
-    const mainSection = document.querySelector(".home__project-main")
+    const mainSection = mainRef.current || document.querySelector(".home__project-main")
     if (!mainSection) return
     const rect = mainSection.getBoundingClientRect()
     const viewportHeight = window.innerHeight
@@ -202,7 +217,6 @@ export function ProjectsSection() {
     const diffX = touchStartX - currentX
     const diffY = touchStartY - currentY
 
-    // Only treat as a horizontal swipe if horizontal motion clearly dominates
     if (Math.abs(diffX) > 50 && Math.abs(diffX) > Math.abs(diffY) * 1.5) {
       if (diffX > 0) {
         if (activeIndex < projects.length - 1) {
@@ -232,7 +246,7 @@ export function ProjectsSection() {
             <div className="fs-20 cl-txt-desc fw-reg home__project-title-label">(Portfolio)</div>
           </h2>
 
-          <div className="home__project-main" style={{ "--totalHeight": "300vh" } as React.CSSProperties}>
+          <div ref={mainRef} className="home__project-main" style={{ "--totalHeight": `${projects.length * 100}vh` } as React.CSSProperties}>
             <div className="home__project-main-stick">
               <div 
                 className="home__project-listing grid"
@@ -303,7 +317,13 @@ export function ProjectsSection() {
                             "heading h3 fw-med upper home__project-name-txt",
                             idx === activeIndex ? "cl-txt-title active" : "cl-txt-desc"
                           )}
-                          onClick={() => handleDotClick(idx)}
+                          onClick={() => {
+                            if (idx === activeIndex) {
+                              router.push(`/projects/${proj.slug}`)
+                            } else {
+                              handleDotClick(idx)
+                            }
+                          }}
                           data-cursor-text="View"
                           aria-label={`View ${proj.name} project`}
                           aria-pressed={idx === activeIndex}
@@ -313,8 +333,14 @@ export function ProjectsSection() {
                       ))}
                     </div>
 
-                    <Link href="/projects" transitionTypes={['page-transition']} className="cl-txt-orange fs-20 fw-med arrow-hover home__project-link mod-mb">
-                      <span className="txt-link cl-txt-orange">All projects</span>
+                    <Link
+                      href={isProjectsPage ? `/projects/${projects[activeIndex].slug}` : "/projects"}
+                      transitionTypes={['page-transition']}
+                      className="cl-txt-orange fs-20 fw-med arrow-hover home__project-link mod-mb"
+                    >
+                      <span className="txt-link cl-txt-orange">
+                        {isProjectsPage ? "View case study" : "All projects"}
+                      </span>
                       <div className="ic-arr-wrap ic-20" style={{ "--size": 1.6 } as React.CSSProperties}>
                         <div className="arr-main ic" style={{ "--size": 1.6 } as React.CSSProperties}>
                           <svg width="100%" viewBox="0 0 20 20" fill="none">
@@ -364,7 +390,13 @@ export function ProjectsSection() {
                             "--imgDirection": idx === activeIndex ? "-1" : "1",
                           } as React.CSSProperties}
                         >
-                          <div className="home__project-thumbnail-img-wrap">
+                          <Link
+                            href={`/projects/${proj.slug}`}
+                            transitionTypes={['page-transition']}
+                            className="home__project-thumbnail-img-wrap"
+                            tabIndex={idx === activeIndex ? 0 : -1}
+                            aria-label={`View ${proj.name} case study`}
+                          >
                             <div className="home__project-thumbnail-img-inner">
                               <img
                                 src={proj.thumbnail}
@@ -375,7 +407,7 @@ export function ProjectsSection() {
                                 loading="lazy"
                               />
                             </div>
-                          </div>
+                          </Link>
                         </div>
                       ))}
                     </div>
@@ -411,7 +443,7 @@ export function ProjectsSection() {
                   </div>
                 </div>
 
-                {/* Description & All Projects */}
+                {/* Description & Link */}
                 <div className="home__project-desc">
                   <p className="cl-txt-desc fw-med home__project-label">Description</p>
                   <div style={{ position: "relative" }}>
@@ -422,8 +454,14 @@ export function ProjectsSection() {
                     ))}
                   </div>
 
-                  <Link href="/projects" transitionTypes={['page-transition']} className="cl-txt-orange fs-20 fw-med arrow-hover home__project-link">
-                    <span className="txt-link cl-txt-orange">All projects</span>
+                  <Link
+                    href={isProjectsPage ? `/projects/${projects[activeIndex].slug}` : "/projects"}
+                    transitionTypes={['page-transition']}
+                    className="cl-txt-orange fs-20 fw-med arrow-hover home__project-link"
+                  >
+                    <span className="txt-link cl-txt-orange">
+                      {isProjectsPage ? "View case study" : "All projects"}
+                    </span>
                     <div className="ic-arr-wrap ic-20" style={{ "--size": 1.6 } as React.CSSProperties}>
                       <div className="arr-main ic" style={{ "--size": 1.6 } as React.CSSProperties}>
                         <svg width="100%" viewBox="0 0 20 20" fill="none">

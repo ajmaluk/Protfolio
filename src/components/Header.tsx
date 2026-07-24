@@ -25,7 +25,6 @@ export function Header() {
       if (!lenis) return;
       const scrollY = lenis.scroll;
       setIsScrolled(scrollY > 50);
-      // Only apply hero-state logic on the home page
       const isHome = window.location.pathname === '/';
       if (isHome) {
         const heroHeight = window.innerHeight;
@@ -71,12 +70,10 @@ export function Header() {
     };
   }, [menuOpen]);
 
-  // Reset hero state whenever route changes
   useEffect(() => {
     setIsOnHomeHero(pathname === '/');
   }, [pathname]);
 
-  // Close overlay on Escape
   useEffect(() => {
     if (!menuOpen) return;
     const onKeyDown = (e: KeyboardEvent) => {
@@ -86,7 +83,23 @@ export function Header() {
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [menuOpen]);
 
-  const closeMenu = () => setMenuOpen(false);
+  const closeMenu = () => {
+    setMenuOpen(false);
+    const lenis = (window as unknown as Record<string, unknown>).__lenis as { start: () => void } | undefined;
+    lenis?.start();
+  };
+
+  const handleLinkClick = (targetHref: string) => {
+    closeMenu();
+    if (pathname === targetHref) {
+      const lenis = (window as unknown as Record<string, unknown>).__lenis as { scrollTo: (target: number) => void } | undefined;
+      if (lenis) {
+        lenis.scrollTo(0);
+      } else {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    }
+  };
 
   return (
     <header
@@ -144,7 +157,7 @@ export function Header() {
         </div>
 
         <button
-          className={cn("header__toggle hide-dk cl-txt-title fs-16 fw-med", menuOpen && "open")}
+          className={cn("header__toggle cl-txt-title fs-16 fw-med", !menuOpen && "hide-dk", menuOpen && "open")}
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label={menuOpen ? "Close menu" : "Open menu"}
           aria-expanded={menuOpen}
@@ -162,12 +175,21 @@ export function Header() {
           aria-label="Site navigation"
           onClick={closeMenu}
         >
-          <div className="header__menu-overlay-inner" onClick={(e) => e.stopPropagation()}>
+          <div className="header__menu-overlay-header">
+            <button
+              className="header__menu-overlay-close-btn"
+              onClick={closeMenu}
+              aria-label="Close menu"
+            >
+              Close ✕
+            </button>
+          </div>
+          <div className="header__menu-overlay-inner">
             <div className="container header__menu-overlay-grid">
               <div className="header__menu-overlay-nav">
-                <Link href="/" transitionTypes={['page-transition']} className={`header__menu-overlay-link${pathname === '/' ? ' active' : ''}`} onClick={closeMenu}>Index</Link>
-                <Link href="/about" transitionTypes={['page-transition']} className={`header__menu-overlay-link${pathname === '/about' ? ' active' : ''}`} onClick={closeMenu}>About</Link>
-                <Link href="/projects" transitionTypes={['page-transition']} className={`header__menu-overlay-link${pathname === '/projects' || pathname.startsWith('/projects/') ? ' active' : ''}`} onClick={closeMenu}>Projects</Link>
+                <Link href="/" transitionTypes={['page-transition']} className={`header__menu-overlay-link${pathname === '/' ? ' active' : ''}`} onClick={() => handleLinkClick('/')}>Index</Link>
+                <Link href="/about" transitionTypes={['page-transition']} className={`header__menu-overlay-link${pathname === '/about' ? ' active' : ''}`} onClick={() => handleLinkClick('/about')}>About</Link>
+                <Link href="/projects" transitionTypes={['page-transition']} className={`header__menu-overlay-link${pathname === '/projects' || pathname.startsWith('/projects/') ? ' active' : ''}`} onClick={() => handleLinkClick('/projects')}>Projects</Link>
               </div>
               <div className="header__menu-overlay-meta-row">
                 <div className="header__menu-overlay-socials">

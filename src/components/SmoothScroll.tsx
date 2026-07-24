@@ -37,7 +37,6 @@ export function SmoothScroll() {
       const innerBg = document.querySelector(".home__hero-bg-main-inner-bg") as HTMLElement | null;
       const characterWrap = document.querySelector(".home__hero-bg-main-inner-man") as HTMLElement | null;
 
-      if (!isMobile) {
         // Hero scroll progress: 0 at top of hero, 1 at top of next section
         const heroProgress = Math.min(scrollY / heroHeight, 1);
         
@@ -77,21 +76,6 @@ export function SmoothScroll() {
           characterWrap.style.transform = `translate3d(0, ${charTranslateY}px, 0) scale(${charScale})`;
           characterWrap.style.opacity = `${fadeOpacity}`;
         }
-      } else {
-        // On mobile, reset any inline transforms so CSS static layout applies cleanly
-        if (bgMainWrap) {
-          bgMainWrap.style.transform = '';
-          bgMainWrap.style.opacity = '';
-        }
-        if (innerBg) {
-          innerBg.style.transform = '';
-          innerBg.style.opacity = '';
-        }
-        if (characterWrap) {
-          characterWrap.style.transform = '';
-          characterWrap.style.opacity = '';
-        }
-      }
 
       // ---- Intro section title parallax ----
       const introTitle = document.querySelector(".home__intro-main-txt") as HTMLElement | null;

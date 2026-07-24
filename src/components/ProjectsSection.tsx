@@ -31,20 +31,19 @@ export function ProjectsSection({ isProjectsPage = false }: ProjectsSectionProps
 
       const progress = Math.max(0, Math.min(-rect.top / totalScrollable, 1))
       const n = projects.length
-      
-      // Snapping trigger points — equal segments per project
-      const activeIdx = Math.min(Math.floor(progress * n), n - 1)
+      if (n === 0) return
 
-      // Update active state in React
-      setActiveIndex(activeIdx)
-
-      // --- Thumbnail clip-path transitions ---
       const segSize = n > 1 ? 1 / (n - 1) : 1
       const transPhase = n > 1 ? progress / segSize : 0
-      const transFloor = Math.floor(transPhase)
+      const transFloor = Math.min(Math.floor(transPhase), n - 1)
       const localT = transPhase - transFloor
       const inTransition = localT > 0 && n > 1
 
+      // Synchronize activeIndex with transition phase
+      const activeIdx = Math.min(Math.round(transPhase), n - 1)
+      setActiveIndex(activeIdx)
+
+      // --- Thumbnail clip-path transitions ---
       const thumbnailImgs = document.querySelectorAll(".home__project-thumbnail-img")
       thumbnailImgs.forEach((imgEl, idx) => {
         const el = imgEl as HTMLElement
@@ -107,16 +106,16 @@ export function ProjectsSection({ isProjectsPage = false }: ProjectsSectionProps
 
       // --- Loader circle angles ---
       const dotWraps = document.querySelectorAll(".home__project-slide-item-progress-inner")
-      const loaderSegSize = n > 0 ? 1 / n : 1
       dotWraps.forEach((dotEl, idx) => {
         const el = dotEl as HTMLElement
         let angle = 0
-        if (progress >= (idx + 1) * loaderSegSize) {
+        const dotTargetProgress = n > 1 ? idx / (n - 1) : 0
+        if (progress >= dotTargetProgress) {
           angle = 360
-        } else if (progress >= idx * loaderSegSize) {
-          angle = ((progress - idx * loaderSegSize) / loaderSegSize) * 360
+        } else if (progress > dotTargetProgress - segSize && n > 1) {
+          angle = ((progress - (dotTargetProgress - segSize)) / segSize) * 360
         }
-        el.style.setProperty("--angle", `${angle}deg`)
+        el.style.setProperty("--angle", `${Math.min(360, Math.max(0, angle))}deg`)
       })
     }
 
@@ -216,7 +215,7 @@ export function ProjectsSection({ isProjectsPage = false }: ProjectsSectionProps
   }
 
   return (
-    <div className="home__project-wrap">
+    <div className={cn("home__project-wrap", isProjectsPage && "is-projects-page")}>
       <section className="home__project">
         <div className="container">
           <h2 className="fix-font home__project-title grid">

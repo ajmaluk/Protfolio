@@ -118,7 +118,7 @@ export function TestimonialsSection() {
                           type="button"
                           className={cn("home__testi-item-toggle", isExpanded && "is-open")}
                           onClick={(e) => { e.stopPropagation(); handleClick(idx); }}
-                          data-cursor-text={isExpanded ? "Close" : "Read more"}
+                          data-cursor-text={isExpanded ? "Close" : "Read"}
                         >
                           <span className="home__testi-item-toggle-text">
                             {isExpanded ? "Show less" : "Read more"}

@@ -54,14 +54,6 @@ export default async function ProjectDetailPage({ params }: PageProps) {
 
           <div className="container projects-detail__body grid">
             <div className="projects-detail__main">
-              <header className="projects-detail__intro">
-                <p className="projects-detail__intro-label">{project.category}</p>
-                <h1 className="heading display-1 upper fw-bold projects-detail__intro-title cl-txt-title">
-                  {project.name}
-                </h1>
-                <p className="projects-detail__intro-summary">{project.summary}</p>
-              </header>
-
               <ProjectContent blocks={project.content} />
 
               {project.gallery.length > 0 && (

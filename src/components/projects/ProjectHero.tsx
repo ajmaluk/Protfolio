@@ -44,7 +44,7 @@ export function ProjectHero({ project }: ProjectHeroProps) {
           >
             {project.name}
           </h1>
-          <p className="projects-detail__hero-client">{project.client}, {project.year}</p>
+          <p className="projects-detail__hero-summary">{project.summary}</p>
         </div>
       </div>
     </header>

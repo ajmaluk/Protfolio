@@ -118,27 +118,26 @@ export function Header() {
         </div>
 
         <div className="header__socials hide-mb">
-          <span className="cl-txt-title fs-14 fw-med" style={{ marginRight: "3.2rem" }}>
+          <span className="cl-txt-title fs-14 fw-med header__socials-label">
             Socials
           </span>
           <span className="cl-txt-disable fs-14">/</span>
-          <a href="https://linkedin.com/in/valentinchevaldesign" className="txt-link hover-un header__social fs-14" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"> li </a>
+          <a href="https://linkedin.com/in/valentinchevaldesign" className="txt-link hover-un header__social fs-14" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">li</a>
           <span className="cl-txt-disable fs-14">/</span>
-          <a href="https://dribbble.com/ValentinChevalDesign" className="txt-link hover-un header__social fs-14" target="_blank" rel="noopener noreferrer" aria-label="Dribbble"> dr </a>
+          <a href="https://dribbble.com/ValentinChevalDesign" className="txt-link hover-un header__social fs-14" target="_blank" rel="noopener noreferrer" aria-label="Dribbble">dr</a>
           <span className="cl-txt-disable fs-14">/</span>
-          <a href="https://x.com/valentin_cheval" className="txt-link hover-un header__social fs-14" target="_blank" rel="noopener noreferrer" aria-label="Twitter/X"> tw </a>
+          <a href="https://x.com/valentin_cheval" className="txt-link hover-un header__social fs-14" target="_blank" rel="noopener noreferrer" aria-label="Twitter/X">tw</a>
         </div>
 
         <div className="header__menu hide-mb">
           <Link href="/" transitionTypes={['page-transition']} className={cn("txt-link hover-un fs-14", pathname === '/' && "active")}>Index</Link>
-          <span className="splash cl-txt-disable fs-14" style={{ margin: "0 .6rem" }}>/</span>
+          <span className="splash cl-txt-disable fs-14">/</span>
           <Link href="/about" transitionTypes={['page-transition']} className={cn("txt-link hover-un fs-14", pathname === '/about' && "active")}>About</Link>
-          <span className="splash cl-txt-disable fs-14" style={{ margin: "0 .6rem" }}>/</span>
+          <span className="splash cl-txt-disable fs-14">/</span>
           <Link href="/projects" transitionTypes={['page-transition']} className={cn("txt-link hover-un fs-14", (pathname === '/projects' || pathname.startsWith('/projects/')) && "active")}>Projects</Link>
           <a
             href="mailto:hello@valentincheval.design"
             className="cl-txt-orange header__act fs-14 fw-med"
-            style={{ marginLeft: "3.2rem" }}
           >
             Let&apos;s talk!
           </a>

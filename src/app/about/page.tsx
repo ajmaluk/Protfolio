@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { FooterSection } from "@/components/FooterSection";
 
 export const metadata: Metadata = {
   title: "About | Valentin Cheval",
@@ -194,6 +195,7 @@ export default function AboutPage() {
             </div>
           </div>
         </section>
+        <FooterSection />
       </main>
     </div>
   );

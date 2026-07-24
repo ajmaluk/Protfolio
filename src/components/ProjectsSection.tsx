@@ -287,21 +287,47 @@ export function ProjectsSection({ isProjectsPage = false }: ProjectsSectionProps
                 {/* Left Side Content & Mobile/Tablet Layouts */}
                 <div className="home__project-name">
                   <div className="home__project-name-wrap">
-                    <div className="fs-20 fw-med home__project-pagination">
-                      <div className="cl-txt-title home__project-pagination-current">
-                        <span>{String(activeIndex + 1).padStart(2, "0")}</span>
+                    <div className="home__project-header-bar">
+                      <div className="fs-20 fw-med home__project-pagination">
+                        <div className="cl-txt-title home__project-pagination-current">
+                          <span>{String(activeIndex + 1).padStart(2, "0")}</span>
+                        </div>
+                        <span className="cl-txt-disable">/{String(projects.length).padStart(2, "0")}</span>
+                        <div className="line home__project-pagination-progress">
+                          <div 
+                            className="home__project-pagination-progress-inner"
+                            style={{
+                              width: `${100 / projects.length}%`,
+                              transform: `translateX(${activeIndex * 100}%)`,
+                              transition: "transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)"
+                            }}
+                          />
+                        </div>
                       </div>
-                      <span className="cl-txt-disable">/{String(projects.length).padStart(2, "0")}</span>
-                      <div className="line home__project-pagination-progress">
-                        <div 
-                          className="home__project-pagination-progress-inner"
-                          style={{
-                            width: `${100 / projects.length}%`,
-                            transform: `translateX(${activeIndex * 100}%)`,
-                            transition: "transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)"
-                          }}
-                        />
-                      </div>
+
+                      <Link
+                        href={isProjectsPage ? `/projects/${projects[activeIndex].slug}` : "/projects"}
+                        transitionTypes={['page-transition']}
+                        className="cl-txt-orange fs-20 fw-med arrow-hover home__project-link mod-mb"
+                      >
+                        <span className="txt-link cl-txt-orange">
+                          {isProjectsPage ? "View case study" : "All projects"}
+                        </span>
+                        <div className="ic-arr-wrap ic-20" style={{ "--size": 1.6 } as React.CSSProperties}>
+                          <div className="arr-main ic" style={{ "--size": 1.6 } as React.CSSProperties}>
+                            <svg width="100%" viewBox="0 0 20 20" fill="none">
+                              <path d="M14.375 5.625L5.625 14.375" stroke="currentColor" strokeWidth="1.875" strokeMiterlimit="10" strokeLinecap="square" strokeLinejoin="round" />
+                              <path d="M6.25 5H15V13.75" stroke="currentColor" strokeWidth="1.875" strokeMiterlimit="10" strokeLinecap="square" />
+                            </svg>
+                          </div>
+                          <div className="arr-clone ic" style={{ "--size": 1.6 } as React.CSSProperties}>
+                            <svg width="100%" viewBox="0 0 20 20" fill="none">
+                              <path d="M14.375 5.625L5.625 14.375" stroke="currentColor" strokeWidth="1.875" strokeMiterlimit="10" strokeLinecap="square" strokeLinejoin="round" />
+                              <path d="M6.25 5H15V13.75" stroke="currentColor" strokeWidth="1.875" strokeMiterlimit="10" strokeLinecap="square" />
+                            </svg>
+                          </div>
+                        </div>
+                      </Link>
                     </div>
 
                     <h3 className="visually-hidden">
@@ -332,30 +358,6 @@ export function ProjectsSection({ isProjectsPage = false }: ProjectsSectionProps
                         </button>
                       ))}
                     </div>
-
-                    <Link
-                      href={isProjectsPage ? `/projects/${projects[activeIndex].slug}` : "/projects"}
-                      transitionTypes={['page-transition']}
-                      className="cl-txt-orange fs-20 fw-med arrow-hover home__project-link mod-mb"
-                    >
-                      <span className="txt-link cl-txt-orange">
-                        {isProjectsPage ? "View case study" : "All projects"}
-                      </span>
-                      <div className="ic-arr-wrap ic-20" style={{ "--size": 1.6 } as React.CSSProperties}>
-                        <div className="arr-main ic" style={{ "--size": 1.6 } as React.CSSProperties}>
-                          <svg width="100%" viewBox="0 0 20 20" fill="none">
-                            <path d="M14.375 5.625L5.625 14.375" stroke="currentColor" strokeWidth="1.875" strokeMiterlimit="10" strokeLinecap="square" strokeLinejoin="round" />
-                            <path d="M6.25 5H15V13.75" stroke="currentColor" strokeWidth="1.875" strokeMiterlimit="10" strokeLinecap="square" />
-                          </svg>
-                        </div>
-                        <div className="arr-clone ic" style={{ "--size": 1.6 } as React.CSSProperties}>
-                          <svg width="100%" viewBox="0 0 20 20" fill="none">
-                            <path d="M14.375 5.625L5.625 14.375" stroke="currentColor" strokeWidth="1.875" strokeMiterlimit="10" strokeLinecap="square" strokeLinejoin="round" />
-                            <path d="M6.25 5H15V13.75" stroke="currentColor" strokeWidth="1.875" strokeMiterlimit="10" strokeLinecap="square" />
-                          </svg>
-                        </div>
-                      </div>
-                    </Link>
                   </div>
 
                   {/* Year block on tablet */}

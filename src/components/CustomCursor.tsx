@@ -170,11 +170,11 @@ export function CustomCursor() {
       className="mf-cursor is-default"
       aria-hidden="true"
     >
-      <div ref={ringRef} className="mf-cursor-ring">
+      <div ref={ringRef} className="mf-cursor-ring" style={{ transform: "translate3d(-100px, -100px, 0)" }}>
         <div className="mf-cursor-ring-inner" />
         <div ref={labelRef} className="mf-cursor-label" style={{ display: "none" }} />
       </div>
-      <div ref={dotRef} className="mf-cursor-dot" />
+      <div ref={dotRef} className="mf-cursor-dot" style={{ transform: "translate3d(-100px, -100px, 0)" }} />
     </div>
   );
 }

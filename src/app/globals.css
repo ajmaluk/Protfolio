@@ -750,6 +750,34 @@ h6,
   margin-top: 2.4rem;
 }
 
+@media screen and (max-width: 991px) {
+  .btn-circle {
+    width: 6.4rem;
+    height: 6.4rem;
+  }
+  .home__intro-btn {
+    margin-top: 2rem;
+  }
+  .home__intro-btn .ic-arr-wrap,
+  .home__intro-btn .ic-arr-wrap .ic {
+    --size: 2.2 !important;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .btn-circle {
+    width: 5.6rem;
+    height: 5.6rem;
+  }
+  .home__intro-btn {
+    margin-top: 1.6rem;
+  }
+  .home__intro-btn .ic-arr-wrap,
+  .home__intro-btn .ic-arr-wrap .ic {
+    --size: 2 !important;
+  }
+}
+
 /* ==========================================
    ANIMATION: ROTATION
    ========================================== */
@@ -2342,10 +2370,11 @@ h6,
   height: 100vh;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 991px) {
   .home__intro-service-wrap {
-    margin-top: 4rem;
-    height: 28rem;
+    margin-top: 0;
+    height: 100vh;
+    height: 100svh;
   }
 }
 
@@ -2479,13 +2508,13 @@ h6,
 
 @media screen and (max-width: 991px) {
   .home__project-title {
-    margin-bottom: 8rem;
+    margin-bottom: 3rem;
   }
 }
 
 @media screen and (max-width: 767px) {
   .home__project-title {
-    margin-bottom: 6rem;
+    margin-bottom: 1.6rem;
   }
 }
 
@@ -2623,8 +2652,8 @@ h6,
     height: 100vh;
   }
   .home__project-listing {
-    padding: 8rem 0 4vh;
-    align-content: center;
+    padding: 2rem 0 2vh;
+    align-content: start;
     height: 100%;
   }
 }
@@ -2661,8 +2690,8 @@ h6,
 @media screen and (max-width: 767px) {
   .home__project-listing {
     row-gap: 2.4rem;
-    padding: 8rem 0 4vh;
-    align-content: center;
+    padding: 1.2rem 0 2vh;
+    align-content: start;
     height: 100%;
   }
 }
@@ -6239,8 +6268,9 @@ html.is-loading {
   white-space: nowrap;
 }
 
-@media screen and (max-width: 991px) {
+@media (pointer: coarse) {
   .mf-cursor {
-    display: none;
+    display: none !important;
   }
 }
+

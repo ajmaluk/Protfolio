@@ -163,23 +163,25 @@ export function Header() {
           onClick={closeMenu}
         >
           <div className="header__menu-overlay-inner" onClick={(e) => e.stopPropagation()}>
-            <div className="container">
+            <div className="container header__menu-overlay-grid">
               <div className="header__menu-overlay-nav">
                 <Link href="/" transitionTypes={['page-transition']} className={`header__menu-overlay-link${pathname === '/' ? ' active' : ''}`} onClick={closeMenu}>Index</Link>
                 <Link href="/about" transitionTypes={['page-transition']} className={`header__menu-overlay-link${pathname === '/about' ? ' active' : ''}`} onClick={closeMenu}>About</Link>
                 <Link href="/projects" transitionTypes={['page-transition']} className={`header__menu-overlay-link${pathname === '/projects' || pathname.startsWith('/projects/') ? ' active' : ''}`} onClick={closeMenu}>Projects</Link>
               </div>
-              <div className="header__menu-overlay-socials">
-                <p className="header__menu-overlay-label">Socials</p>
-                <a href="https://linkedin.com/in/valentinchevaldesign" className="header__menu-overlay-social-link" target="_blank" rel="noopener noreferrer" onClick={closeMenu}>LinkedIn</a>
-                <a href="https://dribbble.com/ValentinChevalDesign" className="header__menu-overlay-social-link" target="_blank" rel="noopener noreferrer" onClick={closeMenu}>Dribbble</a>
-                <a href="https://x.com/valentin_cheval" className="header__menu-overlay-social-link" target="_blank" rel="noopener noreferrer" onClick={closeMenu}>Twitter/X</a>
-              </div>
-              <div className="header__menu-overlay-contact">
-                <p className="header__menu-overlay-label">Text me</p>
-                <a href="mailto:hello@valentincheval.design" className="header__menu-overlay-contact-link" onClick={closeMenu}>Email</a>
-                <a href="https://wa.me/84822235564" className="header__menu-overlay-contact-link" target="_blank" rel="noopener noreferrer" onClick={closeMenu}>WhatsApp</a>
-                <a href="https://t.me/84822235564" className="header__menu-overlay-contact-link" target="_blank" rel="noopener noreferrer" onClick={closeMenu}>Telegram</a>
+              <div className="header__menu-overlay-meta-row">
+                <div className="header__menu-overlay-socials">
+                  <p className="header__menu-overlay-label">Socials</p>
+                  <a href="https://linkedin.com/in/valentinchevaldesign" className="header__menu-overlay-social-link" target="_blank" rel="noopener noreferrer" onClick={closeMenu}>LinkedIn</a>
+                  <a href="https://dribbble.com/ValentinChevalDesign" className="header__menu-overlay-social-link" target="_blank" rel="noopener noreferrer" onClick={closeMenu}>Dribbble</a>
+                  <a href="https://x.com/valentin_cheval" className="header__menu-overlay-social-link" target="_blank" rel="noopener noreferrer" onClick={closeMenu}>Twitter/X</a>
+                </div>
+                <div className="header__menu-overlay-contact">
+                  <p className="header__menu-overlay-label">Text me</p>
+                  <a href="mailto:hello@valentincheval.design" className="header__menu-overlay-contact-link" onClick={closeMenu}>Email</a>
+                  <a href="https://wa.me/84822235564" className="header__menu-overlay-contact-link" target="_blank" rel="noopener noreferrer" onClick={closeMenu}>WhatsApp</a>
+                  <a href="https://t.me/84822235564" className="header__menu-overlay-contact-link" target="_blank" rel="noopener noreferrer" onClick={closeMenu}>Telegram</a>
+                </div>
               </div>
               <div className="header__menu-overlay-cta">
                 <a

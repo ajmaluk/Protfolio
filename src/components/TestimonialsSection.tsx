@@ -3,14 +3,6 @@
 import { useState } from "react"
 import { cn } from "@/lib/utils"
 
-const PREVIEW_PARAGRAPHS = 2
-
-function buildPreviewText(content: string, paragraphs: number) {
-  const parts = content.split("\n\n").filter(Boolean)
-  if (parts.length <= paragraphs) return content
-  return parts.slice(0, paragraphs).join("\n\n") + "..."
-}
-
 const testimonials = [
   {
     index: 1,
@@ -91,8 +83,6 @@ export function TestimonialsSection() {
           <div className="home__testi-listing">
             {testimonials.map((t, idx) => {
               const isExpanded = expanded === idx
-              const displayText = isExpanded ? t.content : buildPreviewText(t.content, PREVIEW_PARAGRAPHS)
-              const needsExpansion = t.content.split("\n\n").filter(Boolean).length > PREVIEW_PARAGRAPHS
               return (
                 <div key={t.index} className="home__testi-item-wrap">
                   <span className="home__testi-item-line" />
@@ -119,26 +109,24 @@ export function TestimonialsSection() {
                         <p className="home__testi-item-position">{t.position}</p>
                       </div>
                       <div className="home__testi-item-quote-col">
-                        <div className="home__testi-item-quote-wrap">
-                          {displayText.split("\n\n").map((paragraph, pIdx) => (
+                        <div className={cn("home__testi-item-quote-wrap", !isExpanded && "is-clamped")}>
+                          {t.content.split("\n\n").map((paragraph, pIdx) => (
                             <p key={pIdx} className="home__testi-item-quote">{paragraph}</p>
                           ))}
                         </div>
-                        {needsExpansion && (
-                          <button
-                            type="button"
-                            className={cn("home__testi-item-toggle", isExpanded && "is-open")}
-                            onClick={(e) => { e.stopPropagation(); handleClick(idx); }}
-                            data-cursor-text={isExpanded ? "Close" : "Read more"}
-                          >
-                            <span className="home__testi-item-toggle-text">
-                              {isExpanded ? "Show less" : "Read more"}
-                            </span>
-                            <span className="home__testi-item-toggle-arrow" aria-hidden="true">
-                              {isExpanded ? "↑" : "→"}
-                            </span>
-                          </button>
-                        )}
+                        <button
+                          type="button"
+                          className={cn("home__testi-item-toggle", isExpanded && "is-open")}
+                          onClick={(e) => { e.stopPropagation(); handleClick(idx); }}
+                          data-cursor-text={isExpanded ? "Close" : "Read more"}
+                        >
+                          <span className="home__testi-item-toggle-text">
+                            {isExpanded ? "Show less" : "Read more"}
+                          </span>
+                          <span className="home__testi-item-toggle-arrow" aria-hidden="true">
+                            {isExpanded ? "↑" : "→"}
+                          </span>
+                        </button>
                       </div>
                     </div>
                   </div>

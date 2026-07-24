@@ -124,9 +124,12 @@ export function FooterSection() {
             <div className="footer__title-gradient-mb" />
             <div className="heading h4 fw-reg footer__title">
               <div>
-                As a designer and Rotarian, I believe in service above self. <br />
-                <br />
-                Being a designer is about serving user needs. It&apos;s dedicating yourself to finding the right balance between user needs and business goals.
+                <span>As a designer and Rotarian, I believe in service above self.</span>
+                <span className="footer__title-second">
+                  <br />
+                  <br />
+                  Being a designer is about serving user needs. It&apos;s dedicating yourself to finding the right balance between user needs and business goals.
+                </span>
               </div>
             </div>
           </h3>

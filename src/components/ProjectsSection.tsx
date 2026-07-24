@@ -158,24 +158,7 @@ export function ProjectsSection({ isProjectsPage = false }: ProjectsSectionProps
   }, [])
 
   useEffect(() => {
-    const updateMobileLayout = () => {
-      if (window.innerWidth <= 767) {
-        const activeElement = document.querySelectorAll(".home__project-name-txt")[activeIndex] as HTMLElement
-        if (activeElement) {
-          setNameGridStyle({
-            transform: `translateX(-${activeElement.offsetLeft}px)`,
-            display: "flex",
-            transition: "transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)",
-          })
-        }
-      } else {
-        setNameGridStyle({})
-      }
-    }
-
-    updateMobileLayout()
-    window.addEventListener("resize", updateMobileLayout)
-    return () => window.removeEventListener("resize", updateMobileLayout)
+    setNameGridStyle({})
   }, [activeIndex])
 
   const handleDotClick = (index: number) => {

@@ -54,7 +54,7 @@ const awardsData = [
 import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
 
-const introMainText = "Financial services should be intuitive, accessible, and empowering. I use human-centered design to create solutions that resonate with customers. By applying design thinking, branding, and strategic planning, I've helped banks, fintechs, and crypto businesses improve customer experience, increase engagement, and drive growth. My goal is to create financial experiences that are not only efficient but also enjoyable. I believe finance should be a positive force in people's lives.";
+const introMainText = "Software products should be intuitive, accessible, and empowering. I build production-ready digital products that solve real-world problems. By combining AI API integrations, full-stack web architectures, mobile development, and clean user-focused design, I create scalable tools and platforms that deliver seamless digital experiences. My goal is to develop impactful software that makes technology simple, practical, and accessible for everyone.";
 
 export function IntroSection() {
   const [activeAwardIndex, setActiveAwardIndex] = useState(0);

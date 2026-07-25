@@ -123,11 +123,11 @@ export function Header() {
             Socials
           </span>
           <span className="cl-txt-disable fs-14">/</span>
-          <a href="https://linkedin.com/in/valentinchevaldesign" className="txt-link hover-un header__social fs-14" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">li</a>
+          <a href="https://in.linkedin.com/in/ajmaluk" className="txt-link hover-un header__social fs-14" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">li</a>
           <span className="cl-txt-disable fs-14">/</span>
-          <a href="https://dribbble.com/ValentinChevalDesign" className="txt-link hover-un header__social fs-14" target="_blank" rel="noopener noreferrer" aria-label="Dribbble">dr</a>
+          <a href="https://github.com/ajmaluk" className="txt-link hover-un header__social fs-14" target="_blank" rel="noopener noreferrer" aria-label="GitHub">gh</a>
           <span className="cl-txt-disable fs-14">/</span>
-          <a href="https://x.com/valentin_cheval" className="txt-link hover-un header__social fs-14" target="_blank" rel="noopener noreferrer" aria-label="Twitter/X">tw</a>
+          <a href="https://instagram.com/ajmaluk.me" className="txt-link hover-un header__social fs-14" target="_blank" rel="noopener noreferrer" aria-label="Instagram">ig</a>
         </div>
 
         <div className="header__menu hide-mb">
@@ -158,7 +158,7 @@ export function Header() {
             Projects
           </Link>
           <a
-            href="mailto:hello@valentincheval.design"
+            href="mailto:ajmaluk.me@gmail.com"
             className="cl-txt-orange header__act fs-14 fw-med"
           >
             Let&apos;s talk!
@@ -203,20 +203,18 @@ export function Header() {
               <div className="header__menu-overlay-meta-row">
                 <div className="header__menu-overlay-socials">
                   <p className="header__menu-overlay-label">Socials</p>
-                  <a href="https://linkedin.com/in/valentinchevaldesign" className="header__menu-overlay-social-link" target="_blank" rel="noopener noreferrer" onClick={closeMenu}>LinkedIn</a>
-                  <a href="https://dribbble.com/ValentinChevalDesign" className="header__menu-overlay-social-link" target="_blank" rel="noopener noreferrer" onClick={closeMenu}>Dribbble</a>
-                  <a href="https://x.com/valentin_cheval" className="header__menu-overlay-social-link" target="_blank" rel="noopener noreferrer" onClick={closeMenu}>Twitter/X</a>
+                  <a href="https://in.linkedin.com/in/ajmaluk" className="header__menu-overlay-social-link" target="_blank" rel="noopener noreferrer" onClick={closeMenu}>LinkedIn</a>
+                  <a href="https://github.com/ajmaluk" className="header__menu-overlay-social-link" target="_blank" rel="noopener noreferrer" onClick={closeMenu}>GitHub</a>
+                  <a href="https://instagram.com/ajmaluk.me" className="header__menu-overlay-social-link" target="_blank" rel="noopener noreferrer" onClick={closeMenu}>Instagram</a>
                 </div>
                 <div className="header__menu-overlay-contact">
-                  <p className="header__menu-overlay-label">Text me</p>
-                  <a href="mailto:hello@valentincheval.design" className="header__menu-overlay-contact-link" onClick={closeMenu}>Email</a>
-                  <a href="https://wa.me/84822235564" className="header__menu-overlay-contact-link" target="_blank" rel="noopener noreferrer" onClick={closeMenu}>WhatsApp</a>
-                  <a href="https://t.me/84822235564" className="header__menu-overlay-contact-link" target="_blank" rel="noopener noreferrer" onClick={closeMenu}>Telegram</a>
+                  <p className="header__menu-overlay-label">Contact</p>
+                  <a href="mailto:ajmaluk.me@gmail.com" className="header__menu-overlay-contact-link" onClick={closeMenu}>Email</a>
                 </div>
               </div>
               <div className="header__menu-overlay-cta">
                 <a
-                  href="mailto:hello@valentincheval.design"
+                  href="mailto:ajmaluk.me@gmail.com"
                   className="header__menu-overlay-cta-link"
                   onClick={closeMenu}
                 >

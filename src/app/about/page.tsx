@@ -3,61 +3,80 @@ import Link from "next/link";
 import { FooterSection } from "@/components/FooterSection";
 
 export const metadata: Metadata = {
-  title: "About | Ajmal U K",
+  title: "About | Muhammed Ajmal U K",
   description:
-    "I'm an award-winning product designer specialized in financial products. Over 8 years of experience designing for fintech, banking, crypto, and Web3.",
+    "Muhammed Ajmal U K is an MCA student, AI enthusiast, and full-stack developer from Kerala, India. Focused on building real-world digital products, AI tools, web apps, and mobile applications.",
   openGraph: {
-    title: "About | Ajmal U K",
+    title: "About | Muhammed Ajmal U K",
     description:
-      "I'm an award-winning product designer specialized in financial products. Over 8 years of experience designing for fintech, banking, crypto, and Web3.",
+      "Muhammed Ajmal U K is an MCA student, AI enthusiast, and full-stack developer from Kerala, India. Focused on building real-world digital products, AI tools, web apps, and mobile applications.",
     type: "profile",
-    url: "https://valentincheval.design/about",
-    images: [{ url: "/images/portrait.jpg", alt: "Ajmal U K portrait" }],
+    url: "https://ajmal.uthakkan.in/about",
+    images: [{ url: "/images/portrait.jpg", alt: "Muhammed Ajmal U K" }],
   },
 };
 
+const education = [
+  {
+    period: "2023 — Present",
+    degree: "Master of Computer Applications (MCA)",
+    institution: "Kerala, India",
+    details:
+      "Post-Graduate specialization in Advanced Computer Applications, AI Systems, Full-Stack Web Architecture, and Software Engineering Principles.",
+  },
+  {
+    period: "2024",
+    degree: "Google Cloud Arcade Champion",
+    institution: "Google Cloud Platform",
+    details:
+      "Achieved Champion Tier in Google Cloud Arcade, demonstrating practical proficiency in Cloud Infrastructure, Automation, and Serverless Systems.",
+  },
+  {
+    period: "2020 — 2023",
+    degree: "Bachelor of Computer Science / Applications",
+    institution: "Kerala, India",
+    details:
+      "Foundational degree covering Data Structures, Algorithms, Object-Oriented Programming, Database Systems (SQL), and Web Technologies.",
+  },
+];
+
 const experience = [
   {
-    period: "2022 — Present",
-    title: "Head of Design",
-    company: "BitMEX",
+    period: "2024 — Present",
+    title: "Creator & Lead Developer",
+    company: "ToolPix AI Platform",
     description:
-      "Leading design across the entire platform, from brand strategy to product UI. Repositioning one of the largest crypto derivatives exchanges for a new generation of retail traders.",
+      "Architected and deployed ToolPix, an AI-powered productivity platform featuring image processing, PDF tools, code utilities, and converters using Python, Flask, and AI API integrations.",
   },
   {
-    period: "2021 — 2022",
-    title: "Lead Product Designer",
-    company: "Tyme Bank",
+    period: "2024",
+    title: "Mobile Game Developer",
+    company: "KallanCop (Google Play Store)",
     description:
-      "Designed the bank's first retail investment product suite from concept through launch. Built a cohesive design system and contributed to brand evolution for one of Africa's fastest digital banks.",
+      "Developed and published KallanCop, a local multiplayer social deduction game on the Google Play Store using Flutter and Firebase real-time database.",
   },
   {
-    period: "2020 — 2021",
-    title: "Lead Product Designer",
-    company: "DefiChain",
+    period: "2023",
+    title: "Full-Stack Project Lead",
+    company: "Explore Together",
     description:
-      "First product designer for the DefiMetachain ecosystem. Designed DefiScan explorer from internal tool to public-facing product, shipping in 14 weeks.",
-  },
-  {
-    period: "2018 — 2020",
-    title: "Senior Product Designer",
-    company: "Various Fintechs",
-    description:
-      "Designed financial products across lending, payments, and wealth management platforms. Developed expertise in UX research, design systems, and user-centered design methodologies.",
+      "Built Explore Together, a full-stack academic travel planning web application with Node.js, Express, and MongoDB database architecture.",
   },
 ];
 
 const skills = [
-  "Product Design",
-  "Brand Strategy",
-  "UX Research",
-  "Design Systems",
-  "Visual Design",
-  "User Testing",
-  "Prototyping",
-  "Art Direction",
-  "Design Leadership",
-  "Interaction Design",
+  "Python & Flask",
+  "JavaScript & Node.js",
+  "React & Next.js",
+  "Flutter & Mobile",
+  "Firebase & Supabase",
+  "MongoDB & MySQL",
+  "AI API Integration",
+  "AI Agents & Prompt Eng.",
+  "Full-Stack Web Dev",
+  "SEO & Web Deployment",
+  "UI/UX Improvement",
+  "Automation & Tools",
 ];
 
 export default function AboutPage() {
@@ -68,14 +87,12 @@ export default function AboutPage() {
         <section className="about__hero">
           <div className="container">
             <div className="about__hero-content">
-              <p className="about__hero-label fs-14 upper fw-med">About</p>
+              <p className="about__hero-label fs-14 upper fw-med">About Me</p>
               <h1 className="about__hero-title heading display-1 upper fw-bold cl-txt-title">
-                Designer &amp; <span className="cl-txt-orange">strategist</span>
+                AI &amp; <span className="cl-txt-orange">Full-Stack</span> Developer
               </h1>
               <p className="about__hero-intro heading h5 cl-txt-sub">
-                I help financial brands design products that people love to use. With over 8 years
-                of experience across fintech, banking, crypto, and Web3, I bring human-centered
-                design to complex financial ecosystems.
+                Hi! I&apos;m <strong className="cl-txt-title">Muhammed Ajmal U K</strong>, an MCA student and aspiring software engineer from Kerala, India. I specialize in building production-ready AI tools, full-stack web applications, mobile apps, and developer platforms.
               </p>
             </div>
           </div>
@@ -88,7 +105,7 @@ export default function AboutPage() {
               <div className="about__bio-image-wrap">
                 <img
                   src="/images/portrait.jpg"
-                  alt="Ajmal U K portrait"
+                  alt="Muhammed Ajmal U K portrait"
                   width={600}
                   height={750}
                   className="about__bio-image"
@@ -97,28 +114,51 @@ export default function AboutPage() {
               </div>
             </div>
             <div className="about__bio-content">
-              <h2 className="heading h4 upper fw-bold cl-txt-title">My approach</h2>
+              <h2 className="heading h4 upper fw-bold cl-txt-title">Career Objective</h2>
               <div className="line about__bio-line" />
               <p className="about__bio-text cl-txt-sub">
-                I believe financial services should be intuitive, accessible, and empowering. My
-                work sits at the intersection of design thinking, brand strategy, and product
-                execution — turning complex financial systems into clear, human experiences.
+                My career goal is to build high-performance, production-ready software products and grow as an AI/Full-Stack Developer and tech innovator. I am passionate about creating practical tools that solve real-world problems through clean code, modern web architectures, and smart AI integrations.
               </p>
               <p className="about__bio-text cl-txt-sub">
-                As a Rotarian, I believe in service above self. Being a designer is about serving
-                user needs — finding the right balance between what people want and what the
-                business needs to deliver. Every product I ship is built on user research, validated
-                through testing, and refined through craft.
+                From publishing games on the Google Play Store (KallanCop) to building high-traffic AI productivity platforms (ToolPix) and achieving Google Cloud Arcade Champion status, I continuously focus on hands-on software development, scalable engineering, and user-centered product craft.
               </p>
             </div>
           </div>
         </section>
 
-        {/* Experience Section */}
+        {/* Education Section */}
         <section className="about__experience">
           <div className="container">
             <h2 className="about__section-label heading h5 upper fw-med cl-txt-disable">
-              Experience
+              Education &amp; Qualifications
+            </h2>
+            <div className="about__timeline">
+              {education.map((item, index) => (
+                <div key={index} className="about__timeline-item">
+                  <div className="about__timeline-dot" />
+                  <div className="about__timeline-content">
+                    <span className="about__timeline-period cl-txt-orange fs-14 fw-med upper">
+                      {item.period}
+                    </span>
+                    <h3 className="about__timeline-title heading h4 fw-bold cl-txt-title">
+                      {item.degree}
+                    </h3>
+                    <span className="about__timeline-company cl-txt-desc fs-20 fw-med">
+                      {item.institution}
+                    </span>
+                    <p className="about__timeline-desc cl-txt-sub">{item.details}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Technical Projects & Experience Section */}
+        <section className="about__experience">
+          <div className="container">
+            <h2 className="about__section-label heading h5 upper fw-med cl-txt-disable">
+              Projects &amp; Experience
             </h2>
             <div className="about__timeline">
               {experience.map((item, index) => (
@@ -146,7 +186,7 @@ export default function AboutPage() {
         <section className="about__skills">
           <div className="container">
             <h2 className="about__section-label heading h5 upper fw-med cl-txt-disable">
-              Expertise
+              Technical Skills &amp; Stack
             </h2>
             <div className="about__skills-grid">
               {skills.map((skill) => (
@@ -166,17 +206,17 @@ export default function AboutPage() {
           <div className="container">
             <div className="about__cta-card">
               <h2 className="about__cta-title heading display-2 upper fw-bold cl-txt-title">
-                Let&apos;s work <span className="cl-txt-orange">together</span>
+                Let&apos;s <span className="cl-txt-orange">connect</span>
               </h2>
               <p className="about__cta-text cl-txt-sub heading h5">
-                Got a project in mind? I&apos;d love to hear about it.
+                Looking for a dedicated AI &amp; Full-Stack Developer for your team or campus placement? Let&apos;s talk!
               </p>
               <div className="about__cta-actions">
                 <a
-                  href="mailto:hello@valentincheval.design"
+                  href="mailto:ajmaluk.me@gmail.com"
                   className="about__cta-btn"
                 >
-                  <span className="about__cta-btn-text">Get in touch</span>
+                  <span className="about__cta-btn-text">Contact me</span>
                   <span className="about__cta-btn-arrow ic-20">
                     <svg width="100%" viewBox="0 0 20 20" fill="none">
                       <path d="M14.375 5.625L5.625 14.375" stroke="currentColor" strokeWidth="1.875" strokeMiterlimit="10" strokeLinecap="square" strokeLinejoin="round" />
@@ -189,7 +229,7 @@ export default function AboutPage() {
                   transitionTypes={['page-transition']}
                   className="about__cta-link cl-txt-orange txt-link hover-un"
                 >
-                  View my work
+                  Explore my projects
                 </Link>
               </div>
             </div>

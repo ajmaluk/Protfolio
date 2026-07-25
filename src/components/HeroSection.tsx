@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-const WORDS = ["Banking", "Crypto", "Fintech", "Web3"];
+const WORDS = ["STARTUPS", "FOUNDERS", "BUSINESSES", "CREATORS"];
 
 export function HeroSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -22,13 +22,13 @@ export function HeroSection() {
             <div className="home__hero-scope-wrap">
               <ul className="home__hero-scope">
                 <span className="line" />
-                <li>Website Design</li>
-                <li>Product Design</li>
-                <li>Branding &amp; Strategy</li>
+                <li>AI &amp; Full-Stack Dev</li>
+                <li>Python &amp; JavaScript</li>
+                <li>Flutter &amp; Cloud</li>
                 <span className="line" />
               </ul>
               <a
-                href="mailto:hello@valentincheval.design"
+                href="mailto:ajmaluk.me@gmail.com"
                 className="arrow-hover home__hero-scope-cta"
               >
                 <span className="txt-link">How can I help?</span>
@@ -51,20 +51,9 @@ export function HeroSection() {
 
             <div className="home__hero-intro-wrap">
               <div className="cl-txt-sub home__hero-intro">
-                I&apos;m an award winning product designer specialized in financial products. I work for Fintech, Banking, Crypto &amp; Web3
+                MCA Student &amp; Full-Stack AI Developer specialized in building AI tools, web applications, mobile apps, and scalable digital products.
               </div>
               <span className="line" />
-              <div className="home__hero-awards">
-                <div className="ic home__hero-award">
-                  <img src="/images/red-dot-white.svg" alt="Red Dot Award" width={44} height={44} />
-                </div>
-                <div className="ic home__hero-award">
-                  <img src="/images/uxdesign-white.svg" alt="UX Design Award" width={44} height={48} />
-                </div>
-                <div className="ic home__hero-award">
-                  <img src="/images/dfa-white.svg" alt="Design for Asia Award" width={44} height={37} />
-                </div>
-              </div>
             </div>
 
             <div className="home__hero-title-wrap">
@@ -78,10 +67,8 @@ export function HeroSection() {
                 </div>
               </div>
               <h1 className="heading h1 fw-bold fix-font upper home__hero-title">
-                <div className="home__hero-title-txt">Design</div>
-                <div className="home__hero-title-txt hidden-mb">for finance</div>
-                <div className="home__hero-title-txt only-mb">for</div>
-                <div className="home__hero-title-txt only-mb">finance</div>
+                <div className="home__hero-title-txt">BUILD</div>
+                <div className="home__hero-title-txt home__hero-title-sub">PRODUCTS FOR</div>
                 <div className="cl-txt-orange home__hero-title-slide">
                   <div className="home__hero-title-slide-inner">
                     <div className="grid-1-1 slide-txt-wrap">

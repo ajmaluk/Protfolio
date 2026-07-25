@@ -5,7 +5,7 @@ export type ContentBlock =
   | { type: "image"; src: string; alt: string; caption?: string }
   | { type: "list"; items: string[] };
 
-export type ProjectCategory = "Banking" | "Crypto" | "Fintech" | "Web3" | "Branding";
+export type ProjectCategory = "Full-Stack" | "AI Tools" | "Mobile & Games" | "Web Apps";
 
 export interface ProjectDetail {
   id: string;
@@ -29,177 +29,158 @@ export interface ProjectDetail {
 
 export const projects: ProjectDetail[] = [
   {
-    id: "bitmex",
-    slug: "bitmex",
-    name: "BitMEX",
-    client: "BitMEX",
-    year: "2023",
-    category: "Crypto",
-    services: ["Head of Design", "Brand Strategy", "Product Design"],
-    summary: "Repositioning one of the largest crypto derivatives exchanges for a new era of retail traders.",
+    id: "toolpix",
+    slug: "toolpix",
+    name: "ToolPix",
+    client: "Independent / AI Platform",
+    year: "2024",
+    category: "AI Tools",
+    services: ["Full-Stack Development", "AI Integration", "Python / Flask", "SEO Optimization"],
+    summary: "AI-powered productivity platform featuring image tools, PDF utilities, converters, and coding tools.",
     description:
-      "BitMEX is one of the key leaders in centralized exchange, founded in 2014. As head of Design, I helped reposition their brand strategy.",
-    thumbnail: "/images/bitmex-cover.jpg",
-    cover: "/images/bitmex-cover.jpg",
-    gallery: [
-      { src: "/images/bitmex-cover.jpg", alt: "BitMEX platform marketing cover & dashboard interface" },
-    ],
-    content: [
-      {
-        type: "paragraph",
-        text: "BitMEX is one of the key leaders in centralized exchange, founded in 2014. As head of Design, I helped reposition their brand strategy after years of catering primarily to professional traders, expanding the product to a new generation of retail users.",
-      },
-      {
-        type: "heading",
-        text: "The challenge",
-      },
-      {
-        type: "paragraph",
-        text: "The existing brand signalled exclusivity and complexity \u2014 great for the 2017 derivatives crowd but intimidating for first-time crypto users arriving in 2022. We needed to soften the visual language without losing the trust equity that institutional traders valued.",
-      },
-      {
-        type: "quote",
-        text: "Design had to earn the trust of a 25-year-old first-time crypto buyer and a 55-year-old derivatives veteran in the same screen.",
-        author: "Internal design brief",
-      },
-      {
-        type: "image",
-        src: "/images/bitmex-cover.jpg",
-        alt: "BitMEX marketing hero",
-        caption: "Repositioning campaign \u2014 lead asset.",
-      },
-      {
-        type: "heading",
-        text: "Outcome",
-      },
-      {
-        type: "list",
-        items: [
-          "Repositioned the visual system around clarity and craft",
-          "Onboarded +220% new retail accounts in the first quarter",
-          "Reduced support tickets around the trade entry flow by 38%",
-        ],
-      },
-    ],
-    liveUrl: "https://www.bitmex.com",
-    featured: true,
-    publishedAt: "2023-06-15",
-    accentColor: "#ff3d00",
-  },
-  {
-    id: "defichain",
-    slug: "defichain",
-    name: "Defichain",
-    client: "DefiChain",
-    year: "2020",
-    category: "Crypto",
-    services: ["Lead Product Designer", "UX Research", "Brand Design"],
-    summary: "Designing a complete blockchain explorer for the DefiMetachain ecosystem.",
-    description:
-      "DefiScan is an ERC-20 explorer solution for DefiMetachain the ethereum blockchain solution for Defichain.",
+      "ToolPix is an all-in-one AI-driven productivity web platform built with Python, Flask, and modern web technologies. It offers tools for image processing, PDF manipulation, code utilities, and format converters.",
     thumbnail: "/images/define-hero.jpg",
     cover: "/images/define-hero.jpg",
     gallery: [
-      { src: "/images/define-hero.jpg", alt: "DefiScan blockchain explorer interface" },
+      { src: "/images/define-hero.jpg", alt: "ToolPix AI productivity platform interface" },
     ],
     content: [
       {
         type: "paragraph",
-        text: "DefiScan is the official block explorer for the DefiMetachain \u2014 an EVM-compatible sidechain designed to bring Bitcoin-level security to decentralised finance. I joined as the first product designer to take the explorer from internal tool to public-facing product.",
+        text: "ToolPix is a production-grade web platform developed to consolidate daily developer and creator utilities into a single, intuitive interface. Powered by Python, Flask, and custom AI APIs, ToolPix delivers fast and accessible file processing directly in the browser.",
       },
       {
         type: "heading",
-        text: "Approach",
-      },
-      {
-        type: "paragraph",
-        text: "Block explorers are information-dense by nature. The design challenge was to make the data approachable for first-time users while preserving the depth required by analysts and developers. I built the interface around progressive disclosure \u2014 the most-asked questions answered first, the advanced panels one click away.",
-      },
-      {
-        type: "image",
-        src: "/images/define-hero.jpg",
-        alt: "DefiScan interface",
-        caption: "Transaction detail view, optimised for readability.",
-      },
-      {
-        type: "quote",
-        text: "Valentin turned a wall of hex data into something that felt like a product.",
-        author: "Product Lead, DefiChain",
-      },
-      {
-        type: "heading",
-        text: "Outcome",
+        text: "Key Features",
       },
       {
         type: "list",
         items: [
-          "Shipped the explorer in 14 weeks from kickoff",
-          "Reduced time-to-first-transaction for new wallets by 47%",
-          "Adopted by 12 ecosystem partners as the canonical explorer",
+          "AI-driven image processing & conversion utilities",
+          "PDF compression, merging, and document tools",
+          "Developer utilities, code formatting, and converter suites",
+          "High organic search visibility and responsive web UI",
         ],
       },
+      {
+        type: "heading",
+        text: "Tech Stack & Impact",
+      },
+      {
+        type: "paragraph",
+        text: "Built using Python, Flask, JavaScript, HTML5/CSS3, and deployed on cloud servers. ToolPix achieved significant organic search traffic and user growth through target SEO optimization and clean user experience.",
+      },
     ],
-    liveUrl: "https://defiscan.live",
+    liveUrl: "https://toolpix.pythonanywhere.com",
     featured: true,
-    publishedAt: "2020-11-02",
+    publishedAt: "2024-05-10",
     accentColor: "#ff3d00",
   },
   {
-    id: "tymebank",
-    slug: "tymebank",
-    name: "Tyme Bank",
-    client: "Tyme Bank",
-    year: "2021",
-    category: "Banking",
-    services: ["Lead Product Designer", "Branding", "Design System"],
-    summary: "Leading the design of the investment suite and brand evolution for one of Africa's fastest digital banks.",
+    id: "kallancop",
+    slug: "kallancop",
+    name: "KallanCop",
+    client: "Google Play Store",
+    year: "2024",
+    category: "Mobile & Games",
+    services: ["Mobile App Development", "Flutter", "Firebase", "Game Mechanics"],
+    summary: "Local multiplayer social deduction mobile game published on the Google Play Store.",
     description:
-      "One of the fastest digital bank in SEA and Africa, Tyme Bank is an ambitious young bank. I worked as a lead product designer, focusing on their investment product suite and branding.",
+      "KallanCop is an interactive local multiplayer social deduction game developed using Flutter and Firebase, designed for fast-paced group gameplay and published live on the Google Play Store.",
     thumbnail: "/images/gotymebank.jpg",
     cover: "/images/gotymebank.jpg",
     gallery: [
-      { src: "/images/gotymebank.jpg", alt: "Tyme Bank mobile investment suite interface" },
+      { src: "/images/gotymebank.jpg", alt: "KallanCop mobile game playstore interface" },
     ],
     content: [
       {
         type: "paragraph",
-        text: "Tyme Bank is one of the fastest-growing digital banks in Southeast Asia and Africa. I joined as a Lead Product Designer focusing on the investment product suite \u2014 taking the bank's first retail investment product from concept through launch.",
+        text: "KallanCop brings the traditional role-play social deduction experience to mobile devices. Built with Flutter for cross-platform performance and Firebase for real-time state synchronization, KallanCop provides an engaging local multiplayer experience.",
       },
       {
         type: "heading",
-        text: "The brief",
-      },
-      {
-        type: "paragraph",
-        text: "Design a savings and investment experience for first-time investors who may have never owned a stock, ETF, or fixed deposit before. The product had to feel safe, transparent, and rewarding \u2014 not gamified or speculative.",
-      },
-      {
-        type: "quote",
-        text: "Valentin showed up with the rare ability to design a product AND the system it sits in. He lifted the whole team.",
-        author: "Head of Design, Tyme Bank",
-      },
-      {
-        type: "image",
-        src: "/images/gotymebank.jpg",
-        alt: "Tyme Bank product screenshot",
-        caption: "Investment onboarding, simplified into three steps.",
-      },
-      {
-        type: "heading",
-        text: "Outcome",
+        text: "Technical Highlights",
       },
       {
         type: "list",
         items: [
-          "Launched the investment suite in two markets",
-          "Drove +62% month-over-month adoption after launch",
-          "Earned three industry design awards (Red Dot, UX Design, DFA)",
+          "Published live on Google Play Store",
+          "Built using Flutter framework for smooth 60fps animations",
+          "Real-time game state management powered by Firebase",
+          "Intuitive UI designed for instant multiplayer session setup",
         ],
       },
     ],
-    liveUrl: "https://www.tymebank.co.za",
+    liveUrl: "https://play.google.com/store/apps/details?id=com.ajmal.kallancop",
     featured: true,
-    publishedAt: "2021-09-20",
+    publishedAt: "2024-03-15",
+    accentColor: "#ff3d00",
+  },
+  {
+    id: "explore-together",
+    slug: "explore-together",
+    name: "Explore Together",
+    client: "Academic Project",
+    year: "2023",
+    category: "Full-Stack",
+    services: ["Full-Stack Web App", "Database Design", "Node.js / Express", "MongoDB"],
+    summary: "Full-stack travel planning & itinerary management platform with database integration.",
+    description:
+      "Explore Together is a comprehensive full-stack web application designed for group travel planning, route management, and collaborative itineraries built with Node.js, Express, and MongoDB.",
+    thumbnail: "/images/bitmex-cover.jpg",
+    cover: "/images/bitmex-cover.jpg",
+    gallery: [
+      { src: "/images/bitmex-cover.jpg", alt: "Explore Together travel planning app preview" },
+    ],
+    content: [
+      {
+        type: "paragraph",
+        text: "Explore Together solves the complexity of group travel by enabling users to create joint itineraries, track shared budgets, and explore location recommendations in real time.",
+      },
+      {
+        type: "heading",
+        text: "Architectural Focus",
+      },
+      {
+        type: "list",
+        items: [
+          "RESTful API design with Node.js & Express",
+          "Relational and document database schema using MongoDB",
+          "User authentication & session management",
+          "Responsive front-end dashboard for mobile and desktop",
+        ],
+      },
+    ],
+    liveUrl: null,
+    featured: true,
+    publishedAt: "2023-11-20",
+    accentColor: "#ff3d00",
+  },
+  {
+    id: "zyrace",
+    slug: "zyrace",
+    name: "ZyRace",
+    client: "Browser Game Project",
+    year: "2023",
+    category: "Web Apps",
+    services: ["JavaScript / Canvas", "HTML5", "Game Physics", "UI Design"],
+    summary: "Browser-based 2D racing game featuring custom physics engine and modern controls.",
+    description:
+      "ZyRace is a lightweight, high-performance browser racing game crafted with vanilla JavaScript and HTML5 Canvas, featuring custom collision detection and responsive arcade controls.",
+    thumbnail: "/images/home-hero-bg.jpg",
+    cover: "/images/home-hero-bg.jpg",
+    gallery: [
+      { src: "/images/home-hero-bg.jpg", alt: "ZyRace game screenshot" },
+    ],
+    content: [
+      {
+        type: "paragraph",
+        text: "ZyRace showcases pure JavaScript game logic, rendering 2D vehicle physics and obstacle generation at a smooth 60 FPS directly within the browser view.",
+      },
+    ],
+    liveUrl: null,
+    featured: false,
+    publishedAt: "2023-08-10",
     accentColor: "#ff3d00",
   },
 ];
@@ -222,7 +203,6 @@ export function getNextProject(slug: string): ProjectDetail | undefined {
   const list = getAllProjects();
   const idx = list.findIndex((p) => p.slug === slug);
   if (idx === -1) return undefined;
-  // Newer-first ordering: previous = newer, next = older.
   return list[idx + 1];
 }
 

@@ -1649,7 +1649,7 @@ h6,
 }
 
 .home__hero-bg-main-inner.placeholder img {
-  transform: scale(0.85);
+  transform: translate(7rem, 3.5rem) scale(0.85);
   transform-origin: center bottom;
 }
 
@@ -1966,6 +1966,11 @@ h6,
 .home__hero-title-txt {
   padding-block: .4rem;
   pointer-events: auto;
+}
+
+.home__hero-title-sub {
+  font-size: 0.6em;
+  white-space: nowrap;
 }
 
 .home__hero-title-txt.only-mb {

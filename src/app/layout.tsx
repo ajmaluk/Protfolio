@@ -19,18 +19,18 @@ const matter = localFont({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://valentincheval.design"),
-  title: "Ajmal U K | UX/UI & Brand Design Leader",
+  metadataBase: new URL("https://ajmal.uthakkan.in"),
+  title: "Muhammed Ajmal U K | MCA Student & Full-Stack AI Developer",
   description:
-    "I'm an award winning product designer specialized in financial products. I working for Financial Products in Fintech, crypto and Web3.",
+    "Muhammed Ajmal U K is an MCA student, AI enthusiast, and full-stack developer focused on building production-ready web applications, AI tools, mobile apps, and digital products.",
   openGraph: {
-    title: "Ajmal U K | UX/UI & Brand Design Leader",
+    title: "Muhammed Ajmal U K | MCA Student & Full-Stack AI Developer",
     type: "website",
-    url: "https://valentincheval.design/",
+    url: "https://ajmal.uthakkan.in/",
     images: [
       {
         url: "/seo/og-image.jpg",
-        alt: "Ajmal U K Portfolio OpenGraph",
+        alt: "Muhammed Ajmal U K Portfolio",
       },
     ],
   },

@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 export function Header() {
   const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isOnHomeHero, setIsOnHomeHero] = useState(false);
+  const [isOnHomeHero, setIsOnHomeHero] = useState(pathname === '/');
   const [menuOpen, setMenuOpen] = useState(false);
 
   const hour = new Date().getHours();
@@ -25,10 +25,11 @@ export function Header() {
       if (!lenis) return;
       const scrollY = lenis.scroll;
       setIsScrolled(scrollY > 50);
-      const isHome = window.location.pathname === '/';
-      if (isHome) {
+      if (pathname === '/') {
         const heroHeight = window.innerHeight;
         setIsOnHomeHero(scrollY < heroHeight * 0.5);
+      } else {
+        setIsOnHomeHero(false);
       }
     }
 
@@ -54,7 +55,7 @@ export function Header() {
         attachedLenis.off("scroll", updateScrollState);
       }
     };
-  }, []);
+  }, [pathname]);
 
   useEffect(() => {
     const lenis = (window as unknown as Record<string, unknown>).__lenis as { stop: () => void; start: () => void } | undefined;
@@ -68,19 +69,6 @@ export function Header() {
     return () => {
       document.body.style.overflow = "";
     };
-  }, [menuOpen]);
-
-  useEffect(() => {
-    setIsOnHomeHero(pathname === '/');
-  }, [pathname]);
-
-  useEffect(() => {
-    if (!menuOpen) return;
-    const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setMenuOpen(false);
-    };
-    window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
   }, [menuOpen]);
 
   const closeMenu = () => {
@@ -143,11 +131,32 @@ export function Header() {
         </div>
 
         <div className="header__menu hide-mb">
-          <Link href="/" transitionTypes={['page-transition']} className={cn("txt-link hover-un fs-14", pathname === '/' && "active")}>Index</Link>
+          <Link
+            href="/"
+            transitionTypes={['page-transition']}
+            className={cn("txt-link hover-un fs-14 header__menu-link", pathname === '/' && "active")}
+            aria-current={pathname === '/' ? "page" : undefined}
+          >
+            Index
+          </Link>
           <span className="splash cl-txt-disable fs-14">/</span>
-          <Link href="/about" transitionTypes={['page-transition']} className={cn("txt-link hover-un fs-14", pathname === '/about' && "active")}>About</Link>
+          <Link
+            href="/about"
+            transitionTypes={['page-transition']}
+            className={cn("txt-link hover-un fs-14 header__menu-link", pathname === '/about' && "active")}
+            aria-current={pathname === '/about' ? "page" : undefined}
+          >
+            About
+          </Link>
           <span className="splash cl-txt-disable fs-14">/</span>
-          <Link href="/projects" transitionTypes={['page-transition']} className={cn("txt-link hover-un fs-14", (pathname === '/projects' || pathname.startsWith('/projects/')) && "active")}>Projects</Link>
+          <Link
+            href="/projects"
+            transitionTypes={['page-transition']}
+            className={cn("txt-link hover-un fs-14 header__menu-link", (pathname === '/projects' || pathname.startsWith('/projects/')) && "active")}
+            aria-current={(pathname === '/projects' || pathname.startsWith('/projects/')) ? "page" : undefined}
+          >
+            Projects
+          </Link>
           <a
             href="mailto:hello@valentincheval.design"
             className="cl-txt-orange header__act fs-14 fw-med"
@@ -187,9 +196,9 @@ export function Header() {
           <div className="header__menu-overlay-inner">
             <div className="container header__menu-overlay-grid">
               <div className="header__menu-overlay-nav">
-                <Link href="/" transitionTypes={['page-transition']} className={`header__menu-overlay-link${pathname === '/' ? ' active' : ''}`} onClick={() => handleLinkClick('/')}>Index</Link>
-                <Link href="/about" transitionTypes={['page-transition']} className={`header__menu-overlay-link${pathname === '/about' ? ' active' : ''}`} onClick={() => handleLinkClick('/about')}>About</Link>
-                <Link href="/projects" transitionTypes={['page-transition']} className={`header__menu-overlay-link${pathname === '/projects' || pathname.startsWith('/projects/') ? ' active' : ''}`} onClick={() => handleLinkClick('/projects')}>Projects</Link>
+                <Link href="/" transitionTypes={['page-transition']} className={`header__menu-overlay-link${pathname === '/' ? ' active' : ''}`} aria-current={pathname === '/' ? "page" : undefined} onClick={() => handleLinkClick('/')}>Index</Link>
+                <Link href="/about" transitionTypes={['page-transition']} className={`header__menu-overlay-link${pathname === '/about' ? ' active' : ''}`} aria-current={pathname === '/about' ? "page" : undefined} onClick={() => handleLinkClick('/about')}>About</Link>
+                <Link href="/projects" transitionTypes={['page-transition']} className={`header__menu-overlay-link${(pathname === '/projects' || pathname.startsWith('/projects/')) ? ' active' : ''}`} aria-current={(pathname === '/projects' || pathname.startsWith('/projects/')) ? "page" : undefined} onClick={() => handleLinkClick('/projects')}>Projects</Link>
               </div>
               <div className="header__menu-overlay-meta-row">
                 <div className="header__menu-overlay-socials">

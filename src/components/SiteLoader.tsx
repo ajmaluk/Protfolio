@@ -11,24 +11,23 @@ export function SiteLoader() {
     document.documentElement.classList.add("is-loading");
     document.body.classList.add("is-loading");
 
-    let interval: NodeJS.Timeout | undefined;
-
-    const checkLenis = () => {
-      const lenis = (window as unknown as Record<string, unknown>).__lenis as { stop: () => void; start: () => void } | undefined;
-      if (lenis) {
-        lenis.stop();
-      }
+    const stopLenis = (lenisInstance?: { stop: () => void }) => {
+      const lenis = lenisInstance || ((window as unknown as Record<string, unknown>).__lenis as { stop: () => void } | undefined);
+      if (lenis) lenis.stop();
     };
-    checkLenis();
-    interval = setInterval(checkLenis, 50);
+
+    stopLenis();
+
+    const onLenisReady = (e: CustomEvent) => {
+      stopLenis(e.detail?.lenis);
+    };
+
+    window.addEventListener("lenis-ready", onLenisReady as EventListener);
 
     const animTimeout = setTimeout(() => {
-      if (interval) {
-        clearInterval(interval);
-        interval = undefined;
-      }
+      window.removeEventListener("lenis-ready", onLenisReady as EventListener);
       setIsLoaded(true);
-      const lenis = (window as unknown as Record<string, unknown>).__lenis as { stop: () => void; start: () => void } | undefined;
+      const lenis = (window as unknown as Record<string, unknown>).__lenis as { start: () => void } | undefined;
       if (lenis) {
         lenis.start();
       }
@@ -41,14 +40,12 @@ export function SiteLoader() {
     }, 3100); // 1.5s + 1.6s animation exit
 
     return () => {
+      window.removeEventListener("lenis-ready", onLenisReady as EventListener);
       clearTimeout(animTimeout);
       clearTimeout(destroyTimeout);
-      if (interval) {
-        clearInterval(interval);
-      }
       document.documentElement.classList.remove("is-loading");
       document.body.classList.remove("is-loading");
-      const lenis = (window as unknown as Record<string, unknown>).__lenis as { stop: () => void; start: () => void } | undefined;
+      const lenis = (window as unknown as Record<string, unknown>).__lenis as { start: () => void } | undefined;
       if (lenis) {
         lenis.start();
       }

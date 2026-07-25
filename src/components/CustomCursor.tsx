@@ -68,20 +68,36 @@ export function CustomCursor() {
 
     let lastX = -100;
     let lastY = -100;
+    let renderedX = -100;
+    let renderedY = -100;
     let currentTarget: Element | null = null;
     let rafId = 0;
+    let isRunning = false;
 
-    function tick() {
-      if (dot) {
+    function render() {
+      if (dot && (renderedX !== lastX || renderedY !== lastY)) {
         dot.style.transform = `translate3d(${lastX}px, ${lastY}px, 0)`;
       }
-      if (ring) {
+      if (ring && (renderedX !== lastX || renderedY !== lastY)) {
         ring.style.transform = `translate3d(${lastX}px, ${lastY}px, 0)`;
       }
+      renderedX = lastX;
+      renderedY = lastY;
       if (needsClassUpdate) {
         applyClasses();
       }
-      rafId = requestAnimationFrame(tick);
+      if (needsClassUpdate || renderedX !== lastX || renderedY !== lastY) {
+        rafId = requestAnimationFrame(render);
+      } else {
+        isRunning = false;
+      }
+    }
+
+    function requestRender() {
+      if (!isRunning) {
+        isRunning = true;
+        rafId = requestAnimationFrame(render);
+      }
     }
 
     function onMove(e: MouseEvent) {
@@ -95,22 +111,14 @@ export function CustomCursor() {
         currentTarget = target;
         updateTarget(target);
       }
-    }
-
-    function onScroll() {
-      if (currentTarget && lastX >= 0) {
-        const el = document.elementFromPoint(lastX, lastY);
-        if (el && el !== currentTarget) {
-          currentTarget = el;
-          updateTarget(el);
-        }
-      }
+      requestRender();
     }
 
     function setPressed(p: boolean) {
       if (p !== lastPressed) {
         lastPressed = p;
         needsClassUpdate = true;
+        requestRender();
       }
     }
 
@@ -118,6 +126,7 @@ export function CustomCursor() {
       if (h !== lastHidden) {
         lastHidden = h;
         needsClassUpdate = true;
+        requestRender();
       }
     }
 
@@ -140,11 +149,9 @@ export function CustomCursor() {
 
     setHidden(false);
     applyClasses();
-    rafId = requestAnimationFrame(tick);
+    requestRender();
 
     document.addEventListener("mousemove", onMove, { passive: true });
-    document.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("scroll", onScroll, { passive: true });
     document.addEventListener("mousedown", onDown);
     document.addEventListener("mouseup", onUp);
     window.addEventListener("mouseout", onWindowLeave);
@@ -154,8 +161,6 @@ export function CustomCursor() {
     return () => {
       cancelAnimationFrame(rafId);
       document.removeEventListener("mousemove", onMove);
-      document.removeEventListener("scroll", onScroll);
-      window.removeEventListener("scroll", onScroll);
       document.removeEventListener("mousedown", onDown);
       document.removeEventListener("mouseup", onUp);
       window.removeEventListener("mouseout", onWindowLeave);

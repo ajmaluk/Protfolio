@@ -14,22 +14,44 @@ export function ProjectsSection({ isProjectsPage = false }: ProjectsSectionProps
   const router = useRouter()
   const mainRef = useRef<HTMLDivElement>(null)
   const [activeIndex, setActiveIndex] = useState(0)
-  const [nameGridStyle, setNameGridStyle] = useState<React.CSSProperties>({})
   const [touchStartX, setTouchStartX] = useState<number | null>(null)
   const [touchStartY, setTouchStartY] = useState<number | null>(null)
 
   useEffect(() => {
-    const handleScroll = () => {
-      const mainSection = mainRef.current || document.querySelector(".home__project-main")
-      if (!mainSection) return
+    const mainSection = mainRef.current || document.querySelector(".home__project-main") as HTMLElement | null
+    if (!mainSection) return
 
+    let thumbnailImgs = mainSection.querySelectorAll<HTMLElement>(".home__project-thumbnail-img")
+    let dotWraps = mainSection.querySelectorAll<HTMLElement>(".home__project-slide-item-progress-inner")
+
+    let mainTop = 0
+    let totalScrollable = 0
+    let vh = typeof window !== "undefined" ? window.innerHeight : 800
+
+    function updateOffsets() {
+      if (!mainSection) return
+      vh = window.innerHeight
       const rect = mainSection.getBoundingClientRect()
-      const viewportHeight = window.innerHeight
-      const totalScrollable = rect.height - viewportHeight
-      
+      mainTop = window.scrollY + rect.top
+      totalScrollable = rect.height - vh
+      thumbnailImgs = mainSection.querySelectorAll<HTMLElement>(".home__project-thumbnail-img")
+      dotWraps = mainSection.querySelectorAll<HTMLElement>(".home__project-slide-item-progress-inner")
+    }
+
+    updateOffsets()
+    window.addEventListener("resize", updateOffsets, { passive: true })
+
+    let currentActiveIdx = -1
+
+    const handleScroll = () => {
       if (totalScrollable <= 0) return
 
-      const progress = Math.max(0, Math.min(-rect.top / totalScrollable, 1))
+      const scrollY = (window as unknown as Record<string, unknown>).__lenis
+        ? ((window as unknown as Record<string, unknown>).__lenis as { scroll: number }).scroll
+        : window.scrollY
+
+      const currentRelativeTop = mainTop - scrollY
+      const progress = Math.max(0, Math.min(-currentRelativeTop / totalScrollable, 1))
       const n = projects.length
       if (n === 0) return
 
@@ -39,14 +61,15 @@ export function ProjectsSection({ isProjectsPage = false }: ProjectsSectionProps
       const localT = transPhase - transFloor
       const inTransition = localT > 0 && n > 1
 
-      // Synchronize activeIndex with transition phase
+      // Synchronize activeIndex with transition phase only when changed
       const activeIdx = Math.min(Math.round(transPhase), n - 1)
-      setActiveIndex(activeIdx)
+      if (activeIdx !== currentActiveIdx) {
+        currentActiveIdx = activeIdx
+        setActiveIndex(activeIdx)
+      }
 
       // --- Thumbnail clip-path transitions ---
-      const thumbnailImgs = document.querySelectorAll(".home__project-thumbnail-img")
-      thumbnailImgs.forEach((imgEl, idx) => {
-        const el = imgEl as HTMLElement
+      thumbnailImgs.forEach((el, idx) => {
         let clipIn, clipOut, imgTrans, imgScale, imgDirection
 
         if (inTransition) {
@@ -105,9 +128,7 @@ export function ProjectsSection({ isProjectsPage = false }: ProjectsSectionProps
       })
 
       // --- Loader circle angles ---
-      const dotWraps = document.querySelectorAll(".home__project-slide-item-progress-inner")
-      dotWraps.forEach((dotEl, idx) => {
-        const el = dotEl as HTMLElement
+      dotWraps.forEach((el, idx) => {
         let angle = 0
         const dotTargetProgress = n > 1 ? idx / (n - 1) : 0
         if (progress >= dotTargetProgress) {
@@ -148,6 +169,7 @@ export function ProjectsSection({ isProjectsPage = false }: ProjectsSectionProps
     handleScroll()
 
     return () => {
+      window.removeEventListener("resize", updateOffsets)
       window.removeEventListener("scroll", handleScroll)
       window.removeEventListener("lenis-ready", onLenisReady as EventListener)
       if (lenisObj) {
@@ -156,9 +178,7 @@ export function ProjectsSection({ isProjectsPage = false }: ProjectsSectionProps
     }
   }, [])
 
-  useEffect(() => {
-    setNameGridStyle({})
-  }, [activeIndex])
+
 
   const handleDotClick = (index: number) => {
     if (window.innerWidth <= 767) {
@@ -316,7 +336,7 @@ export function ProjectsSection({ isProjectsPage = false }: ProjectsSectionProps
                       Viewing project: {projects[activeIndex].name}
                     </h3>
 
-                    <div className="grid-1-1 home__project-name-grid" style={nameGridStyle}>
+                    <div className="grid-1-1 home__project-name-grid">
                       {projects.map((proj, idx) => (
                         <button
                           key={proj.id}

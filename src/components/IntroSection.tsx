@@ -66,172 +66,118 @@ export function IntroSection() {
 
   useEffect(() => {
     const visualElement = awardsVisualRef.current;
-    if (!visualElement) return;
-
-    const handleScroll = () => {
-      const rect = visualElement.getBoundingClientRect();
-      const viewportHeight = window.innerHeight;
-      
-      const start = viewportHeight;
-      const end = -rect.height;
-      const total = start - end;
-      
-      const current = viewportHeight - rect.top;
-      const progress = Math.max(0, Math.min(1, current / total));
-      
-      const scale = 0.5 + progress * 1.0;
-      visualElement.style.setProperty("--awards-scale", scale.toString());
-    };
-
-    const lenis = (window as unknown as Record<string, unknown>).__lenis as { on: (e: string, fn: () => void) => void; off: (e: string, fn: () => void) => void } | undefined;
-    if (lenis) {
-      lenis.on("scroll", handleScroll);
-    } else {
-      window.addEventListener("scroll", handleScroll);
-    }
-    handleScroll();
-
-    return () => {
-      if (lenis) {
-        lenis.off("scroll", handleScroll);
-      } else {
-        window.removeEventListener("scroll", handleScroll);
-      }
-    };
-  }, []);
-
-  useEffect(() => {
     const textElement = textRef.current;
-    if (!textElement) return;
+    const serviceWrap = serviceWrapRef.current;
+    const listing = awardsListingRef.current;
 
-    const words = textElement.querySelectorAll<HTMLSpanElement>(".reveal-word");
-    if (words.length === 0) return;
+    const words = textElement ? textElement.querySelectorAll<HTMLSpanElement>(".reveal-word") : [];
+    const awardItems = listing ? listing.querySelectorAll<HTMLElement>(".home__intro-award") : [];
     const totalWords = words.length;
 
-    const handleScroll = () => {
-      const rect = textElement.getBoundingClientRect();
-      const viewportHeight = window.innerHeight;
-      const revealStart = viewportHeight * 0.22;
-      const revealDistance = Math.max(rect.height * 0.68, viewportHeight * 0.34);
-      const progress = Math.max(
-        0,
-        Math.min(1, (revealStart - rect.top) / revealDistance)
-      );
+    let vh = typeof window !== "undefined" ? window.innerHeight : 800;
+    let visualTop = 0, visualHeight = 0;
+    let textTop = 0, textHeight = 0;
+    let serviceTop = 0, serviceHeight = 0;
+    let awardTops: number[] = [];
 
-      words.forEach((word, i) => {
-        const normalizedProgress = i / totalWords;
-        const distance = Math.abs(progress - normalizedProgress);
+    function updateOffsets() {
+      vh = window.innerHeight;
+      const scrollY = window.scrollY;
 
-        // Opacity: 1 at reveal point, fading to 0.1 as distance increases
-        const opacity = Math.max(0.1, Math.min(1, 1 - distance * 5.2));
-
-        // Blur: 0 near the reveal point, up to 8px further away
-        const rawBlur = (distance - 0.015) * 16;
-        const blurPx = Math.max(0, Math.min(8, rawBlur));
-
-        word.style.opacity = opacity.toString();
-        word.style.filter = blurPx > 0 ? `blur(${blurPx}px)` : "none";
-      });
-    };
-
-    const lenis = (window as unknown as Record<string, unknown>).__lenis as { on: (e: string, fn: () => void) => void; off: (e: string, fn: () => void) => void } | undefined;
-    if (lenis) {
-      lenis.on("scroll", handleScroll);
-    } else {
-      window.addEventListener("scroll", handleScroll);
-    }
-    handleScroll();
-
-    return () => {
-      if (lenis) {
-        lenis.off("scroll", handleScroll);
-      } else {
-        window.removeEventListener("scroll", handleScroll);
+      if (visualElement) {
+        const r = visualElement.getBoundingClientRect();
+        visualTop = scrollY + r.top;
+        visualHeight = r.height;
       }
-    };
-  }, []);
-
-  useEffect(() => {
-    const serviceWrap = serviceWrapRef.current;
-    if (!serviceWrap) return;
-
-    const handleScroll = () => {
-      const rect = serviceWrap.getBoundingClientRect();
-      const viewportHeight = window.innerHeight;
-      
-      const start = viewportHeight;
-      const end = -rect.height;
-      const total = start - end;
-      
-      const current = viewportHeight - rect.top;
-      const progress = Math.max(0, Math.min(1, current / total));
-      
-      const diff = Math.abs(progress - 0.5);
-      const scale = 1.15 - diff * 0.4;
-      const translateXOrange = (progress - 0.5) * -200;
-      const translateXBlack = (progress - 0.5) * 200;
-      
-      serviceWrap.style.setProperty("--service-scale", scale.toString());
-      serviceWrap.style.setProperty("--service-trans-orange", `${translateXOrange}px`);
-      serviceWrap.style.setProperty("--service-trans-black", `${translateXBlack}px`);
-    };
-
-    const lenis = (window as unknown as Record<string, unknown>).__lenis as { on: (e: string, fn: () => void) => void; off: (e: string, fn: () => void) => void } | undefined;
-    if (lenis) {
-      lenis.on("scroll", handleScroll);
-    } else {
-      window.addEventListener("scroll", handleScroll);
-    }
-    handleScroll();
-
-    return () => {
-      if (lenis) {
-        lenis.off("scroll", handleScroll);
-      } else {
-        window.removeEventListener("scroll", handleScroll);
+      if (textElement) {
+        const r = textElement.getBoundingClientRect();
+        textTop = scrollY + r.top;
+        textHeight = r.height;
       }
-    };
-  }, []);
+      if (serviceWrap) {
+        const r = serviceWrap.getBoundingClientRect();
+        serviceTop = scrollY + r.top;
+        serviceHeight = r.height;
+      }
+      if (awardItems.length > 0) {
+        awardTops = Array.from(awardItems).map(item => scrollY + item.getBoundingClientRect().top);
+      }
+    }
 
-  // ===== Scroll reveal for award list items =====
-  useEffect(() => {
-    const listing = awardsListingRef.current;
-    if (!listing) return;
-
-    const items = listing.querySelectorAll<HTMLElement>(".home__intro-award");
-    if (items.length === 0) return;
+    updateOffsets();
+    window.addEventListener("resize", updateOffsets, { passive: true });
 
     const handleScroll = () => {
-      const viewportHeight = window.innerHeight;
+      const scrollY = (window as unknown as Record<string, unknown>).__lenis
+        ? ((window as unknown as Record<string, unknown>).__lenis as { scroll: number }).scroll
+        : window.scrollY;
 
-      items.forEach((item) => {
-        const rect = item.getBoundingClientRect();
-        // Start revealing when the item is 80% from the bottom of viewport
-        // Complete by the time it reaches 20% from the top
-        const revealStart = viewportHeight * 0.85;
-        const revealEnd = viewportHeight * 0.15;
-        const total = revealStart - revealEnd;
-        const current = revealStart - rect.top;
+      // 1. Visual sphere scale
+      if (visualElement) {
+        const current = vh - (visualTop - scrollY);
+        const total = vh + visualHeight;
         const progress = Math.max(0, Math.min(1, current / total));
+        const scale = 0.5 + progress * 1.0;
+        visualElement.style.setProperty("--awards-scale", scale.toString());
+      }
 
-        // Cubic ease-out for smooth reveal
-        const eased = 1 - Math.pow(1 - progress, 1.5);
-        
-        // Fade from 0 to 1, translateY from 30px to 0
-        item.style.opacity = eased.toString();
-        item.style.transform = `translateY(${30 * (1 - eased)}px)`;
-      });
+      // 2. Text word reveal
+      if (words.length > 0) {
+        const revealStart = vh * 0.22;
+        const revealDistance = Math.max(textHeight * 0.68, vh * 0.34);
+        const currentTextTop = textTop - scrollY;
+        const progress = Math.max(0, Math.min(1, (revealStart - currentTextTop) / revealDistance));
+
+        words.forEach((word, i) => {
+          const normalizedProgress = i / totalWords;
+          const distance = Math.abs(progress - normalizedProgress);
+          const opacity = Math.max(0.15, Math.min(1, 1 - distance * 4.8));
+          word.style.opacity = opacity.toString();
+        });
+      }
+
+      // 3. Service marquee scale and translate
+      if (serviceWrap) {
+        const current = vh - (serviceTop - scrollY);
+        const total = vh + serviceHeight;
+        const progress = Math.max(0, Math.min(1, current / total));
+        const diff = Math.abs(progress - 0.5);
+        const scale = 1.15 - diff * 0.4;
+        const translateXOrange = (progress - 0.5) * -200;
+        const translateXBlack = (progress - 0.5) * 200;
+
+        serviceWrap.style.setProperty("--service-scale", scale.toString());
+        serviceWrap.style.setProperty("--service-trans-orange", `${translateXOrange}px`);
+        serviceWrap.style.setProperty("--service-trans-black", `${translateXBlack}px`);
+      }
+
+      // 4. Awards list reveal
+      if (awardItems.length > 0) {
+        const revealStart = vh * 0.85;
+        const revealEnd = vh * 0.15;
+        const total = revealStart - revealEnd;
+
+        awardItems.forEach((item, idx) => {
+          const itemTop = awardTops[idx] || (scrollY + item.getBoundingClientRect().top);
+          const current = revealStart - (itemTop - scrollY);
+          const progress = Math.max(0, Math.min(1, current / total));
+          const eased = 1 - Math.pow(1 - progress, 1.5);
+          item.style.opacity = eased.toString();
+          item.style.transform = `translateY(${30 * (1 - eased)}px)`;
+        });
+      }
     };
 
     const lenis = (window as unknown as Record<string, unknown>).__lenis as { on: (e: string, fn: () => void) => void; off: (e: string, fn: () => void) => void } | undefined;
     if (lenis) {
       lenis.on("scroll", handleScroll);
     } else {
-      window.addEventListener("scroll", handleScroll);
+      window.addEventListener("scroll", handleScroll, { passive: true });
     }
     handleScroll();
 
     return () => {
+      window.removeEventListener("resize", updateOffsets);
       if (lenis) {
         lenis.off("scroll", handleScroll);
       } else {

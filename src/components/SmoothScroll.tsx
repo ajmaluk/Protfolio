@@ -27,78 +27,93 @@ export function SmoothScroll() {
 
     rafRef.current = requestAnimationFrame(raf);
 
+    // Cache DOM queries
+    let bgMainWrap = document.querySelector(".home__hero-bg-main-wrap") as HTMLElement | null;
+    let innerBg = document.querySelector(".home__hero-bg-main-inner-bg") as HTMLElement | null;
+    let characterWrap = document.querySelector(".home__hero-bg-main-inner-man") as HTMLElement | null;
+    let introTitle = document.querySelector(".home__intro-main-txt") as HTMLElement | null;
+    let footer = document.querySelector(".footer-wrap") as HTMLElement | null;
+    let footerBgImg = document.querySelector(".footer__bg-img") as HTMLElement | null;
+
+    let introTitleTop = 0;
+    let footerTop = 0;
+    let footerHeight = 0;
+    let vh = typeof window !== "undefined" ? window.innerHeight : 800;
+
+    function updateOffsets() {
+      vh = window.innerHeight;
+      if (!bgMainWrap) bgMainWrap = document.querySelector(".home__hero-bg-main-wrap");
+      if (!innerBg) innerBg = document.querySelector(".home__hero-bg-main-inner-bg");
+      if (!characterWrap) characterWrap = document.querySelector(".home__hero-bg-main-inner-man");
+      if (!introTitle) introTitle = document.querySelector(".home__intro-main-txt");
+      if (!footer) footer = document.querySelector(".footer-wrap");
+      if (!footerBgImg) footerBgImg = document.querySelector(".footer__bg-img");
+
+      if (introTitle) {
+        introTitleTop = window.scrollY + introTitle.getBoundingClientRect().top;
+      }
+      if (footer) {
+        const rect = footer.getBoundingClientRect();
+        footerTop = window.scrollY + rect.top;
+        footerHeight = rect.height;
+      }
+    }
+
+    updateOffsets();
+    window.addEventListener("resize", updateOffsets, { passive: true });
+
     function handleParallax() {
       const scrollY = lenis.scroll;
-      const heroHeight = window.innerHeight;
-      const isMobile = window.innerWidth <= 767;
+      const heroHeight = vh;
 
-      // Cache DOM queries for performance
-      const bgMainWrap = document.querySelector(".home__hero-bg-main-wrap") as HTMLElement | null;
-      const innerBg = document.querySelector(".home__hero-bg-main-inner-bg") as HTMLElement | null;
-      const characterWrap = document.querySelector(".home__hero-bg-main-inner-man") as HTMLElement | null;
+      // Hero scroll progress: 0 at top of hero, 1 at top of next section
+      const heroProgress = Math.min(scrollY / heroHeight, 1);
+      
+      // Extended fade progress: continues into the intro section
+      const fadeEnd = heroHeight * 1.8;
+      const extendedProgress = Math.min(scrollY / fadeEnd, 1);
 
-        // Hero scroll progress: 0 at top of hero, 1 at top of next section
-        const heroProgress = Math.min(scrollY / heroHeight, 1);
-        
-        // Extended fade progress: continues into the intro section
-        const fadeEnd = heroHeight * 1.8;
-        const extendedProgress = Math.min(scrollY / fadeEnd, 1);
+      // ---- Background layer ----
+      const bgScale = 1 + heroProgress * 0.35;
+      
+      // ---- Character layer ----
+      const charScale = 1 + heroProgress * 0.08;
+      const charTranslateY = -heroProgress * 40;
 
-        // ---- Background layer ----
-        // Zoom the background (subtle): 1 → 1.35 over the hero scroll
-        const bgScale = 1 + heroProgress * 0.35;
-        
-        // ---- Character layer ----
-        // Subtle character zoom: 1 → 1.08 over the hero scroll
-        const charScale = 1 + heroProgress * 0.08;
-        // Parallax shift: character moves up slightly as you scroll
-        const charTranslateY = -heroProgress * 40;
+      let fadeOpacity = 1;
+      if (extendedProgress > 0.55) {
+        const fadeProgress = (extendedProgress - 0.55) / 0.45;
+        fadeOpacity = Math.max(0, 1 - Math.pow(fadeProgress, 1.8));
+      }
 
-        // ---- Fade: after zoom peaks, fade everything out smoothly ----
-        // Full opacity during the hero zoom phase (progress 0 → 0.55)
-        // Start fading at progress 0.55, complete by progress 1.0
-        let fadeOpacity = 1;
-        if (extendedProgress > 0.55) {
-          const fadeProgress = (extendedProgress - 0.55) / 0.45;
-          // Cubic ease-out for smooth fade
-          fadeOpacity = Math.max(0, 1 - Math.pow(fadeProgress, 1.8));
-        }
+      if (bgMainWrap) {
+        bgMainWrap.style.transform = `scale(${bgScale})`;
+        bgMainWrap.style.opacity = `${fadeOpacity}`;
+      }
+      if (innerBg) {
+        innerBg.style.transform = `scale(${1 + heroProgress * 0.2})`;
+        innerBg.style.opacity = `${Math.max(0.1, fadeOpacity)}`;
+      }
+      if (characterWrap) {
+        characterWrap.style.transform = `translate3d(0, ${charTranslateY}px, 0) scale(${charScale})`;
+        characterWrap.style.opacity = `${fadeOpacity}`;
+      }
 
-        if (bgMainWrap) {
-          bgMainWrap.style.transform = `scale(${bgScale})`;
-          bgMainWrap.style.opacity = `${fadeOpacity}`;
-        }
-        if (innerBg) {
-          innerBg.style.transform = `scale(${1 + heroProgress * 0.2})`;
-          innerBg.style.opacity = `${Math.max(0.1, fadeOpacity)}`;
-        }
-        if (characterWrap) {
-          characterWrap.style.transform = `translate3d(0, ${charTranslateY}px, 0) scale(${charScale})`;
-          characterWrap.style.opacity = `${fadeOpacity}`;
-        }
-
-      // ---- Intro section title parallax ----
-      const introTitle = document.querySelector(".home__intro-main-txt") as HTMLElement | null;
+      // ---- Intro section title parallax (using cached top) ----
       if (introTitle) {
-        const rect = introTitle.getBoundingClientRect();
-        const viewCenter = window.innerHeight * 0.5;
-        const dist = viewCenter - rect.top;
-        const range = window.innerHeight;
-        const normalizedDist = Math.max(0, Math.min(1, dist / range));
-        // Subtle translateY from 30px to 0 as it enters view
+        const currentTop = introTitleTop - scrollY;
+        const viewCenter = vh * 0.5;
+        const dist = viewCenter - currentTop;
+        const normalizedDist = Math.max(0, Math.min(1, dist / vh));
         const translateY = 30 * (1 - normalizedDist);
         introTitle.style.transform = `translateY(${translateY}px)`;
       }
 
-      // ---- Footer Background Light/Glow Parallax ----
-      const footer = document.querySelector(".footer-wrap") as HTMLElement | null;
-      const footerBgImg = document.querySelector(".footer__bg-img") as HTMLElement | null;
+      // ---- Footer Background Light/Glow Parallax (using cached top/height) ----
       if (footer && footerBgImg) {
-        const rect = footer.getBoundingClientRect();
-        const viewportHeight = window.innerHeight;
-        
-        const total = viewportHeight + rect.height;
-        const current = viewportHeight - rect.top;
+        const currentFooterTop = footerTop - scrollY;
+        const total = vh + footerHeight;
+        const current = vh - currentFooterTop;
         const progressVal = Math.max(0, Math.min(1, current / total));
         
         const translateY = (progressVal - 0.5) * -120;
@@ -110,12 +125,14 @@ export function SmoothScroll() {
 
     // Run an initial pass after the next animation frame to ensure layout is ready
     const initialRaf = requestAnimationFrame(() => {
+      updateOffsets();
       handleParallax();
     });
 
     window.dispatchEvent(new CustomEvent("lenis-ready", { detail: { lenis } }));
 
     return () => {
+      window.removeEventListener("resize", updateOffsets);
       lenis.off("scroll", handleParallax);
       lenis.destroy();
       if (rafRef.current) cancelAnimationFrame(rafRef.current);

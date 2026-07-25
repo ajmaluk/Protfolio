@@ -10,11 +10,30 @@ interface ProjectCarouselProps {
 }
 
 export function ProjectCarousel({ projects }: ProjectCarouselProps) {
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(() => {
+    if (typeof window === "undefined") return 0;
+    try {
+      const savedSlug = sessionStorage.getItem('carousel_active_slug');
+      if (savedSlug !== null) {
+        sessionStorage.removeItem('carousel_active_slug');
+        const idx = projects.findIndex((p) => p.slug === savedSlug);
+        if (idx !== -1) return idx;
+      }
+      const savedIdx = sessionStorage.getItem('carousel_active_idx');
+      if (savedIdx !== null) {
+        sessionStorage.removeItem('carousel_active_idx');
+        const idx = parseInt(savedIdx, 10);
+        if (!isNaN(idx) && idx >= 0 && idx < projects.length) return idx;
+      }
+    } catch {
+      // sessionStorage may not be available
+    }
+    return 0;
+  });
+
   const [isMobile, setIsMobile] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
   const touchRef = useRef({ startX: 0, startY: 0, isDragging: false });
-  const autoAdvanceRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const [isPaused, setIsPaused] = useState(false);
   const progressBarRef = useRef<HTMLDivElement>(null);
   const [autoProgress, setAutoProgress] = useState(0);
@@ -33,20 +52,44 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
     const section = sectionRef.current;
     if (!section) return;
 
-    const handleScroll = () => {
+    let sectionTop = 0;
+    let totalScrollable = 0;
+    let vh = typeof window !== "undefined" ? window.innerHeight : 800;
+    let thumbs = section.querySelectorAll<HTMLElement>(".carousel__thumb-img");
+
+    function updateOffsets() {
+      if (!section) return;
+      vh = window.innerHeight;
       const rect = section.getBoundingClientRect();
-      const vh = window.innerHeight;
-      const total = projects.length;
-      const totalScrollable = rect.height - vh;
+      sectionTop = window.scrollY + rect.top;
+      totalScrollable = rect.height - vh;
+      thumbs = section.querySelectorAll<HTMLElement>(".carousel__thumb-img");
+    }
+
+    updateOffsets();
+    window.addEventListener("resize", updateOffsets, { passive: true });
+
+    let currentIdx = -1;
+
+    const handleScroll = () => {
       if (totalScrollable <= 0) return;
 
-      const progress = Math.max(0, Math.min(-rect.top / totalScrollable, 1));
+      const scrollY = (window as unknown as Record<string, unknown>).__lenis
+        ? ((window as unknown as Record<string, unknown>).__lenis as { scroll: number }).scroll
+        : window.scrollY;
+
+      const currentRelativeTop = sectionTop - scrollY;
+      const progress = Math.max(0, Math.min(-currentRelativeTop / totalScrollable, 1));
+      const total = projects.length;
       const segmentSize = 1 / total;
       const idx = Math.min(total - 1, Math.floor(progress / segmentSize));
-      setActiveIndex(idx);
+      
+      if (idx !== currentIdx) {
+        currentIdx = idx;
+        setActiveIndex(idx);
+      }
 
       // Calculate clip-path transitions on thumbnail images
-      const thumbs = section.querySelectorAll<HTMLElement>(".carousel__thumb-img");
       thumbs.forEach((el, i) => {
         const t = (progress - i * segmentSize) / segmentSize;
         const clamped = Math.max(0, Math.min(1, t));
@@ -91,38 +134,11 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
     handleScroll();
 
     return () => {
+      window.removeEventListener("resize", updateOffsets);
       window.removeEventListener("scroll", handleScroll);
       if (lenis) lenis.off("scroll", handleScroll);
     };
   }, [isMobile, projects.length]);
-
-  // ===== Restore activeIndex from sessionStorage (for back-navigation morph) =====
-  useEffect(() => {
-    try {
-      // Prefer slug-based restore (set by ProjectNav prev/next links)
-      const savedSlug = sessionStorage.getItem('carousel_active_slug');
-      if (savedSlug !== null) {
-        const idx = projects.findIndex((p) => p.slug === savedSlug);
-        if (idx !== -1) {
-          setActiveIndex(idx);
-        }
-        sessionStorage.removeItem('carousel_active_slug');
-        return; // slug takes priority
-      }
-
-      // Fallback: index-based restore (set by carousel's own saveActiveIndex)
-      const savedIdx = sessionStorage.getItem('carousel_active_idx');
-      if (savedIdx !== null) {
-        const idx = parseInt(savedIdx, 10);
-        if (!isNaN(idx) && idx >= 0 && idx < projects.length) {
-          setActiveIndex(idx);
-        }
-        sessionStorage.removeItem('carousel_active_idx');
-      }
-    } catch {
-      // sessionStorage may not be available
-    }
-  }, [projects.length]);
 
   // Persist activeIndex to sessionStorage before navigating to a project detail
   const saveActiveIndex = useCallback(() => {
@@ -134,38 +150,26 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
   }, [activeIndex]);
 
   // ===== MOBILE: Auto-advance timer =====
-  const AUTO_ADVANCE_MS = 5000;
-  const progressIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
-
-  const startAutoAdvance = useCallback(() => {
-    if (autoAdvanceRef.current) clearInterval(autoAdvanceRef.current);
-    if (progressIntervalRef.current) clearInterval(progressIntervalRef.current);
-    if (isPaused) return;
-
-    setAutoProgress(0);
+  useEffect(() => {
+    if (!isMobile || isPaused) return;
+    const AUTO_ADVANCE_MS = 5000;
     const startTime = Date.now();
 
-    autoAdvanceRef.current = setInterval(() => {
+    const advanceTimer = setInterval(() => {
       setActiveIndex((prev) => (prev + 1) % projects.length);
       setAutoProgress(0);
     }, AUTO_ADVANCE_MS);
 
-    // Smooth progress bar updates
-    progressIntervalRef.current = setInterval(() => {
+    const progressTimer = setInterval(() => {
       const elapsed = Date.now() - startTime;
-      const pct = Math.min(elapsed / AUTO_ADVANCE_MS, 1);
-      setAutoProgress(pct);
+      setAutoProgress(Math.min(elapsed / AUTO_ADVANCE_MS, 1));
     }, 50);
-  }, [projects.length, isPaused]);
 
-  useEffect(() => {
-    if (!isMobile) return;
-    startAutoAdvance();
     return () => {
-      if (autoAdvanceRef.current) clearInterval(autoAdvanceRef.current);
-      if (progressIntervalRef.current) clearInterval(progressIntervalRef.current);
+      clearInterval(advanceTimer);
+      clearInterval(progressTimer);
     };
-  }, [isMobile, activeIndex, isPaused, startAutoAdvance]);
+  }, [isMobile, activeIndex, isPaused, projects.length]);
 
   // ===== MOBILE: Touch/swipe handling =====
   const handleTouchStart = (e: React.TouchEvent) => {
@@ -253,7 +257,12 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
           </div>
         </div>
 
-        <div className="carousel__body">
+        <div
+          className="carousel__body"
+          onTouchStart={isMobile ? handleTouchStart : undefined}
+          onTouchMove={isMobile ? handleTouchMove : undefined}
+          onTouchEnd={isMobile ? handleTouchEnd : undefined}
+        >
           <div className="container">
             <div className="carousel__layout">
               {/* Left: Project navigation and names */}

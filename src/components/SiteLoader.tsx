@@ -67,8 +67,8 @@ export function SiteLoader() {
         <div className="loader-content">
           <div className="loader-status">Loading..</div>
           <h1 className="loader-name">
-            <span className="loader-firstname">Valentin</span>
-            <span className="loader-lastname">Cheval</span>
+            <span className="loader-firstname">Ajmal</span>
+            <span className="loader-lastname">U K</span>
           </h1>
         </div>
       </div>

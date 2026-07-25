@@ -3,16 +3,16 @@ import Link from "next/link";
 import { FooterSection } from "@/components/FooterSection";
 
 export const metadata: Metadata = {
-  title: "About | Valentin Cheval",
+  title: "About | Ajmal U K",
   description:
     "I'm an award-winning product designer specialized in financial products. Over 8 years of experience designing for fintech, banking, crypto, and Web3.",
   openGraph: {
-    title: "About | Valentin Cheval",
+    title: "About | Ajmal U K",
     description:
       "I'm an award-winning product designer specialized in financial products. Over 8 years of experience designing for fintech, banking, crypto, and Web3.",
     type: "profile",
     url: "https://valentincheval.design/about",
-    images: [{ url: "/images/portrait.jpg", alt: "Valentin Cheval portrait" }],
+    images: [{ url: "/images/portrait.jpg", alt: "Ajmal U K portrait" }],
   },
 };
 
@@ -66,9 +66,9 @@ export default function AboutPage() {
       <main>
         {/* Hero Section */}
         <section className="about__hero">
-          <div className="container grid">
+          <div className="container">
             <div className="about__hero-content">
-              <p className="about__hero-label cl-txt-disable fs-14 upper fw-med">About</p>
+              <p className="about__hero-label fs-14 upper fw-med">About</p>
               <h1 className="about__hero-title heading display-1 upper fw-bold cl-txt-title">
                 Designer &amp; <span className="cl-txt-orange">strategist</span>
               </h1>
@@ -88,7 +88,7 @@ export default function AboutPage() {
               <div className="about__bio-image-wrap">
                 <img
                   src="/images/portrait.jpg"
-                  alt="Valentin Cheval portrait"
+                  alt="Ajmal U K portrait"
                   width={600}
                   height={750}
                   className="about__bio-image"

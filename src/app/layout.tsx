@@ -20,17 +20,17 @@ const matter = localFont({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://valentincheval.design"),
-  title: "Valentin Cheval | UX/UI & Brand Design Leader",
+  title: "Ajmal U K | UX/UI & Brand Design Leader",
   description:
     "I'm an award winning product designer specialized in financial products. I working for Financial Products in Fintech, crypto and Web3.",
   openGraph: {
-    title: "Valentin Cheval | UX/UI & Brand Design Leader",
+    title: "Ajmal U K | UX/UI & Brand Design Leader",
     type: "website",
     url: "https://valentincheval.design/",
     images: [
       {
         url: "/seo/og-image.jpg",
-        alt: "Valentin Cheval Portfolio OpenGraph",
+        alt: "Ajmal U K Portfolio OpenGraph",
       },
     ],
   },

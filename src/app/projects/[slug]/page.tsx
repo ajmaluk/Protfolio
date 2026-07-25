@@ -12,6 +12,7 @@ import { ProjectMeta } from "@/components/projects/ProjectMeta";
 import { ProjectContent } from "@/components/projects/ProjectContent";
 import { ProjectGallery } from "@/components/projects/ProjectGallery";
 import { ProjectNav } from "@/components/projects/ProjectNav";
+import { FooterSection } from "@/components/FooterSection";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -27,10 +28,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!project) return {};
 
   return {
-    title: `${project.name} | Valentin Cheval`,
+    title: `${project.name} | Ajmal U K`,
     description: project.summary,
     openGraph: {
-      title: `${project.name} | Valentin Cheval`,
+      title: `${project.name} | Ajmal U K`,
       description: project.summary,
       type: "article",
       images: [{ url: project.cover, alt: `${project.name} cover` }],
@@ -52,13 +53,10 @@ export default async function ProjectDetailPage({ params }: PageProps) {
       <main className="projects-detail">
           <ProjectHero project={project} />
 
-          <div className="container projects-detail__body grid">
+          <div className="container projects-detail__body">
+          <div className="projects-detail__grid grid">
             <div className="projects-detail__main">
               <ProjectContent blocks={project.content} />
-
-              {project.gallery.length > 0 && (
-                <ProjectGallery images={project.gallery} projectName={project.name} />
-              )}
             </div>
 
             <aside className="projects-detail__sidebar">
@@ -66,11 +64,19 @@ export default async function ProjectDetailPage({ params }: PageProps) {
             </aside>
           </div>
 
+          {project.gallery.length > 0 && (
+            <div className="projects-detail__gallery-wrap">
+              <ProjectGallery images={project.gallery} projectName={project.name} />
+            </div>
+          )}
+        </div>
+
           <ProjectNav
             next={nextProject}
             prev={prevProject}
             count={allProjects.length}
           />
+          <FooterSection />
         </main>
       </div>
   );

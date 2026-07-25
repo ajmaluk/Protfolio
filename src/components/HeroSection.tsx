@@ -72,8 +72,8 @@ export function HeroSection() {
                 <div className="home__hero-greating-inner">
                   <p className="home__hero-greating">Hi there! this is</p>
                   <p className="heading h5 fw-med home__hero-name">
-                    <span className="cl-txt-title">Valentin</span>{" "}
-                    <span>Cheval</span>
+                    <span className="cl-txt-title">Ajmal</span>{" "}
+                    <span>U K</span>
                   </p>
                 </div>
               </div>

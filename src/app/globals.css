@@ -837,6 +837,16 @@ h6,
   transform: translateY(-30%);
 }
 
+.header__logo {
+  grid-column: 1 / 7;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  align-items: center;
+  position: relative;
+  pointer-events: auto;
+}
+
 .header.on-home.on-home-hero .header__logo {
   pointer-events: none;
 }
@@ -863,7 +873,7 @@ h6,
 
 @media screen and (max-width: 767px) {
   .header__logo {
-    display: block;
+    display: grid;
     width: auto;
     max-width: 70%;
     overflow: hidden;
@@ -926,6 +936,7 @@ h6,
 
 .header__greating {
   grid-area: 1/1/2/2;
+  align-self: center;
   height: 100%;
   transform: translateY(-100%);
   opacity: 0;
@@ -947,11 +958,13 @@ h6,
 
 .header__name {
   grid-area: 1/1/2/2;
+  align-self: center;
   transform: translateY(0);
   opacity: 1;
   transition: all .6s ease;
   color: #50555b;
   display: flex;
+  align-items: center;
   gap: .4rem;
 }
 
@@ -4963,12 +4976,16 @@ h6,
   padding-top: 10rem;
   padding-bottom: 12rem;
   background-color: var(--cl-dm-bg);
+  display: flex;
+  flex-direction: column;
+  gap: 8rem;
 }
 
 @media screen and (max-width: 991px) {
   .projects-detail__body {
     padding-top: 6rem;
     padding-bottom: 8rem;
+    gap: 6rem;
   }
 }
 
@@ -4976,10 +4993,12 @@ h6,
   .projects-detail__body {
     padding-top: 4rem;
     padding-bottom: 5rem;
-    display: flex;
-    flex-direction: column;
     gap: 5rem;
   }
+}
+
+.projects-detail__grid {
+  width: 100%;
 }
 
 .projects-detail__main {
@@ -5065,12 +5084,12 @@ h6,
 /* ===== Content Blocks ===== */
 
 .projects-detail__content {
-  margin-bottom: 8rem;
+  margin-bottom: 4rem;
 }
 
 @media screen and (max-width: 767px) {
   .projects-detail__content {
-    margin-bottom: 4rem;
+    margin-bottom: 2rem;
   }
 }
 
@@ -5140,15 +5159,16 @@ h6,
 }
 
 .projects-detail__figure {
-  margin: 4rem 0;
+  margin: 5rem 0;
+  width: 100%;
 }
 
 .projects-detail__figure-img {
   width: 100%;
   height: auto;
-  border-radius: 1.6rem;
+  border-radius: 2rem;
   border: 1px solid var(--cl-dm-border);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.5);
   display: block;
 }
 
@@ -5193,13 +5213,18 @@ h6,
 
 /* ===== Gallery ===== */
 
+.projects-detail__gallery-wrap {
+  width: 100%;
+}
+
 .projects-detail__gallery-section {
-  margin-top: 8rem;
+  width: 100%;
+  margin-top: 2rem;
 }
 
 @media screen and (max-width: 767px) {
   .projects-detail__gallery-section {
-    margin-top: 4rem;
+    margin-top: 1rem;
   }
 }
 
@@ -5211,14 +5236,16 @@ h6,
 .projects-detail__gallery {
   display: flex;
   flex-direction: column;
-  gap: 3.2rem;
+  gap: 4rem;
+  width: 100%;
 }
 
 .projects-detail__gallery-item {
   position: relative;
   overflow: hidden;
-  border-radius: 1.6rem;
+  border-radius: 2rem;
   border: 1px solid var(--cl-dm-border);
+  width: 100%;
   cursor: pointer;
   contain: paint;
 }
@@ -5226,16 +5253,16 @@ h6,
 .projects-detail__gallery-img-wrap {
   width: 100%;
   overflow: hidden;
-  border-radius: 1.6rem;
+  border-radius: 2rem;
 }
 
 .projects-detail__gallery-img {
   width: 100%;
   height: auto;
   display: block;
-  border-radius: 1.6rem;
+  border-radius: 2rem;
   transition: transform 0.6s cubic-bezier(0.59, 0.23, 0.22, 0.96), filter 0.4s ease;
-  filter: brightness(0.9) saturate(0.95);
+  filter: brightness(0.92) saturate(0.95);
 }
 
 .projects-detail__gallery-item:hover .projects-detail__gallery-img {
@@ -5496,32 +5523,32 @@ h6,
 }
 
 .about__hero-content {
-  grid-column: 1 / 11;
-}
-
-@media screen and (max-width: 991px) {
-  .about__hero-content {
-    grid-column: 1 / 9;
-  }
-}
-
-@media screen and (max-width: 767px) {
-  .about__hero-content {
-    grid-column: 1 / -1;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 88rem;
+  margin-inline: auto;
+  width: 100%;
 }
 
 .about__hero-label {
   margin-bottom: 2rem;
+  color: var(--cl-orange);
+  font-weight: 600;
+  letter-spacing: 0.12em;
 }
 
 .about__hero-title {
   margin-bottom: 3.2rem;
+  text-align: center;
 }
 
 .about__hero-intro {
-  max-width: 72rem;
+  max-width: 76rem;
   line-height: var(--lh-h5);
+  text-align: center;
+  color: var(--cl-dm-sub);
 }
 
 /* ===== Bio Section ===== */

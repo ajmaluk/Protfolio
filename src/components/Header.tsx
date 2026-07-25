@@ -118,14 +118,14 @@ export function Header() {
           <p className="header__greating fs-16" aria-hidden={!isOnHomeHero}>
             {greeting}
           </p>
-          <Link href="/" transitionTypes={['page-transition']} className="heading h5 fw-med header__name" aria-label="Valentin Cheval — Home">
+          <Link href="/" transitionTypes={['page-transition']} className="heading h5 fw-med header__name" aria-label="Ajmal U K — Home">
             <div className="header__name-wrap">
-              <div className="cl-txt-title">Valentin</div>
+              <div className="cl-txt-title">Ajmal</div>
               <div>Product</div>
             </div>
             <div className="header__name-wrap header__name-wrap-second">
               <div>Designer</div>
-              <div>Cheval</div>
+              <div>U K</div>
             </div>
           </Link>
         </div>

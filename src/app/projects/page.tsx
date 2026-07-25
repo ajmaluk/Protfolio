@@ -3,7 +3,7 @@ import { ProjectsSection } from "@/components/ProjectsSection";
 import { FooterSection } from "@/components/FooterSection";
 
 export const metadata: Metadata = {
-  title: "Projects | Valentin Cheval",
+  title: "Projects | Ajmal U K",
   description:
     "Case studies of product design, branding, and strategy work for financial, crypto, and Web3 clients.",
 };

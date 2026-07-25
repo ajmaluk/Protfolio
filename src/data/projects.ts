@@ -42,10 +42,7 @@ export const projects: ProjectDetail[] = [
     thumbnail: "/images/bitmex-cover.jpg",
     cover: "/images/bitmex-cover.jpg",
     gallery: [
-      { src: "/images/bitmex-cover.jpg", alt: "BitMEX platform marketing cover" },
-      { src: "/images/home-hero-bg.jpg", alt: "BitMEX hero background" },
-      { src: "/images/footer-blend-light.png", alt: "BitMEX portrait blend" },
-      { src: "/images/awards-sphere.png", alt: "BitMEX award sphere" },
+      { src: "/images/bitmex-cover.jpg", alt: "BitMEX platform marketing cover & dashboard interface" },
     ],
     content: [
       {
@@ -103,9 +100,7 @@ export const projects: ProjectDetail[] = [
     thumbnail: "/images/define-hero.jpg",
     cover: "/images/define-hero.jpg",
     gallery: [
-      { src: "/images/define-hero.jpg", alt: "DefiScan hero" },
-      { src: "/images/home-hero-trans.png", alt: "DefiScan portrait" },
-      { src: "/images/intro-service-blur.png", alt: "DefiScan service glow" },
+      { src: "/images/define-hero.jpg", alt: "DefiScan blockchain explorer interface" },
     ],
     content: [
       {
@@ -163,10 +158,7 @@ export const projects: ProjectDetail[] = [
     thumbnail: "/images/gotymebank.jpg",
     cover: "/images/gotymebank.jpg",
     gallery: [
-      { src: "/images/gotymebank.jpg", alt: "Tyme Bank investment suite" },
-      { src: "/images/portrait.jpg", alt: "Tyme Bank portrait" },
-      { src: "/images/glow-1.png", alt: "Tyme Bank brand glow" },
-      { src: "/images/glow-2.png", alt: "Tyme Bank brand glow 2" },
+      { src: "/images/gotymebank.jpg", alt: "Tyme Bank mobile investment suite interface" },
     ],
     content: [
       {

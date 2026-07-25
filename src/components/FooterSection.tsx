@@ -1,6 +1,8 @@
-"use client"
+interface FooterSectionProps {
+  showCharacter?: boolean;
+}
 
-export function FooterSection() {
+export function FooterSection({ showCharacter = true }: FooterSectionProps) {
   return (
     <div className="footer-wrap">
       <div className="footer">
@@ -14,7 +16,7 @@ export function FooterSection() {
                   className="fw-med txt-link hover-un footer__link"
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="Visit Valentin Cheval's LinkedIn profile"
+                  aria-label="Visit Ajmal U K's LinkedIn profile"
                 >
                   <span className="footer__link-icon" aria-hidden="true">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -30,7 +32,7 @@ export function FooterSection() {
                   className="fw-med txt-link hover-un footer__link"
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="Visit Valentin Cheval's Dribbble profile"
+                  aria-label="Visit Ajmal U K's Dribbble profile"
                 >
                   <span className="footer__link-icon" aria-hidden="true">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -47,7 +49,7 @@ export function FooterSection() {
                   className="fw-med txt-link hover-un footer__link"
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="Visit Valentin Cheval on Twitter/X"
+                  aria-label="Visit Ajmal U K on Twitter/X"
                 >
                   <span className="footer__link-icon" aria-hidden="true">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
@@ -65,7 +67,7 @@ export function FooterSection() {
                 <a
                   href="mailto:hello@valentincheval.design"
                   className="fw-med txt-link hover-un footer__link"
-                  aria-label="Email Valentin Cheval"
+                  aria-label="Email Ajmal U K"
                 >
                   <span className="footer__link-icon" aria-hidden="true">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -80,7 +82,7 @@ export function FooterSection() {
                   className="fw-med txt-link hover-un footer__link"
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="Contact Valentin Cheval on WhatsApp"
+                  aria-label="Contact Ajmal U K on WhatsApp"
                 >
                   <span className="footer__link-icon" aria-hidden="true">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -94,7 +96,7 @@ export function FooterSection() {
                   className="fw-med txt-link hover-un footer__link"
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="Contact Valentin Cheval on Telegram"
+                  aria-label="Contact Ajmal U K on Telegram"
                 >
                   <span className="footer__link-icon" aria-hidden="true">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -114,7 +116,7 @@ export function FooterSection() {
             <a
               href="mailto:hello@valentincheval.design"
               className="fs-24 fw-reg footer__cta-title txt-link hover-un"
-              aria-label="Email Valentin Cheval to start a project"
+              aria-label="Email Ajmal U K to start a project"
             >
               Let&apos;s make something happen together
             </a>
@@ -136,18 +138,20 @@ export function FooterSection() {
 
         </div>
 
-        <div className="footer__main-image">
-          <div className="footer__main-image-inner">
-            <img
-              src="/images/footer-blend-light.png"
-              alt="Valentin Cheval portrait"
-              width={1080}
-              height={1350}
-              loading="lazy"
-              className="footer__main-image-img"
-            />
+        {showCharacter && (
+          <div className="footer__main-image">
+            <div className="footer__main-image-inner">
+              <img
+                src="/images/footer-blend-light.png"
+                alt="Ajmal U K portrait"
+                width={1080}
+                height={1350}
+                loading="lazy"
+                className="footer__main-image-img"
+              />
+            </div>
           </div>
-        </div>
+        )}
 
         <div className="footer__marquee-wrap" data-cursor-text="Hello">
           <div className="footer__marquee-inner">
@@ -159,7 +163,7 @@ export function FooterSection() {
                       <a
                         href="mailto:hello@valentincheval.design"
                         className="footer__marquee-link"
-                        aria-label="Email Valentin Cheval"
+                        aria-label="Email Ajmal U K"
                       >
                         hello<span className="cl-txt-orange">@</span>valentincheval.design
                       </a>

@@ -78,7 +78,7 @@ export function SmoothScroll() {
       
       // ---- Character layer ----
       const charScale = 1 + heroProgress * 0.08;
-      const charTranslateY = -heroProgress * 40;
+      const charTranslateY = heroProgress * 65;
 
       let fadeOpacity = 1;
       if (extendedProgress > 0.55) {

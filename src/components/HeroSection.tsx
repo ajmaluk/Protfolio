@@ -1,17 +1,79 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const WORDS = ["STARTUPS", "FOUNDERS", "BUSINESSES", "CREATORS"];
 
 export function HeroSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const characterRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % WORDS.length);
     }, 3000);
     return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    const charEl = characterRef.current;
+    if (!charEl) return;
+
+    let targetRotateX = 0;
+    let targetRotateY = 0;
+    let targetTranslateX = 0;
+    let targetTranslateY = 0;
+
+    let currentRotateX = 0;
+    let currentRotateY = 0;
+    let currentTranslateX = 0;
+    let currentTranslateY = 0;
+
+    let animFrameId: number;
+
+    const onMouseMove = (e: MouseEvent) => {
+      if (window.innerWidth < 768) return;
+      const centerX = window.innerWidth / 2;
+      const centerY = window.innerHeight / 2;
+
+      const normX = (e.clientX - centerX) / centerX;
+      const normY = (e.clientY - centerY) / centerY;
+
+      targetRotateY = normX * 3.5;
+      targetRotateX = -normY * 2.5;
+      targetTranslateX = normX * 8;
+      targetTranslateY = normY * 6;
+    };
+
+    const onMouseLeave = () => {
+      targetRotateX = 0;
+      targetRotateY = 0;
+      targetTranslateX = 0;
+      targetTranslateY = 0;
+    };
+
+    const render = () => {
+      currentRotateX += (targetRotateX - currentRotateX) * 0.08;
+      currentRotateY += (targetRotateY - currentRotateY) * 0.08;
+      currentTranslateX += (targetTranslateX - currentTranslateX) * 0.08;
+      currentTranslateY += (targetTranslateY - currentTranslateY) * 0.08;
+
+      if (charEl) {
+        charEl.style.transform = `perspective(1000px) rotateX(${currentRotateX.toFixed(2)}deg) rotateY(${currentRotateY.toFixed(2)}deg) translate3d(${currentTranslateX.toFixed(2)}px, ${currentTranslateY.toFixed(2)}px, 0px)`;
+      }
+
+      animFrameId = requestAnimationFrame(render);
+    };
+
+    window.addEventListener("mousemove", onMouseMove, { passive: true });
+    window.addEventListener("mouseleave", onMouseLeave, { passive: true });
+    animFrameId = requestAnimationFrame(render);
+
+    return () => {
+      window.removeEventListener("mousemove", onMouseMove);
+      window.removeEventListener("mouseleave", onMouseLeave);
+      cancelAnimationFrame(animFrameId);
+    };
   }, []);
 
   return (
@@ -123,7 +185,7 @@ export function HeroSection() {
               </div>
               <div className="home__hero-bg-main-inner-man" data-canvas-wrap>
                 <div className="home__hero-bg-main-inner-man-ratio" />
-                <div className="home__hero-bg-main-inner placeholder">
+                <div className="home__hero-bg-main-inner placeholder" ref={characterRef}>
                   <img
                     src="/images/home-hero-trans.png"
                     alt=""

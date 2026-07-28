@@ -1,0 +1,9 @@
+<svg width="100%" viewBox="0 0 110 40" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g fill="white">
+  <!-- Embedded CodePix Mascot Icon -->
+  <image href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABUAAAAcCAYAAACOGPReAAACj0lEQVR4nKWVvWuUQRDGn7m7REPQIIKIHyEQI2inTQQLKwMiCFpERLFSEPwf1MJGBQtrETvFwjQGBUtNBBELg5+gxqAiUfATE5NcfjKvs3EJd+YuPjAs78zus8/OuzMrNQCgHGMvcBSYBGaA/vCXGuGpRbgXuAEM8QdV4HXETI2CUAAcAIaBNmAtMBbEx/N59Ugss4pPBvqAB0BHNm8DsHNBRUClTuwiMFgn1lpTJZkzjrcO6AI6gdP8xeXwdYWtrsXhKBIMbJbUJ2mjpOeSxiPWKanqUyQtkfSqWCVV4ttTMmxm95zYzGYLUmCHpH2SvkvaJmlMUvFXJU3GWOwtqS3G9TE+krRS0kMzG5wjBt4CZ4CnNI9xYA9wHmhJaTCPSPomqX2eqoVQjRQckTQh6aaZffZAKQiWSypnVmnAWmPtUAgq8plIrUFlteBrZ8LmqqqUBZtFEnJY0lInTuVqkdPFwtc60YikXjOb8J9VWiRREkLksjUI2/1KVbLdGkU15pezFE4BhyTtAu6k4zdLPF+5X6n7kpZJ2uK7fAlCV/A/OCXph6RRRUUkzDZZUbNhT4CX4TuorAmPRDf3SX49pmuQzITlhFOZ71giLPoocC5buBicDJ5y6vb9EXCljivA2UxtUnUJuBq+98AoMABsnyN0AGuAC8DdUPkp/D0ZWSLfD6yKI3cD3lAST7piqsR12CqpO+5eB7BJ0nR2K1KzGJXUI6nF+6+Z/UpkZlad/z4NxO63ga/AG+AE8C7L2U/gmj/L0UdXpEdS9UC8OcCzjMg38u/HWb4dt5KgWlzpz5uZfYgcrYgq8Xbmx9wdpfjCyzF83n/rIn9JfQMnGohc+reX3seoOs+n+zy/1/9F+huiOlEy/taZ+QAAAABJRU5ErkJggg==" x="4" y="6.0" width="21" height="28" preserveAspectRatio="xMidYMid meet" />
+
+  <!-- CODEPIX Typography -->
+  <text x="31.0" y="25" font-family="'Orbitron', 'Space Grotesk', 'Inter', system-ui, sans-serif" font-size="13.5" font-weight="900" letter-spacing="1.5" fill="white">CODEPIX</text>
+</g>
+</svg>

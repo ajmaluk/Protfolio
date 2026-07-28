@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 interface FooterSectionProps {
   showCharacter?: boolean;
 }
@@ -92,26 +94,24 @@ export function FooterSection({ showCharacter = true }: FooterSectionProps) {
             </a>
           </div>
 
-          <h3 className="footer__title-wrap">
+          <div className="footer__title-wrap">
             <div className="footer__title-gradient-mb" />
             <div className="heading h4 fw-reg footer__title">
-              <div>
+              <h3>
                 <span>Driven by a passion to build smart, useful, and accessible digital products.</span>
-                <span className="footer__title-second">
-                  <br />
-                  <br />
-                  Combining modern full-stack web development, AI integration, and user-centered design to create solutions that solve real-world problems.
-                </span>
-              </div>
+              </h3>
+              <p className="footer__title-second">
+                Combining modern full-stack web development, AI integration, and user-centered design to create solutions that solve real-world problems.
+              </p>
             </div>
-          </h3>
+          </div>
 
         </div>
 
         {showCharacter && (
           <div className="footer__main-image">
             <div className="footer__main-image-inner">
-              <img
+              <Image
                 src="/images/footer-blend-light.png"
                 alt="Muhammed Ajmal U K portrait"
                 width={1080}
@@ -146,7 +146,7 @@ export function FooterSection({ showCharacter = true }: FooterSectionProps) {
         </div>
 
         <div className="footer__bg">
-          <img src="/images/footer-bg-gr2.png" alt="" aria-hidden="true" className="footer__bg-img" />
+          <Image src="/images/footer-bg-gr2.png" alt="" aria-hidden="true" width={1920} height={1080} className="footer__bg-img" />
         </div>
       </div>
     </div>

@@ -7,23 +7,16 @@ interface ProjectNavProps {
   next?: ProjectDetail;
   prev?: ProjectDetail;
   count: number;
+  currentIndex: number;
 }
 
-function saveSlug(slug: string) {
-  try {
-    sessionStorage.setItem('carousel_active_slug', slug);
-  } catch {
-    // sessionStorage may not be available
-  }
-}
-
-export function ProjectNav({ next, prev, count }: ProjectNavProps) {
+export function ProjectNav({ next, prev, count, currentIndex }: ProjectNavProps) {
   return (
     <nav className="projects-detail__nav" aria-label="Project navigation">
       <div className="container">
         <div className="projects-detail__nav-inner">
           <div className="projects-detail__nav-side">
-            <Link href="/" transitionTypes={['page-transition']} className="projects-detail__nav-link" aria-label="Back to home">
+            <Link href="/" className="projects-detail__nav-link" aria-label="Back to home">
               <span className="projects-detail__nav-direction" aria-hidden="true">
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                   <path d="M2 10H18M10 2L2 10L10 18" stroke="currentColor" strokeWidth="1.875" strokeMiterlimit="10" strokeLinecap="square" strokeLinejoin="round" />
@@ -37,7 +30,7 @@ export function ProjectNav({ next, prev, count }: ProjectNavProps) {
 
           <div className="projects-detail__nav-side projects-detail__nav-side--prev">
             {prev ? (
-              <Link href={`/projects/${prev.slug}`} transitionTypes={['page-transition']} onClick={() => saveSlug(prev.slug)} className="projects-detail__nav-link" aria-label={`Previous project: ${prev.name}`}>
+              <Link href={`/projects/${prev.slug}`} className="projects-detail__nav-link" aria-label={`Previous project: ${prev.name}`}>
                 <span className="projects-detail__nav-direction" aria-hidden="true">
                   <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                     <path d="M13.4 8.00003H2M9.79997 3.80005L14 8.00003L9.79997 12.2" stroke="currentColor" strokeWidth="1.875" strokeMiterlimit="10" strokeLinecap="square" strokeLinejoin="round" />
@@ -62,7 +55,7 @@ export function ProjectNav({ next, prev, count }: ProjectNavProps) {
 
           <div className="projects-detail__nav-counter">
             <span className="projects-detail__nav-counter-current">
-              {String(count - (prev ? 1 : 0)).padStart(2, "0")}
+              {String(currentIndex + 1).padStart(2, "0")}
             </span>
             <span className="projects-detail__nav-counter-total">
               / {String(count).padStart(2, "0")}
@@ -71,7 +64,7 @@ export function ProjectNav({ next, prev, count }: ProjectNavProps) {
 
           <div className="projects-detail__nav-side projects-detail__nav-side--next">
             {next ? (
-              <Link href={`/projects/${next.slug}`} transitionTypes={['page-transition']} onClick={() => saveSlug(next.slug)} className="projects-detail__nav-link projects-detail__nav-link--right" aria-label={`Next project: ${next.name}`}>
+              <Link href={`/projects/${next.slug}`} className="projects-detail__nav-link projects-detail__nav-link--right" aria-label={`Next project: ${next.name}`}>
                 <span className="projects-detail__nav-meta">
                   <span className="projects-detail__nav-label">Next project</span>
                   <span className="projects-detail__nav-name heading h4 upper fw-bold">

@@ -1,68 +1,133 @@
 "use client";
 
-const companies = [
-  { src: "/images/liquid.svg", alt: "Liquid" },
-  { src: "/images/gotyme-bank.svg", alt: "GoTyme Bank" },
-  { src: "/images/european-commission.svg", alt: "European Commission" },
-  { src: "/images/bitcoin.svg", alt: "Bitcoin" },
-  { src: "/images/defichan.svg", alt: "DefiChan" },
-  { src: "/images/bitmex.svg", alt: "BitMEX" },
-  { src: "/images/birthday-research.svg", alt: "Birthday Research" },
-  { src: "/images/babylons.svg", alt: "Babylons" },
-  { src: "/images/diag.svg", alt: "Diag" },
-];
-
-const awardsData = [
-  {
-    src: "/images/red-dot.svg",
-    width: 105,
-    height: 105,
-    name: "Red Dot Award",
-    year: "2023",
-    category: "GoTyme",
-    logoMbSrc: "/images/red-dot.svg",
-  },
-  {
-    src: "/images/uxdesign.svg",
-    width: 96,
-    height: 105,
-    name: "UX Design Award",
-    year: "2023",
-    category: "GoTyme",
-    logoMbSrc: "/images/uxdesign.svg",
-  },
-  {
-    src: "/images/dfa.svg",
-    width: 122,
-    height: 105,
-    name: "Design For Asia",
-    year: "2023",
-    category: "GoTyme",
-    logoMbSrc: "/images/dfa.svg",
-  },
-  {
-    src: "/images/creativepool.svg",
-    width: 43,
-    height: 31,
-    name: "Creativepool Design Award",
-    year: "2023",
-    category: "GoTyme",
-    logoMbSrc: "/images/creativepool.svg",
-  },
-];
-
+import Image from "next/image";
 import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
 
-const introMainText = "Software products should be intuitive, accessible, and empowering. I build production-ready digital products that solve real-world problems. By combining AI API integrations, full-stack web architectures, mobile development, and clean user-focused design, I create scalable tools and platforms that deliver seamless digital experiences. My goal is to develop impactful software that makes technology simple, practical, and accessible for everyone.";
+interface Company {
+  src: string;
+  alt: string;
+  description: string;
+  url: string;
+  tags: string[];
+  thumbnail?: string;
+}
+
+const companies: Company[] = [
+  {
+    src: "/images/toolpix.svg",
+    alt: "ToolPix AI",
+    description: "AI-powered image editing, design & creative tools platform built for seamless productivity.",
+    url: "https://toolpix.com",
+    tags: ["AI Platform", "Next.js", "Design"],
+    thumbnail: "/images/toolpix.png",
+  },
+  {
+    src: "/images/wpadmission.svg",
+    alt: "WP Admission",
+    description: "WordPress admission and online application portal for academic institutions.",
+    url: "https://wpadmissions.cet.ac.in/",
+    tags: ["WordPress", "Web App", "Portal"],
+  },
+  {
+    src: "/images/explore-together.svg",
+    alt: "Explore Together",
+    description: "Interactive travel community platform for discovering and sharing explorer journeys.",
+    url: "https://explore-together.pages.dev/",
+    tags: ["React", "Community", "Travel"],
+    thumbnail: "/images/explore-together.png",
+  },
+  {
+    src: "/images/lbs.svg",
+    alt: "LBS Course Portal",
+    description: "Government-accredited technical training portal offering skill acquisition courses.",
+    url: "https://lbs.kerala.gov.in/",
+    tags: ["EdTech", "Government", "Skill Portal"],
+  },
+  {
+    src: "/images/styushi.svg",
+    alt: "Styushi Clothing",
+    description: "Modern fashion & apparel e-commerce store with custom street fashion experience.",
+    url: "https://styushi.com/",
+    tags: ["E-Commerce", "UI/UX", "Brand"],
+  },
+  {
+    src: "/images/dvma.svg",
+    alt: "DVMA - Dementia Assistant",
+    description: "Assistive Virtual Memory Assistant application supporting dementia patients.",
+    url: "https://dvma-dementia-assistant.pages.dev/",
+    tags: ["Healthcare", "AI Assistant", "Mobile App"],
+    thumbnail: "/images/dvma.png",
+  },
+  {
+    src: "/images/incepta.svg",
+    alt: "Incepta",
+    description: "Digital technology & software agency engineering scalable web architectures.",
+    url: "https://incepta.pages.dev/",
+    tags: ["Software Agency", "Full Stack"],
+  },
+  {
+    src: "/images/codepix.svg",
+    alt: "CodePix",
+    description: "Developer tools and code snippet generation platform for modern software engineers.",
+    url: "https://codepix.uthakkan.in/",
+    tags: ["DevTools", "AI Code", "Web App"],
+  },
+  {
+    src: "/images/uthakkan.svg",
+    alt: "Uthakkan",
+    description: "Central digital ecosystem and showcase for creative web application products.",
+    url: "https://www.uthakkan.in/",
+    tags: ["Ecosystem", "Portfolio", "Web Apps"],
+  },
+];
+
+const educationData = [
+  {
+    institution: "College of Engineering, Trivandrum",
+    degree: "Master of Computer Applications (MCA) – APJ Abdul Kalam Technological University",
+    years: "2025 – 2027",
+    score: "90.9%",
+    src: "/images/cet.svg",
+  },
+  {
+    institution: "Mahatma Gandhi College, Iritty",
+    degree: "Bachelor of Computer Science – Kannur University",
+    years: "2023 – 2026",
+    score: "89.7%",
+    src: "/images/mgc.svg",
+  },
+  {
+    institution: "GHSS Ulikkal",
+    degree: "Higher Secondary Education – Kerala Board of Public Examination",
+    years: "2020 – 2022",
+    score: "90.8%",
+    src: "/images/ghss.svg",
+  },
+];
+
+const introMainText = "I build production-ready digital products that solve real-world problems. By combining AI API integrations, full-stack web architectures, mobile development, and clean user-focused design, I create scalable tools and platforms that deliver seamless digital experiences. My goal is to develop impactful software that makes technology simple, practical, and accessible for everyone.";
 
 export function IntroSection() {
   const [activeAwardIndex, setActiveAwardIndex] = useState(0);
-  const [isAwardsHovered, setIsAwardsHovered] = useState(false);
+  const [activeProject, setActiveProject] = useState<Company | null>(null);
+  const touchTimerRef = useRef<NodeJS.Timeout | null>(null);
   const textRef = useRef<HTMLDivElement>(null);
   const serviceWrapRef = useRef<HTMLDivElement>(null);
   const awardsVisualRef = useRef<HTMLDivElement>(null);
   const awardsListingRef = useRef<HTMLDivElement>(null);
+
+  const handleTouchStart = (company: Company) => {
+    touchTimerRef.current = setTimeout(() => {
+      setActiveProject(company);
+    }, 350);
+  };
+
+  const handleTouchEnd = () => {
+    if (touchTimerRef.current) {
+      clearTimeout(touchTimerRef.current);
+    }
+  };
 
   useEffect(() => {
     const visualElement = awardsVisualRef.current;
@@ -112,7 +177,6 @@ export function IntroSection() {
         ? ((window as unknown as Record<string, unknown>).__lenis as { scroll: number }).scroll
         : window.scrollY;
 
-      // 1. Visual sphere scale
       if (visualElement) {
         const current = vh - (visualTop - scrollY);
         const total = vh + visualHeight;
@@ -121,7 +185,6 @@ export function IntroSection() {
         visualElement.style.setProperty("--awards-scale", scale.toString());
       }
 
-      // 2. Text word reveal
       if (words.length > 0) {
         const revealStart = vh * 0.22;
         const revealDistance = Math.max(textHeight * 0.68, vh * 0.34);
@@ -136,7 +199,6 @@ export function IntroSection() {
         });
       }
 
-      // 3. Service marquee scale and translate
       if (serviceWrap) {
         const current = vh - (serviceTop - scrollY);
         const total = vh + serviceHeight;
@@ -151,7 +213,6 @@ export function IntroSection() {
         serviceWrap.style.setProperty("--service-trans-black", `${translateXBlack}px`);
       }
 
-      // 4. Awards list reveal
       if (awardItems.length > 0) {
         const revealStart = vh * 0.85;
         const revealEnd = vh * 0.15;
@@ -190,26 +251,134 @@ export function IntroSection() {
 
   return (
     <div className="home__intro-wrap">
+      {/* Project Detail Modal Overlay */}
+      {activeProject && (
+        <div
+          style={{
+            position: "fixed",
+            inset: 0,
+            zIndex: 99999,
+            backgroundColor: "rgba(0, 0, 0, 0.88)",
+            backdropFilter: "blur(12px)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: "2rem",
+          }}
+          onClick={() => setActiveProject(null)}
+        >
+          <div
+            style={{
+              backgroundColor: "#111111",
+              border: "1px solid rgba(255, 255, 255, 0.18)",
+              borderRadius: "2.4rem",
+              padding: "3.6rem 3rem",
+              maxWidth: "48rem",
+              width: "100%",
+              boxShadow: "0 25px 60px -10px rgba(0, 0, 0, 0.8)",
+              position: "relative",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              textAlign: "center",
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              onClick={() => setActiveProject(null)}
+              style={{
+                position: "absolute",
+                top: "1.8rem",
+                right: "1.8rem",
+                background: "rgba(255, 255, 255, 0.1)",
+                border: "none",
+                color: "#ffffff",
+                width: "3.6rem",
+                height: "3.6rem",
+                borderRadius: "50%",
+                cursor: "pointer",
+                fontSize: "1.8rem",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+              aria-label="Close"
+            >
+              ✕
+            </button>
+
+            <div style={{ height: "5.5rem", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "1.5rem", width: "100%" }}>
+              <Image src={activeProject.src} alt={activeProject.alt} width={150} height={50} style={{ objectFit: "contain", maxHeight: "4.5rem" }} unoptimized />
+            </div>
+
+            {activeProject.thumbnail && (
+              <div style={{ width: "100%", borderRadius: "1.6rem", overflow: "hidden", marginBottom: "2rem", border: "1px solid rgba(255, 255, 255, 0.12)" }}>
+                <Image src={activeProject.thumbnail} alt={activeProject.alt} width={420} height={220} style={{ width: "100%", height: "auto", display: "block" }} unoptimized />
+              </div>
+            )}
+
+            <h3 style={{ fontSize: "2.4rem", fontWeight: "700", color: "#ffffff", marginBottom: "1.2rem" }}>
+              {activeProject.alt}
+            </h3>
+
+            <div style={{ display: "flex", gap: "0.8rem", flexWrap: "wrap", justifyContent: "center", marginBottom: "2rem" }}>
+              {activeProject.tags.map((tag) => (
+                <span key={tag} style={{ fontSize: "1.2rem", padding: "0.4rem 1.2rem", borderRadius: "100px", backgroundColor: "rgba(255, 61, 0, 0.18)", color: "#FF3D00", fontWeight: "600" }}>
+                  {tag}
+                </span>
+              ))}
+            </div>
+
+            <p style={{ fontSize: "1.5rem", lineHeight: "1.6", color: "rgba(255, 255, 255, 0.8)", marginBottom: "3rem" }}>
+              {activeProject.description}
+            </p>
+
+            <a
+              href={activeProject.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "0.8rem",
+                backgroundColor: "#FF3D00",
+                color: "#ffffff",
+                padding: "1.4rem 3.2rem",
+                borderRadius: "100px",
+                fontWeight: "700",
+                fontSize: "1.5rem",
+                textDecoration: "none",
+                boxShadow: "0 10px 24px rgba(255, 61, 0, 0.4)",
+              }}
+            >
+              Visit Project ↗
+            </a>
+          </div>
+        </div>
+      )}
+
       <section className="home__intro">
         <div className="container grid">
           <div className="home__intro-companies">
             <div className="line" />
             <h4 className="heading h5 cl-txt-title home__intro-companies-title">
-              Industry leaders I worked for
+              Projects I worked for
             </h4>
             <div className="home__intro-companies-listing">
               {companies.map((company) => (
-                <div key={company.alt} className="home__intro-company">
+                <div
+                  key={company.src}
+                  className="home__intro-company"
+                  style={{ cursor: "pointer" }}
+                  onClick={() => setActiveProject(company)}
+                  onTouchStart={() => handleTouchStart(company)}
+                  onTouchEnd={handleTouchEnd}
+                >
                   <div className="ic home__intro-company-ic">
-                    <img src={company.src} alt={company.alt} className="img img-fit" loading="lazy" />
+                    <Image src={company.src} alt={company.alt} width={120} height={40} className="img img-fit" loading="lazy" unoptimized />
                   </div>
                 </div>
               ))}
-              <a href="mailto:hello@valentincheval.design" className="home__intro-company" data-cursor-text="Hello">
-                <div className="home__intro-company-secret">
-                  <div className="fs-16 fw-med cl-txt-title">Your logo here</div>
-                </div>
-              </a>
             </div>
           </div>
 
@@ -228,7 +397,7 @@ export function IntroSection() {
                 </span>
               ))}
             </div>
-            <Link href="/about" transitionTypes={['page-transition']} className="btn-circle arrow-hover home__intro-btn">
+            <Link href="/about" className="btn-circle arrow-hover home__intro-btn">
               <div className="ic-arr-wrap" style={{ "--size": 3.2 } as React.CSSProperties}>
                 <div className="arr-main ic" style={{ "--size": 3.2 } as React.CSSProperties}>
                   <svg width="100%" viewBox="0 0 20 20" fill="none">
@@ -249,56 +418,53 @@ export function IntroSection() {
             </Link>
           </div>
 
-          {/* Awards Visual display in the middle column */}
-          <div ref={awardsVisualRef} className={`home__intro-awards-visual ${(isAwardsHovered || activeAwardIndex > 0) ? "visible" : "visible"}`}>
+          {/* Education Visual display in the middle column */}
+          <div ref={awardsVisualRef} className="home__intro-awards-visual visible">
             <div className="awards-visual-inner">
-              <img
-                src={activeAwardIndex === 0 ? "/images/awards-sphere.png" : awardsData[activeAwardIndex].src}
-                alt={activeAwardIndex === 0 ? "" : awardsData[activeAwardIndex].name}
-                aria-hidden={activeAwardIndex === 0}
+              <Image
+                src={educationData[activeAwardIndex]?.src || "/images/awards-sphere.png"}
+                alt={educationData[activeAwardIndex]?.institution || ""}
+                width={200}
+                height={200}
                 className="awards-visual-img"
+                unoptimized
               />
             </div>
           </div>
 
           <div
             className="home__intro-awards"
-            style={{ "--itemLength": 4 } as React.CSSProperties}
-            onMouseEnter={() => setIsAwardsHovered(true)}
-            onMouseLeave={() => setIsAwardsHovered(false)}
+            style={{ "--itemLength": educationData.length } as React.CSSProperties}
           >
-            <h3 className="heading h4 cl-txt-title upper home__intro-awards-title">Awards</h3>
+            <h3 className="heading h4 cl-txt-title upper home__intro-awards-title">Education</h3>
             <div ref={awardsListingRef} className="home__intro-awards-listing">
-              {awardsData.map((award, index) => (
+              {educationData.map((edu, index) => (
                 <div
-                  key={award.name}
+                  key={edu.institution}
                   className={`home__intro-award ${index === activeAwardIndex ? "active" : ""}`}
-                  role="button"
-                  tabIndex={0}
-                  aria-label={`Show ${award.name}`}
-                  aria-pressed={index === activeAwardIndex}
                   onMouseEnter={() => setActiveAwardIndex(index)}
                   onFocus={() => setActiveAwardIndex(index)}
                   onClick={() => setActiveAwardIndex(index)}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter" || e.key === " ") {
-                      e.preventDefault();
-                      setActiveAwardIndex(index);
-                    }
-                  }}
+                  style={{ cursor: "pointer" }}
                 >
                   <span className="home__intro-award-line" />
-                  <div className="home__intro-award-inner">
-                    <div className="home__intro-award-text">
-                      <p className="home__intro-award-year">
-                        {award.year}
+                  <div className="home__intro-award-inner" style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", width: "100%" }}>
+                    <div style={{ flex: 1, paddingRight: "1.5rem" }}>
+                      <p className="home__intro-award-name" style={{ fontWeight: "700", color: "#ffffff", fontSize: "1.7rem", lineHeight: "1.3", textTransform: "none" }}>
+                        {edu.institution}
+                      </p>
+                      <p style={{ fontSize: "1.3rem", fontStyle: "italic", color: "rgba(255, 255, 255, 0.65)", marginTop: "0.4rem", textTransform: "none" }}>
+                        {edu.degree}
+                      </p>
+                    </div>
+                    <div style={{ textAlign: "right", minWidth: "10rem", flexShrink: 0 }}>
+                      <p className="home__intro-award-year" style={{ fontSize: "1.4rem", color: "rgba(255, 255, 255, 0.75)", fontWeight: "600" }}>
+                        {edu.years}
                         {index === activeAwardIndex && <span className="home__intro-award-dot" />}
                       </p>
-                      <p className="home__intro-award-name">{award.name}</p>
-                      <p className="home__intro-award-category">{award.category}</p>
-                    </div>
-                    <div className="home__intro-award-logo-mb">
-                      <img src={award.logoMbSrc} alt="" />
+                      <p style={{ fontSize: "1.6rem", fontWeight: "800", color: "#ffffff", marginTop: "0.3rem" }}>
+                        {edu.score}
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -320,21 +486,21 @@ export function IntroSection() {
                     <div key={dupIdx} className="marquee-inner-item" aria-hidden={dupIdx === 1}>
                       <div className="home__intro-service-marquee">
                         <div className="home__intro-service-marquee-item">
-                          <h3 className="fw-semi heading h3 upper">8 years of experience</h3>
+                          <h3 className="fw-semi heading h3 upper">AI &amp; Full-Stack Dev</h3>
                           <div className="ic ic-32 anim-rot" aria-hidden="true">
-                            <img src="/images/asterisk.svg" alt="" className="img" />
+                            <Image src="/images/asterisk.svg" alt="" width={32} height={32} className="img" />
                           </div>
                         </div>
                         <div className="home__intro-service-marquee-item">
-                          <h3 className="fw-semi heading h3 upper">senior designer</h3>
+                          <h3 className="fw-semi heading h3 upper">Python &amp; JavaScript</h3>
                           <div className="ic ic-32 anim-rot" aria-hidden="true">
-                            <img src="/images/asterisk.svg" alt="" className="img" />
+                            <Image src="/images/asterisk.svg" alt="" width={32} height={32} className="img" />
                           </div>
                         </div>
                         <div className="home__intro-service-marquee-item">
-                          <h3 className="fw-semi heading h3 upper">Over 100 customers</h3>
+                          <h3 className="fw-semi heading h3 upper">Flutter &amp; Cloud</h3>
                           <div className="ic ic-32 anim-rot" aria-hidden="true">
-                            <img src="/images/asterisk.svg" alt="" className="img" />
+                            <Image src="/images/asterisk.svg" alt="" width={32} height={32} className="img" />
                           </div>
                         </div>
                       </div>
@@ -355,21 +521,21 @@ export function IntroSection() {
                     <div key={dupIdx} className="marquee-inner-item" aria-hidden={dupIdx === 1}>
                       <div className="home__intro-service-marquee">
                         <div className="home__intro-service-marquee-item">
-                          <h3 className="fw-semi heading h3 upper">Product Design</h3>
+                          <h3 className="fw-semi heading h3 upper">Full-Stack Web Apps</h3>
                           <div className="ic ic-32 anim-rot" aria-hidden="true">
-                            <img src="/images/asterisk.svg" alt="" className="img" />
+                            <Image src="/images/asterisk.svg" alt="" width={32} height={32} className="img" />
                           </div>
                         </div>
                         <div className="home__intro-service-marquee-item">
-                          <h3 className="fw-semi heading h3 upper">Brand design &amp; Strategy</h3>
+                          <h3 className="fw-semi heading h3 upper">AI Tools &amp; Automation</h3>
                           <div className="ic ic-32 anim-rot" aria-hidden="true">
-                            <img src="/images/asterisk.svg" alt="" className="img" />
+                            <Image src="/images/asterisk.svg" alt="" width={32} height={32} className="img" />
                           </div>
                         </div>
                         <div className="home__intro-service-marquee-item">
-                          <h3 className="fw-semi heading h3 upper">Visual design</h3>
+                          <h3 className="fw-semi heading h3 upper">Mobile &amp; Cloud Dev</h3>
                           <div className="ic ic-32 anim-rot" aria-hidden="true">
-                            <img src="/images/asterisk.svg" alt="" className="img" />
+                            <Image src="/images/asterisk.svg" alt="" width={32} height={32} className="img" />
                           </div>
                         </div>
                       </div>
@@ -381,7 +547,7 @@ export function IntroSection() {
           </div>
           <div className="home__intro-service-blur">
             <div className="home__intro-service-blur-inner">
-              <img
+              <Image
                 src="/images/intro-service-blur.png"
                 alt=""
                 aria-hidden="true"

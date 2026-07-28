@@ -5,7 +5,7 @@ import { FooterSection } from "@/components/FooterSection";
 export const metadata: Metadata = {
   title: "Projects | Ajmal U K",
   description:
-    "Case studies of product design, branding, and strategy work for financial, crypto, and Web3 clients.",
+    "Projects and case studies by Muhammed Ajmal U K — AI tools, full-stack web apps, mobile games, and developer platforms.",
 };
 
 export default function ProjectsPage() {

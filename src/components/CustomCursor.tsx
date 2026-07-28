@@ -148,8 +148,6 @@ export function CustomCursor() {
     }
 
     setHidden(false);
-    applyClasses();
-    requestRender();
 
     document.addEventListener("mousemove", onMove, { passive: true });
     document.addEventListener("mousedown", onDown);

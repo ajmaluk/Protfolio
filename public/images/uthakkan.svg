@@ -1,0 +1,9 @@
+<svg width="100%" viewBox="0 0 110 40" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g fill="white">
+  <!-- Embedded Uthakkan U Icon -->
+  <image href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAaCAYAAACtv5zzAAAB50lEQVR4nO2VMWsVURCFz80ao0iKFBLEQLBSkkLFwtbWQkiTXm0sxCZgLSnyR2xSpU5hIWlSCUZUYmshSoyNpAi+vP1k4tw42Xd334IIFh54XN7M3HNmZi8zAo6APeAl8Bg4L0nAhJ19AFR+zgFrwGtgHzg0YxPmvNlXBI8B7gGfmmRZoAaGwMD/fwOuAKlLJGR+2+/jHLX/TgQifvi5EUnasvcktgN5sYKIrG5C822tCq1ZDB0YQan8JKmWNCnphttKcdl2K9xpDRpJ0M/LGo/ZLue4V1L1EJj+E4E+yNX+NYFO/Bf491s0YaOgzem+apzAoMN/LaXU9gxx33zJ5+ehCXxtGLOw4S5w9leyv8dKmEPmu+PmUiVfLPCNk8dZYvahZ/cspTRMKdlAq4AzFmA2SU8lzXlsbGXtnDuWxSMffKVpeOTnKnAhVDAJrIQpejz7AzLXfZvlM5J2JV1stCf2M0n6KOmVZ3td0tXgi8id+CxpIWe00lg2bZVEFOd/4HiSySsveXuMyNA31qAH+ZbzVnHtXQI+eEAXSQlxn78HZk/t8/DsTORFuFh7e5ofMfuMOCayCRx/y5Ft2XjnD4G3xVzLeAc8KHGNiOTRAEwBS8BzJ/geCA+AXWAdWAbO+R1ry6lX9RM5bH1Y2+LRogAAAABJRU5ErkJggg==" x="4" y="7.0" width="24" height="26" preserveAspectRatio="xMidYMid meet" />
+
+  <!-- UTHAKKAN Typography -->
+  <text x="34.0" y="25" font-family="'Orbitron', 'Space Grotesk', 'Inter', system-ui, sans-serif" font-size="12" font-weight="900" letter-spacing="1.5" fill="white">UTHAKKAN</text>
+</g>
+</svg>

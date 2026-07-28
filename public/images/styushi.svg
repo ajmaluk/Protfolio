@@ -1,0 +1,10 @@
+<svg width="100%" viewBox="0 0 110 40" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g fill="white">
+  <!-- Embedded Monogram Logo Icon -->
+  <image href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABsAAAAgCAYAAADjaQM7AAADpElEQVR4nK2XTaiVVRSGn3XOufaj1S3/EIoysm5RQWZEzYygSZHkoCZBOGoqVJCTCKJZBTVtGNQgcxBBgyIUB1Y0iBC1PyntV0oqrdTreeM9vFs+D/dyT3UWbPb+9rf3Wmu/611rfx+SaoLWA5A0J+mVjHsT7q3WRkomkLZuM7BybG5iGUy4rtLfDuwdm6sl9mohY70FNraFQ0nLgOuBFzJ3tqrUVbaoNal/nrGqOrvEhjlgvqoOZL0dsIO9TquOw3bCOs803Q5c3w+SHgAetkLAp5iJM/ZqCFyZtg+4KMr7HUNt3IwNo+vv9K8NOjAcAfYAf9qbTrNXJ4AdwLvAm1HYlMyndZFR1tiBC4B1wG80Wk6A+15J1/E/ZNBR5vHIaFWdkTQLnAZOAauAncBRxynxWpbTDAOfe8vlwPGx1LDeYTPmuM13DN8APBoDnwPbgMOBZWvYdahjbF1SYmscexW4FfgRuBbYDTw2sm5DklZKujqKfs/CP6rqJPARsD9jG9kEfAasAJaHTD7pd8AvwF/AJcCDSRcfZK0hkaTngXeA14G7AsEnwD0x3hhp+Rn4IEgMcrqK4SMh2M0h1fvAD3k/qm/PAXcAW4B7gY+D+/0+XXLkp3jbpbTla+A+YE2cuBvYAByLseMZm53fOz4HJV2TWJ1jpaQr0j/dim+eV5gcneK8WtKFme9Luizz5wgiacatwXCys9ndTFX9KukRwBC/lHdXAXZsv6GOczfl2aT6Ctgo6QsjIek24JvE9VQvRNhsOidWg6o6LcnwPJVE391JFW+8NCxzwl4cWI+mb1WnF+Ksbnrtram8J/eTX3ruRknfStok6W1JGxs0Ya1hnA08sykMM3nfTxt0npdLslMjJVa4PeNVkg5J2hKlH3rxeBy6osR6yUoUr9ZL+tLlSNJ7kp7Ju4ck7WoVpt3ai/Q1yU3t6nE4JHBsDlTVszmFL8tPOyVnZHeRfknpwuLMN1zbW/0D5lIp/pXSxWRUQCWtBV5MYi5PoTWjPH9wWsYGUWwI3wLWh64W55RP51jWNIz1JLlY+jrZlbwxnJY7XWKqyldMf1owPg68DDzhqyEfMZZbfKqMl7xcJzXmwvmk41VVb7TEDqS+TpjGqUhp2ZnY7AgpHMMKOVzzpmbsPOkU4zWS9rmS/9dPbS3QXBXap8GwExvn17GqOtFOyxRkMPYJ1pJ8Qy7MNjcVY72x53Yyf4z6ardMxZBl/MeiEcEs9AfqVOUfwMy5xcmmpBQAAAAASUVORK5CYII=" x="2" y="4" width="27" height="32" preserveAspectRatio="xMidYMid meet" />
+
+  <!-- STYUSHI Typography -->
+  <text x="33" y="21" font-family="'Inter', 'Montserrat', 'Space Grotesk', system-ui, sans-serif" font-size="12.5" font-weight="800" letter-spacing="1.5" fill="white">STYUSHI</text>
+  <text x="33" y="30" font-family="'Inter', 'Montserrat', 'Space Grotesk', system-ui, sans-serif" font-size="7.5" font-weight="600" letter-spacing="2.5" fill="white" opacity="0.85">CLOTHING</text>
+</g>
+</svg>

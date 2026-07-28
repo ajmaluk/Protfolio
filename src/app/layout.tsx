@@ -44,9 +44,39 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "Muhammed Ajmal U K",
+    url: "https://ajmal.uthakkan.in",
+    image: "https://ajmal.uthakkan.in/images/portrait.jpg",
+    jobTitle: "MCA Student & Full-Stack AI Developer",
+    description:
+      "Muhammed Ajmal U K is an MCA student, AI enthusiast, and full-stack developer from Kerala, India. Building production-ready AI tools, web applications, mobile apps, and digital products.",
+    sameAs: [
+      "https://linkedin.com/in/ajmaluk",
+      "https://github.com/ajmaluk",
+      "https://instagram.com/ajmaluk.me",
+    ],
+    knowsAbout: [
+      "Artificial Intelligence",
+      "Full-Stack Development",
+      "Python",
+      "JavaScript",
+      "React",
+      "Next.js",
+      "Flutter",
+      "Cloud Computing",
+    ],
+  };
+
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${matter.variable}`}>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <SmoothScroll />
         <NoiseOverlay />
         <Header />

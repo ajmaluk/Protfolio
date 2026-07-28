@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { ProjectDetail } from "@/data/projects";
 
@@ -9,19 +10,20 @@ export function ProjectHero({ project }: ProjectHeroProps) {
   return (
     <header className="projects-detail__hero">
       <div className="projects-detail__hero-img-wrap" style={{ viewTransitionName: `project-img-${project.slug}` } as React.CSSProperties}>
-        <img
+        <Image
           src={project.cover}
           alt={`${project.name} cover`}
           width={1920}
           height={1080}
           className="projects-detail__hero-img"
+          priority
         />
       </div>
 
       <div className="projects-detail__hero-overlay" aria-hidden="true" />
 
       <div className="container projects-detail__hero-content">
-        <Link href="/projects" transitionTypes={['page-transition']} className="projects-detail__back-link">
+        <Link href="/projects" className="projects-detail__back-link">
           <span className="projects-detail__back-arrow" aria-hidden="true">
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
               <path

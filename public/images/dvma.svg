@@ -1,0 +1,10 @@
+<svg width="100%" viewBox="0 0 110 40" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g fill="white">
+  <!-- Embedded Brain + Heart Icon -->
+  <image href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB0AAAAcCAYAAACdz7SqAAACc0lEQVR4nO3WS6hOURQH8HPudz1SrleJPPKY6ZopIemWzCgpwkApzwkpBkbCQDIwIkbKUAaXzCQjeSSPZIKB9wDlnTzuT/taR9vJ/Xz4RrLqdNba31rrv9fa/73OVxT/5b/8s4IyPQPZ7QbrqIE1fmJ3tBOsM7PHYlRmj0fXQJv52zb24DIe4THO4VrYD3AaU3LwPy20wDzswitsjcpm4AA2YAK6cRTPsAqjI7bjdypsYDB68TCqWhS/j2gSuwk38QQbWwbGoHgfxPXaee3GLUzCsNhYZ7yHZH4L8B5rqiJaAZ6MPkwLexyGYgn2t0I6LMO9lqr1jZ2JHAfC7sKFVHnYs7AXOzARi+N810fV1fGkTb7EnIhrNAM9kZ7QB0eCdZgbbcvlTc3uDeCq2m14iuFNhwieY2a06ofd4Xwk/4BPofeF/jHs+TVupC5tC/37fc8lLSqK4lm8Za1JemJuX1EUKWFHrJUR9yVyjIl36lBa6y2KYnazI02JkmN3WZYpYT87U4KyLBPY2fD5HP5Vu/pCf1sUxaVsLc85sGBnYh1G1tbTzkfiRrSxaueXrNVrM99+xuIqNof+0/ZWAEeCwYewJ02lKigm0LUasOzcGhUXYpLdjztdNiNStcOFOIyzeJECM5+U4GSApfG4IgPsDBLuCOZOzfMOKHUHHMPduDrp0vfE+vI0h0MfUo3PsC8m/5zJv5RIMCi7c5vjylyJ6rY3ie2JOzyu/h1uWepBmB7kmR3ndTw2lbqwLwBXt+MT16iqD3sLbof+OlidmHomGxBt+ydRZuy8g5U4haU1v/YAZgkr0KUxEt/FZyydXz+hfifhV0XoqerDvnabAAAAAElFTkSuQmCC" x="4" y="6.0" width="29" height="28" preserveAspectRatio="xMidYMid meet" />
+
+  <!-- DVMA Typography -->
+  <text x="39.0" y="21" font-family="'Space Grotesk', 'Inter', system-ui, sans-serif" font-size="13.5" font-weight="900" letter-spacing="1.5" fill="white">DVMA</text>
+  <text x="39.0" y="30" font-family="'Space Grotesk', 'Inter', system-ui, sans-serif" font-size="7.5" font-weight="700" letter-spacing="1.8" fill="white" opacity="0.85">ASSISTANT</text>
+</g>
+</svg>

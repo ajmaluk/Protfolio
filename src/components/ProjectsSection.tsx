@@ -1,8 +1,8 @@
 "use client"
 
+import Image from "next/image"
 import { useState, useEffect, useRef } from "react"
 import Link from "next/link"
-import { useRouter } from "next/navigation"
 import { cn } from "@/lib/utils"
 import { projects } from "@/data/projects"
 
@@ -11,7 +11,6 @@ interface ProjectsSectionProps {
 }
 
 export function ProjectsSection({ isProjectsPage = false }: ProjectsSectionProps) {
-  const router = useRouter()
   const mainRef = useRef<HTMLDivElement>(null)
   const [activeIndex, setActiveIndex] = useState(0)
   const [touchStartX, setTouchStartX] = useState<number | null>(null)
@@ -275,7 +274,7 @@ export function ProjectsSection({ isProjectsPage = false }: ProjectsSectionProps
                     >
                       <div className="home__project-slide-item">
                         <div className="home__project-slide-item-img">
-                          <img src={proj.thumbnail} alt={`${proj.name} cover`} width={132} height={200} loading="lazy" />
+                          <Image src={proj.thumbnail} alt={`${proj.name} cover`} width={132} height={200} loading="lazy" />
                         </div>
                         <div className="home__project-slide-item-progress">
                           <div className="home__project-slide-item-progress-bg" />
@@ -309,7 +308,6 @@ export function ProjectsSection({ isProjectsPage = false }: ProjectsSectionProps
 
                       <Link
                         href={isProjectsPage ? `/projects/${projects[activeIndex].slug}` : "/projects"}
-                        transitionTypes={['page-transition']}
                         className="cl-txt-orange fs-20 fw-med arrow-hover home__project-link mod-mb"
                       >
                         <span className="txt-link cl-txt-orange">
@@ -347,7 +345,7 @@ export function ProjectsSection({ isProjectsPage = false }: ProjectsSectionProps
                           )}
                           onClick={() => {
                             if (idx === activeIndex) {
-                              router.push(`/projects/${proj.slug}`)
+                              window.location.href = `/projects/${proj.slug}`
                             } else {
                               handleDotClick(idx)
                             }
@@ -396,13 +394,12 @@ export function ProjectsSection({ isProjectsPage = false }: ProjectsSectionProps
                         >
                           <Link
                             href={`/projects/${proj.slug}`}
-                            transitionTypes={['page-transition']}
                             className="home__project-thumbnail-img-wrap"
                             tabIndex={idx === activeIndex ? 0 : -1}
                             aria-label={`View ${proj.name} case study`}
                           >
                             <div className="home__project-thumbnail-img-inner">
-                              <img
+                              <Image
                                 src={proj.thumbnail}
                                 alt={idx === activeIndex ? `${proj.name} project preview` : ""}
                                 aria-hidden={idx !== activeIndex}
@@ -460,7 +457,6 @@ export function ProjectsSection({ isProjectsPage = false }: ProjectsSectionProps
 
                   <Link
                     href={isProjectsPage ? `/projects/${projects[activeIndex].slug}` : "/projects"}
-                    transitionTypes={['page-transition']}
                     className="cl-txt-orange fs-20 fw-med arrow-hover home__project-link"
                   >
                     <span className="txt-link cl-txt-orange">

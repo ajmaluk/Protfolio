@@ -54,7 +54,7 @@ export function SiteLoader() {
   if (!visible) return null;
 
   return (
-    <div className={`site-loader ${isLoaded ? "is-loaded" : ""}`}>
+    <div className={`site-loader ${isLoaded ? "is-loaded" : ""}`} role="status" aria-live="polite">
       {/* Top-Right diagonal panel */}
       <div className="loader-panel loader-panel--top-right" />
 

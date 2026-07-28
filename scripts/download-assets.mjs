@@ -1,4 +1,4 @@
-import { writeFileSync, mkdirSync } from 'fs';
+import { writeFileSync } from 'fs';
 
 const files = [
   { url: 'https://valentincheval.design/_astro/red-dot-white.BCoP2Tnu.svg', path: 'public/images/red-dot-white.svg' },

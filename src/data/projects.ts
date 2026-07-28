@@ -39,10 +39,10 @@ export const projects: ProjectDetail[] = [
     summary: "AI-powered productivity platform featuring image tools, PDF utilities, converters, and coding tools.",
     description:
       "ToolPix is an all-in-one AI-driven productivity web platform built with Python, Flask, and modern web technologies. It offers tools for image processing, PDF manipulation, code utilities, and format converters.",
-    thumbnail: "/images/define-hero.jpg",
-    cover: "/images/define-hero.jpg",
+    thumbnail: "/images/toolpix.png",
+    cover: "/images/toolpix.png",
     gallery: [
-      { src: "/images/define-hero.jpg", alt: "ToolPix AI productivity platform interface" },
+      { src: "/images/toolpix.png", alt: "ToolPix AI productivity platform interface" },
     ],
     content: [
       {
@@ -74,7 +74,7 @@ export const projects: ProjectDetail[] = [
     liveUrl: "https://toolpix.pythonanywhere.com",
     featured: true,
     publishedAt: "2024-05-10",
-    accentColor: "#ff3d00",
+    accentColor: "#ff6b35",
   },
   {
     id: "kallancop",
@@ -87,10 +87,10 @@ export const projects: ProjectDetail[] = [
     summary: "Local multiplayer social deduction mobile game published on the Google Play Store.",
     description:
       "KallanCop is an interactive local multiplayer social deduction game developed using Flutter and Firebase, designed for fast-paced group gameplay and published live on the Google Play Store.",
-    thumbnail: "/images/gotymebank.jpg",
-    cover: "/images/gotymebank.jpg",
+    thumbnail: "/images/dvma.png",
+    cover: "/images/dvma.png",
     gallery: [
-      { src: "/images/gotymebank.jpg", alt: "KallanCop mobile game playstore interface" },
+      { src: "/images/dvma.png", alt: "DVMA assistant interface preview" },
     ],
     content: [
       {
@@ -114,7 +114,7 @@ export const projects: ProjectDetail[] = [
     liveUrl: "https://play.google.com/store/apps/details?id=com.ajmal.kallancop",
     featured: true,
     publishedAt: "2024-03-15",
-    accentColor: "#ff3d00",
+    accentColor: "#2ec4b6",
   },
   {
     id: "explore-together",
@@ -127,10 +127,10 @@ export const projects: ProjectDetail[] = [
     summary: "Full-stack travel planning & itinerary management platform with database integration.",
     description:
       "Explore Together is a comprehensive full-stack web application designed for group travel planning, route management, and collaborative itineraries built with Node.js, Express, and MongoDB.",
-    thumbnail: "/images/bitmex-cover.jpg",
-    cover: "/images/bitmex-cover.jpg",
+    thumbnail: "/images/explore-together.png",
+    cover: "/images/explore-together.png",
     gallery: [
-      { src: "/images/bitmex-cover.jpg", alt: "Explore Together travel planning app preview" },
+      { src: "/images/explore-together.png", alt: "Explore Together travel planning app preview" },
     ],
     content: [
       {
@@ -181,7 +181,7 @@ export const projects: ProjectDetail[] = [
     liveUrl: null,
     featured: false,
     publishedAt: "2023-08-10",
-    accentColor: "#ff3d00",
+    accentColor: "#7c3aed",
   },
 ];
 

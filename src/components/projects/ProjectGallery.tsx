@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 interface ProjectGalleryProps {
   images: { src: string; alt: string; caption?: string }[];
   projectName: string;
@@ -19,7 +21,7 @@ export function ProjectGallery({ images, projectName }: ProjectGalleryProps) {
             data-cursor-text="View"
           >
             <div className="projects-detail__gallery-img-wrap">
-              <img
+              <Image
                 src={image.src}
                 alt={image.alt}
                 width={1280}

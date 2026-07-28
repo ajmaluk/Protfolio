@@ -1,0 +1,10 @@
+<svg width="100%" viewBox="0 0 110 40" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g fill="white">
+  <!-- Embedded W Monogram Icon -->
+  <image href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACcAAAAaCAYAAAA0R0VGAAACHUlEQVR4nM2Xy04VQRCGCzgoV5X3JCYkBBJcQFADWx+AkIALNxANt6AICl4SX4LEsFVZM8N8pk6qSdHM9czinNrUpHv+7i99qyqRCgOGzU8D28Bf4ApYtPYRYCjSDAEd+54DfgP/gHfATNBVzV0XbAr4wkNbs/6OB3Rgyzman60BI7BzGzgxn7nvdQ+YA5ba/17/C3jm5+kFbNKtWBjYW2h7bf+Pmn/h+rMCja7g00aADmwCOC0BI+p7ZbqlErBY8wN4UgvQgY0BJ9FAZXZrPmiyErAY8JsenVJAB/YYOG4AFgNWQXkL43/VI5QLqA12mB8BR5GwiaU9aMI8Z3qU7gE6sFHgoAVYG0vcsRi/AwzXH9izH25aTdMe8KMerbByupU7fQaLAXUHx3XV3ojIcxFJRKT7TvXZEuPYULhrEZkWEQ0/92JkHy1TSL0VyGAaCrcpIupTGQxLjWerGw8tlRmEC3Fj/oNGqfCUDA/AjU3MH+oLEj/CmjTu9gkwMX9k4bO7YHmA71sApi3AjsPjWxZfO7bnTQGzyDeNCmO5YDmAekn2awJmLiPZ6yFlOqkEq8hQigAzN8my6RcaJJsPM5Eqc4BVuV1ifsV03VumlVkJYNCcF+ZwdQBdVvw5WsHMTfKyoMBZcpckbHvQfNdSsyewgnriU87KrXowpwuAodDxdlG7bmgAqJXYJvDHiuR5a68qqmeBS9O9bVJx/QfQlsUnekqgeQAAAABJRU5ErkJggg==" x="4" y="7.0" width="39" height="26" preserveAspectRatio="xMidYMid meet" />
+
+  <!-- WP ADMISSION Typography -->
+  <text x="49.0" y="21" font-family="'Inter', 'Space Grotesk', system-ui, sans-serif" font-size="12" font-weight="900" letter-spacing="1.5" fill="white">WP</text>
+  <text x="49.0" y="30" font-family="'Inter', 'Space Grotesk', system-ui, sans-serif" font-size="7.5" font-weight="700" letter-spacing="2" fill="white" opacity="0.85">ADMISSION</text>
+</g>
+</svg>

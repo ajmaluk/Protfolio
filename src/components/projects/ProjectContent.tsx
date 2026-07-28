@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { ContentBlock } from "@/data/projects";
 
 interface ProjectContentProps {
@@ -33,7 +34,7 @@ export function ProjectContent({ blocks }: ProjectContentProps) {
           case "image":
             return (
               <figure key={i} className="projects-detail__figure">
-                <img
+                <Image
                   src={block.src}
                   alt={block.alt}
                   width={1280}

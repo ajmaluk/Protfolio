@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
@@ -10,10 +10,12 @@ export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOnHomeHero, setIsOnHomeHero] = useState(pathname === '/');
   const [menuOpen, setMenuOpen] = useState(false);
+  const overlayRef = useRef<HTMLDivElement>(null);
 
-  const hour = new Date().getHours();
-  const greeting =
-    hour < 12 ? "Good morning!" : hour < 17 ? "Good afternoon!" : "Good evening!";
+  const [greeting] = useState(() => {
+    const hour = new Date().getHours();
+    return hour < 12 ? "Good morning!" : hour < 17 ? "Good afternoon!" : "Good evening!";
+  });
 
   useEffect(() => {
     let attachedLenis:
@@ -62,6 +64,7 @@ export function Header() {
     if (menuOpen) {
       lenis?.stop();
       document.body.style.overflow = "hidden";
+      overlayRef.current?.focus();
     } else {
       lenis?.start();
       document.body.style.overflow = "";
@@ -69,6 +72,40 @@ export function Header() {
     return () => {
       document.body.style.overflow = "";
     };
+  }, [menuOpen]);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+    const overlay = overlayRef.current;
+    if (!overlay) return;
+
+    const focusable = overlay.querySelectorAll<HTMLElement>(
+      'a, button, [tabindex]:not([tabindex="-1"])'
+    );
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+
+    function handleTab(e: KeyboardEvent) {
+      if (e.key === "Escape") {
+        setMenuOpen(false);
+        return;
+      }
+      if (e.key !== "Tab") return;
+      if (e.shiftKey) {
+        if (document.activeElement === first) {
+          e.preventDefault();
+          last?.focus();
+        }
+      } else {
+        if (document.activeElement === last) {
+          e.preventDefault();
+          first?.focus();
+        }
+      }
+    }
+
+    document.addEventListener("keydown", handleTab);
+    return () => document.removeEventListener("keydown", handleTab);
   }, [menuOpen]);
 
   const closeMenu = () => {
@@ -106,13 +143,13 @@ export function Header() {
           <p className="header__greating fs-16" aria-hidden={!isOnHomeHero}>
             {greeting}
           </p>
-          <Link href="/" transitionTypes={['page-transition']} className="heading h5 fw-med header__name" aria-label="Ajmal U K — Home">
+          <Link href="/" className="heading h5 fw-med header__name" aria-label="Ajmal U K — Home">
             <div className="header__name-wrap">
               <div className="cl-txt-title">Ajmal</div>
-              <div>Product</div>
+              <div>AI</div>
             </div>
             <div className="header__name-wrap header__name-wrap-second">
-              <div>Designer</div>
+              <div>Developer</div>
               <div>U K</div>
             </div>
           </Link>
@@ -133,7 +170,6 @@ export function Header() {
         <div className="header__menu hide-mb">
           <Link
             href="/"
-            transitionTypes={['page-transition']}
             className={cn("txt-link hover-un fs-14 header__menu-link", pathname === '/' && "active")}
             aria-current={pathname === '/' ? "page" : undefined}
           >
@@ -142,7 +178,6 @@ export function Header() {
           <span className="splash cl-txt-disable fs-14">/</span>
           <Link
             href="/about"
-            transitionTypes={['page-transition']}
             className={cn("txt-link hover-un fs-14 header__menu-link", pathname === '/about' && "active")}
             aria-current={pathname === '/about' ? "page" : undefined}
           >
@@ -151,7 +186,6 @@ export function Header() {
           <span className="splash cl-txt-disable fs-14">/</span>
           <Link
             href="/projects"
-            transitionTypes={['page-transition']}
             className={cn("txt-link hover-un fs-14 header__menu-link", (pathname === '/projects' || pathname.startsWith('/projects/')) && "active")}
             aria-current={(pathname === '/projects' || pathname.startsWith('/projects/')) ? "page" : undefined}
           >
@@ -178,10 +212,12 @@ export function Header() {
 
       {menuOpen && (
         <div
+          ref={overlayRef}
           className="header__menu-overlay"
           role="dialog"
           aria-modal="true"
           aria-label="Site navigation"
+          tabIndex={-1}
           onClick={closeMenu}
         >
           <div className="header__menu-overlay-header">
@@ -196,9 +232,9 @@ export function Header() {
           <div className="header__menu-overlay-inner">
             <div className="container header__menu-overlay-grid">
               <div className="header__menu-overlay-nav">
-                <Link href="/" transitionTypes={['page-transition']} className={`header__menu-overlay-link${pathname === '/' ? ' active' : ''}`} aria-current={pathname === '/' ? "page" : undefined} onClick={() => handleLinkClick('/')}>Index</Link>
-                <Link href="/about" transitionTypes={['page-transition']} className={`header__menu-overlay-link${pathname === '/about' ? ' active' : ''}`} aria-current={pathname === '/about' ? "page" : undefined} onClick={() => handleLinkClick('/about')}>About</Link>
-                <Link href="/projects" transitionTypes={['page-transition']} className={`header__menu-overlay-link${(pathname === '/projects' || pathname.startsWith('/projects/')) ? ' active' : ''}`} aria-current={(pathname === '/projects' || pathname.startsWith('/projects/')) ? "page" : undefined} onClick={() => handleLinkClick('/projects')}>Projects</Link>
+                <Link href="/" className={`header__menu-overlay-link${pathname === '/' ? ' active' : ''}`} aria-current={pathname === '/' ? "page" : undefined} onClick={() => handleLinkClick('/')}>Index</Link>
+                <Link href="/about" className={`header__menu-overlay-link${pathname === '/about' ? ' active' : ''}`} aria-current={pathname === '/about' ? "page" : undefined} onClick={() => handleLinkClick('/about')}>About</Link>
+                <Link href="/projects" className={`header__menu-overlay-link${(pathname === '/projects' || pathname.startsWith('/projects/')) ? ' active' : ''}`} aria-current={(pathname === '/projects' || pathname.startsWith('/projects/')) ? "page" : undefined} onClick={() => handleLinkClick('/projects')}>Projects</Link>
               </div>
               <div className="header__menu-overlay-meta-row">
                 <div className="header__menu-overlay-socials">

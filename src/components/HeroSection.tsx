@@ -1,8 +1,9 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
-const WORDS = ["STARTUPS", "FOUNDERS", "BUSINESSES", "CREATORS"];
+const WORDS = ["STARTUPS", "FOUNDERS", "DEVELOPERS", "CREATORS"];
 
 export function HeroSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -62,7 +63,15 @@ export function HeroSection() {
         charEl.style.transform = `perspective(1000px) rotateX(${currentRotateX.toFixed(2)}deg) rotateY(${currentRotateY.toFixed(2)}deg) translate3d(${currentTranslateX.toFixed(2)}px, ${currentTranslateY.toFixed(2)}px, 0px)`;
       }
 
-      animFrameId = requestAnimationFrame(render);
+      const converged =
+        Math.abs(currentRotateX - targetRotateX) < 0.01 &&
+        Math.abs(currentRotateY - targetRotateY) < 0.01 &&
+        Math.abs(currentTranslateX - targetTranslateX) < 0.01 &&
+        Math.abs(currentTranslateY - targetTranslateY) < 0.01;
+
+      if (!converged || targetRotateX !== 0 || targetRotateY !== 0 || targetTranslateX !== 0 || targetTranslateY !== 0) {
+        animFrameId = requestAnimationFrame(render);
+      }
     };
 
     window.addEventListener("mousemove", onMouseMove, { passive: true });
@@ -82,13 +91,13 @@ export function HeroSection() {
         <div className="home__hero-main">
           <div className="container grid calc-h">
             <div className="home__hero-scope-wrap">
-              <ul className="home__hero-scope">
-                <span className="line" />
-                <li>AI &amp; Full-Stack Dev</li>
-                <li>Python &amp; JavaScript</li>
-                <li>Flutter &amp; Cloud</li>
-                <span className="line" />
-              </ul>
+              <div className="home__hero-scope" role="list">
+                <span className="line" role="none" />
+                <div role="listitem">AI &amp; Full-Stack Dev</div>
+                <div role="listitem">Python &amp; JavaScript</div>
+                <div role="listitem">Flutter &amp; Cloud</div>
+                <span className="line" role="none" />
+              </div>
               <a
                 href="mailto:ajmaluk.me@gmail.com"
                 className="arrow-hover home__hero-scope-cta"
@@ -177,19 +186,25 @@ export function HeroSection() {
           <div className="home__hero-bg-main">
             <div className="home__hero-bg-main-wrap">
               <div className="home__hero-bg-main-inner-bg">
-                <img
+                <Image
                   src="/images/home-hero-bg.jpg"
                   alt=""
                   role="presentation"
+                  width={1920}
+                  height={1080}
+                  priority
                 />
               </div>
               <div className="home__hero-bg-main-inner-man" data-canvas-wrap>
                 <div className="home__hero-bg-main-inner-man-ratio" />
                 <div className="home__hero-bg-main-inner placeholder" ref={characterRef}>
-                  <img
+                  <Image
                     src="/images/home-hero-trans.png"
                     alt=""
                     role="presentation"
+                    width={800}
+                    height={1000}
+                    priority
                   />
                 </div>
               </div>

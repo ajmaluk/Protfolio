@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { FooterSection } from "@/components/FooterSection";
 
@@ -103,13 +104,13 @@ export default function AboutPage() {
           <div className="container grid">
             <div className="about__bio-visual">
               <div className="about__bio-image-wrap">
-                <img
+                <Image
                   src="/images/portrait.jpg"
                   alt="Muhammed Ajmal U K portrait"
                   width={600}
                   height={750}
                   className="about__bio-image"
-                  loading="lazy"
+                  priority
                 />
               </div>
             </div>
@@ -133,8 +134,8 @@ export default function AboutPage() {
               Education &amp; Qualifications
             </h2>
             <div className="about__timeline">
-              {education.map((item, index) => (
-                <div key={index} className="about__timeline-item">
+              {education.map((item) => (
+                <div key={item.period + item.degree} className="about__timeline-item">
                   <div className="about__timeline-dot" />
                   <div className="about__timeline-content">
                     <span className="about__timeline-period cl-txt-orange fs-14 fw-med upper">
@@ -161,8 +162,8 @@ export default function AboutPage() {
               Projects &amp; Experience
             </h2>
             <div className="about__timeline">
-              {experience.map((item, index) => (
-                <div key={index} className="about__timeline-item">
+              {experience.map((item) => (
+                <div key={item.period + item.title} className="about__timeline-item">
                   <div className="about__timeline-dot" />
                   <div className="about__timeline-content">
                     <span className="about__timeline-period cl-txt-orange fs-14 fw-med upper">
@@ -226,7 +227,6 @@ export default function AboutPage() {
                 </a>
                 <Link
                   href="/projects"
-                  transitionTypes={['page-transition']}
                   className="about__cta-link cl-txt-orange txt-link hover-un"
                 >
                   Explore my projects

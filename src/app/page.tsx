@@ -7,7 +7,7 @@ import { FooterSection } from "@/components/FooterSection";
 export default function Home() {
   return (
     <div className="wrapper">
-      <main id="swup" className="page transition-fade" data-namespace="home" data-infinite>
+      <main className="page">
         <HeroSection />
         <IntroSection />
         <ProjectsSection />

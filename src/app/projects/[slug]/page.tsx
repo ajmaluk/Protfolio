@@ -44,9 +44,10 @@ export default async function ProjectDetailPage({ params }: PageProps) {
   const project = getProjectBySlug(slug);
   if (!project) notFound();
 
+  const allProjects = getAllProjects();
   const nextProject = getNextProject(slug);
   const prevProject = getPrevProject(slug);
-  const allProjects = getAllProjects();
+  const currentIndex = allProjects.findIndex((p) => p.slug === slug);
 
   return (
     <div className="wrapper">
@@ -75,6 +76,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
             next={nextProject}
             prev={prevProject}
             count={allProjects.length}
+            currentIndex={currentIndex}
           />
           <FooterSection />
         </main>

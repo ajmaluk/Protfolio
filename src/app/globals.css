@@ -160,7 +160,7 @@ html {
   background-color: var(--cl-dm-bg);
   -ms-overflow-style: none;
   scrollbar-width: none;
-  font-family: 'Helvetica Neue', sans-serif;
+  font-family: 'Helvetica Neue', Arial, 'Segoe UI', Roboto, sans-serif;
   font-weight: 400;
   color: var(--cl-dm-body);
   font-size: 0.5787037037vw;
@@ -229,6 +229,18 @@ html, body {
 body {
   overscroll-behavior-y: none;
   overscroll-behavior-x: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .mf-cursor {
+    display: none !important;
+  }
 }
 
 .wrapper {
@@ -2174,7 +2186,8 @@ h6,
 }
 
 .home__intro-companies-title {
-  max-width: 29.5rem;
+  max-width: 100%;
+  white-space: nowrap;
   padding-block: 4rem;
   margin-bottom: 6rem;
 }
@@ -2188,7 +2201,7 @@ h6,
 
 .home__intro-companies-listing {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
 }
 
 @media screen and (max-width: 767px) {

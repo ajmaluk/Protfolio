@@ -1,6 +1,8 @@
 import type { MetadataRoute } from "next";
 import { getAllProjects } from "@/data/projects";
 
+export const dynamic = "force-static";
+
 const BASE_URL = "https://ajmal.uthakkan.in";
 
 export default function sitemap(): MetadataRoute.Sitemap {

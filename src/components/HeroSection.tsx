@@ -204,8 +204,7 @@ export function HeroSection() {
               <div className="home__hero-bg-main-inner-bg">
                 <Image
                   src="/images/home-hero-bg.jpg"
-                  alt=""
-                  role="presentation"
+                  alt="Muhammed Ajmal U K - AI & Full-Stack Developer background"
                   width={1920}
                   height={1080}
                   priority
@@ -216,8 +215,7 @@ export function HeroSection() {
                 <div className="home__hero-bg-main-inner placeholder" ref={characterRef}>
                   <Image
                     src="/images/home-hero-trans.png"
-                    alt=""
-                    role="presentation"
+                    alt="Muhammed Ajmal U K (Ajmal U K) portrait illustration"
                     width={800}
                     height={1000}
                     priority

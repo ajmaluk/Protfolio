@@ -1729,10 +1729,10 @@ h6,
 }
 
 .home__hero-scope-wrap {
-  grid-row: 1/2;
+  grid-row: 2/3;
   grid-column: 13/17;
-  align-self: center;
-  margin-bottom: 12vh;
+  align-self: end;
+  margin-bottom: 25rem;
 }
 
 @media screen and (max-width: 991px) {
@@ -4107,9 +4107,21 @@ h6,
 }
 
 .footer__title {
-  font-size: clamp(1.8rem, 2.1vw, 2.5rem);
-  line-height: 1.55;
   color: rgba(255, 255, 255, 0.92);
+}
+
+.footer__title h3 {
+  font-size: clamp(2.2rem, 2.6vw, 3.4rem) !important;
+  line-height: 1.3 !important;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 1.4rem;
+}
+
+.footer__title-second {
+  font-size: clamp(1.4rem, 1.3vw, 1.7rem);
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.75);
 }
 
 .footer__title-gradient-mb {
@@ -4288,6 +4300,11 @@ h6,
   .footer__title {
     font-size: clamp(1.6rem, 4.5vw, 2.2rem);
     line-height: 1.45;
+  }
+
+  .footer__title h3 {
+    font-size: clamp(1.8rem, 4.2vw, 2.4rem) !important;
+    line-height: 1.4 !important;
   }
 
   .footer__cta {

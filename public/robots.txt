@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://ajmal.uthakkan.in
+
+# Sitemaps
+Sitemap: https://ajmal.uthakkan.in/sitemap.xml

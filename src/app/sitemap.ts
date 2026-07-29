@@ -1,23 +1,23 @@
-import type { MetadataRoute } from "next"
-import { getAllProjects } from "@/data/projects"
+import type { MetadataRoute } from "next";
+import { getAllProjects } from "@/data/projects";
 
-const BASE_URL = "https://ajmal.uthakkan.in"
+const BASE_URL = "https://ajmal.uthakkan.in";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const allProjects = getAllProjects()
+  const allProjects = getAllProjects();
 
   const projectEntries: MetadataRoute.Sitemap = allProjects.map((project) => ({
     url: `${BASE_URL}/projects/${project.slug}`,
     lastModified: new Date(project.publishedAt),
     changeFrequency: "monthly" as const,
     priority: 0.8,
-  }))
+  }));
 
   return [
     {
       url: BASE_URL,
       lastModified: new Date(),
-      changeFrequency: "monthly",
+      changeFrequency: "weekly",
       priority: 1,
     },
     {
@@ -29,9 +29,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     {
       url: `${BASE_URL}/projects`,
       lastModified: new Date(),
-      changeFrequency: "monthly",
+      changeFrequency: "weekly",
       priority: 0.9,
     },
+    {
+      url: `${BASE_URL}/resume.pdf`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.5,
+    },
     ...projectEntries,
-  ]
+  ];
 }

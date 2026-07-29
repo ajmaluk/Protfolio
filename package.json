@@ -1,34 +1,41 @@
 {
-  "name": "ai-website-clone-template",
-  "version": "0.3.1",
+  "name": "ajmal-uthakkan-portfolio",
+  "version": "1.0.0",
   "private": true,
-  "description": "Clone any website into a clean, modern Next.js codebase using AI coding agents",
-  "author": "JCodesMore",
+  "description": "Muhammed Ajmal U K (Ajmal U K / Uthakkan) — Portfolio & personal website. MCA student & Full-Stack AI Developer.",
+  "author": "Muhammed Ajmal U K",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/JCodesMore/ai-website-cloner-template.git"
+    "url": "https://github.com/ajmaluk/Protfolio.git"
   },
-  "homepage": "https://github.com/JCodesMore/ai-website-cloner-template",
+  "homepage": "https://ajmal.uthakkan.in",
   "bugs": {
-    "url": "https://github.com/JCodesMore/ai-website-cloner-template/issues"
+    "url": "https://github.com/ajmaluk/Protfolio/issues"
   },
   "keywords": [
-    "claude-code",
-    "website-clone",
-    "reverse-engineering",
-    "nextjs",
-    "ai",
-    "template",
-    "tailwindcss",
-    "shadcn-ui"
+    "Muhammed Ajmal U K",
+    "Ajmal U K",
+    "Uthakkan",
+    "ajmaluk",
+    "portfolio",
+    "Full-Stack Developer",
+    "AI Developer",
+    "MCA CET",
+    "Python",
+    "Flutter",
+    "Next.js",
+    "React",
+    "Kerala",
+    "India"
   ],
   "engines": {
     "node": ">=24"
   },
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && next-sitemap --config next-sitemap.config.js",
+    "postbuild": "next-sitemap --config next-sitemap.config.js",
     "start": "next start",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
@@ -43,6 +50,7 @@
     "lucide-react": "^1.6.0",
     "mammoth": "^1.12.0",
     "next": "16.2.1",
+    "next-sitemap": "^4.2.3",
     "pdf-lib": "^1.17.1",
     "playwright": "^1.60.0",
     "puppeteer-core": "^25.0.4",

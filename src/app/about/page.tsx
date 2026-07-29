@@ -1,20 +1,34 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
 import { FooterSection } from "@/components/FooterSection";
 import { AboutProjectsSlider } from "@/components/AboutProjectsSlider";
 
 export const metadata: Metadata = {
-  title: "About | Muhammed Ajmal U K",
+  title: "About Muhammed Ajmal U K | MCA Student & Full-Stack AI Developer | Uthakkan",
   description:
-    "Muhammed Ajmal U K is an MCA student, AI enthusiast, and full-stack developer from Kerala, India. Focused on building real-world digital products, AI tools, web apps, and mobile applications.",
+    "Learn about Muhammed Ajmal U K (Ajmal U K / Uthakkan) — MCA student at College of Engineering Trivandrum (CET), Full-Stack AI Developer, certifications, technical stack, and software projects.",
+  keywords: [
+    "About Muhammed Ajmal U K",
+    "Ajmal U K Profile",
+    "Ajmal Uthakkan Bio",
+    "Ajmal MCA Student CET",
+    "Full-Stack AI Developer Kerala",
+    "Software Engineer Kerala India",
+  ],
   openGraph: {
-    title: "About | Muhammed Ajmal U K",
+    title: "About Muhammed Ajmal U K | MCA Student & Full-Stack AI Developer | Uthakkan",
     description:
-      "Muhammed Ajmal U K is an MCA student, AI enthusiast, and full-stack developer from Kerala, India. Focused on building real-world digital products, AI tools, web apps, and mobile applications.",
+      "Learn about Muhammed Ajmal U K (Ajmal U K / Uthakkan) — MCA student at CET & Full-Stack AI Developer.",
     type: "profile",
     url: "https://ajmal.uthakkan.in/about",
     images: [{ url: "/images/portrait.jpg", alt: "Muhammed Ajmal U K" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "About Muhammed Ajmal U K | MCA Student & Full-Stack AI Developer",
+    description:
+      "Muhammed Ajmal U K (Ajmal U K / Uthakkan) — MCA Student at CET & Full-Stack AI Developer.",
+    images: ["/images/portrait.jpg"],
   },
 };
 
@@ -123,8 +137,45 @@ const softSkills = [
 ];
 
 export default function AboutPage() {
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://ajmal.uthakkan.in/",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "About",
+        item: "https://ajmal.uthakkan.in/about",
+      },
+    ],
+  };
+
+  const aboutPageJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "@id": "https://ajmal.uthakkan.in/about",
+    name: "About Muhammed Ajmal U K",
+    description:
+      "Learn about Muhammed Ajmal U K (Ajmal U K / Uthakkan) — MCA student at College of Engineering Trivandrum (CET), Full-Stack AI Developer, certifications, technical stack, and software projects.",
+    mainEntity: { "@id": "https://ajmal.uthakkan.in/#person" },
+  };
+
   return (
     <div className="wrapper">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutPageJsonLd) }}
+      />
       <main>
         {/* Hero Section */}
         <section className="about__hero">

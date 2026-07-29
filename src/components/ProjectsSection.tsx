@@ -4,13 +4,15 @@ import Image from "next/image"
 import { useState, useEffect, useRef } from "react"
 import Link from "next/link"
 import { cn } from "@/lib/utils"
-import { projects } from "@/data/projects"
+import { getAllProjects, getHomeProjects } from "@/data/projects"
 
 interface ProjectsSectionProps {
   isProjectsPage?: boolean
 }
 
 export function ProjectsSection({ isProjectsPage = false }: ProjectsSectionProps) {
+  const displayProjects = isProjectsPage ? getAllProjects() : getHomeProjects()
+
   const mainRef = useRef<HTMLDivElement>(null)
   const [activeIndex, setActiveIndex] = useState(0)
   const [touchStartX, setTouchStartX] = useState<number | null>(null)
@@ -51,7 +53,7 @@ export function ProjectsSection({ isProjectsPage = false }: ProjectsSectionProps
 
       const currentRelativeTop = mainTop - scrollY
       const progress = Math.max(0, Math.min(-currentRelativeTop / totalScrollable, 1))
-      const n = projects.length
+      const n = displayProjects.length
       if (n === 0) return
 
       const segSize = n > 1 ? 1 / (n - 1) : 1
@@ -126,58 +128,41 @@ export function ProjectsSection({ isProjectsPage = false }: ProjectsSectionProps
         el.style.setProperty("--imgDirection", imgDirection)
       })
 
-      // --- Loader circle angles ---
+      // --- Left Navigation Dots Progress Bar Update ---
       dotWraps.forEach((el, idx) => {
-        let angle = 0
-        const dotTargetProgress = n > 1 ? idx / (n - 1) : 0
-        if (progress >= dotTargetProgress) {
-          angle = 360
-        } else if (progress > dotTargetProgress - segSize && n > 1) {
-          angle = ((progress - (dotTargetProgress - segSize)) / segSize) * 360
+        let barHeight = "0%"
+        if (inTransition) {
+          if (idx === transFloor) {
+            barHeight = `${100 * (1 - localT)}%`
+          } else if (idx === transFloor + 1) {
+            barHeight = `${100 * localT}%`
+          } else {
+            barHeight = "0%"
+          }
+        } else {
+          barHeight = idx === transFloor ? "100%" : "0%"
         }
-        el.style.setProperty("--angle", `${Math.min(360, Math.max(0, angle))}deg`)
+        el.style.height = barHeight
       })
     }
 
-    window.addEventListener("scroll", handleScroll, { passive: true })
-
-    let lenisObj: { on: (e: string, fn: () => void) => void; off: (e: string, fn: () => void) => void } | undefined
-
-    function attachLenis(lenisInstance: typeof lenisObj) {
-      if (lenisInstance) {
-        if (lenisObj && lenisObj !== lenisInstance) {
-          lenisObj.off("scroll", handleScroll)
-        }
-        lenisObj = lenisInstance
-        lenisObj.on("scroll", handleScroll)
-      }
+    const lenis = (window as unknown as Record<string, unknown>).__lenis as { on: (e: string, fn: () => void) => void; off: (e: string, fn: () => void) => void } | undefined
+    if (lenis) {
+      lenis.on("scroll", handleScroll)
+    } else {
+      window.addEventListener("scroll", handleScroll, { passive: true })
     }
-
-    const existingLenis = (window as unknown as Record<string, unknown>).__lenis as typeof lenisObj
-    if (existingLenis) {
-      attachLenis(existingLenis)
-    }
-
-    const onLenisReady = (e: CustomEvent) => {
-      attachLenis(e.detail?.lenis)
-    }
-
-    window.addEventListener("lenis-ready", onLenisReady as EventListener)
-
-    // Initial run
     handleScroll()
 
     return () => {
       window.removeEventListener("resize", updateOffsets)
-      window.removeEventListener("scroll", handleScroll)
-      window.removeEventListener("lenis-ready", onLenisReady as EventListener)
-      if (lenisObj) {
-        lenisObj.off("scroll", handleScroll)
+      if (lenis) {
+        lenis.off("scroll", handleScroll)
+      } else {
+        window.removeEventListener("scroll", handleScroll)
       }
     }
-  }, [])
-
-
+  }, [displayProjects.length])
 
   const handleDotClick = (index: number) => {
     if (window.innerWidth <= 767) {
@@ -192,7 +177,7 @@ export function ProjectsSection({ isProjectsPage = false }: ProjectsSectionProps
     const totalScrollable = rect.height - viewportHeight
     
     // Snap to the point where this project is fully visible (no transition in progress)
-    const snapRatio = projects.length > 1 ? index / (projects.length - 1) : 0
+    const snapRatio = displayProjects.length > 1 ? index / (displayProjects.length - 1) : 0
     const targetProgress = snapRatio
     
     const absoluteTop = window.scrollY + rect.top
@@ -220,7 +205,7 @@ export function ProjectsSection({ isProjectsPage = false }: ProjectsSectionProps
 
     if (Math.abs(diffX) > 50 && Math.abs(diffX) > Math.abs(diffY) * 1.5) {
       if (diffX > 0) {
-        if (activeIndex < projects.length - 1) {
+        if (activeIndex < displayProjects.length - 1) {
           handleDotClick(activeIndex + 1)
         }
       } else {
@@ -241,13 +226,13 @@ export function ProjectsSection({ isProjectsPage = false }: ProjectsSectionProps
             <div className="heading h2 upper fw-bold home__project-title-txt"><span>Projects I</span></div>
             <div className="heading h2 upper fw-bold home__project-title-txt"><span>worked on</span></div>
             <div className="heading h2 upper fw-bold cl-txt-disable home__project-title-txt">
-              <span>16-25</span>
+              <span>23-26</span>
               <div className="heading h3 fw-semi cl-txt-orange copyright">®</div>
             </div>
             <div className="fs-20 cl-txt-desc fw-reg home__project-title-label">(Portfolio)</div>
           </h2>
 
-          <div ref={mainRef} className="home__project-main" style={{ "--totalHeight": `${projects.length * 100}vh` } as React.CSSProperties}>
+          <div ref={mainRef} className="home__project-main" style={{ "--totalHeight": `${displayProjects.length * 100}vh` } as React.CSSProperties}>
             <div className="home__project-main-stick">
               <div 
                 className="home__project-listing grid"
@@ -256,7 +241,7 @@ export function ProjectsSection({ isProjectsPage = false }: ProjectsSectionProps
               >
                 {/* Desktop Left Side Navigation Indicator Panel */}
                 <div className="home__project-slide">
-                  {projects.map((proj, idx) => (
+                  {displayProjects.map((proj, idx) => (
                     <div
                       key={proj.id}
                       className={cn("home__project-slide-item-wrap", idx === activeIndex && "active")}
@@ -293,12 +278,12 @@ export function ProjectsSection({ isProjectsPage = false }: ProjectsSectionProps
                         <div className="cl-txt-title home__project-pagination-current">
                           <span>{String(activeIndex + 1).padStart(2, "0")}</span>
                         </div>
-                        <span className="cl-txt-disable">/{String(projects.length).padStart(2, "0")}</span>
+                        <span className="cl-txt-disable">/{String(displayProjects.length).padStart(2, "0")}</span>
                         <div className="line home__project-pagination-progress">
                           <div 
                             className="home__project-pagination-progress-inner"
                             style={{
-                              width: `${100 / projects.length}%`,
+                              width: `${100 / displayProjects.length}%`,
                               transform: `translateX(${activeIndex * 100}%)`,
                               transition: "transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)"
                             }}
@@ -307,7 +292,7 @@ export function ProjectsSection({ isProjectsPage = false }: ProjectsSectionProps
                       </div>
 
                       <Link
-                        href={isProjectsPage ? `/projects/${projects[activeIndex].slug}` : "/projects"}
+                        href={isProjectsPage ? `/projects/${displayProjects[activeIndex]?.slug || ""}` : "/projects"}
                         className="cl-txt-orange fs-20 fw-med arrow-hover home__project-link mod-mb"
                       >
                         <span className="txt-link cl-txt-orange">
@@ -331,11 +316,11 @@ export function ProjectsSection({ isProjectsPage = false }: ProjectsSectionProps
                     </div>
 
                     <h3 className="visually-hidden">
-                      Viewing project: {projects[activeIndex].name}
+                      Viewing project: {displayProjects[activeIndex]?.name || ""}
                     </h3>
 
                     <div className="grid-1-1 home__project-name-grid">
-                      {projects.map((proj, idx) => (
+                      {displayProjects.map((proj, idx) => (
                         <button
                           key={proj.id}
                           type="button"
@@ -364,7 +349,7 @@ export function ProjectsSection({ isProjectsPage = false }: ProjectsSectionProps
                   <div className="home__project-year is-tablet">
                     <p className="cl-txt-desc fw-med home__project-label">Year</p>
                     <div className="heading h5 fw-med cl-txt-title home__project-year-current">
-                      {projects.map((proj, idx) => (
+                      {displayProjects.map((proj, idx) => (
                         <div key={idx} className={cn("home__project-year-txt", idx === activeIndex && "active")}>
                           {proj.year}
                         </div>
@@ -377,13 +362,13 @@ export function ProjectsSection({ isProjectsPage = false }: ProjectsSectionProps
                 <div className="home__project-thumbnail">
                   <div className="home__project-thumbnail-wrap">
                     <div className="home__project-thumbnail-listing">
-                      {projects.map((proj, idx) => (
+                      {displayProjects.map((proj, idx) => (
                         <div
                           key={proj.id}
                           className="home__project-thumbnail-img"
                           data-cursor-text="View"
                           style={{
-                            zIndex: projects.length - idx,
+                            zIndex: displayProjects.length - idx,
                             // Mobile fallback styles
                             "--clipIn": idx === activeIndex ? "0%" : (idx < activeIndex ? "0%" : "100%"),
                             "--clipOut": idx === activeIndex ? "100%" : (idx < activeIndex ? "0%" : "100%"),
@@ -421,7 +406,7 @@ export function ProjectsSection({ isProjectsPage = false }: ProjectsSectionProps
                   <div className="home__project-year is-desk is-mb">
                     <p className="cl-txt-desc fw-med home__project-label">Year</p>
                     <div className="heading h5 fw-med cl-txt-title home__project-year-current">
-                      {projects.map((proj, idx) => (
+                      {displayProjects.map((proj, idx) => (
                         <div key={idx} className={cn("home__project-year-txt", idx === activeIndex && "active")}>
                           {proj.year}
                         </div>
@@ -433,7 +418,7 @@ export function ProjectsSection({ isProjectsPage = false }: ProjectsSectionProps
                   <div className="home__project-role">
                     <p className="cl-txt-desc fw-med home__project-label">Role</p>
                     <div className="home__project-role-listing">
-                      {projects.map((proj, idx) => (
+                      {displayProjects.map((proj, idx) => (
                         <div key={proj.id} className={cn("home__project-role-listing-inner", idx === activeIndex && "active")}>
                           {proj.services.map((role, rIdx) => (
                             <h4 key={rIdx} className="fs-20 cl-txt-sub">{role}</h4>
@@ -448,7 +433,7 @@ export function ProjectsSection({ isProjectsPage = false }: ProjectsSectionProps
                 <div className="home__project-desc">
                   <p className="cl-txt-desc fw-med home__project-label">Description</p>
                   <div style={{ position: "relative" }}>
-                    {projects.map((proj, idx) => (
+                    {displayProjects.map((proj, idx) => (
                       <p key={idx} className={cn("fs-20 cl-txt-sub home__project-desc-txt", idx === activeIndex && "active")}>
                         {proj.description}
                       </p>
@@ -456,7 +441,7 @@ export function ProjectsSection({ isProjectsPage = false }: ProjectsSectionProps
                   </div>
 
                   <Link
-                    href={isProjectsPage ? `/projects/${projects[activeIndex].slug}` : "/projects"}
+                    href={isProjectsPage ? `/projects/${displayProjects[activeIndex]?.slug || ""}` : "/projects"}
                     className="cl-txt-orange fs-20 fw-med arrow-hover home__project-link"
                   >
                     <span className="txt-link cl-txt-orange">
@@ -502,14 +487,14 @@ export function ProjectsSection({ isProjectsPage = false }: ProjectsSectionProps
                     </div>
                   </div>
                   <div
-                    className={cn("home__project-navigation-arrow next", activeIndex === projects.length - 1 && "disable")}
-                    onClick={() => activeIndex < projects.length - 1 && handleDotClick(activeIndex + 1)}
+                    className={cn("home__project-navigation-arrow next", activeIndex === displayProjects.length - 1 && "disable")}
+                    onClick={() => activeIndex < displayProjects.length - 1 && handleDotClick(activeIndex + 1)}
                     role="button"
-                    tabIndex={activeIndex === projects.length - 1 ? -1 : 0}
+                    tabIndex={activeIndex === displayProjects.length - 1 ? -1 : 0}
                     aria-label="Next project"
-                    aria-disabled={activeIndex === projects.length - 1}
+                    aria-disabled={activeIndex === displayProjects.length - 1}
                     onKeyDown={(e) => {
-                      if ((e.key === "Enter" || e.key === " ") && activeIndex < projects.length - 1) {
+                      if ((e.key === "Enter" || e.key === " ") && activeIndex < displayProjects.length - 1) {
                         e.preventDefault();
                         handleDotClick(activeIndex + 1);
                       }

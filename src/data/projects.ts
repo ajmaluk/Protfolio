@@ -1,3 +1,5 @@
+import projectsData from "./projects.json";
+
 export type ContentBlock =
   | { type: "paragraph"; text: string }
   | { type: "heading"; text: string }
@@ -27,168 +29,17 @@ export interface ProjectDetail {
   accentColor?: string;
 }
 
-export const projects: ProjectDetail[] = [
-  {
-    id: "toolpix",
-    slug: "toolpix",
-    name: "ToolPix",
-    client: "Independent / AI Platform",
-    year: "2024",
-    category: "AI Tools",
-    services: ["Full-Stack Development", "AI Integration", "Python / Flask", "SEO Optimization"],
-    summary: "AI-powered productivity platform featuring image tools, PDF utilities, converters, and coding tools.",
-    description:
-      "ToolPix is an all-in-one AI-driven productivity web platform built with Python, Flask, and modern web technologies. It offers tools for image processing, PDF manipulation, code utilities, and format converters.",
-    thumbnail: "/images/toolpix.png",
-    cover: "/images/toolpix.png",
-    gallery: [
-      { src: "/images/toolpix.png", alt: "ToolPix AI productivity platform interface" },
-    ],
-    content: [
-      {
-        type: "paragraph",
-        text: "ToolPix is a production-grade web platform developed to consolidate daily developer and creator utilities into a single, intuitive interface. Powered by Python, Flask, and custom AI APIs, ToolPix delivers fast and accessible file processing directly in the browser.",
-      },
-      {
-        type: "heading",
-        text: "Key Features",
-      },
-      {
-        type: "list",
-        items: [
-          "AI-driven image processing & conversion utilities",
-          "PDF compression, merging, and document tools",
-          "Developer utilities, code formatting, and converter suites",
-          "High organic search visibility and responsive web UI",
-        ],
-      },
-      {
-        type: "heading",
-        text: "Tech Stack & Impact",
-      },
-      {
-        type: "paragraph",
-        text: "Built using Python, Flask, JavaScript, HTML5/CSS3, and deployed on cloud servers. ToolPix achieved significant organic search traffic and user growth through target SEO optimization and clean user experience.",
-      },
-    ],
-    liveUrl: "https://toolpix.pythonanywhere.com",
-    featured: true,
-    publishedAt: "2024-05-10",
-    accentColor: "#ff6b35",
-  },
-  {
-    id: "kallancop",
-    slug: "kallancop",
-    name: "KallanCop",
-    client: "Google Play Store",
-    year: "2024",
-    category: "Mobile & Games",
-    services: ["Mobile App Development", "Flutter", "Firebase", "Game Mechanics"],
-    summary: "Local multiplayer social deduction mobile game published on the Google Play Store.",
-    description:
-      "KallanCop is an interactive local multiplayer social deduction game developed using Flutter and Firebase, designed for fast-paced group gameplay and published live on the Google Play Store.",
-    thumbnail: "/images/dvma.png",
-    cover: "/images/dvma.png",
-    gallery: [
-      { src: "/images/dvma.png", alt: "DVMA assistant interface preview" },
-    ],
-    content: [
-      {
-        type: "paragraph",
-        text: "KallanCop brings the traditional role-play social deduction experience to mobile devices. Built with Flutter for cross-platform performance and Firebase for real-time state synchronization, KallanCop provides an engaging local multiplayer experience.",
-      },
-      {
-        type: "heading",
-        text: "Technical Highlights",
-      },
-      {
-        type: "list",
-        items: [
-          "Published live on Google Play Store",
-          "Built using Flutter framework for smooth 60fps animations",
-          "Real-time game state management powered by Firebase",
-          "Intuitive UI designed for instant multiplayer session setup",
-        ],
-      },
-    ],
-    liveUrl: "https://play.google.com/store/apps/details?id=com.ajmal.kallancop",
-    featured: true,
-    publishedAt: "2024-03-15",
-    accentColor: "#2ec4b6",
-  },
-  {
-    id: "explore-together",
-    slug: "explore-together",
-    name: "Explore Together",
-    client: "Academic Project",
-    year: "2023",
-    category: "Full-Stack",
-    services: ["Full-Stack Web App", "Database Design", "Node.js / Express", "MongoDB"],
-    summary: "Full-stack travel planning & itinerary management platform with database integration.",
-    description:
-      "Explore Together is a comprehensive full-stack web application designed for group travel planning, route management, and collaborative itineraries built with Node.js, Express, and MongoDB.",
-    thumbnail: "/images/explore-together.png",
-    cover: "/images/explore-together.png",
-    gallery: [
-      { src: "/images/explore-together.png", alt: "Explore Together travel planning app preview" },
-    ],
-    content: [
-      {
-        type: "paragraph",
-        text: "Explore Together solves the complexity of group travel by enabling users to create joint itineraries, track shared budgets, and explore location recommendations in real time.",
-      },
-      {
-        type: "heading",
-        text: "Architectural Focus",
-      },
-      {
-        type: "list",
-        items: [
-          "RESTful API design with Node.js & Express",
-          "Relational and document database schema using MongoDB",
-          "User authentication & session management",
-          "Responsive front-end dashboard for mobile and desktop",
-        ],
-      },
-    ],
-    liveUrl: null,
-    featured: true,
-    publishedAt: "2023-11-20",
-    accentColor: "#ff3d00",
-  },
-  {
-    id: "zyrace",
-    slug: "zyrace",
-    name: "ZyRace",
-    client: "Browser Game Project",
-    year: "2023",
-    category: "Web Apps",
-    services: ["JavaScript / Canvas", "HTML5", "Game Physics", "UI Design"],
-    summary: "Browser-based 2D racing game featuring custom physics engine and modern controls.",
-    description:
-      "ZyRace is a lightweight, high-performance browser racing game crafted with vanilla JavaScript and HTML5 Canvas, featuring custom collision detection and responsive arcade controls.",
-    thumbnail: "/images/home-hero-bg.jpg",
-    cover: "/images/home-hero-bg.jpg",
-    gallery: [
-      { src: "/images/home-hero-bg.jpg", alt: "ZyRace game screenshot" },
-    ],
-    content: [
-      {
-        type: "paragraph",
-        text: "ZyRace showcases pure JavaScript game logic, rendering 2D vehicle physics and obstacle generation at a smooth 60 FPS directly within the browser view.",
-      },
-    ],
-    liveUrl: null,
-    featured: false,
-    publishedAt: "2023-08-10",
-    accentColor: "#7c3aed",
-  },
-];
+export const projects: ProjectDetail[] = projectsData as ProjectDetail[];
 
 export function getAllProjects(): ProjectDetail[] {
   return [...projects].sort(
     (a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
   );
+}
+
+export function getHomeProjects(): ProjectDetail[] {
+  const featured = projects.filter((p) => p.featured);
+  return (featured.length > 0 ? featured : projects).slice(0, 3);
 }
 
 export function getProjectBySlug(slug: string): ProjectDetail | undefined {

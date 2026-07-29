@@ -1,12 +1,17 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { usePathname } from "next/navigation";
 import Lenis from "lenis";
 
 export function SmoothScroll() {
+  const pathname = usePathname();
   const rafRef = useRef<number | null>(null);
 
   useEffect(() => {
+    // Clear any leftover overflow lock on body upon page transition
+    document.body.style.overflow = "";
+
     const wrapper = document.querySelector(".wrapper") as HTMLElement | null;
 
     const lenis = new Lenis({
@@ -20,6 +25,10 @@ export function SmoothScroll() {
 
     (window as unknown as Record<string, unknown>).__lenis = lenis;
 
+    // Reset scroll position on route change
+    window.scrollTo(0, 0);
+    lenis.scrollTo(0, { immediate: true });
+
     function raf(time: number) {
       lenis.raf(time);
       rafRef.current = requestAnimationFrame(raf);
@@ -27,7 +36,6 @@ export function SmoothScroll() {
 
     rafRef.current = requestAnimationFrame(raf);
 
-    // Cache DOM queries
     let bgMainWrap = document.querySelector(".home__hero-bg-main-wrap") as HTMLElement | null;
     let innerBg = document.querySelector(".home__hero-bg-main-inner-bg") as HTMLElement | null;
     let characterWrap = document.querySelector(".home__hero-bg-main-inner-man") as HTMLElement | null;
@@ -42,12 +50,12 @@ export function SmoothScroll() {
 
     function updateOffsets() {
       vh = window.innerHeight;
-      if (!bgMainWrap) bgMainWrap = document.querySelector(".home__hero-bg-main-wrap");
-      if (!innerBg) innerBg = document.querySelector(".home__hero-bg-main-inner-bg");
-      if (!characterWrap) characterWrap = document.querySelector(".home__hero-bg-main-inner-man");
-      if (!introTitle) introTitle = document.querySelector(".home__intro-main-txt");
-      if (!footer) footer = document.querySelector(".footer-wrap");
-      if (!footerBgImg) footerBgImg = document.querySelector(".footer__bg-img");
+      bgMainWrap = document.querySelector(".home__hero-bg-main-wrap");
+      innerBg = document.querySelector(".home__hero-bg-main-inner-bg");
+      characterWrap = document.querySelector(".home__hero-bg-main-inner-man");
+      introTitle = document.querySelector(".home__intro-main-txt");
+      footer = document.querySelector(".footer-wrap");
+      footerBgImg = document.querySelector(".footer__bg-img");
 
       if (introTitle) {
         introTitleTop = window.scrollY + introTitle.getBoundingClientRect().top;
@@ -66,50 +74,46 @@ export function SmoothScroll() {
       const scrollY = lenis.scroll;
       const heroHeight = vh;
 
-      // Hero scroll progress: 0 at top of hero, 1 at top of next section
-      const heroProgress = Math.min(scrollY / heroHeight, 1);
-      
-      // Extended fade progress: continues into the intro section
-      const fadeEnd = heroHeight * 1.8;
-      const extendedProgress = Math.min(scrollY / fadeEnd, 1);
+      // Only run Home hero parallax effect when on home page
+      if (pathname === "/") {
+        const heroProgress = Math.min(scrollY / heroHeight, 1);
+        const fadeEnd = heroHeight * 1.8;
+        const extendedProgress = Math.min(scrollY / fadeEnd, 1);
 
-      // ---- Background layer ----
-      const bgScale = 1 + heroProgress * 0.35;
-      
-      // ---- Character layer ----
-      const charScale = 1 + heroProgress * 0.08;
-      const charTranslateY = heroProgress * 65;
+        const bgScale = 1 + heroProgress * 0.35;
+        const charScale = 1 + heroProgress * 0.08;
+        const charTranslateY = heroProgress * 65;
 
-      let fadeOpacity = 1;
-      if (extendedProgress > 0.55) {
-        const fadeProgress = (extendedProgress - 0.55) / 0.45;
-        fadeOpacity = Math.max(0, 1 - Math.pow(fadeProgress, 1.8));
+        let fadeOpacity = 1;
+        if (extendedProgress > 0.55) {
+          const fadeProgress = (extendedProgress - 0.55) / 0.45;
+          fadeOpacity = Math.max(0, 1 - Math.pow(fadeProgress, 1.8));
+        }
+
+        if (bgMainWrap) {
+          bgMainWrap.style.transform = `scale(${bgScale})`;
+          bgMainWrap.style.opacity = `${fadeOpacity}`;
+        }
+        if (innerBg) {
+          innerBg.style.transform = `scale(${1 + heroProgress * 0.2})`;
+          innerBg.style.opacity = `${Math.max(0.1, fadeOpacity)}`;
+        }
+        if (characterWrap) {
+          characterWrap.style.transform = `translate3d(0, ${charTranslateY}px, 0) scale(${charScale})`;
+          characterWrap.style.opacity = `${fadeOpacity}`;
+        }
+
+        if (introTitle) {
+          const currentTop = introTitleTop - scrollY;
+          const viewCenter = vh * 0.5;
+          const dist = viewCenter - currentTop;
+          const normalizedDist = Math.max(0, Math.min(1, dist / vh));
+          const translateY = 30 * (1 - normalizedDist);
+          introTitle.style.transform = `translateY(${translateY}px)`;
+        }
       }
 
-      if (bgMainWrap) {
-        bgMainWrap.style.transform = `scale(${bgScale})`;
-        bgMainWrap.style.opacity = `${fadeOpacity}`;
-      }
-      if (innerBg) {
-        innerBg.style.transform = `scale(${1 + heroProgress * 0.2})`;
-        innerBg.style.opacity = `${Math.max(0.1, fadeOpacity)}`;
-      }
-      if (characterWrap) {
-        characterWrap.style.transform = `translate3d(0, ${charTranslateY}px, 0) scale(${charScale})`;
-        characterWrap.style.opacity = `${fadeOpacity}`;
-      }
-
-      // ---- Intro section title parallax (using cached top) ----
-      if (introTitle) {
-        const currentTop = introTitleTop - scrollY;
-        const viewCenter = vh * 0.5;
-        const dist = viewCenter - currentTop;
-        const normalizedDist = Math.max(0, Math.min(1, dist / vh));
-        const translateY = 30 * (1 - normalizedDist);
-        introTitle.style.transform = `translateY(${translateY}px)`;
-      }
-
-      // ---- Footer Background Light/Glow Parallax (using cached top/height) ----
+      // Footer Background Parallax
       if (footer && footerBgImg) {
         const currentFooterTop = footerTop - scrollY;
         const total = vh + footerHeight;
@@ -123,7 +127,6 @@ export function SmoothScroll() {
 
     lenis.on("scroll", handleParallax);
 
-    // Run an initial pass after the next animation frame to ensure layout is ready
     const initialRaf = requestAnimationFrame(() => {
       updateOffsets();
       handleParallax();
@@ -138,7 +141,7 @@ export function SmoothScroll() {
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
       cancelAnimationFrame(initialRaf);
     };
-  }, []);
+  }, [pathname]);
 
   return null;
 }

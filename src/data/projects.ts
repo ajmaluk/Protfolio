@@ -54,14 +54,14 @@ export function getNextProject(slug: string): ProjectDetail | undefined {
   const list = getAllProjects();
   const idx = list.findIndex((p) => p.slug === slug);
   if (idx === -1) return undefined;
-  return list[idx + 1];
+  return list[(idx + 1) % list.length];
 }
 
 export function getPrevProject(slug: string): ProjectDetail | undefined {
   const list = getAllProjects();
   const idx = list.findIndex((p) => p.slug === slug);
   if (idx === -1) return undefined;
-  return list[idx - 1];
+  return list[(idx - 1 + list.length) % list.length];
 }
 
 export function getProjectsByCategory(category: ProjectCategory): ProjectDetail[] {

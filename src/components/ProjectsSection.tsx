@@ -259,7 +259,14 @@ export function ProjectsSection({ isProjectsPage = false }: ProjectsSectionProps
                     >
                       <div className="home__project-slide-item">
                         <div className="home__project-slide-item-img">
-                          <Image src={proj.thumbnail} alt={`${proj.name} cover`} width={132} height={200} loading="lazy" />
+                          <Image
+                            src={proj.thumbnail}
+                            alt={`${proj.name} cover`}
+                            width={132}
+                            height={200}
+                            loading={idx === 0 ? "eager" : "lazy"}
+                            priority={idx === 0}
+                          />
                         </div>
                         <div className="home__project-slide-item-progress">
                           <div className="home__project-slide-item-progress-bg" />
@@ -390,7 +397,8 @@ export function ProjectsSection({ isProjectsPage = false }: ProjectsSectionProps
                                 aria-hidden={idx !== activeIndex}
                                 width={1280}
                                 height={800}
-                                loading="lazy"
+                                loading={idx === 0 ? "eager" : "lazy"}
+                                priority={idx === 0}
                               />
                             </div>
                           </Link>

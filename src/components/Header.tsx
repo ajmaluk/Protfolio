@@ -24,8 +24,7 @@ export function Header() {
 
     function updateScrollState() {
       const lenis = (window as unknown as Record<string, unknown>).__lenis as { scroll: number } | undefined;
-      if (!lenis) return;
-      const scrollY = lenis.scroll;
+      const scrollY = typeof lenis?.scroll === "number" ? lenis.scroll : (typeof window !== "undefined" ? window.scrollY : 0);
       setIsScrolled(scrollY > 50);
       if (pathname === '/') {
         const heroHeight = window.innerHeight;
@@ -43,16 +42,20 @@ export function Header() {
     }
 
     window.addEventListener("lenis-ready", onLenisReady as EventListener);
+    window.addEventListener("scroll", updateScrollState, { passive: true });
 
     const existingLenis = (window as unknown as Record<string, unknown>).__lenis as { scroll: number; on: (e: string, fn: () => void) => void; off: (e: string, fn: () => void) => void } | undefined;
     if (existingLenis) {
       attachedLenis = existingLenis;
       updateScrollState();
       existingLenis.on("scroll", updateScrollState);
+    } else {
+      updateScrollState();
     }
 
     return () => {
       window.removeEventListener("lenis-ready", onLenisReady as EventListener);
+      window.removeEventListener("scroll", updateScrollState);
       if (attachedLenis) {
         attachedLenis.off("scroll", updateScrollState);
       }

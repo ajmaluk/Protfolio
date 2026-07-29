@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { FooterSection } from "@/components/FooterSection";
+import { AboutProjectsSlider } from "@/components/AboutProjectsSlider";
 
 export const metadata: Metadata = {
   title: "About | Muhammed Ajmal U K",
@@ -19,49 +20,28 @@ export const metadata: Metadata = {
 
 const education = [
   {
-    period: "2023 — Present",
+    period: "2025 — 2027",
     degree: "Master of Computer Applications (MCA)",
-    institution: "Kerala, India",
+    institution: "College of Engineering, Trivandrum (CET)",
+    score: "90.9%",
     details:
-      "Post-Graduate specialization in Advanced Computer Applications, AI Systems, Full-Stack Web Architecture, and Software Engineering Principles.",
+      "APJ Abdul Kalam Technological University (KTU) – Specialization in Advanced Computer Applications, AI Systems, Full-Stack Web Architecture, and Software Engineering (90.9%).",
   },
   {
-    period: "2024",
-    degree: "Google Cloud Arcade Champion",
-    institution: "Google Cloud Platform",
+    period: "2022 — 2025",
+    degree: "Bachelor of Computer Science (B.Sc)",
+    institution: "Mahatma Gandhi College, Iritty (MGC)",
+    score: "89.7%",
     details:
-      "Achieved Champion Tier in Google Cloud Arcade, demonstrating practical proficiency in Cloud Infrastructure, Automation, and Serverless Systems.",
+      "Kannur University – Specialization in Computer Science, Data Structures, Object-Oriented Programming, Database Management (SQL), and Web Technologies (89.7%).",
   },
   {
-    period: "2020 — 2023",
-    degree: "Bachelor of Computer Science / Applications",
-    institution: "Kerala, India",
+    period: "2020 — 2022",
+    degree: "Higher Secondary Education (HSC)",
+    institution: "GHSS Ulikkal",
+    score: "90.8%",
     details:
-      "Foundational degree covering Data Structures, Algorithms, Object-Oriented Programming, Database Systems (SQL), and Web Technologies.",
-  },
-];
-
-const experience = [
-  {
-    period: "2024 — Present",
-    title: "Creator & Lead Developer",
-    company: "ToolPix AI Platform",
-    description:
-      "Architected and deployed ToolPix, an AI-powered productivity platform featuring image processing, PDF tools, code utilities, and converters using Python, Flask, and AI API integrations.",
-  },
-  {
-    period: "2024",
-    title: "Mobile Game Developer",
-    company: "KallanCop (Google Play Store)",
-    description:
-      "Developed and published KallanCop, a local multiplayer social deduction game on the Google Play Store using Flutter and Firebase real-time database.",
-  },
-  {
-    period: "2023",
-    title: "Full-Stack Project Lead",
-    company: "Explore Together",
-    description:
-      "Built Explore Together, a full-stack academic travel planning web application with Node.js, Express, and MongoDB database architecture.",
+      "Kerala Board of Public Examination – Higher Secondary Education with specialization in Computer Science & Science streams (90.8%).",
   },
 ];
 
@@ -121,7 +101,7 @@ export default function AboutPage() {
                 My career goal is to build high-performance, production-ready software products and grow as an AI/Full-Stack Developer and tech innovator. I am passionate about creating practical tools that solve real-world problems through clean code, modern web architectures, and smart AI integrations.
               </p>
               <p className="about__bio-text cl-txt-sub">
-                From publishing games on the Google Play Store (KallanCop) to building high-traffic AI productivity platforms (ToolPix) and achieving Google Cloud Arcade Champion status, I continuously focus on hands-on software development, scalable engineering, and user-centered product craft.
+                From publishing games on the Google Play Store (KallanCop) to building high-traffic AI productivity platforms (ToolPix) and cross-platform mobile travel apps (Explore Together), I continuously focus on hands-on software development, scalable engineering, and user-centered product craft.
               </p>
             </div>
           </div>
@@ -138,9 +118,16 @@ export default function AboutPage() {
                 <div key={item.period + item.degree} className="about__timeline-item">
                   <div className="about__timeline-dot" />
                   <div className="about__timeline-content">
-                    <span className="about__timeline-period cl-txt-orange fs-14 fw-med upper">
-                      {item.period}
-                    </span>
+                    <div style={{ display: "flex", alignItems: "center", gap: "1.2rem", flexWrap: "wrap", marginBottom: "0.8rem" }}>
+                      <span className="about__timeline-period cl-txt-orange fs-14 fw-med upper">
+                        {item.period}
+                      </span>
+                      {item.score && (
+                        <span className="about__project-card-badge" style={{ position: "static", transform: "none" }}>
+                          {item.score}
+                        </span>
+                      )}
+                    </div>
                     <h3 className="about__timeline-title heading h4 fw-bold cl-txt-title">
                       {item.degree}
                     </h3>
@@ -155,33 +142,8 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Technical Projects & Experience Section */}
-        <section className="about__experience">
-          <div className="container">
-            <h2 className="about__section-label heading h5 upper fw-med cl-txt-disable">
-              Projects &amp; Experience
-            </h2>
-            <div className="about__timeline">
-              {experience.map((item) => (
-                <div key={item.period + item.title} className="about__timeline-item">
-                  <div className="about__timeline-dot" />
-                  <div className="about__timeline-content">
-                    <span className="about__timeline-period cl-txt-orange fs-14 fw-med upper">
-                      {item.period}
-                    </span>
-                    <h3 className="about__timeline-title heading h4 fw-bold cl-txt-title">
-                      {item.title}
-                    </h3>
-                    <span className="about__timeline-company cl-txt-desc fs-20 fw-med">
-                      {item.company}
-                    </span>
-                    <p className="about__timeline-desc cl-txt-sub">{item.description}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+        {/* Swipable Projects Section */}
+        <AboutProjectsSlider />
 
         {/* Skills Section */}
         <section className="about__skills">

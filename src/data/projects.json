@@ -63,12 +63,177 @@
     "category": "Mobile & Games",
     "services": [
       "Mobile App Development",
-      "Flutter",
-      "Firebase",
-      "Game Mechanics"
+      "Flutter & Dart",
+      "Game Mechanics",
+      "Android SDK"
     ],
-    "summary": "Local multiplayer social deduction mobile game published on the Google Play Store.",
-    "description": "KallanCop is an interactive local multiplayer social deduction game developed using Flutter and Firebase, designed for fast-paced group gameplay and published live on the Google Play Store.",
+    "summary": "Offline multiplayer social deduction mobile game published on the Google Play Store.",
+    "description": "KallanCop is an offline multiplayer social deduction game developed using Flutter and Dart. Players take on hidden roles such as Cop, Thief, and Kingpin, using strategy, deception, and teamwork.",
+    "thumbnail": "/images/kallancop.png",
+    "cover": "/images/kallancop.png",
+    "gallery": [
+      {
+        "src": "/images/kallancop.png",
+        "alt": "KallanCop game interface preview"
+      }
+    ],
+    "content": [
+      {
+        "type": "paragraph",
+        "text": "Inspired by traditional 'Cops and Robbers', KallanCop was designed to provide a fun, strategic offline multiplayer party experience that encourages social interaction and high replayability without requiring an internet connection."
+      },
+      {
+        "type": "heading",
+        "text": "Key Features"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Offline local multiplayer gameplay for social gatherings",
+          "Hidden role assignment (Cop, Thief, Kingpin)",
+          "Strategic deduction mechanics & interactive animations",
+          "Simple, mobile-optimized UI designed for Android"
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Tech Stack & Contribution"
+      },
+      {
+        "type": "paragraph",
+        "text": "Independently designed, developed, and published on the Google Play Store using Flutter, Dart, Shared Preferences, and the Android SDK."
+      }
+    ],
+    "liveUrl": "https://play.google.com/store/apps/details?id=com.ajmal.kallancop&hl=en_IN",
+    "featured": true,
+    "publishedAt": "2024-03-15",
+    "accentColor": "#2ec4b6"
+  },
+  {
+    "id": "climbo",
+    "slug": "climbo",
+    "name": "Climbo",
+    "client": "Browser Game Project",
+    "year": "2024",
+    "category": "Web Apps",
+    "services": [
+      "JavaScript",
+      "HTML5 Canvas",
+      "Game Physics",
+      "Web APIs"
+    ],
+    "summary": "Browser-based physics puzzle racing game with hill climb tracks and realistic car physics.",
+    "description": "Climbo is a free unblocked physics puzzle racing game where players navigate challenging obstacle courses using realistic vehicle physics, momentum control, and strategic environmental solving.",
+    "thumbnail": "/images/climbo.png",
+    "cover": "/images/climbo.png",
+    "gallery": [
+      {
+        "src": "/images/climbo.png",
+        "alt": "Climbo physics racing game preview"
+      }
+    ],
+    "content": [
+      {
+        "type": "paragraph",
+        "text": "Climbo introduces physics-based mechanics that challenge players to think critically, control momentum, and solve environmental puzzles with ramps, bridges, and moving platforms directly in web browsers."
+      },
+      {
+        "type": "heading",
+        "text": "Key Features"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Physics-based vehicle movement & collision simulation",
+          "Progressive difficulty levels with environmental puzzles",
+          "Responsive controls optimized for desktop and mobile browsers",
+          "Fast loading experience with modern low-poly visual design"
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Tech Stack & Implementation"
+      },
+      {
+        "type": "paragraph",
+        "text": "Built independently using pure JavaScript, HTML5 Canvas, CSS3, and Web APIs, featuring a custom physics and movement engine."
+      }
+    ],
+    "liveUrl": "https://climbo.uthakkan.in/",
+    "featured": true,
+    "publishedAt": "2024-01-15",
+    "accentColor": "#ff8c00"
+  },
+  {
+    "id": "codepix",
+    "slug": "codepix",
+    "name": "CodePix",
+    "client": "EdTech Platform",
+    "year": "2024",
+    "category": "Web Apps",
+    "services": [
+      "Full-Stack Development",
+      "Python / Flask",
+      "Gamified Learning",
+      "REST APIs"
+    ],
+    "summary": "Interactive coding learning platform transforming programming education into a game-like experience.",
+    "description": "CodePix simplifies the programming learning curve through structured learning paths, interactive coding challenges, and a retro pixel-art themed interface.",
+    "thumbnail": "/images/codepix.png",
+    "cover": "/images/codepix.png",
+    "gallery": [
+      {
+        "src": "/images/codepix.png",
+        "alt": "CodePix coding platform preview"
+      }
+    ],
+    "content": [
+      {
+        "type": "paragraph",
+        "text": "CodePix transforms programming education into an engaging experience. It combines beginner-friendly learning paths, hands-on coding challenges, and gamified progress tracking."
+      },
+      {
+        "type": "heading",
+        "text": "Key Features"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Interactive coding lessons & beginner-friendly learning paths",
+          "Hands-on coding practice challenges & gamified progress tracking",
+          "Retro pixel-art themed responsive educational interface",
+          "User community profiles and interactive coding workflows"
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Tech Stack & Architecture"
+      },
+      {
+        "type": "paragraph",
+        "text": "Engineered full-stack using Python, Flask, JavaScript, HTML5, CSS3, REST APIs, and SQLite/MySQL database integration."
+      }
+    ],
+    "liveUrl": "https://codepix.uthakkan.in/",
+    "featured": true,
+    "publishedAt": "2024-02-20",
+    "accentColor": "#6366f1"
+  },
+  {
+    "id": "dvma",
+    "slug": "dvma",
+    "name": "DVMA - Dementia Assistant",
+    "client": "Independent / Healthcare",
+    "year": "2024",
+    "category": "Mobile & Games",
+    "services": [
+      "Mobile App Development",
+      "AI Assistant",
+      "Healthcare UI/UX",
+      "Flutter / Firebase"
+    ],
+    "summary": "Assistive Virtual Memory Assistant application supporting dementia patients and caregivers.",
+    "description": "DVMA (Dementia Virtual Memory Assistant) is a smart companion application designed for dementia patients and caregivers to live safely, stay connected, and manage daily tasks with ease.",
     "thumbnail": "/images/dvma.png",
     "cover": "/images/dvma.png",
     "gallery": [
@@ -80,106 +245,94 @@
     "content": [
       {
         "type": "paragraph",
-        "text": "KallanCop brings the traditional role-play social deduction experience to mobile devices. Built with Flutter for cross-platform performance and Firebase for real-time state synchronization, KallanCop provides an engaging local multiplayer experience."
+        "text": "DVMA (Dementia Virtual Memory Assistant) is an assistive mobile and web solution engineered to support dementia patients and their family caregivers. It integrates intelligent memory boosters, daily activity routines, live location safety features, and emergency SOS alerts."
       },
       {
         "type": "heading",
-        "text": "Technical Highlights"
+        "text": "Key Highlights"
       },
       {
         "type": "list",
         "items": [
-          "Published live on Google Play Store",
-          "Built using Flutter framework for smooth 60fps animations",
-          "Real-time game state management powered by Firebase",
-          "Intuitive UI designed for instant multiplayer session setup"
+          "Interactive Memory Boost daily activities to support cognitive health",
+          "Real-time location safety tracking and instant emergency contact SOS alerts",
+          "Structured daily tasks and medication reminders with instant completion tracking",
+          "Compassionate, high-contrast, accessible UI tailored for patient readability"
         ]
       }
     ],
-    "liveUrl": "https://play.google.com/store/apps/details?id=com.ajmal.kallancop",
+    "liveUrl": "https://dvma-dementia-assistant.pages.dev/",
     "featured": true,
-    "publishedAt": "2024-03-15",
-    "accentColor": "#2ec4b6"
+    "publishedAt": "2024-04-10",
+    "accentColor": "#0ea5e9"
   },
   {
     "id": "explore-together",
     "slug": "explore-together",
     "name": "Explore Together",
-    "client": "Academic Project",
-    "year": "2023",
-    "category": "Full-Stack",
+    "client": "B.Sc Computer Science Final Year Project",
+    "year": "2024",
+    "category": "Mobile & Games",
     "services": [
-      "Full-Stack Web App",
-      "Database Design",
-      "Node.js / Express",
-      "MongoDB"
+      "Flutter & Dart",
+      "Firebase (Auth, Firestore, Storage)",
+      "Gemini AI Integration",
+      "Cloudinary & OneSignal"
     ],
-    "summary": "Full-stack travel planning & itinerary management platform with database integration.",
-    "description": "Explore Together is a comprehensive full-stack web application designed for group travel planning, route management, and collaborative itineraries built with Node.js, Express, and MongoDB.",
+    "summary": "Cross-platform mobile app transforming solo travel into a social, safe, and connected experience.",
+    "description": "Explore Together is a cross-platform mobile application developed as a B.Sc Computer Science final year project. It transforms solo travel into a social, safe, and connected experience through matchmaking, real-time chat, and Gemini AI assistance.",
     "thumbnail": "/images/explore-together.png",
     "cover": "/images/explore-together.png",
     "gallery": [
       {
         "src": "/images/explore-together.png",
-        "alt": "Explore Together travel planning app preview"
+        "alt": "Explore Together mobile application interface preview"
+      },
+      {
+        "src": "https://ik.imagekit.io/uthakkan/ExploreTogether/user_homepage.jpeg",
+        "alt": "Explore Together user homepage"
+      },
+      {
+        "src": "https://ik.imagekit.io/uthakkan/ExploreTogether/user_ai_chat.jpeg",
+        "alt": "Explore Together Gemini AI travel assistant chat"
+      },
+      {
+        "src": "https://ik.imagekit.io/uthakkan/ExploreTogether/admin_analytics.jpeg",
+        "alt": "Explore Together admin analytics dashboard"
       }
     ],
     "content": [
       {
         "type": "paragraph",
-        "text": "Explore Together solves the complexity of group travel by enabling users to create joint itineraries, track shared budgets, and explore location recommendations in real time."
+        "text": "Explore Together was developed as the Final Year Project for B.Sc Computer Science. It redefines solo travel by enabling travelers to connect, match based on interests and trip dates, and plan journeys collaboratively. Built with Flutter for seamless cross-platform performance, Firebase for real-time Firestore synchronization and authentication, and Gemini AI for intelligent travel recommendations."
       },
       {
         "type": "heading",
-        "text": "Architectural Focus"
+        "text": "Key Features"
       },
       {
         "type": "list",
         "items": [
-          "RESTful API design with Node.js & Express",
-          "Relational and document database schema using MongoDB",
-          "User authentication & session management",
-          "Responsive front-end dashboard for mobile and desktop"
+          "Travel Matchmaking: Match users based on destination, dates, budget, and interests",
+          "Interactive Map: Filter trips by location, budget, and duration",
+          "Real-Time Chat: Individual & group messaging for seamless trip coordination",
+          "Gemini AI Assistant: Personalized travel Q&A and destination recommendations",
+          "Trip Sharing: Post travel photos, itineraries, and moments",
+          "Admin Tools & Analytics: Monitor user growth, trip metrics, and engagement"
         ]
-      }
-    ],
-    "liveUrl": null,
-    "featured": true,
-    "publishedAt": "2023-11-20",
-    "accentColor": "#ff3d00"
-  },
-  {
-    "id": "zyrace",
-    "slug": "zyrace",
-    "name": "ZyRace",
-    "client": "Browser Game Project",
-    "year": "2023",
-    "category": "Web Apps",
-    "services": [
-      "JavaScript / Canvas",
-      "HTML5",
-      "Game Physics",
-      "UI Design"
-    ],
-    "summary": "Browser-based 2D racing game featuring custom physics engine and modern controls.",
-    "description": "ZyRace is a lightweight, high-performance browser racing game crafted with vanilla JavaScript and HTML5 Canvas, featuring custom collision detection and responsive arcade controls.",
-    "thumbnail": "/images/home-hero-bg.jpg",
-    "cover": "/images/home-hero-bg.jpg",
-    "gallery": [
+      },
       {
-        "src": "/images/home-hero-bg.jpg",
-        "alt": "ZyRace game screenshot"
-      }
-    ],
-    "content": [
+        "type": "heading",
+        "text": "Tech Stack & Architecture"
+      },
       {
         "type": "paragraph",
-        "text": "ZyRace showcases pure JavaScript game logic, rendering 2D vehicle physics and obstacle generation at a smooth 60 FPS directly within the browser view."
+        "text": "Engineered using Flutter, Dart, Firebase (Auth, Firestore NoSQL DB, Storage), Gemini AI API, Cloudinary media optimization, and OneSignal push notifications with modular architecture."
       }
     ],
-    "liveUrl": null,
-    "featured": false,
-    "publishedAt": "2023-08-10",
-    "accentColor": "#7c3aed"
+    "liveUrl": "https://mega.nz/file/m043TLTJ#jTto6FOp2cy2GUL2wHM_o7kIqWZmi_2P0GPJlT7-IiE",
+    "featured": true,
+    "publishedAt": "2024-04-01",
+    "accentColor": "#ff3d00"
   }
 ]

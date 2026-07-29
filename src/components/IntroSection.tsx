@@ -23,19 +23,51 @@ const companies: Company[] = [
     thumbnail: "/images/toolpix.png",
   },
   {
+    src: "/images/codepix.svg",
+    alt: "CodePix",
+    description: "Interactive coding learning platform that transforms programming education into a gamified experience.",
+    url: "https://codepix.uthakkan.in/",
+    tags: ["Gamified EdTech", "Python/Flask", "Web App"],
+    thumbnail: "/images/codepix.png",
+  },
+  {
+    src: "/images/dvma.svg",
+    alt: "DVMA - Dementia Assistant",
+    description: "Assistive Virtual Memory Assistant application supporting dementia patients and caregivers.",
+    url: "https://dvma-dementia-assistant.pages.dev/",
+    tags: ["Healthcare", "AI Assistant", "Mobile App"],
+    thumbnail: "/images/dvma.png",
+  },
+  {
+    src: "/images/explore-together.svg",
+    alt: "Explore Together",
+    description: "Cross-platform mobile travel matchmaking app with real-time chat & Gemini AI assistance.",
+    url: "https://mega.nz/file/m043TLTJ#jTto6FOp2cy2GUL2wHM_o7kIqWZmi_2P0GPJlT7-IiE",
+    tags: ["Flutter", "Firebase", "Gemini AI"],
+    thumbnail: "/images/explore-together.png",
+  },
+  {
+    src: "/images/wpadmission.svg",
+    alt: "KallanCop",
+    description: "Offline multiplayer social deduction mobile game published on the Google Play Store.",
+    url: "https://play.google.com/store/apps/details?id=com.ajmal.kallancop&hl=en_IN",
+    tags: ["Flutter", "Mobile Game", "Play Store"],
+    thumbnail: "/images/kallancop.png",
+  },
+  {
+    src: "/images/wpadmission.svg",
+    alt: "Climbo",
+    description: "Free unblocked physics-based browser racing game with hill climb tracks.",
+    url: "https://climbo.uthakkan.in/",
+    tags: ["Physics Racer", "HTML5 Canvas", "Browser Game"],
+    thumbnail: "/images/climbo.png",
+  },
+  {
     src: "/images/wpadmission.svg",
     alt: "WP Admission",
     description: "WordPress admission and online application portal for academic institutions.",
     url: "https://wpadmissions.cet.ac.in/",
     tags: ["WordPress", "Web App", "Portal"],
-  },
-  {
-    src: "/images/explore-together.svg",
-    alt: "Explore Together",
-    description: "Interactive travel community platform for discovering and sharing explorer journeys.",
-    url: "https://explore-together.pages.dev/",
-    tags: ["React", "Community", "Travel"],
-    thumbnail: "/images/explore-together.png",
   },
   {
     src: "/images/lbs.svg",
@@ -51,35 +83,6 @@ const companies: Company[] = [
     url: "https://styushi.com/",
     tags: ["E-Commerce", "UI/UX", "Brand"],
   },
-  {
-    src: "/images/dvma.svg",
-    alt: "DVMA - Dementia Assistant",
-    description: "Assistive Virtual Memory Assistant application supporting dementia patients.",
-    url: "https://dvma-dementia-assistant.pages.dev/",
-    tags: ["Healthcare", "AI Assistant", "Mobile App"],
-    thumbnail: "/images/dvma.png",
-  },
-  {
-    src: "/images/incepta.svg",
-    alt: "Incepta",
-    description: "Digital technology & software agency engineering scalable web architectures.",
-    url: "https://incepta.pages.dev/",
-    tags: ["Software Agency", "Full Stack"],
-  },
-  {
-    src: "/images/codepix.svg",
-    alt: "CodePix",
-    description: "Developer tools and code snippet generation platform for modern software engineers.",
-    url: "https://codepix.uthakkan.in/",
-    tags: ["DevTools", "AI Code", "Web App"],
-  },
-  {
-    src: "/images/uthakkan.svg",
-    alt: "Uthakkan",
-    description: "Central digital ecosystem and showcase for creative web application products.",
-    url: "https://www.uthakkan.in/",
-    tags: ["Ecosystem", "Portfolio", "Web Apps"],
-  },
 ];
 
 const educationData = [
@@ -93,7 +96,7 @@ const educationData = [
   {
     institution: "Mahatma Gandhi College, Iritty",
     degree: "Bachelor of Computer Science – Kannur University",
-    years: "2023 – 2026",
+    years: "2022 – 2025",
     score: "89.7%",
     src: "/images/mgc.svg",
   },
@@ -367,7 +370,7 @@ export function IntroSection() {
             <div className="home__intro-companies-listing">
               {companies.map((company) => (
                 <div
-                  key={company.src}
+                  key={company.alt}
                   className="home__intro-company"
                   style={{ cursor: "pointer" }}
                   onClick={() => setActiveProject(company)}
@@ -422,7 +425,7 @@ export function IntroSection() {
           <div ref={awardsVisualRef} className="home__intro-awards-visual visible">
             <div className="awards-visual-inner">
               <Image
-                src={educationData[activeAwardIndex]?.src || "/images/awards-sphere.png"}
+                src={educationData[activeAwardIndex]?.src || ""}
                 alt={educationData[activeAwardIndex]?.institution || ""}
                 width={200}
                 height={200}

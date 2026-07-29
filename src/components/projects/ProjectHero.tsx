@@ -27,11 +27,12 @@ export function ProjectHero({ project }: ProjectHeroProps) {
           <span className="projects-detail__back-arrow" aria-hidden="true">
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
               <path
-                d="M13.4 8.00003H2M9.79997 3.80005L14 8.00003L9.79997 12.2"
+                d="M14 8H2M8 2L2 8L8 14"
                 stroke="currentColor"
-                strokeWidth="1.13137"
+                strokeWidth="1.5"
                 strokeMiterlimit="10"
                 strokeLinecap="square"
+                strokeLinejoin="round"
               />
             </svg>
           </span>

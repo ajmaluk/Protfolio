@@ -33,7 +33,7 @@ export function ProjectNav({ next, prev, count, currentIndex }: ProjectNavProps)
               <Link href={`/projects/${prev.slug}`} className="projects-detail__nav-link" aria-label={`Previous project: ${prev.name}`}>
                 <span className="projects-detail__nav-direction" aria-hidden="true">
                   <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                    <path d="M13.4 8.00003H2M9.79997 3.80005L14 8.00003L9.79997 12.2" stroke="currentColor" strokeWidth="1.875" strokeMiterlimit="10" strokeLinecap="square" strokeLinejoin="round" />
+                    <path d="M18 10H2M10 2L2 10L10 18" stroke="currentColor" strokeWidth="1.875" strokeMiterlimit="10" strokeLinecap="square" strokeLinejoin="round" />
                   </svg>
                 </span>
                 <span className="projects-detail__nav-meta">
@@ -73,7 +73,7 @@ export function ProjectNav({ next, prev, count, currentIndex }: ProjectNavProps)
                 </span>
                 <span className="projects-detail__nav-direction" aria-hidden="true">
                   <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                    <path d="M6.6 8.00003H18M10.2 3.80005L6 8.00003L10.2 12.2" stroke="currentColor" strokeWidth="1.875" strokeMiterlimit="10" strokeLinecap="square" strokeLinejoin="round" />
+                    <path d="M2 10H18M10 2L18 10L10 18" stroke="currentColor" strokeWidth="1.875" strokeMiterlimit="10" strokeLinecap="square" strokeLinejoin="round" />
                   </svg>
                 </span>
               </Link>

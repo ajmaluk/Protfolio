@@ -11,6 +11,8 @@ export const metadata: Metadata = {
     "About Muhammed Ajmal U K",
     "Ajmal U K Profile",
     "Ajmal Uthakkan Bio",
+    "Uthakkan Profile",
+    "Uthakkan",
     "Ajmal MCA Student CET",
     "Full-Stack AI Developer Kerala",
     "Software Engineer Kerala India",

@@ -143,7 +143,7 @@ const jsonLdOrganization = {
   "@type": "Organization",
   "@id": "https://ajmal.uthakkan.in/#organization",
   name: "Uthakkan",
-  alternateName: "Muhammed Ajmal U K",
+  alternateName: ["Muhammed Ajmal U K", "Ajmal Uthakkan"],
   url: "https://ajmal.uthakkan.in",
   logo: "https://ajmal.uthakkan.in/seo/favicon.png",
   sameAs: [

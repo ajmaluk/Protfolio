@@ -10,6 +10,7 @@ export const metadata: Metadata = {
     "Muhammed Ajmal U K Projects",
     "Ajmal U K Projects",
     "Ajmal Uthakkan Software",
+    "Uthakkan Projects",
     "ToolPix AI",
     "KallanCop Play Store",
     "Dementia Virtual Memory Assistant",

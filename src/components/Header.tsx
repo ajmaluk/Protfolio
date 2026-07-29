@@ -194,6 +194,16 @@ export function Header() {
           >
             Projects
           </Link>
+          <span className="splash cl-txt-disable fs-14">/</span>
+          <a
+            href="/resume.pdf"
+            download="Muhammed_Ajmal_UK_Resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="txt-link hover-un fs-14 header__menu-link"
+          >
+            Resume
+          </a>
           <a
             href="mailto:ajmaluk.me@gmail.com"
             className="cl-txt-orange header__act fs-14 fw-med"
@@ -238,6 +248,7 @@ export function Header() {
                 <Link href="/" className={`header__menu-overlay-link${pathname === '/' ? ' active' : ''}`} aria-current={pathname === '/' ? "page" : undefined} onClick={() => handleLinkClick('/')}>Index</Link>
                 <Link href="/about" className={`header__menu-overlay-link${pathname === '/about' ? ' active' : ''}`} aria-current={pathname === '/about' ? "page" : undefined} onClick={() => handleLinkClick('/about')}>About</Link>
                 <Link href="/projects" className={`header__menu-overlay-link${(pathname === '/projects' || pathname.startsWith('/projects/')) ? ' active' : ''}`} aria-current={(pathname === '/projects' || pathname.startsWith('/projects/')) ? "page" : undefined} onClick={() => handleLinkClick('/projects')}>Projects</Link>
+                <a href="/resume.pdf" download="Muhammed_Ajmal_UK_Resume.pdf" target="_blank" rel="noopener noreferrer" className="header__menu-overlay-link" onClick={closeMenu}>Download Resume</a>
               </div>
               <div className="header__menu-overlay-meta-row">
                 <div className="header__menu-overlay-socials">
@@ -249,6 +260,7 @@ export function Header() {
                 <div className="header__menu-overlay-contact">
                   <p className="header__menu-overlay-label">Contact</p>
                   <a href="mailto:ajmaluk.me@gmail.com" className="header__menu-overlay-contact-link" onClick={closeMenu}>Email</a>
+                  <a href="tel:+918547197122" className="header__menu-overlay-contact-link" onClick={closeMenu}>+91 8547197122</a>
                 </div>
               </div>
               <div className="header__menu-overlay-cta">

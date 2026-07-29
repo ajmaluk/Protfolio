@@ -32,21 +32,20 @@ export function HeroSection() {
 
     let animFrameId: number;
 
-    const onMouseMove = (e: MouseEvent) => {
-      if (window.innerWidth < 768) return;
+    const onPointerMove = (e: PointerEvent) => {
       const centerX = window.innerWidth / 2;
       const centerY = window.innerHeight / 2;
 
       const normX = (e.clientX - centerX) / centerX;
       const normY = (e.clientY - centerY) / centerY;
 
-      targetRotateY = normX * 3.5;
-      targetRotateX = -normY * 2.5;
-      targetTranslateX = normX * 8;
-      targetTranslateY = normY * 6;
+      targetRotateY = normX * 4;
+      targetRotateX = -normY * 3;
+      targetTranslateX = normX * 10;
+      targetTranslateY = normY * 8;
     };
 
-    const onMouseLeave = () => {
+    const onPointerLeave = () => {
       targetRotateX = 0;
       targetRotateY = 0;
       targetTranslateX = 0;
@@ -74,13 +73,13 @@ export function HeroSection() {
       }
     };
 
-    window.addEventListener("mousemove", onMouseMove, { passive: true });
-    window.addEventListener("mouseleave", onMouseLeave, { passive: true });
+    window.addEventListener("pointermove", onPointerMove, { passive: true });
+    window.addEventListener("pointerleave", onPointerLeave, { passive: true });
     animFrameId = requestAnimationFrame(render);
 
     return () => {
-      window.removeEventListener("mousemove", onMouseMove);
-      window.removeEventListener("mouseleave", onMouseLeave);
+      window.removeEventListener("pointermove", onPointerMove);
+      window.removeEventListener("pointerleave", onPointerLeave);
       cancelAnimationFrame(animFrameId);
     };
   }, []);
@@ -123,6 +122,23 @@ export function HeroSection() {
             <div className="home__hero-intro-wrap">
               <div className="cl-txt-sub home__hero-intro">
                 MCA Student &amp; Full-Stack AI Developer specialized in building AI tools, web applications, mobile apps, and scalable digital products.
+              </div>
+              <div style={{ marginTop: "1rem" }}>
+                <a
+                  href="/resume.pdf"
+                  download="Muhammed_Ajmal_UK_Resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="txt-link hover-un cl-txt-orange fs-14 fw-med"
+                  style={{ display: "inline-flex", alignItems: "center", gap: "0.6rem" }}
+                >
+                  <span>Download Resume (PDF)</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                    <polyline points="7 10 12 15 17 10"/>
+                    <line x1="12" y1="15" x2="12" y2="3"/>
+                  </svg>
+                </a>
               </div>
               <span className="line" />
             </div>

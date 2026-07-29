@@ -45,6 +45,56 @@ const education = [
   },
 ];
 
+const certifications = [
+  {
+    title: "Introduction to Artificial Intelligence",
+    issuer: "IBM / Coursera",
+  },
+  {
+    title: "Introduction to Software Engineering",
+    issuer: "IBM / Coursera",
+  },
+  {
+    title: "Prompt Engineering with GitHub Copilot",
+    issuer: "Microsoft",
+  },
+  {
+    title: "The Joy of Computing using Python",
+    issuer: "NPTEL",
+  },
+  {
+    title: "Deloitte Data Analytics Virtual Experience",
+    issuer: "Deloitte / Forage",
+  },
+  {
+    title: "Discover the Art of Prompting",
+    issuer: "Coursera",
+  },
+  {
+    title: "Maximize Productivity with AI Tools",
+    issuer: "Coursera",
+  },
+  {
+    title: "Oracle Cloud Infrastructure 2025 AI Foundations Associate",
+    issuer: "Oracle",
+  },
+];
+
+const achievements = [
+  {
+    title: "Built ToolPix AI Platform",
+    detail: "Reached 600K+ organic Google Search clicks and 14M+ search impressions through target AI SEO and high-performance Flask tools.",
+  },
+  {
+    title: "Published KallanCop Mobile Game",
+    detail: "Published on Google Play Store, managing end-to-end product development, offline Wi-Fi/Hotspot multiplayer mechanics, testing, and distribution.",
+  },
+  {
+    title: "Google Cloud Arcade Champion Tier",
+    detail: "Achieved top Champion Tier by completing advanced Google Cloud infrastructure, AI, and DevOps labs.",
+  },
+];
+
 const skills = [
   "Python & Flask",
   "JavaScript & Node.js",
@@ -52,12 +102,24 @@ const skills = [
   "Flutter & Mobile",
   "Firebase & Supabase",
   "MongoDB & MySQL",
-  "AI API Integration",
+  "Gemini API & LLMs",
   "AI Agents & Prompt Eng.",
   "Full-Stack Web Dev",
   "SEO & Web Deployment",
-  "UI/UX Improvement",
-  "Automation & Tools",
+  "Git & Cloud Hosting",
+  "REST APIs & WebSockets",
+];
+
+const softSkills = [
+  "Problem Solving",
+  "Team Collaboration",
+  "Communication",
+  "Software Development",
+  "Product Thinking",
+  "Leadership",
+  "Self-Learning",
+  "Adaptability",
+  "Time Management",
 ];
 
 export default function AboutPage() {
@@ -73,8 +135,27 @@ export default function AboutPage() {
                 AI &amp; <span className="cl-txt-orange">Full-Stack</span> Developer
               </h1>
               <p className="about__hero-intro heading h5 cl-txt-sub">
-                Hi! I&apos;m <strong className="cl-txt-title">Muhammed Ajmal U K</strong>, an MCA student and aspiring software engineer from Kerala, India. I specialize in building production-ready AI tools, full-stack web applications, mobile apps, and developer platforms.
+                Hi! I&apos;m <strong className="cl-txt-title">Muhammed Ajmal U K</strong>, an MCA student and Software Engineer from Kerala, India. I specialize in building production-ready AI tools, full-stack web applications, mobile apps, and scalable digital products.
               </p>
+              <div style={{ marginTop: "2.4rem" }}>
+                <a
+                  href="/resume.pdf"
+                  download="Muhammed_Ajmal_UK_Resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="about__cta-btn"
+                  style={{ display: "inline-flex" }}
+                >
+                  <span className="about__cta-btn-text">Download Resume (PDF)</span>
+                  <span className="about__cta-btn-arrow ic-20">
+                    <svg width="100%" viewBox="0 0 20 20" fill="none">
+                      <path d="M10 3.75V13.125" stroke="currentColor" strokeWidth="1.875" strokeLinecap="square" />
+                      <path d="M5.625 9.375L10 13.75L14.375 9.375" stroke="currentColor" strokeWidth="1.875" strokeLinecap="square" strokeLinejoin="round" />
+                      <path d="M3.75 16.25H16.25" stroke="currentColor" strokeWidth="1.875" strokeLinecap="square" />
+                    </svg>
+                  </span>
+                </a>
+              </div>
             </div>
           </div>
         </section>
@@ -95,13 +176,13 @@ export default function AboutPage() {
               </div>
             </div>
             <div className="about__bio-content">
-              <h2 className="heading h4 upper fw-bold cl-txt-title">Career Objective</h2>
+              <h2 className="heading h4 upper fw-bold cl-txt-title">Career Objective &amp; Profile Summary</h2>
               <div className="line about__bio-line" />
               <p className="about__bio-text cl-txt-sub">
-                My career goal is to build high-performance, production-ready software products and grow as an AI/Full-Stack Developer and tech innovator. I am passionate about creating practical tools that solve real-world problems through clean code, modern web architectures, and smart AI integrations.
+                MCA student and Software Engineer passionate about designing and developing AI-powered applications and full-stack software solutions. Experienced in building production-ready web and mobile applications using Python, Flutter, Flask, Firebase, REST APIs, and LLM integrations. Strong interest in AI agents, cloud technologies, and developing innovative software products with real-world impact.
               </p>
               <p className="about__bio-text cl-txt-sub">
-                From publishing games on the Google Play Store (KallanCop) to building high-traffic AI productivity platforms (ToolPix) and cross-platform mobile travel apps (Explore Together), I continuously focus on hands-on software development, scalable engineering, and user-centered product craft.
+                From publishing privacy-first offline multiplayer games on the Google Play Store (KallanCop) to building high-traffic AI productivity platforms reaching 600K+ search clicks (ToolPix) and cognitive-support healthcare mobile apps (DVMA), I continuously focus on hands-on software development, scalable engineering, and user-centered product craft.
               </p>
             </div>
           </div>
@@ -145,8 +226,52 @@ export default function AboutPage() {
         {/* Swipable Projects Section */}
         <AboutProjectsSlider />
 
+        {/* Certifications Section */}
+        <section className="about__skills" style={{ borderTop: "1px solid var(--cl-dm-border)", paddingTop: "6rem" }}>
+          <div className="container">
+            <h2 className="about__section-label heading h5 upper fw-med cl-txt-disable">
+              Certifications &amp; Credentials
+            </h2>
+            <div className="about__skills-grid" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))" }}>
+              {certifications.map((cert) => (
+                <div key={cert.title} className="about__skill-card" style={{ flexDirection: "column", alignItems: "flex-start", gap: "0.6rem" }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: "0.8rem" }}>
+                    <div className="about__skill-dot" />
+                    <span className="cl-txt-orange fs-12 fw-med upper">{cert.issuer}</span>
+                  </div>
+                  <span className="heading h5 fw-med cl-txt-title" style={{ fontSize: "1.5rem", lineHeight: "1.3" }}>
+                    {cert.title}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Key Achievements Section */}
+        <section className="about__experience" style={{ paddingTop: "6rem" }}>
+          <div className="container">
+            <h2 className="about__section-label heading h5 upper fw-med cl-txt-disable">
+              Key Achievements
+            </h2>
+            <div className="about__timeline">
+              {achievements.map((ach) => (
+                <div key={ach.title} className="about__timeline-item">
+                  <div className="about__timeline-dot" />
+                  <div className="about__timeline-content">
+                    <h3 className="about__timeline-title heading h4 fw-bold cl-txt-title" style={{ marginBottom: "0.6rem" }}>
+                      {ach.title}
+                    </h3>
+                    <p className="about__timeline-desc cl-txt-sub">{ach.detail}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* Skills Section */}
-        <section className="about__skills">
+        <section className="about__skills" style={{ paddingTop: "6rem" }}>
           <div className="container">
             <h2 className="about__section-label heading h5 upper fw-med cl-txt-disable">
               Technical Skills &amp; Stack
@@ -161,6 +286,38 @@ export default function AboutPage() {
                 </div>
               ))}
             </div>
+
+            <h2 className="about__section-label heading h5 upper fw-med cl-txt-disable" style={{ marginTop: "4.8rem" }}>
+              Soft Skills &amp; Languages
+            </h2>
+            <div className="about__skills-grid">
+              {softSkills.map((ss) => (
+                <div key={ss} className="about__skill-card">
+                  <div className="about__skill-dot" style={{ backgroundColor: "var(--cl-txt-desc)" }} />
+                  <span className="about__skill-name heading h5 fw-med cl-txt-title">
+                    {ss}
+                  </span>
+                </div>
+              ))}
+              <div className="about__skill-card">
+                <div className="about__skill-dot" style={{ backgroundColor: "#2ec4b6" }} />
+                <span className="about__skill-name heading h5 fw-med cl-txt-title">
+                  Malayalam (Native)
+                </span>
+              </div>
+              <div className="about__skill-card">
+                <div className="about__skill-dot" style={{ backgroundColor: "#2ec4b6" }} />
+                <span className="about__skill-name heading h5 fw-med cl-txt-title">
+                  English (Professional)
+                </span>
+              </div>
+              <div className="about__skill-card">
+                <div className="about__skill-dot" style={{ backgroundColor: "#2ec4b6" }} />
+                <span className="about__skill-name heading h5 fw-med cl-txt-title">
+                  Hindi (Conversational)
+                </span>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -172,14 +329,31 @@ export default function AboutPage() {
                 Let&apos;s <span className="cl-txt-orange">connect</span>
               </h2>
               <p className="about__cta-text cl-txt-sub heading h5">
-                Looking for a dedicated AI &amp; Full-Stack Developer for your team or campus placement? Let&apos;s talk!
+                Looking for a dedicated AI &amp; Full-Stack Developer for your team or campus placement? Download my resume or send a message!
               </p>
-              <div className="about__cta-actions">
+              <div className="about__cta-actions" style={{ flexWrap: "wrap" }}>
+                <a
+                  href="/resume.pdf"
+                  download="Muhammed_Ajmal_UK_Resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="about__cta-btn"
+                >
+                  <span className="about__cta-btn-text">Download Resume (PDF)</span>
+                  <span className="about__cta-btn-arrow ic-20">
+                    <svg width="100%" viewBox="0 0 20 20" fill="none">
+                      <path d="M10 3.75V13.125" stroke="currentColor" strokeWidth="1.875" strokeLinecap="square" />
+                      <path d="M5.625 9.375L10 13.75L14.375 9.375" stroke="currentColor" strokeWidth="1.875" strokeLinecap="square" strokeLinejoin="round" />
+                      <path d="M3.75 16.25H16.25" stroke="currentColor" strokeWidth="1.875" strokeLinecap="square" />
+                    </svg>
+                  </span>
+                </a>
                 <a
                   href="mailto:ajmaluk.me@gmail.com"
                   className="about__cta-btn"
+                  style={{ backgroundColor: "rgba(255, 255, 255, 0.05)", borderColor: "var(--cl-dm-border)" }}
                 >
-                  <span className="about__cta-btn-text">Contact me</span>
+                  <span className="about__cta-btn-text">Email Me</span>
                   <span className="about__cta-btn-arrow ic-20">
                     <svg width="100%" viewBox="0 0 20 20" fill="none">
                       <path d="M14.375 5.625L5.625 14.375" stroke="currentColor" strokeWidth="1.875" strokeMiterlimit="10" strokeLinecap="square" strokeLinejoin="round" />
@@ -187,12 +361,6 @@ export default function AboutPage() {
                     </svg>
                   </span>
                 </a>
-                <Link
-                  href="/projects"
-                  className="about__cta-link cl-txt-orange txt-link hover-un"
-                >
-                  Explore my projects
-                </Link>
               </div>
             </div>
           </div>

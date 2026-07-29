@@ -63,7 +63,7 @@ export function FooterSection({ showCharacter = true }: FooterSectionProps) {
             </div>
 
             <div className="footer__info-item">
-              <p className="fw-med footer__label">Contact me</p>
+              <p className="fw-med footer__label">Contact &amp; Resume</p>
               <div className="footer__socials-listing">
                 <a
                   href="mailto:ajmaluk.me@gmail.com"
@@ -77,6 +77,23 @@ export function FooterSection({ showCharacter = true }: FooterSectionProps) {
                     </svg>
                   </span>
                   <span className="footer__link-text">ajmaluk.me@gmail.com</span>
+                </a>
+                <a
+                  href="/resume.pdf"
+                  download="Muhammed_Ajmal_UK_Resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="fw-med txt-link hover-un footer__link cl-txt-orange"
+                  aria-label="Download Muhammed Ajmal U K's Resume PDF"
+                >
+                  <span className="footer__link-icon" aria-hidden="true">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                      <polyline points="7 10 12 15 17 10"/>
+                      <line x1="12" y1="15" x2="12" y2="3"/>
+                    </svg>
+                  </span>
+                  <span className="footer__link-text">Download Resume (PDF)</span>
                 </a>
               </div>
             </div>

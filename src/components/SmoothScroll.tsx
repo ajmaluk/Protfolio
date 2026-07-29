@@ -18,7 +18,7 @@ export function SmoothScroll() {
       wrapper: wrapper ?? window,
       content: wrapper ?? document.documentElement,
       duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: "vertical",
       smoothWheel: true,
     });

@@ -33,9 +33,9 @@ const companies: Company[] = [
   {
     src: "/images/dvma.svg",
     alt: "DVMA - Dementia Assistant",
-    description: "Assistive Virtual Memory Assistant application supporting dementia patients and caregivers.",
+    description: "Compassionate mobile app empowering dementia patients, caregivers & admins with AI-driven assistance and real-time safety.",
     url: "https://dvma-dementia-assistant.pages.dev/",
-    tags: ["Healthcare", "AI Assistant", "Mobile App"],
+    tags: ["Flutter", "Gemini AI", "Firebase"],
     thumbnail: "/images/dvma.png",
   },
   {
@@ -189,16 +189,22 @@ export function IntroSection() {
       }
 
       if (words.length > 0) {
-        const revealStart = vh * 0.22;
-        const revealDistance = Math.max(textHeight * 0.68, vh * 0.34);
+        const revealStart = vh * 0.75;
+        const revealDistance = Math.max(textHeight * 0.9, vh * 0.5);
         const currentTextTop = textTop - scrollY;
         const progress = Math.max(0, Math.min(1, (revealStart - currentTextTop) / revealDistance));
 
         words.forEach((word, i) => {
           const normalizedProgress = i / totalWords;
-          const distance = Math.abs(progress - normalizedProgress);
-          const opacity = Math.max(0.15, Math.min(1, 1 - distance * 4.8));
-          word.style.opacity = opacity.toString();
+          if (progress >= normalizedProgress) {
+            word.style.opacity = "1.0";
+            word.style.color = "#ffffff";
+          } else {
+            const distance = normalizedProgress - progress;
+            const opacity = Math.max(0.4, Math.min(1, 1 - distance * 3.5));
+            word.style.opacity = opacity.toString();
+            word.style.color = opacity > 0.85 ? "#ffffff" : "rgba(255, 255, 255, 0.45)";
+          }
         });
       }
 

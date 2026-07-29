@@ -74,7 +74,39 @@
     "gallery": [
       {
         "src": "/images/kallancop.png",
-        "alt": "KallanCop game interface preview"
+        "alt": "KallanCop game title banner preview"
+      },
+      {
+        "src": "https://play-lh.googleusercontent.com/jTgQ46JOBlbmM3dUHqEt46Od8XRvz9P1CDLqY76w5j17qnsLS0R0Wa0WxhgGQmAkYdoyUnTgYtlaEtjDDPGkCrI=w1052-h592-rw",
+        "alt": "KallanCop Google Play Store feature graphic"
+      },
+      {
+        "src": "https://play-lh.googleusercontent.com/7a-eBg5pwzZYbAQXCNe5hJNdNJFn7SKAFzxhqqKfLNH_JG2B0tVna2aCQ9bU0GlWFftCCmLKVQaTWJlrWSLt2A=w5120-h2880-rw",
+        "alt": "KallanCop gameplay screenshot 1"
+      },
+      {
+        "src": "https://play-lh.googleusercontent.com/nqPQs_tM49tIS_eZ1cyACaQzIR2_6-vRndGa4oNOXV9H74SYwV7lfMInKzQYEvfRtseaVPDhBvJWxDRCrZAKag=w5120-h2880-rw",
+        "alt": "KallanCop gameplay screenshot 2"
+      },
+      {
+        "src": "https://play-lh.googleusercontent.com/Lt3kG_CEi6u_Kqpd5B-XWaOHkZTScvB5NtNZE5Qc_1LkSruO1SSNmXDHBhVnIIZVOf8rpcy-7yQgLZuEz1m7mg=w5120-h2880-rw",
+        "alt": "KallanCop gameplay screenshot 3"
+      },
+      {
+        "src": "https://play-lh.googleusercontent.com/UDxlkiujwgcWwGBqUiQB5bhdWzoSQ8hujpiVaLiu9dADxp8mH5wrvy27N9HpbCyKn627j0wN6aNwokpAwvSFvg=w5120-h2880-rw",
+        "alt": "KallanCop gameplay screenshot 4"
+      },
+      {
+        "src": "https://play-lh.googleusercontent.com/ZjxXLSdhxbp1gJPGUrlDf3pgozS5zF83zOtUuKN644bQ8rRme0oy30bXXJP5AA1rU4Q-vwqAI22toqjwDTBAqSo=w1052-h592-rw",
+        "alt": "KallanCop gameplay screenshot 5"
+      },
+      {
+        "src": "https://play-lh.googleusercontent.com/CINiEAF_8X1X5jtbuYdg6gs7cdqZJo2EEwv-5YHjlfcyCxY_653QfDpK1Mx3wqGDF13E20Zaj_gi0RGgGLOwgA=w5120-h2880-rw",
+        "alt": "KallanCop gameplay screenshot 6"
+      },
+      {
+        "src": "https://play-lh.googleusercontent.com/Nrt8-6tlYsmHQAzB7r-ijMD5v1Z3IHylLDIyY_dzgw19fW68x3SacV07Kvp5JINgctPK3t9J3HCwfEEZw0CB=w5120-h2880-rw",
+        "alt": "KallanCop gameplay screenshot 7"
       }
     ],
     "content": [
@@ -227,38 +259,120 @@
     "year": "2024",
     "category": "Mobile & Games",
     "services": [
-      "Mobile App Development",
-      "AI Assistant",
-      "Healthcare UI/UX",
-      "Flutter / Firebase"
+      "Flutter & Dart",
+      "Firebase (Auth, Firestore, Storage)",
+      "Gemini AI Integration",
+      "OneSignal Push Notifications",
+      "Face Recognition (ML Kit)",
+      "Healthcare UI/UX"
     ],
-    "summary": "Assistive Virtual Memory Assistant application supporting dementia patients and caregivers.",
-    "description": "DVMA (Dementia Virtual Memory Assistant) is a smart companion application designed for dementia patients and caregivers to live safely, stay connected, and manage daily tasks with ease.",
+    "summary": "A compassionate mobile app empowering dementia patients, caregivers, and admins with AI-driven assistance, task management, memory albums, and real-time safety features.",
+    "description": "DVMA (Dementia Virtual Memory Assistant) is an innovative mobile application crafted to support individuals with dementia in navigating daily life, cherishing memories, and fostering connections with loved ones and caregivers. With intuitive role-based access for Patients, Caretakers, and Admins, DVMA delivers real-time notifications, AI-driven chat support, and advanced face recognition to uplift the well-being of dementia patients and their support networks.",
     "thumbnail": "/images/dvma.png",
     "cover": "/images/dvma.png",
     "gallery": [
       {
         "src": "/images/dvma.png",
-        "alt": "DVMA assistant interface preview"
+        "alt": "DVMA app main interface preview"
+      },
+      {
+        "src": "https://ik.imagekit.io/uthakkan/Dimentia-Memory-Assistant/user-home-page.jpg",
+        "alt": "DVMA patient home page with tasks and memory tools"
+      },
+      {
+        "src": "https://ik.imagekit.io/uthakkan/Dimentia-Memory-Assistant/user-ai-page.jpg",
+        "alt": "DVMA Gemini AI chat assistant for dementia patients"
+      },
+      {
+        "src": "https://ik.imagekit.io/uthakkan/Dimentia-Memory-Assistant/user-caretaker-page.jpg",
+        "alt": "DVMA patient caretaker connections interface"
+      },
+      {
+        "src": "https://ik.imagekit.io/uthakkan/Dimentia-Memory-Assistant/user-profile-page.jpg",
+        "alt": "DVMA patient profile and settings"
+      },
+      {
+        "src": "https://ik.imagekit.io/uthakkan/Dimentia-Memory-Assistant/caretaker-user-page.jpg",
+        "alt": "DVMA caretaker patient dashboard and monitoring"
+      },
+      {
+        "src": "https://ik.imagekit.io/uthakkan/Dimentia-Memory-Assistant/caretaker-user-location-page.jpg",
+        "alt": "DVMA caretaker live location tracking of patient"
+      },
+      {
+        "src": "https://ik.imagekit.io/uthakkan/Dimentia-Memory-Assistant/caretaker-profile-page.jpg",
+        "alt": "DVMA caretaker profile and credentials"
+      },
+      {
+        "src": "https://ik.imagekit.io/uthakkan/Dimentia-Memory-Assistant/admin-caretakers-page.jpg",
+        "alt": "DVMA admin caretaker management panel"
+      },
+      {
+        "src": "https://ik.imagekit.io/uthakkan/Dimentia-Memory-Assistant/admin-notification-sent-page.jpg",
+        "alt": "DVMA admin broadcast notifications dashboard"
+      },
+      {
+        "src": "https://ik.imagekit.io/uthakkan/Dimentia-Memory-Assistant/admin-settings.jpg",
+        "alt": "DVMA admin system settings and API configuration"
       }
     ],
     "content": [
       {
         "type": "paragraph",
-        "text": "DVMA (Dementia Virtual Memory Assistant) is an assistive mobile and web solution engineered to support dementia patients and their family caregivers. It integrates intelligent memory boosters, daily activity routines, live location safety features, and emergency SOS alerts."
+        "text": "DVMA (Dementia Virtual Memory Assistant) is an innovative mobile application crafted to support individuals with dementia in navigating daily life, cherishing memories, and fostering connections with loved ones and caregivers. With intuitive role-based access for Patients, Caretakers, and Admins, DVMA delivers real-time notifications, AI-driven chat support, and advanced face recognition to uplift the well-being of dementia patients and their support networks."
       },
       {
         "type": "heading",
-        "text": "Key Highlights"
+        "text": "Patient Features"
       },
       {
         "type": "list",
         "items": [
-          "Interactive Memory Boost daily activities to support cognitive health",
-          "Real-time location safety tracking and instant emergency contact SOS alerts",
-          "Structured daily tasks and medication reminders with instant completion tracking",
-          "Compassionate, high-contrast, accessible UI tailored for patient readability"
+          "Task Management: Create, edit, and track daily/recurring tasks with smart reminders",
+          "AI Chat Assistant: Gemini-powered compassionate prompts for memory support and task help",
+          "Memory Album: Add photos and notes to relive cherished moments",
+          "Family Management: Add contacts, set emergency numbers, and manage relationships",
+          "Location Sharing: Secure real-time location sharing with connected caretakers",
+          "Personal Diary: Private daily reflections with auto-save functionality",
+          "Face Recognition: AI-based family member identification using ML Kit"
         ]
+      },
+      {
+        "type": "heading",
+        "text": "Caretaker Features"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Connection Management: Handle patient requests and manage active connections",
+          "Patient Monitoring: View tasks, location, memory albums, and daily activity",
+          "Direct Communication: Calls and messages to patients for seamless coordination",
+          "Advanced Scanner: On-the-go family recognition for patient support",
+          "Live Tracking: Real-time patient location monitoring with safety alerts",
+          "Reporting System: Submit well-being or feedback reports to administrators"
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Admin Features"
+      },
+      {
+        "type": "list",
+        "items": [
+          "User Management: Edit, ban/unban users and caretakers with full control",
+          "Global Notifications: Broadcast or targeted alerts via OneSignal push notifications",
+          "Reports Dashboard: Review and resolve user-submitted reports and issues",
+          "System Settings: Customize API keys, support contacts, and app configuration",
+          "Analytics: Track engagement, user growth, and usage patterns"
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Tech Stack & Architecture"
+      },
+      {
+        "type": "paragraph",
+        "text": "Built with Flutter & Dart for seamless cross-platform mobile performance, Firebase (Authentication, Firestore real-time NoSQL database, Cloud Storage) for backend infrastructure, Gemini AI API for intelligent compassionate chat assistance, OneSignal for push notification delivery, and ML Kit / Cloud Vision API for face recognition capabilities. The Firestore database uses a normalized schema with collections for users, caretakers, admins, connections, reports, and API configuration — designed for scalability and real-time sync."
       }
     ],
     "liveUrl": "https://dvma-dementia-assistant.pages.dev/",

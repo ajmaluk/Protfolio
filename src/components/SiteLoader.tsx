@@ -33,11 +33,11 @@ export function SiteLoader() {
       }
       document.documentElement.classList.remove("is-loading");
       document.body.classList.remove("is-loading");
-    }, 1500); // 1.5s display duration
+    }, 1000); // 1s display duration
 
     const destroyTimeout = setTimeout(() => {
       setVisible(false);
-    }, 3100); // 1.5s + 1.6s animation exit
+    }, 2600); // 1s + 1.6s animation exit
 
     return () => {
       window.removeEventListener("lenis-ready", onLenisReady as EventListener);
@@ -63,10 +63,10 @@ export function SiteLoader() {
         {/* Loading text container inside the bottom-left panel */}
         <div className="loader-content">
           <div className="loader-status">Loading..</div>
-          <h1 className="loader-name">
+          <div className="loader-name" aria-hidden="true">
             <span className="loader-firstname">Ajmal</span>
             <span className="loader-lastname">U K</span>
-          </h1>
+          </div>
         </div>
       </div>
 

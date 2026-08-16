@@ -13,8 +13,8 @@ export function ProjectHero({ project }: ProjectHeroProps) {
         <Image
           src={project.cover}
           alt={`${project.name} cover`}
-          width={1920}
-          height={1080}
+          width={1536}
+          height={1024}
           className="projects-detail__hero-img"
           priority
         />

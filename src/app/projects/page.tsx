@@ -3,7 +3,7 @@ import { ProjectsSection } from "@/components/ProjectsSection";
 import { FooterSection } from "@/components/FooterSection";
 
 export const metadata: Metadata = {
-  title: "Software Projects & Case Studies | Muhammed Ajmal U K | Uthakkan",
+  title: "Projects & Case Studies",
   description:
     "Explore software projects built by Muhammed Ajmal U K (Ajmal U K / Uthakkan) — ToolPix AI, KallanCop Game, DVMA Dementia Assistant, and Explore Together.",
   keywords: [
@@ -16,20 +16,23 @@ export const metadata: Metadata = {
     "Dementia Virtual Memory Assistant",
     "Explore Together Flutter App",
   ],
+  alternates: {
+    canonical: "https://ajmal.uthakkan.in/projects",
+  },
   openGraph: {
     title: "Software Projects & Case Studies | Muhammed Ajmal U K | Uthakkan",
     description:
       "Explore software projects built by Muhammed Ajmal U K (Ajmal U K / Uthakkan) — ToolPix AI, KallanCop Game, DVMA Dementia Assistant, and Explore Together.",
     url: "https://ajmal.uthakkan.in/projects",
     type: "website",
-    images: [{ url: "/images/portrait.jpg", alt: "Muhammed Ajmal U K Projects" }],
+    images: [{ url: "/seo/og-image.jpg", width: 1200, height: 630, alt: "Muhammed Ajmal U K Projects" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Software Projects | Muhammed Ajmal U K | Uthakkan",
     description:
       "Explore software projects built by Muhammed Ajmal U K (Ajmal U K / Uthakkan).",
-    images: ["/images/portrait.jpg"],
+    images: ["/seo/og-image.jpg"],
   },
 };
 
@@ -73,7 +76,8 @@ export default function ProjectsPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionPageJsonLd) }}
       />
-      <main id="swup" className="page transition-fade" data-namespace="projects" data-infinite>
+      <main id="main-content" className="page transition-fade" data-namespace="projects" data-infinite tabIndex={-1}>
+        <h1 className="visually-hidden">Software Projects &amp; Case Studies by Muhammed Ajmal U K</h1>
         <ProjectsSection isProjectsPage={true} />
         <FooterSection />
       </main>

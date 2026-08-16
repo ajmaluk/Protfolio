@@ -129,10 +129,10 @@ export function FooterSection({ showCharacter = true }: FooterSectionProps) {
           <div className="footer__main-image">
             <div className="footer__main-image-inner">
               <Image
-                src="/images/footer-blend-light.png"
+                src="/images/footer-blend-light.webp"
                 alt="Muhammed Ajmal U K portrait"
-                width={1080}
-                height={1350}
+                width={1376}
+                height={1744}
                 loading="lazy"
                 className="footer__main-image-img"
               />
@@ -163,7 +163,7 @@ export function FooterSection({ showCharacter = true }: FooterSectionProps) {
         </div>
 
         <div className="footer__bg">
-          <Image src="/images/footer-bg-gr2.png" alt="" aria-hidden="true" width={1920} height={1080} className="footer__bg-img" />
+          <Image src="/images/footer-bg-gr2.webp" alt="" aria-hidden="true" width={1920} height={978} loading="lazy" className="footer__bg-img" />
         </div>
       </div>
     </div>

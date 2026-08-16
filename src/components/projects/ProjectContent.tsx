@@ -38,7 +38,7 @@ export function ProjectContent({ blocks }: ProjectContentProps) {
                   src={block.src}
                   alt={block.alt}
                   width={1280}
-                  height={800}
+                  height={853}
                   loading="lazy"
                   className="projects-detail__figure-img"
                 />

@@ -203,10 +203,10 @@ export function HeroSection() {
             <div className="home__hero-bg-main-wrap">
               <div className="home__hero-bg-main-inner-bg">
                 <Image
-                  src="/images/home-hero-bg.jpg"
+                  src="/images/home-hero-bg.webp"
                   alt="Muhammed Ajmal U K - AI & Full-Stack Developer background"
                   width={1920}
-                  height={1080}
+                  height={1167}
                   priority
                 />
               </div>
@@ -214,10 +214,10 @@ export function HeroSection() {
                 <div className="home__hero-bg-main-inner-man-ratio" />
                 <div className="home__hero-bg-main-inner placeholder" ref={characterRef}>
                   <Image
-                    src="/images/home-hero-trans.png"
+                    src="/images/home-hero-trans.webp"
                     alt="Muhammed Ajmal U K (Ajmal U K) portrait illustration"
-                    width={800}
-                    height={1000}
+                    width={1600}
+                    height={1067}
                     priority
                   />
                 </div>

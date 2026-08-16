@@ -26,6 +26,7 @@ export function CustomCursor() {
   useEffect(() => {
     if (typeof window === "undefined") return;
     if (window.matchMedia("(pointer: coarse)").matches) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     const root: HTMLDivElement = rootRef.current!;
     const ring: HTMLDivElement = ringRef.current!;

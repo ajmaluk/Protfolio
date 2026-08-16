@@ -20,7 +20,7 @@ const companies: Company[] = [
     description: "AI-powered image editing, design & creative tools platform built for seamless productivity.",
     url: "https://toolpix.com",
     tags: ["AI Platform", "Next.js", "Design"],
-    thumbnail: "/images/toolpix.png",
+    thumbnail: "/images/toolpix.webp",
   },
   {
     src: "/images/codepix.svg",
@@ -28,7 +28,7 @@ const companies: Company[] = [
     description: "Interactive coding learning platform that transforms programming education into a gamified experience.",
     url: "https://codepix.uthakkan.in/",
     tags: ["Gamified EdTech", "Python/Flask", "Web App"],
-    thumbnail: "/images/codepix.png",
+    thumbnail: "/images/codepix.webp",
   },
   {
     src: "/images/dvma.svg",
@@ -36,7 +36,7 @@ const companies: Company[] = [
     description: "Compassionate mobile app empowering dementia patients, caregivers & admins with AI-driven assistance and real-time safety.",
     url: "https://dvma-dementia-assistant.pages.dev/",
     tags: ["Flutter", "Gemini AI", "Firebase"],
-    thumbnail: "/images/dvma.png",
+    thumbnail: "/images/dvma.webp",
   },
   {
     src: "/images/explore-together.svg",
@@ -44,23 +44,23 @@ const companies: Company[] = [
     description: "Cross-platform mobile travel matchmaking app with real-time chat & Gemini AI assistance.",
     url: "https://mega.nz/file/m043TLTJ#jTto6FOp2cy2GUL2wHM_o7kIqWZmi_2P0GPJlT7-IiE",
     tags: ["Flutter", "Firebase", "Gemini AI"],
-    thumbnail: "/images/explore-together.png",
+    thumbnail: "/images/explore-together.webp",
   },
   {
-    src: "/images/wpadmission.svg",
+    src: "/images/kallancop.svg",
     alt: "KallanCop",
     description: "Offline multiplayer social deduction mobile game published on the Google Play Store.",
     url: "https://play.google.com/store/apps/details?id=com.ajmal.kallancop&hl=en_IN",
     tags: ["Flutter", "Mobile Game", "Play Store"],
-    thumbnail: "/images/kallancop.png",
+    thumbnail: "/images/kallancop.webp",
   },
   {
-    src: "/images/wpadmission.svg",
+    src: "/images/climbo.svg",
     alt: "Climbo",
     description: "Free unblocked physics-based browser racing game with hill climb tracks.",
     url: "https://climbo.uthakkan.in/",
     tags: ["Physics Racer", "HTML5 Canvas", "Browser Game"],
-    thumbnail: "/images/climbo.png",
+    thumbnail: "/images/climbo.webp",
   },
   {
     src: "/images/wpadmission.svg",
@@ -119,6 +119,7 @@ export function IntroSection() {
   const serviceWrapRef = useRef<HTMLDivElement>(null);
   const awardsVisualRef = useRef<HTMLDivElement>(null);
   const awardsListingRef = useRef<HTMLDivElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
 
   const handleTouchStart = (company: Company) => {
     touchTimerRef.current = setTimeout(() => {
@@ -131,6 +132,20 @@ export function IntroSection() {
       clearTimeout(touchTimerRef.current);
     }
   };
+
+  useEffect(() => {
+    if (!activeProject) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setActiveProject(null);
+    };
+    document.body.style.overflow = "hidden";
+    document.addEventListener("keydown", onKeyDown);
+    closeButtonRef.current?.focus();
+    return () => {
+      document.body.style.overflow = "";
+      document.removeEventListener("keydown", onKeyDown);
+    };
+  }, [activeProject]);
 
   useEffect(() => {
     const visualElement = awardsVisualRef.current;
@@ -274,6 +289,9 @@ export function IntroSection() {
             justifyContent: "center",
             padding: "2rem",
           }}
+          role="dialog"
+          aria-modal="true"
+          aria-label={`${activeProject.alt} details`}
           onClick={() => setActiveProject(null)}
         >
           <div
@@ -294,6 +312,7 @@ export function IntroSection() {
             onClick={(e) => e.stopPropagation()}
           >
             <button
+              ref={closeButtonRef}
               onClick={() => setActiveProject(null)}
               style={{
                 position: "absolute",
@@ -557,7 +576,7 @@ export function IntroSection() {
           <div className="home__intro-service-blur">
             <div className="home__intro-service-blur-inner">
               <Image
-                src="/images/intro-service-blur.png"
+                src="/images/intro-service-blur.webp"
                 alt=""
                 aria-hidden="true"
                 width={1400}

@@ -27,8 +27,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const project = getProjectBySlug(slug);
   if (!project) return {};
 
-  const title = `${project.name} | Muhammed Ajmal U K | Uthakkan`;
+  const title = project.name;
   const description = `${project.name}: ${project.summary} Built by Muhammed Ajmal U K (Ajmal U K / Uthakkan).`;
+  const canonical = `https://ajmal.uthakkan.in/projects/${project.slug}`;
 
   return {
     title,
@@ -41,11 +42,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       ...project.services,
     ],
     authors: [{ name: "Muhammed Ajmal U K", url: "https://ajmal.uthakkan.in" }],
+    alternates: {
+      canonical,
+    },
     openGraph: {
       title,
       description,
       type: "article",
-      url: `https://ajmal.uthakkan.in/projects/${project.slug}`,
+      url: canonical,
       images: [{ url: project.cover, alt: `${project.name} preview` }],
     },
     twitter: {
@@ -153,7 +157,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
       />
-      <main className="projects-detail">
+      <main className="projects-detail" id="main-content" tabIndex={-1}>
         <ProjectHero project={project} />
 
         <div className="container projects-detail__body">

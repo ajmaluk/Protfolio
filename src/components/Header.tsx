@@ -143,7 +143,7 @@ export function Header() {
       <div className="header__blur" />
       <div className="container grid">
         <div className="header__logo">
-          <p className="header__greating fs-16" aria-hidden={!isOnHomeHero}>
+          <p className="header__greating fs-16" aria-hidden={!isOnHomeHero} suppressHydrationWarning>
             {greeting}
           </p>
           <Link href="/" className="heading h5 fw-med header__name" aria-label="Ajmal U K — Home">

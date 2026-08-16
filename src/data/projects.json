@@ -14,11 +14,11 @@
     ],
     "summary": "AI-powered productivity platform featuring image tools, PDF utilities, converters, and coding tools.",
     "description": "ToolPix is an all-in-one AI-driven productivity web platform built with Python, Flask, and modern web technologies. It offers tools for image processing, PDF manipulation, code utilities, and format converters.",
-    "thumbnail": "/images/toolpix.png",
-    "cover": "/images/toolpix.png",
+    "thumbnail": "/images/toolpix.webp",
+    "cover": "/images/toolpix.webp",
     "gallery": [
       {
-        "src": "/images/toolpix.png",
+        "src": "/images/toolpix.webp",
         "alt": "ToolPix AI productivity platform interface"
       }
     ],
@@ -69,11 +69,11 @@
     ],
     "summary": "Offline multiplayer social deduction mobile game published on the Google Play Store.",
     "description": "KallanCop is an offline multiplayer social deduction game developed using Flutter and Dart. Players take on hidden roles such as Cop, Thief, and Kingpin, using strategy, deception, and teamwork.",
-    "thumbnail": "/images/kallancop.png",
-    "cover": "/images/kallancop.png",
+    "thumbnail": "/images/kallancop.webp",
+    "cover": "/images/kallancop.webp",
     "gallery": [
       {
-        "src": "/images/kallancop.png",
+        "src": "/images/kallancop.webp",
         "alt": "KallanCop game title banner preview"
       },
       {
@@ -156,11 +156,11 @@
     ],
     "summary": "Browser-based physics puzzle racing game with hill climb tracks and realistic car physics.",
     "description": "Climbo is a free unblocked physics puzzle racing game where players navigate challenging obstacle courses using realistic vehicle physics, momentum control, and strategic environmental solving.",
-    "thumbnail": "/images/climbo.png",
-    "cover": "/images/climbo.png",
+    "thumbnail": "/images/climbo.webp",
+    "cover": "/images/climbo.webp",
     "gallery": [
       {
-        "src": "/images/climbo.png",
+        "src": "/images/climbo.webp",
         "alt": "Climbo physics racing game preview"
       }
     ],
@@ -211,11 +211,11 @@
     ],
     "summary": "Interactive coding learning platform transforming programming education into a game-like experience.",
     "description": "CodePix simplifies the programming learning curve through structured learning paths, interactive coding challenges, and a retro pixel-art themed interface.",
-    "thumbnail": "/images/codepix.png",
-    "cover": "/images/codepix.png",
+    "thumbnail": "/images/codepix.webp",
+    "cover": "/images/codepix.webp",
     "gallery": [
       {
-        "src": "/images/codepix.png",
+        "src": "/images/codepix.webp",
         "alt": "CodePix coding platform preview"
       }
     ],
@@ -268,11 +268,11 @@
     ],
     "summary": "A compassionate mobile app empowering dementia patients, caregivers, and admins with AI-driven assistance, task management, memory albums, and real-time safety features.",
     "description": "DVMA (Dementia Virtual Memory Assistant) is an innovative mobile application crafted to support individuals with dementia in navigating daily life, cherishing memories, and fostering connections with loved ones and caregivers. With intuitive role-based access for Patients, Caretakers, and Admins, DVMA delivers real-time notifications, AI-driven chat support, and advanced face recognition to uplift the well-being of dementia patients and their support networks.",
-    "thumbnail": "/images/dvma.png",
-    "cover": "/images/dvma.png",
+    "thumbnail": "/images/dvma.webp",
+    "cover": "/images/dvma.webp",
     "gallery": [
       {
-        "src": "/images/dvma.png",
+        "src": "/images/dvma.webp",
         "alt": "DVMA app main interface preview"
       },
       {
@@ -395,11 +395,11 @@
     ],
     "summary": "Cross-platform mobile app transforming solo travel into a social, safe, and connected experience.",
     "description": "Explore Together is a cross-platform mobile application developed as a B.Sc Computer Science final year project. It transforms solo travel into a social, safe, and connected experience through matchmaking, real-time chat, and Gemini AI assistance.",
-    "thumbnail": "/images/explore-together.png",
-    "cover": "/images/explore-together.png",
+    "thumbnail": "/images/explore-together.webp",
+    "cover": "/images/explore-together.webp",
     "gallery": [
       {
-        "src": "/images/explore-together.png",
+        "src": "/images/explore-together.webp",
         "alt": "Explore Together mobile application interface preview"
       },
       {

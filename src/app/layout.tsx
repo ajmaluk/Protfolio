@@ -103,9 +103,6 @@ export const metadata: Metadata = {
     creator: "@ajmaluk",
     site: "@ajmaluk",
   },
-  alternates: {
-    canonical: "https://ajmal.uthakkan.in",
-  },
   manifest: "/favicon/site.webmanifest",
   icons: {
     icon: [
@@ -130,9 +127,6 @@ export const metadata: Metadata = {
     "referrer": "origin-when-cross-origin",
     "geo.region": "IN-KL",
     "geo.placename": "Kannur, Kerala, India",
-  },
-  verification: {
-    google: "YOUR_GOOGLE_SEARCH_CONSOLE_VERIFICATION_CODE",
   },
   category: "technology",
   classification: "Portfolio",
@@ -200,7 +194,7 @@ const jsonLdPerson = {
   givenName: "Muhammed Ajmal",
   familyName: "U K",
   url: "https://ajmal.uthakkan.in",
-  image: "https://ajmal.uthakkan.in/images/portrait.jpg",
+  image: "https://ajmal.uthakkan.in/images/portrait.webp",
   logo: "https://ajmal.uthakkan.in/seo/favicon.png",
   jobTitle: "MCA Student & Full-Stack AI Developer",
   worksFor: {
@@ -271,18 +265,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en-IN" suppressHydrationWarning>
-      <head>
-        <link rel="canonical" href="https://ajmal.uthakkan.in" />
-        <meta name="theme-color" content="#07070a" />
-        <meta name="format-detection" content="telephone=yes" />
-        <meta name="referrer" content="origin-when-cross-origin" />
-        <meta name="geo.region" content="IN-KL" />
-        <meta name="geo.placename" content="Kannur, Kerala, India" />
-        <meta name="classification" content="Portfolio" />
-        <meta name="twitter:creator" content="@ajmaluk" />
-        <meta name="twitter:site" content="@ajmaluk" />
-      </head>
       <body className={`${matter.variable}`}>
+        <a href="#main-content" className="skip-link" data-cursor-default>
+          Skip to content
+        </a>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdOrganization) }}

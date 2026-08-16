@@ -201,7 +201,7 @@ body {
   background-color: var(--cl-dm-bg);
 }
 
-@media (hover: hover) and (pointer: fine) {
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
   body:has(.mf-cursor) {
     cursor: none;
   }
@@ -1611,10 +1611,9 @@ h6,
 }
 
 .home__hero-bg-main-inner-bg>img {
-  transform: scale(1.05);
+  transform: scale(1.05) translateZ(0);
   transform-origin: center 16%;
   object-position: center top !important;
-  transform: translateZ(0);
 }
 
 .home__hero-bg-main-inner-man {
@@ -6483,6 +6482,27 @@ h6,
   border: 0;
 }
 
+.skip-link {
+  position: fixed;
+  top: 1.6rem;
+  left: 1.6rem;
+  z-index: 1000001;
+  padding: 1.2rem 2rem;
+  background: var(--cl-orange);
+  color: #fff;
+  font-family: var(--font-matter), sans-serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+  border-radius: 100px;
+  text-decoration: none;
+  transform: translateY(-250%);
+  transition: transform 0.3s ease;
+}
+
+.skip-link:focus-visible {
+  transform: translateY(0);
+}
+
 /* ==========================================
    NOISE OVERLAY
    ========================================== */
@@ -6504,7 +6524,7 @@ h6,
   inset: -50%;
   width: 200%;
   height: 200%;
-  background-image: url(/images/adjusted_grain_image.png);
+  background-image: url(/images/adjusted_grain_image.webp);
   background-repeat: repeat;
   pointer-events: none;
   will-change: transform;

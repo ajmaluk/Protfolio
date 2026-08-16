@@ -160,8 +160,8 @@ export function ProjectGallery({ images, projectName }: ProjectGalleryProps) {
               <Image
                 src={selectedImage.src}
                 alt={selectedImage.alt}
-                width={1920}
-                height={1200}
+                width={1536}
+                height={1024}
                 priority
                 unoptimized={selectedImage.src.startsWith("http")}
                 className="projects-detail__lightbox-img"

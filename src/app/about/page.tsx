@@ -4,7 +4,7 @@ import { FooterSection } from "@/components/FooterSection";
 import { AboutProjectsSlider } from "@/components/AboutProjectsSlider";
 
 export const metadata: Metadata = {
-  title: "About Muhammed Ajmal U K | MCA Student & Full-Stack AI Developer | Uthakkan",
+  title: "About",
   description:
     "Learn about Muhammed Ajmal U K (Ajmal U K / Uthakkan) — MCA student at College of Engineering Trivandrum (CET), Full-Stack AI Developer, certifications, technical stack, and software projects.",
   keywords: [
@@ -17,20 +17,23 @@ export const metadata: Metadata = {
     "Full-Stack AI Developer Kerala",
     "Software Engineer Kerala India",
   ],
+  alternates: {
+    canonical: "https://ajmal.uthakkan.in/about",
+  },
   openGraph: {
     title: "About Muhammed Ajmal U K | MCA Student & Full-Stack AI Developer | Uthakkan",
     description:
       "Learn about Muhammed Ajmal U K (Ajmal U K / Uthakkan) — MCA student at CET & Full-Stack AI Developer.",
     type: "profile",
     url: "https://ajmal.uthakkan.in/about",
-    images: [{ url: "/images/portrait.jpg", alt: "Muhammed Ajmal U K" }],
+    images: [{ url: "/seo/og-image.jpg", width: 1200, height: 630, alt: "Muhammed Ajmal U K" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "About Muhammed Ajmal U K | MCA Student & Full-Stack AI Developer",
     description:
       "Muhammed Ajmal U K (Ajmal U K / Uthakkan) — MCA Student at CET & Full-Stack AI Developer.",
-    images: ["/images/portrait.jpg"],
+    images: ["/seo/og-image.jpg"],
   },
 };
 
@@ -178,7 +181,7 @@ export default function AboutPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutPageJsonLd) }}
       />
-      <main>
+      <main id="main-content" tabIndex={-1}>
         {/* Hero Section */}
         <section className="about__hero">
           <div className="container">
@@ -219,10 +222,10 @@ export default function AboutPage() {
             <div className="about__bio-visual">
               <div className="about__bio-image-wrap">
                 <Image
-                  src="/images/portrait.jpg"
+                  src="/images/portrait.webp"
                   alt="Muhammed Ajmal U K portrait"
                   width={600}
-                  height={750}
+                  height={800}
                   className="about__bio-image"
                   priority
                 />

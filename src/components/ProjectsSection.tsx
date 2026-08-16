@@ -3,6 +3,7 @@
 import Image from "next/image"
 import { useState, useEffect, useRef } from "react"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 import { cn } from "@/lib/utils"
 import { getAllProjects, getHomeProjects } from "@/data/projects"
 
@@ -11,6 +12,7 @@ interface ProjectsSectionProps {
 }
 
 export function ProjectsSection({ isProjectsPage = false }: ProjectsSectionProps) {
+  const router = useRouter()
   const displayProjects = isProjectsPage ? getAllProjects() : getHomeProjects()
 
   const mainRef = useRef<HTMLDivElement>(null)
@@ -263,7 +265,7 @@ export function ProjectsSection({ isProjectsPage = false }: ProjectsSectionProps
                             src={proj.thumbnail}
                             alt={`${proj.name} cover`}
                             width={132}
-                            height={200}
+                            height={88}
                             loading={idx === 0 ? "eager" : "lazy"}
                             priority={idx === 0}
                           />
@@ -337,7 +339,7 @@ export function ProjectsSection({ isProjectsPage = false }: ProjectsSectionProps
                           )}
                           onClick={() => {
                             if (idx === activeIndex) {
-                              window.location.href = `/projects/${proj.slug}`
+                              router.push(`/projects/${proj.slug}`)
                             } else {
                               handleDotClick(idx)
                             }
@@ -396,7 +398,7 @@ export function ProjectsSection({ isProjectsPage = false }: ProjectsSectionProps
                                 alt={idx === activeIndex ? `${proj.name} project preview` : ""}
                                 aria-hidden={idx !== activeIndex}
                                 width={1280}
-                                height={800}
+                                height={853}
                                 loading={idx === 0 ? "eager" : "lazy"}
                                 priority={idx === 0}
                               />

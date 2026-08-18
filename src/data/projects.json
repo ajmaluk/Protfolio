@@ -13,7 +13,7 @@
       "SEO Optimization"
     ],
     "summary": "AI-powered productivity platform featuring image tools, PDF utilities, converters, and coding tools.",
-    "description": "ToolPix is an all-in-one AI-driven productivity web platform built with Python, Flask, and modern web technologies. It offers tools for image processing, PDF manipulation, code utilities, and format converters.",
+    "description": "ToolPix is an all-in-one AI-driven productivity web platform built with Python, Flask, and modern web technologies. It offers tools for image processing, PDF manipulation, code utilities, and format converters — and has earned 600K+ organic Google Search clicks and 14M+ search impressions.",
     "thumbnail": "/images/toolpix.webp",
     "cover": "/images/toolpix.webp",
     "gallery": [
@@ -47,6 +47,19 @@
       {
         "type": "paragraph",
         "text": "Built using Python, Flask, JavaScript, HTML5/CSS3, and deployed on cloud servers. ToolPix achieved significant organic search traffic and user growth through target SEO optimization and clean user experience."
+      },
+      {
+        "type": "heading",
+        "text": "Results & Metrics"
+      },
+      {
+        "type": "list",
+        "items": [
+          "600K+ organic Google Search clicks driven to the platform",
+          "14M+ search impressions through targeted AI SEO strategy",
+          "High-performance Flask tooling with fast browser-side file processing",
+          "Sustained organic growth without paid advertising"
+        ]
       }
     ],
     "liveUrl": "https://toolpix.pythonanywhere.com",
@@ -134,6 +147,14 @@
       {
         "type": "paragraph",
         "text": "Independently designed, developed, and published on the Google Play Store using Flutter, Dart, Shared Preferences, and the Android SDK."
+      },
+      {
+        "type": "heading",
+        "text": "From Prototype to Play Store"
+      },
+      {
+        "type": "paragraph",
+        "text": "KallanCop was taken from concept to a fully published product on the Google Play Store. The release process included preparing the store listing, feature graphics, and screenshots, along with iterative playtesting to balance role abilities and keep every match fast, social, and unpredictable."
       }
     ],
     "liveUrl": "https://play.google.com/store/apps/details?id=com.ajmal.kallancop&hl=en_IN",
@@ -189,6 +210,19 @@
       {
         "type": "paragraph",
         "text": "Built independently using pure JavaScript, HTML5 Canvas, CSS3, and Web APIs, featuring a custom physics and movement engine."
+      },
+      {
+        "type": "heading",
+        "text": "Engineering Highlights"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Custom 2D physics engine handling gravity, torque, and momentum on canvas",
+          "Frame-rate independent game loop for consistent physics across devices",
+          "Zero-dependency architecture — the entire game ships as lightweight static assets",
+          "Touch and keyboard control schemes tuned for both desktop and mobile browsers"
+        ]
       }
     ],
     "liveUrl": "https://climbo.uthakkan.in/",
@@ -244,6 +278,14 @@
       {
         "type": "paragraph",
         "text": "Engineered full-stack using Python, Flask, JavaScript, HTML5, CSS3, REST APIs, and SQLite/MySQL database integration."
+      },
+      {
+        "type": "heading",
+        "text": "Why It Matters"
+      },
+      {
+        "type": "paragraph",
+        "text": "CodePix was built on the belief that programming is learned by doing, not watching. Every lesson pairs explanation with an immediately runnable challenge, and progress tracking turns the long learning curve into a series of small, rewarding wins."
       }
     ],
     "liveUrl": "https://codepix.uthakkan.in/",
@@ -375,7 +417,7 @@
         "text": "Built with Flutter & Dart for seamless cross-platform mobile performance, Firebase (Authentication, Firestore real-time NoSQL database, Cloud Storage) for backend infrastructure, Gemini AI API for intelligent compassionate chat assistance, OneSignal for push notification delivery, and ML Kit / Cloud Vision API for face recognition capabilities. The Firestore database uses a normalized schema with collections for users, caretakers, admins, connections, reports, and API configuration — designed for scalability and real-time sync."
       }
     ],
-    "liveUrl": "https://dvma-dementia-assistant.pages.dev/",
+    "liveUrl": null,
     "featured": true,
     "publishedAt": "2024-04-10",
     "accentColor": "#0ea5e9"

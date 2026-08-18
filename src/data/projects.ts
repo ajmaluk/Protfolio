@@ -63,11 +63,3 @@ export function getPrevProject(slug: string): ProjectDetail | undefined {
   if (idx === -1) return undefined;
   return list[(idx - 1 + list.length) % list.length];
 }
-
-export function getProjectsByCategory(category: ProjectCategory): ProjectDetail[] {
-  return getAllProjects().filter((p) => p.category === category);
-}
-
-export function getFeaturedProjects(): ProjectDetail[] {
-  return getAllProjects().filter((p) => p.featured);
-}

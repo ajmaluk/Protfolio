@@ -431,7 +431,7 @@ export function ProjectsSection({ isProjectsPage = false }: ProjectsSectionProps
                       {displayProjects.map((proj, idx) => (
                         <div key={proj.id} className={cn("home__project-role-listing-inner", idx === activeIndex && "active")}>
                           {proj.services.map((role, rIdx) => (
-                            <h4 key={rIdx} className="fs-20 cl-txt-sub">{role}</h4>
+                            <p key={rIdx} className="fs-20 cl-txt-sub">{role}</p>
                           ))}
                         </div>
                       ))}

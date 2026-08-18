@@ -44,6 +44,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     authors: [{ name: "Muhammed Ajmal U K", url: "https://ajmal.uthakkan.in" }],
     alternates: {
       canonical,
+      types: {
+        "application/rss+xml": [
+          {
+            url: "https://ajmal.uthakkan.in/feed.xml",
+            title: "Muhammed Ajmal U K — Blog RSS Feed",
+          },
+        ],
+      },
     },
     openGraph: {
       title,
@@ -74,6 +82,22 @@ export default async function ProjectDetailPage({ params }: PageProps) {
   const coverUrl = project.cover.startsWith("http")
     ? project.cover
     : `https://ajmal.uthakkan.in${project.cover}`;
+
+  const operatingSystem =
+    project.category === "Mobile & Games"
+      ? project.liveUrl?.includes("play.google.com")
+        ? "Android"
+        : "Android, iOS"
+      : "Web";
+
+  const applicationCategory: Record<string, string> = {
+    toolpix: "UtilitiesApplication",
+    kallancop: "GameApplication",
+    climbo: "GameApplication",
+    codepix: "EducationalApplication",
+    dvma: "HealthApplication",
+    "explore-together": "TravelApplication",
+  };
 
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",
@@ -106,8 +130,8 @@ export default async function ProjectDetailPage({ params }: PageProps) {
     "@id": `https://ajmal.uthakkan.in/projects/${project.slug}#softwareapplication`,
     name: project.name,
     description: project.description,
-    applicationCategory: project.category,
-    operatingSystem: "Web, Android, iOS",
+    applicationCategory: applicationCategory[project.slug] ?? project.category,
+    operatingSystem,
     datePublished: project.publishedAt,
     dateModified: project.publishedAt,
     author: {
@@ -136,10 +160,15 @@ export default async function ProjectDetailPage({ params }: PageProps) {
     headline: project.name,
     description: project.summary,
     author: { "@id": "https://ajmal.uthakkan.in/#person" },
+    publisher: { "@id": "https://ajmal.uthakkan.in/#organization" },
     datePublished: project.publishedAt,
     dateModified: project.publishedAt,
     image: coverUrl,
     url: `https://ajmal.uthakkan.in/projects/${project.slug}`,
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `https://ajmal.uthakkan.in/projects/${project.slug}`,
+    },
     keywords: [project.name, ...project.services].join(", "),
   };
 

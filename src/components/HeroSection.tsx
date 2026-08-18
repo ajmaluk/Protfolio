@@ -121,7 +121,7 @@ export function HeroSection() {
 
             <div className="home__hero-intro-wrap">
               <div className="cl-txt-sub home__hero-intro">
-                MCA Student &amp; Full-Stack AI Developer specialized in building AI tools, web applications, mobile apps, and scalable digital products.
+                MCA Student &amp; Full-Stack AI Developer from Kerala, India — specialized in building AI tools, web applications, mobile apps, and scalable digital products.
               </div>
               <div style={{ marginTop: "1rem" }}>
                 <a
@@ -147,13 +147,13 @@ export function HeroSection() {
               <div className="home__hero-greating-wrap">
                 <div className="home__hero-greating-inner">
                   <p className="home__hero-greating">Hi there! this is</p>
-                  <p className="heading h5 fw-med home__hero-name">
-                    <span className="cl-txt-title">Ajmal</span>{" "}
-                    <span>U K</span>
-                  </p>
+                  <h1 className="heading h5 fw-med home__hero-name">
+                    <span className="cl-txt-title">Muhammed Ajmal U K</span>{" "}
+                    <span className="cl-txt-sub">(Ajmal U K / Uthakkan)</span>
+                  </h1>
                 </div>
               </div>
-              <h1 className="heading h1 fw-bold fix-font upper home__hero-title">
+              <h2 className="heading h1 fw-bold fix-font upper home__hero-title">
                 <div className="home__hero-title-txt">BUILD</div>
                 <div className="home__hero-title-txt home__hero-title-sub">PRODUCTS FOR</div>
                 <div className="cl-txt-orange home__hero-title-slide">
@@ -192,7 +192,7 @@ export function HeroSection() {
                     </div>
                   </div>
                 </div>
-              </h1>
+              </h2>
               <span className="home__hero-scrolldown cl-txt-sub">(Scroll down)</span>
             </div>
           </div>

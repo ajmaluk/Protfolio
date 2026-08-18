@@ -76,6 +76,17 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+  alternates: {
+    canonical: "https://ajmal.uthakkan.in/",
+    types: {
+      "application/rss+xml": [
+        {
+          url: "https://ajmal.uthakkan.in/feed.xml",
+          title: "Muhammed Ajmal U K — Blog RSS Feed",
+        },
+      ],
+    },
+  },
   openGraph: {
     title: "Muhammed Ajmal U K | MCA Student & Full-Stack AI Developer | Uthakkan",
     description:
@@ -146,7 +157,8 @@ const jsonLdOrganization = {
     "https://instagram.com/ajmaluk.me",
     "https://play.google.com/store/apps/details?id=com.ajmal.kallancop",
     "https://toolpix.pythonanywhere.com",
-    "https://dvma-dementia-assistant.pages.dev/",
+    "https://climbo.uthakkan.in",
+    "https://codepix.uthakkan.in",
   ],
   founder: {
     "@type": "Person",
@@ -165,17 +177,43 @@ const jsonLdWebSite = {
     "ajmal.uthakkan.in",
     "Uthakkan Portfolio",
   ],
+  description:
+    "Official portfolio website of Muhammed Ajmal U K (Ajmal U K / Uthakkan), MCA student at College of Engineering Trivandrum and Full-Stack AI Developer from Kerala, India.",
   url: "https://ajmal.uthakkan.in/",
   publisher: { "@id": "https://ajmal.uthakkan.in/#organization" },
-  potentialAction: {
-    "@type": "SearchAction",
-    target: {
-      "@type": "EntryPoint",
-      urlTemplate: "https://ajmal.uthakkan.in/?q={search_term_string}",
-    },
-    "query-input": "required name=search_term_string",
-  },
   inLanguage: "en-IN",
+};
+
+const jsonLdProfilePage = {
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  "@id": "https://ajmal.uthakkan.in/#profilepage",
+  url: "https://ajmal.uthakkan.in/",
+  name: "Muhammed Ajmal U K — Portfolio",
+  description:
+    "Official portfolio of Muhammed Ajmal U K (Ajmal U K / Uthakkan), MCA student at College of Engineering Trivandrum and Full-Stack AI Developer from Kerala, India.",
+  mainEntity: { "@id": "https://ajmal.uthakkan.in/#person" },
+  about: { "@id": "https://ajmal.uthakkan.in/#person" },
+  primaryImageOfPage: "https://ajmal.uthakkan.in/images/portrait.webp",
+  inLanguage: "en-IN",
+  speakable: {
+    "@type": "SpeakableSpecification",
+    cssSelector: [".home__hero-intro", ".home__intro-main-txt"],
+  },
+};
+
+const jsonLdPortraitImage = {
+  "@context": "https://schema.org",
+  "@type": "ImageObject",
+  "@id": "https://ajmal.uthakkan.in/#portrait-image",
+  url: "https://ajmal.uthakkan.in/images/portrait.webp",
+  contentUrl: "https://ajmal.uthakkan.in/images/portrait.webp",
+  caption: "Muhammed Ajmal U K (Ajmal U K / Uthakkan) — Full-Stack AI Developer",
+  width: 960,
+  height: 1280,
+  encodingFormat: "image/webp",
+  creator: { "@id": "https://ajmal.uthakkan.in/#person" },
+  copyrightHolder: { "@id": "https://ajmal.uthakkan.in/#person" },
 };
 
 const jsonLdPerson = {
@@ -183,19 +221,26 @@ const jsonLdPerson = {
   "@type": "Person",
   "@id": "https://ajmal.uthakkan.in/#person",
   name: "Muhammed Ajmal U K",
+  disambiguatingDescription:
+    "Muhammed Ajmal U K (known as Ajmal U K, Ajmal UK, and Uthakkan) is an Indian Software Engineer, Full-Stack AI Developer, and MCA scholar at College of Engineering Trivandrum (CET), Kerala. Creator of ToolPix AI and KallanCop.",
+  description:
+    "Muhammed Ajmal U K (also known as Ajmal U K, ajmaluk, or Uthakkan) is an MCA student at College of Engineering Trivandrum (CET) and a Full-Stack AI Developer from Kannur, Kerala, India. He builds production-ready AI tools, web applications, and mobile apps using Python, Flutter, Next.js, and LLM integrations. Creator of ToolPix AI, KallanCop, DVMA Dementia Assistant, CodePix, Climbo, and Explore Together.",
   alternateName: [
     "Ajmal U K",
+    "Ajmal UK",
     "Ajmal Uthakkan",
     "Ajmal",
     "ajmaluk",
     "Uthakkan",
     "Muhammed Ajmal",
+    "Ajmal UK Developer",
+    "Muhammed Ajmal UK",
   ],
   givenName: "Muhammed Ajmal",
   familyName: "U K",
   url: "https://ajmal.uthakkan.in",
+  mainEntityOfPage: { "@id": "https://ajmal.uthakkan.in/#profilepage" },
   image: "https://ajmal.uthakkan.in/images/portrait.webp",
-  logo: "https://ajmal.uthakkan.in/seo/favicon.png",
   jobTitle: "MCA Student & Full-Stack AI Developer",
   worksFor: {
     "@type": "Organization",
@@ -207,7 +252,8 @@ const jsonLdPerson = {
     "https://instagram.com/ajmaluk.me",
     "https://play.google.com/store/apps/details?id=com.ajmal.kallancop",
     "https://toolpix.pythonanywhere.com",
-    "https://dvma-dementia-assistant.pages.dev/",
+    "https://climbo.uthakkan.in",
+    "https://codepix.uthakkan.in",
   ],
   alumniOf: [
     {
@@ -256,6 +302,49 @@ const jsonLdPerson = {
     skills:
       "Python, JavaScript, TypeScript, Flutter, Next.js, React, Flask, Firebase, AI, Machine Learning",
   },
+  award: "Google Cloud Arcade Champion Tier",
+  hasCredential: [
+    {
+      "@type": "EducationalOccupationalCredential",
+      name: "Introduction to Artificial Intelligence",
+      recognizedBy: { "@type": "Organization", name: "IBM / Coursera" },
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      name: "Introduction to Software Engineering",
+      recognizedBy: { "@type": "Organization", name: "IBM / Coursera" },
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      name: "Prompt Engineering with GitHub Copilot",
+      recognizedBy: { "@type": "Organization", name: "Microsoft" },
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      name: "The Joy of Computing using Python",
+      recognizedBy: { "@type": "Organization", name: "NPTEL" },
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      name: "Deloitte Data Analytics Virtual Experience",
+      recognizedBy: { "@type": "Organization", name: "Deloitte / Forage" },
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      name: "Discover the Art of Prompting",
+      recognizedBy: { "@type": "Organization", name: "Coursera" },
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      name: "Maximize Productivity with AI Tools",
+      recognizedBy: { "@type": "Organization", name: "Coursera" },
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      name: "Oracle Cloud Infrastructure 2025 AI Foundations Associate",
+      recognizedBy: { "@type": "Organization", name: "Oracle" },
+    },
+  ],
 };
 
 export default function RootLayout({
@@ -276,6 +365,14 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdWebSite) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdProfilePage) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdPortraitImage) }}
         />
         <script
           type="application/ld+json"

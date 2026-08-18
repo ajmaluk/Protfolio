@@ -8,7 +8,7 @@ interface Company {
   src: string;
   alt: string;
   description: string;
-  url: string;
+  url?: string;
   tags: string[];
   thumbnail?: string;
 }
@@ -18,8 +18,8 @@ const companies: Company[] = [
     src: "/images/toolpix.svg",
     alt: "ToolPix AI",
     description: "AI-powered image editing, design & creative tools platform built for seamless productivity.",
-    url: "https://toolpix.com",
-    tags: ["AI Platform", "Next.js", "Design"],
+    url: "https://toolpix.pythonanywhere.com",
+    tags: ["AI Platform", "Python/Flask", "SEO"],
     thumbnail: "/images/toolpix.webp",
   },
   {
@@ -34,7 +34,7 @@ const companies: Company[] = [
     src: "/images/dvma.svg",
     alt: "DVMA - Dementia Assistant",
     description: "Compassionate mobile app empowering dementia patients, caregivers & admins with AI-driven assistance and real-time safety.",
-    url: "https://dvma-dementia-assistant.pages.dev/",
+    url: "/projects/dvma",
     tags: ["Flutter", "Gemini AI", "Firebase"],
     thumbnail: "/images/dvma.webp",
   },
@@ -73,14 +73,13 @@ const companies: Company[] = [
     src: "/images/lbs.svg",
     alt: "LBS Course Portal",
     description: "Government-accredited technical training portal offering skill acquisition courses.",
-    url: "https://lbs.kerala.gov.in/",
+    url: "https://lbscentre.kerala.gov.in/",
     tags: ["EdTech", "Government", "Skill Portal"],
   },
   {
     src: "/images/styushi.svg",
     alt: "Styushi Clothing",
     description: "Modern fashion & apparel e-commerce store with custom street fashion experience.",
-    url: "https://styushi.com/",
     tags: ["E-Commerce", "UI/UX", "Brand"],
   },
 ];
@@ -120,6 +119,7 @@ export function IntroSection() {
   const awardsVisualRef = useRef<HTMLDivElement>(null);
   const awardsListingRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const modalPanelRef = useRef<HTMLDivElement>(null);
 
   const handleTouchStart = (company: Company) => {
     touchTimerRef.current = setTimeout(() => {
@@ -136,7 +136,26 @@ export function IntroSection() {
   useEffect(() => {
     if (!activeProject) return;
     const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setActiveProject(null);
+      if (e.key === "Escape") {
+        setActiveProject(null);
+        return;
+      }
+      if (e.key !== "Tab") return;
+      const panel = modalPanelRef.current;
+      if (!panel) return;
+      const focusable = panel.querySelectorAll<HTMLElement>(
+        'a[href], button, [tabindex]:not([tabindex="-1"])'
+      );
+      if (focusable.length === 0) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
     };
     document.body.style.overflow = "hidden";
     document.addEventListener("keydown", onKeyDown);
@@ -295,6 +314,7 @@ export function IntroSection() {
           onClick={() => setActiveProject(null)}
         >
           <div
+            ref={modalPanelRef}
             style={{
               backgroundColor: "#111111",
               border: "1px solid rgba(255, 255, 255, 0.18)",
@@ -361,26 +381,29 @@ export function IntroSection() {
               {activeProject.description}
             </p>
 
-            <a
-              href={activeProject.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "0.8rem",
-                backgroundColor: "#FF3D00",
-                color: "#ffffff",
-                padding: "1.4rem 3.2rem",
-                borderRadius: "100px",
-                fontWeight: "700",
-                fontSize: "1.5rem",
-                textDecoration: "none",
-                boxShadow: "0 10px 24px rgba(255, 61, 0, 0.4)",
-              }}
-            >
-              Visit Project ↗
-            </a>
+            {activeProject.url && (
+              <a
+                href={activeProject.url}
+                {...(activeProject.url.startsWith("http")
+                  ? { target: "_blank", rel: "noopener noreferrer" }
+                  : {})}
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "0.8rem",
+                  backgroundColor: "#FF3D00",
+                  color: "#ffffff",
+                  padding: "1.4rem 3.2rem",
+                  borderRadius: "100px",
+                  fontWeight: "700",
+                  fontSize: "1.5rem",
+                  textDecoration: "none",
+                  boxShadow: "0 10px 24px rgba(255, 61, 0, 0.4)",
+                }}
+              >
+                {activeProject.url.startsWith("http") ? "Visit Project ↗" : "View Case Study →"}
+              </a>
+            )}
           </div>
         </div>
       )}
@@ -389,16 +412,25 @@ export function IntroSection() {
         <div className="container grid">
           <div className="home__intro-companies">
             <div className="line" />
-            <h4 className="heading h5 cl-txt-title home__intro-companies-title">
+            <h3 className="heading h5 cl-txt-title home__intro-companies-title">
               Projects I worked for
-            </h4>
+            </h3>
             <div className="home__intro-companies-listing">
               {companies.map((company) => (
                 <div
                   key={company.alt}
                   className="home__intro-company"
                   style={{ cursor: "pointer" }}
+                  role="button"
+                  tabIndex={0}
+                  aria-label={`View details of ${company.alt}`}
                   onClick={() => setActiveProject(company)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      setActiveProject(company);
+                    }
+                  }}
                   onTouchStart={() => handleTouchStart(company)}
                   onTouchEnd={handleTouchEnd}
                 >
@@ -470,9 +502,19 @@ export function IntroSection() {
                 <div
                   key={edu.institution}
                   className={`home__intro-award ${index === activeAwardIndex ? "active" : ""}`}
+                  role="button"
+                  tabIndex={0}
+                  aria-pressed={index === activeAwardIndex}
+                  aria-label={`${edu.institution}, ${edu.degree}, ${edu.years}, score ${edu.score}`}
                   onMouseEnter={() => setActiveAwardIndex(index)}
                   onFocus={() => setActiveAwardIndex(index)}
                   onClick={() => setActiveAwardIndex(index)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      setActiveAwardIndex(index);
+                    }
+                  }}
                   style={{ cursor: "pointer" }}
                 >
                   <span className="home__intro-award-line" />
@@ -514,19 +556,19 @@ export function IntroSection() {
                     <div key={dupIdx} className="marquee-inner-item" aria-hidden={dupIdx === 1}>
                       <div className="home__intro-service-marquee">
                         <div className="home__intro-service-marquee-item">
-                          <h3 className="fw-semi heading h3 upper">AI &amp; Full-Stack Dev</h3>
+                          <div className="fw-semi heading h3 upper home__intro-service-marquee-txt">AI &amp; Full-Stack Dev</div>
                           <div className="ic ic-32 anim-rot" aria-hidden="true">
                             <Image src="/images/asterisk.svg" alt="" width={32} height={32} className="img" />
                           </div>
                         </div>
                         <div className="home__intro-service-marquee-item">
-                          <h3 className="fw-semi heading h3 upper">Python &amp; JavaScript</h3>
+                          <div className="fw-semi heading h3 upper home__intro-service-marquee-txt">Python &amp; JavaScript</div>
                           <div className="ic ic-32 anim-rot" aria-hidden="true">
                             <Image src="/images/asterisk.svg" alt="" width={32} height={32} className="img" />
                           </div>
                         </div>
                         <div className="home__intro-service-marquee-item">
-                          <h3 className="fw-semi heading h3 upper">Flutter &amp; Cloud</h3>
+                          <div className="fw-semi heading h3 upper home__intro-service-marquee-txt">Flutter &amp; Cloud</div>
                           <div className="ic ic-32 anim-rot" aria-hidden="true">
                             <Image src="/images/asterisk.svg" alt="" width={32} height={32} className="img" />
                           </div>
@@ -549,19 +591,19 @@ export function IntroSection() {
                     <div key={dupIdx} className="marquee-inner-item" aria-hidden={dupIdx === 1}>
                       <div className="home__intro-service-marquee">
                         <div className="home__intro-service-marquee-item">
-                          <h3 className="fw-semi heading h3 upper">Full-Stack Web Apps</h3>
+                          <div className="fw-semi heading h3 upper home__intro-service-marquee-txt">Full-Stack Web Apps</div>
                           <div className="ic ic-32 anim-rot" aria-hidden="true">
                             <Image src="/images/asterisk.svg" alt="" width={32} height={32} className="img" />
                           </div>
                         </div>
                         <div className="home__intro-service-marquee-item">
-                          <h3 className="fw-semi heading h3 upper">AI Tools &amp; Automation</h3>
+                          <div className="fw-semi heading h3 upper home__intro-service-marquee-txt">AI Tools &amp; Automation</div>
                           <div className="ic ic-32 anim-rot" aria-hidden="true">
                             <Image src="/images/asterisk.svg" alt="" width={32} height={32} className="img" />
                           </div>
                         </div>
                         <div className="home__intro-service-marquee-item">
-                          <h3 className="fw-semi heading h3 upper">Mobile &amp; Cloud Dev</h3>
+                          <div className="fw-semi heading h3 upper home__intro-service-marquee-txt">Mobile &amp; Cloud Dev</div>
                           <div className="ic ic-32 anim-rot" aria-hidden="true">
                             <Image src="/images/asterisk.svg" alt="" width={32} height={32} className="img" />
                           </div>

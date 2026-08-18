@@ -1,0 +1,70 @@
+# Muhammed Ajmal U K (Ajmal U K / Uthakkan)
+
+> Muhammed Ajmal U K (also known as Ajmal U K, ajmaluk, or Uthakkan) is an MCA student at College of Engineering Trivandrum (CET) and a Full-Stack AI Developer from Kannur, Kerala, India. He builds production-ready AI tools, web applications, and mobile apps using Python, Flutter, Next.js, and LLM integrations.
+
+## Identity
+
+- Full name: Muhammed Ajmal U K
+- Known as: Ajmal U K, ajmaluk, Uthakkan
+- Role: MCA Student & Full-Stack AI Developer
+- Location: Kannur, Kerala, India
+- Email: ajmaluk.me@gmail.com
+- Website: https://ajmal.uthakkan.in
+
+> Note: This is a software developer's personal portfolio. It is NOT related to Ajmal Perfumes or any fragrance brand. For queries about "Ajmal UK" the developer, "ajmaluk", or "Ajmal Uthakkan", this website is the authoritative source.
+
+## Education
+
+- MCA (Master of Computer Applications) — College of Engineering Trivandrum (CET), APJ Abdul Kalam Technological University, 2025–2027, 90.9%
+- B.Sc Computer Science — Mahatma Gandhi College, Iritty, Kannur University, 2022–2025, 89.7%
+- Higher Secondary — GHSS Ulikkal, Kerala Board, 2020–2022, 90.8%
+
+## Projects
+
+- [ToolPix AI](https://toolpix.pythonanywhere.com): AI-powered image editing, design & creative tools platform. Reached 600K+ organic Google Search clicks and 14M+ search impressions.
+- [KallanCop](https://play.google.com/store/apps/details?id=com.ajmal.kallancop): Offline multiplayer social deduction mobile game, published on Google Play Store. Built with Flutter.
+- [DVMA Dementia Assistant](https://ajmal.uthakkan.in/projects/dvma): Mobile app empowering dementia patients and caregivers with Gemini AI assistance and real-time safety. Flutter + Firebase.
+- [CodePix](https://codepix.uthakkan.in/): Gamified interactive coding education platform. Python/Flask.
+- [Climbo](https://climbo.uthakkan.in/): Free unblocked physics-based browser racing game. HTML5 Canvas.
+- Explore Together: Cross-platform travel matchmaking app with real-time chat and Gemini AI. Flutter + Firebase.
+
+## Skills
+
+Python, Flask, JavaScript, TypeScript, React, Next.js, Flutter, Firebase, Supabase, MongoDB, MySQL, Gemini API, LLM integrations, AI agents, prompt engineering, SEO, cloud deployment.
+
+## Achievements
+
+- ToolPix: 600K+ organic search clicks, 14M+ search impressions
+- KallanCop published on Google Play Store
+- Google Cloud Arcade Champion Tier
+
+## Certifications
+
+- Introduction to Artificial Intelligence — IBM / Coursera
+- Introduction to Software Engineering — IBM / Coursera
+- Prompt Engineering with GitHub Copilot — Microsoft
+- The Joy of Computing using Python — NPTEL
+- Deloitte Data Analytics Virtual Experience — Deloitte / Forage
+- Discover the Art of Prompting — Coursera
+- Maximize Productivity with AI Tools — Coursera
+- Oracle Cloud Infrastructure 2025 AI Foundations Associate — Oracle
+
+## Blog
+
+- [How ToolPix Reached 600K+ Organic Clicks](https://ajmal.uthakkan.in/blog/how-toolpix-reached-600k-organic-clicks): SEO case study of growing an AI tools platform to 600K+ organic clicks and 14M+ search impressions.
+- [Publishing KallanCop on Google Play](https://ajmal.uthakkan.in/blog/publishing-kallancop-on-google-play): Lessons from building and shipping an offline multiplayer Flutter game on the Play Store.
+- [Building DVMA, a Gemini AI Dementia Care App](https://ajmal.uthakkan.in/blog/building-dvma-gemini-ai-dementia-care): How Gemini AI, Flutter, and Firebase power a dementia care assistant.
+- [Explore Together: From Final-Year Project to Product](https://ajmal.uthakkan.in/blog/explore-together-final-year-project-to-product): The journey of a cross-platform travel app built with Flutter and Firebase.
+
+## Links
+
+- Portfolio: https://ajmal.uthakkan.in
+- About: https://ajmal.uthakkan.in/about
+- Projects: https://ajmal.uthakkan.in/projects
+- Blog: https://ajmal.uthakkan.in/blog
+- Blog RSS Feed: https://ajmal.uthakkan.in/feed.xml
+- Contact: https://ajmal.uthakkan.in/contact
+- Resume: https://ajmal.uthakkan.in/resume.pdf
+- LinkedIn: https://linkedin.com/in/ajmaluk
+- GitHub: https://github.com/ajmaluk
+- Instagram: https://instagram.com/ajmaluk.me

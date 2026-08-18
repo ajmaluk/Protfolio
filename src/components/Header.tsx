@@ -195,6 +195,14 @@ export function Header() {
             Projects
           </Link>
           <span className="splash cl-txt-disable fs-14">/</span>
+          <Link
+            href="/blog"
+            className={cn("txt-link hover-un fs-14 header__menu-link", (pathname === '/blog' || pathname.startsWith('/blog/')) && "active")}
+            aria-current={(pathname === '/blog' || pathname.startsWith('/blog/')) ? "page" : undefined}
+          >
+            Blog
+          </Link>
+          <span className="splash cl-txt-disable fs-14">/</span>
           <a
             href="/resume.pdf"
             download="Muhammed_Ajmal_UK_Resume.pdf"
@@ -248,6 +256,7 @@ export function Header() {
                 <Link href="/" className={`header__menu-overlay-link${pathname === '/' ? ' active' : ''}`} aria-current={pathname === '/' ? "page" : undefined} onClick={() => handleLinkClick('/')}>Index</Link>
                 <Link href="/about" className={`header__menu-overlay-link${pathname === '/about' ? ' active' : ''}`} aria-current={pathname === '/about' ? "page" : undefined} onClick={() => handleLinkClick('/about')}>About</Link>
                 <Link href="/projects" className={`header__menu-overlay-link${(pathname === '/projects' || pathname.startsWith('/projects/')) ? ' active' : ''}`} aria-current={(pathname === '/projects' || pathname.startsWith('/projects/')) ? "page" : undefined} onClick={() => handleLinkClick('/projects')}>Projects</Link>
+                <Link href="/blog" className={`header__menu-overlay-link${(pathname === '/blog' || pathname.startsWith('/blog/')) ? ' active' : ''}`} aria-current={(pathname === '/blog' || pathname.startsWith('/blog/')) ? "page" : undefined} onClick={() => handleLinkClick('/blog')}>Blog</Link>
                 <a href="/resume.pdf" download="Muhammed_Ajmal_UK_Resume.pdf" target="_blank" rel="noopener noreferrer" className="header__menu-overlay-link" onClick={closeMenu}>Download Resume</a>
               </div>
               <div className="header__menu-overlay-meta-row">

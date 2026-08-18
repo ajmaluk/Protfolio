@@ -1,14 +1,16 @@
 import type { Metadata } from "next";
 import { ProjectsSection } from "@/components/ProjectsSection";
 import { FooterSection } from "@/components/FooterSection";
+import { getAllProjects } from "@/data/projects";
 
 export const metadata: Metadata = {
-  title: "Projects & Case Studies",
+  title: "Projects by Ajmal U K | Software & AI Portfolio",
   description:
     "Explore software projects built by Muhammed Ajmal U K (Ajmal U K / Uthakkan) — ToolPix AI, KallanCop Game, DVMA Dementia Assistant, and Explore Together.",
   keywords: [
-    "Muhammed Ajmal U K Projects",
     "Ajmal U K Projects",
+    "Ajmal UK",
+    "Muhammed Ajmal U K Projects",
     "Ajmal Uthakkan Software",
     "Uthakkan Projects",
     "ToolPix AI",
@@ -18,18 +20,26 @@ export const metadata: Metadata = {
   ],
   alternates: {
     canonical: "https://ajmal.uthakkan.in/projects",
+    types: {
+      "application/rss+xml": [
+        {
+          url: "https://ajmal.uthakkan.in/feed.xml",
+          title: "Muhammed Ajmal U K — Blog RSS Feed",
+        },
+      ],
+    },
   },
   openGraph: {
-    title: "Software Projects & Case Studies | Muhammed Ajmal U K | Uthakkan",
+    title: "Projects by Ajmal U K | Software & AI Portfolio",
     description:
       "Explore software projects built by Muhammed Ajmal U K (Ajmal U K / Uthakkan) — ToolPix AI, KallanCop Game, DVMA Dementia Assistant, and Explore Together.",
     url: "https://ajmal.uthakkan.in/projects",
     type: "website",
-    images: [{ url: "/seo/og-image.jpg", width: 1200, height: 630, alt: "Muhammed Ajmal U K Projects" }],
+    images: [{ url: "/seo/og-image.jpg", width: 1200, height: 630, alt: "Muhammed Ajmal U K (Ajmal U K) Projects" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Software Projects | Muhammed Ajmal U K | Uthakkan",
+    title: "Projects by Ajmal U K | Software & AI Portfolio",
     description:
       "Explore software projects built by Muhammed Ajmal U K (Ajmal U K / Uthakkan).",
     images: ["/seo/og-image.jpg"],
@@ -66,6 +76,21 @@ export default function ProjectsPage() {
     author: { "@id": "https://ajmal.uthakkan.in/#person" },
   };
 
+  const allProjects = getAllProjects();
+  const itemListJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Software Projects by Muhammed Ajmal U K",
+    itemListOrder: "https://schema.org/ItemListOrderDescending",
+    numberOfItems: allProjects.length,
+    itemListElement: allProjects.map((project, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      url: `https://ajmal.uthakkan.in/projects/${project.slug}`,
+      name: project.name,
+    })),
+  };
+
   return (
     <div className="wrapper">
       <script
@@ -75,6 +100,10 @@ export default function ProjectsPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionPageJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }}
       />
       <main id="main-content" className="page transition-fade" data-namespace="projects" data-infinite tabIndex={-1}>
         <h1 className="visually-hidden">Software Projects &amp; Case Studies by Muhammed Ajmal U K</h1>

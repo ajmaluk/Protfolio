@@ -109,6 +109,11 @@ export function FooterSection({ showCharacter = true }: FooterSectionProps) {
             >
               Let&apos;s build something impactful together
             </a>
+            <p className="fs-14" style={{ marginTop: "1.2rem" }}>
+              <a href="/contact" className="txt-link hover-un cl-txt-sub" aria-label="See all contact options">
+                or see all contact options →
+              </a>
+            </p>
           </div>
 
           <div className="footer__title-wrap">
@@ -123,6 +128,12 @@ export function FooterSection({ showCharacter = true }: FooterSectionProps) {
             </div>
           </div>
 
+        </div>
+
+        <div className="container">
+          <p className="fs-12 cl-txt-disable" style={{ paddingTop: "2.4rem", textAlign: "center" }}>
+            © {new Date().getFullYear()} Muhammed Ajmal U K (Ajmal U K / Uthakkan) — Full-Stack AI Developer, Kerala, India. All rights reserved.
+          </p>
         </div>
 
         {showCharacter && (
@@ -145,8 +156,8 @@ export function FooterSection({ showCharacter = true }: FooterSectionProps) {
             <div className="marquee">
               <div className="marquee-inner" style={{ display: "flex", animation: "marquee 25s linear infinite" }}>
                 {[0, 1, 2, 3].map((i) => (
-                  <div key={i} className="marquee-inner-item">
-                    <h2 className="heading h2 footer__marquee">
+                  <div key={i} className="marquee-inner-item" aria-hidden={i > 0}>
+                    <div className="heading h2 footer__marquee">
                       <a
                         href="mailto:ajmaluk.me@gmail.com"
                         className="footer__marquee-link"
@@ -154,7 +165,7 @@ export function FooterSection({ showCharacter = true }: FooterSectionProps) {
                       >
                         ajmaluk.me<span className="cl-txt-orange">@</span>gmail.com
                       </a>
-                    </h2>
+                    </div>
                   </div>
                 ))}
               </div>

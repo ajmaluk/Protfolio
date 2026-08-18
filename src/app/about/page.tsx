@@ -2,13 +2,17 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { FooterSection } from "@/components/FooterSection";
 import { AboutProjectsSlider } from "@/components/AboutProjectsSlider";
+import { AboutFAQ } from "@/components/AboutFAQ";
 
 export const metadata: Metadata = {
-  title: "About",
+  title: "About Ajmal U K | Muhammed Ajmal U K (Uthakkan) - Full-Stack AI Developer",
   description:
     "Learn about Muhammed Ajmal U K (Ajmal U K / Uthakkan) — MCA student at College of Engineering Trivandrum (CET), Full-Stack AI Developer, certifications, technical stack, and software projects.",
   keywords: [
-    "About Muhammed Ajmal U K",
+    "Ajmal U K",
+    "Ajmal UK",
+    "About Ajmal U K",
+    "Muhammed Ajmal U K",
     "Ajmal U K Profile",
     "Ajmal Uthakkan Bio",
     "Uthakkan Profile",
@@ -19,18 +23,26 @@ export const metadata: Metadata = {
   ],
   alternates: {
     canonical: "https://ajmal.uthakkan.in/about",
+    types: {
+      "application/rss+xml": [
+        {
+          url: "https://ajmal.uthakkan.in/feed.xml",
+          title: "Muhammed Ajmal U K — Blog RSS Feed",
+        },
+      ],
+    },
   },
   openGraph: {
-    title: "About Muhammed Ajmal U K | MCA Student & Full-Stack AI Developer | Uthakkan",
+    title: "About Ajmal U K | Muhammed Ajmal U K (Uthakkan) - Full-Stack AI Developer",
     description:
       "Learn about Muhammed Ajmal U K (Ajmal U K / Uthakkan) — MCA student at CET & Full-Stack AI Developer.",
     type: "profile",
     url: "https://ajmal.uthakkan.in/about",
-    images: [{ url: "/seo/og-image.jpg", width: 1200, height: 630, alt: "Muhammed Ajmal U K" }],
+    images: [{ url: "/seo/og-image.jpg", width: 1200, height: 630, alt: "Muhammed Ajmal U K (Ajmal U K)" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "About Muhammed Ajmal U K | MCA Student & Full-Stack AI Developer",
+    title: "About Ajmal U K | Muhammed Ajmal U K (Uthakkan) - Full-Stack AI Developer",
     description:
       "Muhammed Ajmal U K (Ajmal U K / Uthakkan) — MCA Student at CET & Full-Stack AI Developer.",
     images: ["/seo/og-image.jpg"],
@@ -141,6 +153,62 @@ const softSkills = [
   "Time Management",
 ];
 
+const services = [
+  {
+    title: "AI-Powered Web Applications",
+    detail:
+      "Full-stack web platforms with LLM and AI API integrations — from intelligent tools like ToolPix (600K+ organic search clicks) to AI-assisted workflows using Gemini, OpenAI, and custom agents.",
+  },
+  {
+    title: "Mobile App Development (Flutter)",
+    detail:
+      "Cross-platform Android & iOS apps built with Flutter and Firebase — including published Play Store products like KallanCop and healthcare-focused apps like DVMA Dementia Assistant.",
+  },
+  {
+    title: "Full-Stack Web Development",
+    detail:
+      "Production-ready websites and web apps using Next.js, React, Flask, and Node.js — with clean architecture, REST APIs, WebSockets, and database design (MongoDB, MySQL, Supabase).",
+  },
+  {
+    title: "AI Agents & LLM Integrations",
+    detail:
+      "Prompt engineering, AI agent design, and LLM API integrations that add real intelligence to products — chat assistants, content generation, and automated decision support.",
+  },
+  {
+    title: "SEO & Performance Optimization",
+    detail:
+      "Technical SEO, structured data, Core Web Vitals, and deployment optimization. ToolPix reached 14M+ search impressions through targeted AI SEO and high-performance tooling.",
+  },
+  {
+    title: "UI/UX & Product Design",
+    detail:
+      "User-centered interface design that balances aesthetics with accessibility — turning complex features into simple, intuitive digital experiences.",
+  },
+];
+
+const faqs = [
+  {
+    q: "Who is Muhammed Ajmal U K?",
+    a: "Muhammed Ajmal U K (also known as Ajmal U K, ajmaluk, or Uthakkan) is an MCA student at College of Engineering Trivandrum (CET) and a Full-Stack AI Developer from Kannur, Kerala, India. He builds production-ready AI tools, web applications, and mobile apps, and is the creator of ToolPix AI, KallanCop, DVMA Dementia Assistant, CodePix, Climbo, and Explore Together.",
+  },
+  {
+    q: "What technologies does Ajmal U K work with?",
+    a: "Python, Flask, JavaScript, TypeScript, React, Next.js, Flutter, Firebase, Supabase, MongoDB, MySQL, Gemini API, and various LLM/AI integrations. He works across the full stack — from cloud deployment and backend APIs to mobile apps and frontend interfaces.",
+  },
+  {
+    q: "What projects has Ajmal U K built?",
+    a: "His notable projects include ToolPix AI (an AI tools platform with 600K+ organic search clicks and 14M+ impressions), KallanCop (an offline multiplayer game published on the Google Play Store), DVMA (a dementia care assistant app using Gemini AI), CodePix (a gamified coding education platform), Climbo (a browser physics racing game), and Explore Together (a travel matchmaking app).",
+  },
+  {
+    q: "Where does Ajmal U K study?",
+    a: "He is pursuing a Master of Computer Applications (MCA) at College of Engineering Trivandrum (CET), APJ Abdul Kalam Technological University, scoring 90.9%. He completed his B.Sc Computer Science at Mahatma Gandhi College, Iritty (89.7%) and Higher Secondary at GHSS Ulikkal (90.8%).",
+  },
+  {
+    q: "How can I contact or hire Muhammed Ajmal U K?",
+    a: "You can reach him at ajmaluk.me@gmail.com, connect on LinkedIn (linkedin.com/in/ajmaluk), or view his code on GitHub (github.com/ajmaluk). His resume is available for download on this website.",
+  },
+];
+
 export default function AboutPage() {
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",
@@ -169,6 +237,23 @@ export default function AboutPage() {
     description:
       "Learn about Muhammed Ajmal U K (Ajmal U K / Uthakkan) — MCA student at College of Engineering Trivandrum (CET), Full-Stack AI Developer, certifications, technical stack, and software projects.",
     mainEntity: { "@id": "https://ajmal.uthakkan.in/#person" },
+    speakable: {
+      "@type": "SpeakableSpecification",
+      cssSelector: [".about__hero-intro", ".about__bio-text"],
+    },
+  };
+
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.q,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.a,
+      },
+    })),
   };
 
   return (
@@ -181,15 +266,22 @@ export default function AboutPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutPageJsonLd) }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <main id="main-content" tabIndex={-1}>
         {/* Hero Section */}
         <section className="about__hero">
           <div className="container">
             <div className="about__hero-content">
               <p className="about__hero-label fs-14 upper fw-med">About Me</p>
-              <h1 className="about__hero-title heading display-1 upper fw-bold cl-txt-title">
-                AI &amp; <span className="cl-txt-orange">Full-Stack</span> Developer
+              <h1 className="about__hero-title heading display-1 upper fw-bold cl-txt-title" style={{ marginBottom: "1.6rem" }}>
+                Muhammed <span className="cl-txt-orange">Ajmal U K</span>
               </h1>
+              <p className="heading h4 upper fw-med cl-txt-sub" style={{ marginBottom: "3.2rem" }}>
+                AI &amp; Full-Stack Developer
+              </p>
               <p className="about__hero-intro heading h5 cl-txt-sub">
                 Hi! I&apos;m <strong className="cl-txt-title">Muhammed Ajmal U K</strong>, an MCA student and Software Engineer from Kerala, India. I specialize in building production-ready AI tools, full-stack web applications, mobile apps, and scalable digital products.
               </p>
@@ -240,6 +332,23 @@ export default function AboutPage() {
               <p className="about__bio-text cl-txt-sub">
                 From publishing privacy-first offline multiplayer games on the Google Play Store (KallanCop) to building high-traffic AI productivity platforms reaching 600K+ search clicks (ToolPix) and cognitive-support healthcare mobile apps (DVMA), I continuously focus on hands-on software development, scalable engineering, and user-centered product craft.
               </p>
+            </div>
+          </div>
+        </section>
+
+        {/* What I Do Section */}
+        <section className="about__skills" style={{ borderTop: "1px solid var(--cl-dm-border)", paddingTop: "6rem" }}>
+          <div className="container">
+            <h2 className="about__section-label heading h5 upper fw-med cl-txt-disable">
+              What I Do
+            </h2>
+            <div className="about__skills-grid" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))" }}>
+              {services.map((service) => (
+                <div key={service.title} className="about__skill-card" style={{ flexDirection: "column", alignItems: "flex-start", gap: "0.8rem" }}>
+                  <span className="heading h5 fw-bold cl-txt-title">{service.title}</span>
+                  <p className="cl-txt-sub fs-14" style={{ lineHeight: 1.6 }}>{service.detail}</p>
+                </div>
+              ))}
             </div>
           </div>
         </section>
@@ -376,6 +485,9 @@ export default function AboutPage() {
             </div>
           </div>
         </section>
+
+        {/* FAQ Section */}
+        <AboutFAQ faqs={faqs} />
 
         {/* CTA Section */}
         <section className="about__cta">

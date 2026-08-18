@@ -1,0 +1,246 @@
+[
+  {
+    "slug": "how-toolpix-reached-600k-organic-clicks",
+    "title": "How ToolPix Reached 600K+ Organic Clicks",
+    "description": "The SEO strategy behind ToolPix — an AI tools platform that earned 600K+ organic Google Search clicks and 14M+ impressions using Python, Flask, and targeted keyword research.",
+    "category": "SEO & Growth",
+    "tags": ["SEO", "ToolPix", "Python", "Flask", "Organic Growth"],
+    "publishedAt": "2026-06-15",
+    "readingTime": "6 min read",
+    "image": "/images/toolpix.webp",
+    "content": [
+      {
+        "type": "paragraph",
+        "text": "When I started building ToolPix, I had no marketing budget — just a conviction that useful tools, built well, can rank on their own merit. Today the platform has earned more than 600,000 organic Google Search clicks and over 14 million search impressions, entirely without paid advertising. Here is what actually moved the needle."
+      },
+      {
+        "type": "heading",
+        "text": "Start With Search Intent, Not Features"
+      },
+      {
+        "type": "paragraph",
+        "text": "Every tool on ToolPix began as a search query, not a feature idea. I researched what people were actively typing — image conversion problems, PDF compression needs, developer utilities — and built a tool that answered that exact query. When your product is the answer to a search, ranking becomes a natural outcome rather than a marketing campaign."
+      },
+      {
+        "type": "heading",
+        "text": "What Worked"
+      },
+      {
+        "type": "list",
+        "items": [
+          "One tool, one page, one intent — each utility gets its own focused, indexable page",
+          "Fast server-side processing with Python and Flask so pages stay quick and crawlable",
+          "Clean, descriptive titles and meta tags written for humans first",
+          "Browser-side processing where possible, keeping pages lightweight and responsive",
+          "Consistent internal linking between related tools so crawlers discover everything"
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "The Compounding Effect"
+      },
+      {
+        "type": "paragraph",
+        "text": "Organic growth compounds slowly, then suddenly. For months the traffic curve was flat. Then individual tool pages started ranking, each one bringing a small steady stream of visitors. Together they crossed 14 million impressions and 600,000 clicks — and the traffic continues without any ongoing ad spend."
+      },
+      {
+        "type": "heading",
+        "text": "Lessons I Would Give Anyone Starting Out"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Build something people are already searching for — do not try to create demand from zero",
+          "Page speed is a ranking factor and a conversion factor; optimize both",
+          "Structured, semantic HTML helps search engines understand your pages",
+          "Be patient: SEO is a long game that rewards consistency over tricks"
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "publishing-kallancop-on-google-play",
+    "title": "Publishing KallanCop on Google Play",
+    "description": "How I designed, built, and published KallanCop — an offline multiplayer social deduction game — on the Google Play Store using Flutter and Dart.",
+    "category": "Mobile & Games",
+    "tags": ["Flutter", "Google Play", "KallanCop", "Game Development", "Android"],
+    "publishedAt": "2026-04-20",
+    "readingTime": "5 min read",
+    "image": "/images/kallancop.webp",
+    "content": [
+      {
+        "type": "paragraph",
+        "text": "KallanCop started as a simple question: could the classic 'Cops and Robbers' playground game work as a party game on a single phone? The answer became an offline multiplayer social deduction game, published on the Google Play Store — my first product to go through a full store review and release process."
+      },
+      {
+        "type": "heading",
+        "text": "Why Offline-First Was the Right Call"
+      },
+      {
+        "type": "paragraph",
+        "text": "Party games live or die by friction. Requiring accounts, servers, or even an internet connection would have killed the spontaneity of passing one phone around a group. Keeping everything local — role assignment, game state, turn logic — meant the game works anywhere, instantly, with zero setup."
+      },
+      {
+        "type": "heading",
+        "text": "Designing Hidden Roles"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Cop, Thief, and Kingpin roles with asymmetric information and objectives",
+          "Quick rounds tuned for social gatherings rather than long sessions",
+          "Simple interactions so new players learn the game in one round",
+          "Animations and feedback that keep tension high without slowing play"
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "What the Play Store Process Taught Me"
+      },
+      {
+        "type": "paragraph",
+        "text": "Publishing is a product skill, not just a technical one. Preparing the store listing, feature graphics, and screenshots forced me to articulate what makes the game fun in a single screen. Iterating on playtesting feedback to balance role abilities taught me more about game design than any tutorial could."
+      },
+      {
+        "type": "heading",
+        "text": "Key Takeaways"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Flutter let me move from prototype to published product as a solo developer",
+          "Offline-first design removed every barrier to playing",
+          "The store listing is part of the product — treat it with the same care as the code",
+          "Shipping a real product, even a small one, teaches more than a dozen unfinished projects"
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "building-dvma-gemini-ai-dementia-care",
+    "title": "Building DVMA: Gemini AI for Dementia Care",
+    "description": "How I built DVMA (Dementia Virtual Memory Assistant) — a Flutter and Firebase mobile app with Gemini AI chat, face recognition, and role-based access for patients, caregivers, and admins.",
+    "category": "AI & Healthcare",
+    "tags": ["Gemini AI", "Flutter", "Firebase", "Healthcare", "DVMA"],
+    "publishedAt": "2026-02-10",
+    "readingTime": "7 min read",
+    "image": "/images/dvma.webp",
+    "content": [
+      {
+        "type": "paragraph",
+        "text": "DVMA — the Dementia Virtual Memory Assistant — is the project I am most proud of. It is a mobile application designed to support people living with dementia in navigating daily life, preserving memories, and staying connected with the people who care for them. Building AI features for a vulnerable audience changed how I think about technology."
+      },
+      {
+        "type": "heading",
+        "text": "Designing for Three Very Different Users"
+      },
+      {
+        "type": "paragraph",
+        "text": "Dementia care is a team effort, so DVMA ships with three distinct role-based experiences. Patients get task management with smart reminders, a memory album, a personal diary, and an AI companion. Caretakers get monitoring, communication, and live location tools. Admins get user management, broadcast notifications, and a reports dashboard. Each role sees only what it needs."
+      },
+      {
+        "type": "heading",
+        "text": "Where Gemini AI Fits In"
+      },
+      {
+        "type": "list",
+        "items": [
+          "A compassionate chat assistant for memory support and gentle task guidance",
+          "Prompt design tuned for clarity, patience, and simple language",
+          "AI help scoped to support — never replacing human care or medical judgment",
+          "Graceful fallbacks so the app stays useful even when AI is unavailable"
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Face Recognition With ML Kit"
+      },
+      {
+        "type": "paragraph",
+        "text": "One of the most meaningful features is family face recognition. Using ML Kit, the app helps patients identify family members and helps caretakers verify identities on the go. It is a small feature technically, but for someone experiencing memory loss, recognizing a loved one is everything."
+      },
+      {
+        "type": "heading",
+        "text": "The Stack"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Flutter and Dart for a single cross-platform codebase",
+          "Firebase Authentication, Firestore, and Cloud Storage for real-time sync",
+          "Gemini AI API for the conversational assistant",
+          "OneSignal for reliable push notifications",
+          "ML Kit and Cloud Vision for face recognition"
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "What This Project Taught Me"
+      },
+      {
+        "type": "paragraph",
+        "text": "Building for healthcare means building with empathy. Every design decision — font sizes, reminder tone, what the AI is allowed to say — had to answer one question: does this genuinely help someone having a hard day? That discipline made me a better engineer, because the hardest problems in software are rarely technical."
+      }
+    ]
+  },
+  {
+    "slug": "explore-together-final-year-project-to-product",
+    "title": "Explore Together: Final-Year Project to Product",
+    "description": "How my B.Sc Computer Science final-year project became Explore Together — a cross-platform travel matchmaking app with real-time chat and Gemini AI assistance.",
+    "category": "Mobile & AI",
+    "tags": ["Flutter", "Firebase", "Gemini AI", "Explore Together", "Final Year Project"],
+    "publishedAt": "2025-11-25",
+    "readingTime": "5 min read",
+    "image": "/images/explore-together.webp",
+    "content": [
+      {
+        "type": "paragraph",
+        "text": "Most final-year projects are built to be graded. I wanted mine to be built to be used. Explore Together — my B.Sc Computer Science capstone — turned the idea of solo travel into something social and safe: an app that matches travelers by destination, dates, budget, and interests, then helps them plan together."
+      },
+      {
+        "type": "heading",
+        "text": "The Core Idea"
+      },
+      {
+        "type": "paragraph",
+        "text": "Solo travel is growing, but it can feel isolating and unsafe, especially for first-time travelers. Explore Together connects people heading to the same place at the same time, giving them a structured way to meet, chat, and coordinate — with safety and shared interests at the center."
+      },
+      {
+        "type": "heading",
+        "text": "Features That Made It Real"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Travel matchmaking by destination, trip dates, budget, and interests",
+          "An interactive map to filter trips by location, budget, and duration",
+          "Real-time individual and group chat for trip coordination",
+          "A Gemini AI assistant for personalized travel questions and recommendations",
+          "Trip sharing for photos, itineraries, and moments",
+          "Admin analytics to track user growth and engagement"
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Building It"
+      },
+      {
+        "type": "paragraph",
+        "text": "The app is built with Flutter and Dart for cross-platform reach, Firebase for authentication and real-time Firestore sync, Cloudinary for media optimization, OneSignal for push notifications, and the Gemini AI API for the travel assistant. The modular architecture kept each concern isolated, which mattered a lot when one developer was responsible for everything."
+      },
+      {
+        "type": "heading",
+        "text": "What I Took Away"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Treat academic projects like real products — the habits carry forward",
+          "Real-time sync and matchmaking are hard; Firebase removed most of the pain",
+          "An AI assistant is only useful if it answers the questions users actually ask",
+          "Scope ruthlessly: ship the core loop before polishing the edges"
+        ]
+      }
+    ]
+  }
+]

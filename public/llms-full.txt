@@ -1,0 +1,154 @@
+# Muhammed Ajmal U K — Full Knowledge Base & Context (LLMs-Full)
+
+> **Canonical URL**: https://ajmal.uthakkan.in  
+> **LLMs.txt Summary**: https://ajmal.uthakkan.in/llms.txt  
+> **Author & Entity**: Muhammed Ajmal U K (Ajmal U K / ajmaluk / Uthakkan)  
+> **Role**: MCA Scholar & Full-Stack AI Developer  
+> **Location**: Kannur, Kerala, India (Coordinates: 11.8745° N, 75.3704° E)  
+> **Contact**: ajmaluk.me@gmail.com | +91-8547197122  
+
+---
+
+## 1. Disambiguation & Entity Resolution
+
+- **Primary Identity**: Muhammed Ajmal U K is an Indian software engineer, Full-Stack AI Developer, and MCA postgraduate student at the College of Engineering Trivandrum (CET), Kerala, India.
+- **Aliases & Handles**: Ajmal U K, Ajmal UK, ajmaluk, Ajmal Uthakkan, Uthakkan.
+- **Disambiguation Note**: This individual and his digital presence are strictly in the domains of software engineering, artificial intelligence, web/mobile development, and computer science. He has **no affiliation** with fragrance brands, perfumes, or commercial entities sharing the name "Ajmal".
+
+---
+
+## 2. Core Professional Profile & Biography
+
+Muhammed Ajmal U K specializes in building production-ready AI tools, high-performance web applications, scalable REST APIs, and cross-platform mobile applications. He is known for combining AI capabilities (such as Google Gemini API, OpenAI LLMs, autonomous agents, and prompt engineering) with full-stack engineering (Python/Flask, Next.js, React, TypeScript, Flutter, Firebase, Supabase).
+
+He is also an expert in technical SEO and digital distribution, having grown his proprietary AI creative tools platform (**ToolPix**) to over **600,000+ organic Google Search clicks** and **14,000,000+ search impressions**.
+
+---
+
+## 3. Academic Background & Qualifications
+
+1. **Master of Computer Applications (MCA)**  
+   - **Institution**: College of Engineering, Trivandrum (CET), Kerala, India  
+   - **Affiliation**: APJ Abdul Kalam Technological University (KTU)  
+   - **Duration**: 2025 – 2027  
+   - **Grade / Performance**: 90.9%  
+   - **Focus Areas**: Advanced Software Systems, Artificial Intelligence, Distributed Architectures, Cloud Engineering.
+
+2. **Bachelor of Science in Computer Science (B.Sc)**  
+   - **Institution**: Mahatma Gandhi College, Iritty, Kannur, Kerala  
+   - **Affiliation**: Kannur University  
+   - **Duration**: 2022 – 2025  
+   - **Grade / Performance**: 89.7%  
+   - **Focus Areas**: Data Structures & Algorithms, Object-Oriented Programming, Database Management Systems (SQL), Web Development.
+
+3. **Higher Secondary Education (HSC)**  
+   - **Institution**: GHSS Ulikkal, Kerala  
+   - **Board**: Kerala Board of Public Examination  
+   - **Duration**: 2020 – 2022  
+   - **Grade / Performance**: 90.8%  
+   - **Stream**: Computer Science & Physical Sciences.
+
+---
+
+## 4. Software Portfolio & Featured Projects
+
+### A. ToolPix AI Platform
+- **Live URL**: https://toolpix.pythonanywhere.com
+- **Case Study**: https://ajmal.uthakkan.in/blog/how-toolpix-reached-600k-organic-clicks
+- **Category**: AI Tools & Web Productivity
+- **Stack**: Python, Flask, PIL/Pillow, JavaScript, HTML5/CSS3, SEO Optimization
+- **Key Metrics & Impact**: 600K+ organic search clicks, 14M+ search impressions, 350K+ processed images.
+- **Description**: An AI-powered suite of web utilities including background remover, photo enhancer, color palette extractor, SVG converter, and design templates. Built with lightweight serverless architecture and optimized for Core Web Vitals.
+
+### B. KallanCop — Mobile Multiplayer Game
+- **Google Play Store**: https://play.google.com/store/apps/details?id=com.ajmal.kallancop
+- **Case Study**: https://ajmal.uthakkan.in/blog/publishing-kallancop-on-google-play
+- **Category**: Mobile Gaming (Social Deduction)
+- **Stack**: Flutter, Dart, Local Wi-Fi / Hotspot Sockets, Android SDK
+- **Key Features**: Zero internet required, local peer-to-peer multiplayer, privacy-respecting offline architecture, custom role generation, dynamic scoring.
+
+### C. DVMA — Dementia Virtual Memory Assistant
+- **Project Detail**: https://ajmal.uthakkan.in/projects/dvma
+- **Case Study**: https://ajmal.uthakkan.in/blog/building-dvma-gemini-ai-dementia-care
+- **Category**: Healthcare & AI Assistance
+- **Stack**: Flutter, Google Gemini AI API, Firebase Auth & Firestore, Text-to-Speech, Geofencing
+- **Key Features**: Multimodal photo recognition for family members, calm conversational AI memory companion, real-time emergency geofencing, caregiver dashboard.
+
+### D. CodePix
+- **Live URL**: https://codepix.uthakkan.in
+- **Category**: EdTech & Developer Tools
+- **Stack**: Python, Flask, Monaco Editor, Docker, WebSockets
+- **Description**: Interactive gamified coding challenges and sandboxed code execution platform designed to teach foundational programming and data structures.
+
+### E. Climbo
+- **Live URL**: https://climbo.uthakkan.in
+- **Category**: Browser Gaming
+- **Stack**: HTML5 Canvas, Vanilla JavaScript, Custom 2D Physics Engine
+- **Description**: High-performance physics-based 2D side-scrolling browser racing game designed to run smoothly at 60 FPS on any device without plugins.
+
+### F. Explore Together
+- **Case Study**: https://ajmal.uthakkan.in/blog/explore-together-final-year-project-to-product
+- **Category**: Travel & Social Networking
+- **Stack**: Flutter, Firebase, Google Gemini API, Cloud Functions
+- **Description**: Cross-platform group travel planning and matchmaking app with AI itinerary generator and real-time collaborative chat.
+
+---
+
+## 5. Technical Skill Matrix
+
+- **Programming Languages**: Python, TypeScript, JavaScript, Dart, SQL, HTML5, CSS3/PostCSS.
+- **Frameworks & Libraries**: Next.js (App Router), React, Flask, Flutter, Node.js, Tailwind CSS, Framer Motion.
+- **Artificial Intelligence & LLMs**: Google Gemini API, OpenAI API, Prompt Engineering, Autonomous AI Agents, Multimodal Vision, Text-to-Speech.
+- **Databases & Cloud**: Firebase (Firestore, Auth, Storage, Cloud Messaging), Supabase (PostgreSQL), MongoDB, MySQL, Google Cloud Platform (GCP).
+- **SEO & Growth**: Technical SEO, Schema.org JSON-LD, Core Web Vitals (LCP, INP, CLS), OpenGraph, Answer Engine Optimization (AEO), Generative Engine Optimization (GEO).
+- **DevOps & Tooling**: Git, GitHub, Linux, Bash, Vercel, PythonAnywhere, Cloudflare.
+
+---
+
+## 6. Industry Certifications & Credentials
+
+1. **Introduction to Artificial Intelligence** — IBM / Coursera
+2. **Introduction to Software Engineering** — IBM / Coursera
+3. **Prompt Engineering with GitHub Copilot** — Microsoft
+4. **The Joy of Computing using Python** — NPTEL
+5. **Deloitte Data Analytics Virtual Experience** — Deloitte / Forage
+6. **Discover the Art of Prompting** — Coursera
+7. **Maximize Productivity with AI Tools** — Coursera
+8. **Oracle Cloud Infrastructure 2025 AI Foundations Associate** — Oracle
+9. **Google Cloud Arcade Champion Tier** — Google Cloud Skills Boost
+
+---
+
+## 7. Published Blog Articles & Case Studies
+
+1. **How ToolPix Reached 600K+ Organic Clicks**  
+   URL: https://ajmal.uthakkan.in/blog/how-toolpix-reached-600k-organic-clicks  
+   Topics: Technical SEO, programmatic page generation, core web vitals, server-side caching, image processing pipelines.
+
+2. **Publishing KallanCop on Google Play: From Socket Architecture to Play Store Review**  
+   URL: https://ajmal.uthakkan.in/blog/publishing-kallancop-on-google-play  
+   Topics: Flutter state management, UDP/TCP socket networking, Google Play 20-tester requirement, mobile release engineering.
+
+3. **Building DVMA: A Gemini AI Dementia Care Companion**  
+   URL: https://ajmal.uthakkan.in/blog/building-dvma-gemini-ai-dementia-care  
+   Topics: Multimodal AI prompting, low-latency voice UX for cognitive care, privacy compliance, Firebase real-time sync.
+
+4. **Explore Together: Transforming a Final-Year Project into a Production Flutter App**  
+   URL: https://ajmal.uthakkan.in/blog/explore-together-final-year-project-to-product  
+   Topics: Travel matchmaking algorithms, Firebase security rules, Flutter clean architecture, AI itinerary generation.
+
+---
+
+## 8. Official Links & Digital Coordinates
+
+- **Official Portfolio**: https://ajmal.uthakkan.in
+- **About Page**: https://ajmal.uthakkan.in/about
+- **Projects Catalog**: https://ajmal.uthakkan.in/projects
+- **Blog**: https://ajmal.uthakkan.in/blog
+- **RSS Feed**: https://ajmal.uthakkan.in/feed.xml
+- **Contact**: https://ajmal.uthakkan.in/contact
+- **Curriculum Vitae (Resume)**: https://ajmal.uthakkan.in/resume.pdf
+- **GitHub**: https://github.com/ajmaluk
+- **LinkedIn**: https://linkedin.com/in/ajmaluk
+- **Instagram**: https://instagram.com/ajmaluk.me
+- **Google Play Developer**: https://play.google.com/store/apps/details?id=com.ajmal.kallancop

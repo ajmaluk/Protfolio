@@ -1,6 +1,8 @@
 # Muhammed Ajmal U K (Ajmal U K / Uthakkan)
 
 > Muhammed Ajmal U K (also known as Ajmal U K, ajmaluk, or Uthakkan) is an MCA student at College of Engineering Trivandrum (CET) and a Full-Stack AI Developer from Kannur, Kerala, India. He builds production-ready AI tools, web applications, and mobile apps using Python, Flutter, Next.js, and LLM integrations.
+> 
+> Full comprehensive context: https://ajmal.uthakkan.in/llms-full.txt
 
 ## Identity
 

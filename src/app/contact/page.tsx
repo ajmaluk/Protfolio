@@ -30,14 +30,14 @@ export const metadata: Metadata = {
       "Get in touch with Muhammed Ajmal U K — Full-Stack AI Developer from Kerala, India. Open for freelance projects, internships, and collaborations.",
     url: "https://ajmal.uthakkan.in/contact",
     type: "website",
-    images: [{ url: "/seo/og-image.jpg", width: 1200, height: 630, alt: "Contact Muhammed Ajmal U K" }],
+    images: [{ url: "https://ajmal.uthakkan.in/seo/og-image.jpg", width: 1200, height: 630, alt: "Contact Muhammed Ajmal U K" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Contact | Muhammed Ajmal U K | Uthakkan",
     description:
       "Get in touch with Muhammed Ajmal U K — Full-Stack AI Developer from Kerala, India.",
-    images: ["/seo/og-image.jpg"],
+    images: ["https://ajmal.uthakkan.in/seo/og-image.jpg"],
   },
 };
 

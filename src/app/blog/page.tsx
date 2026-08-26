@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/seo/og-image.jpg",
+        url: "https://ajmal.uthakkan.in/seo/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "Muhammed Ajmal U K (Ajmal U K) Blog",
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     title: "Blog & Articles | Ajmal U K (Muhammed Ajmal)",
     description:
       "Articles on AI development, SEO growth, Flutter apps, and building real products.",
-    images: ["/seo/og-image.jpg"],
+    images: ["https://ajmal.uthakkan.in/seo/og-image.jpg"],
   },
 };
 

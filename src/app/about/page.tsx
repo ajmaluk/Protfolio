@@ -38,14 +38,14 @@ export const metadata: Metadata = {
       "Learn about Muhammed Ajmal U K (Ajmal U K / Uthakkan) — MCA student at CET & Full-Stack AI Developer.",
     type: "profile",
     url: "https://ajmal.uthakkan.in/about",
-    images: [{ url: "/seo/og-image.jpg", width: 1200, height: 630, alt: "Muhammed Ajmal U K (Ajmal U K)" }],
+    images: [{ url: "https://ajmal.uthakkan.in/seo/og-image.jpg", width: 1200, height: 630, alt: "Muhammed Ajmal U K (Ajmal U K)" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "About Ajmal U K | Muhammed Ajmal U K (Uthakkan) - Full-Stack AI Developer",
     description:
       "Muhammed Ajmal U K (Ajmal U K / Uthakkan) — MCA Student at CET & Full-Stack AI Developer.",
-    images: ["/seo/og-image.jpg"],
+    images: ["https://ajmal.uthakkan.in/seo/og-image.jpg"],
   },
 };
 

@@ -35,14 +35,14 @@ export const metadata: Metadata = {
       "Explore software projects built by Muhammed Ajmal U K (Ajmal U K / Uthakkan) — ToolPix AI, KallanCop Game, DVMA Dementia Assistant, and Explore Together.",
     url: "https://ajmal.uthakkan.in/projects",
     type: "website",
-    images: [{ url: "/seo/og-image.jpg", width: 1200, height: 630, alt: "Muhammed Ajmal U K (Ajmal U K) Projects" }],
+    images: [{ url: "https://ajmal.uthakkan.in/seo/og-image.jpg", width: 1200, height: 630, alt: "Muhammed Ajmal U K (Ajmal U K) Projects" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Projects by Ajmal U K | Software & AI Portfolio",
     description:
       "Explore software projects built by Muhammed Ajmal U K (Ajmal U K / Uthakkan).",
-    images: ["/seo/og-image.jpg"],
+    images: ["https://ajmal.uthakkan.in/seo/og-image.jpg"],
   },
 };
 

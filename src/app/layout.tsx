@@ -138,6 +138,11 @@ export const metadata: Metadata = {
     "referrer": "origin-when-cross-origin",
     "geo.region": "IN-KL",
     "geo.placename": "Kannur, Kerala, India",
+    "geo.position": "11.8745;75.3704",
+    "ICBM": "11.8745, 75.3704",
+  },
+  verification: {
+    google: "google83f8616f6a5b1974",
   },
   category: "technology",
   classification: "Portfolio",
@@ -238,6 +243,7 @@ const jsonLdPerson = {
   ],
   givenName: "Muhammed Ajmal",
   familyName: "U K",
+  gender: "Male",
   url: "https://ajmal.uthakkan.in",
   mainEntityOfPage: { "@id": "https://ajmal.uthakkan.in/#profilepage" },
   image: "https://ajmal.uthakkan.in/images/portrait.webp",
@@ -245,6 +251,7 @@ const jsonLdPerson = {
   worksFor: {
     "@type": "Organization",
     name: "ToolPix AI Platform",
+    url: "https://toolpix.pythonanywhere.com",
   },
   sameAs: [
     "https://linkedin.com/in/ajmaluk",
@@ -271,13 +278,27 @@ const jsonLdPerson = {
     "@type": "Country",
     name: "India",
   },
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Kannur",
+    addressRegion: "Kerala",
+    postalCode: "670001",
+    addressCountry: "IN",
+  },
   homeLocation: {
     "@type": "Place",
+    name: "Kannur, Kerala, India",
     address: {
       "@type": "PostalAddress",
       addressLocality: "Kannur",
       addressRegion: "Kerala",
-      addressCountry: "India",
+      postalCode: "670001",
+      addressCountry: "IN",
+    },
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: 11.8745,
+      longitude: 75.3704,
     },
   },
   email: "ajmaluk.me@gmail.com",

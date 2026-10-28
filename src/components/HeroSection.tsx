@@ -89,67 +89,68 @@ export function HeroSection() {
       <section className="home__hero">
         <div className="home__hero-main">
           <div className="container grid calc-h">
-            <div className="home__hero-scope-wrap">
-              <div className="home__hero-scope" role="list">
-                <span className="line" role="none" />
-                <div role="listitem">AI &amp; Full-Stack Dev</div>
-                <div role="listitem">Python &amp; JavaScript</div>
-                <div role="listitem">Flutter &amp; Cloud</div>
-                <span className="line" role="none" />
-              </div>
-              <a
-                href="mailto:ajmaluk.me@gmail.com"
-                className="arrow-hover home__hero-scope-cta"
-              >
-                <span className="txt-link">How can I help?</span>
-                <div className="ic-arr-wrap ic-20" style={{ "--size": 1.6 } as React.CSSProperties}>
-                  <div className="arr-main ic" style={{ "--size": 1.6 } as React.CSSProperties}>
-                    <svg width="100%" viewBox="0 0 20 20" fill="none">
-                      <path d="M14.375 5.625L5.625 14.375" stroke="currentColor" strokeWidth="1.875" strokeMiterlimit="10" strokeLinecap="square" strokeLinejoin="round" />
-                      <path d="M6.25 5H15V13.75" stroke="currentColor" strokeWidth="1.875" strokeMiterlimit="10" strokeLinecap="square" />
-                    </svg>
-                  </div>
-                  <div className="arr-clone ic" style={{ "--size": 1.6 } as React.CSSProperties}>
-                    <svg width="100%" viewBox="0 0 20 20" fill="none">
-                      <path d="M14.375 5.625L5.625 14.375" stroke="currentColor" strokeWidth="1.875" strokeMiterlimit="10" strokeLinecap="square" strokeLinejoin="round" />
-                      <path d="M6.25 5H15V13.75" stroke="currentColor" strokeWidth="1.875" strokeMiterlimit="10" strokeLinecap="square" />
-                    </svg>
-                  </div>
+            <div className="home__hero-right-col">
+              <div className="home__hero-scope-wrap">
+                <div className="home__hero-scope" role="list">
+                  <span className="line" role="none" />
+                  <div role="listitem">AI &amp; Full-Stack Dev</div>
+                  <div role="listitem">Python &amp; JavaScript</div>
+                  <div role="listitem">Flutter &amp; Cloud</div>
+                  <span className="line" role="none" />
                 </div>
-              </a>
-            </div>
-
-            <div className="home__hero-intro-wrap">
-              <div className="cl-txt-sub home__hero-intro">
-                Ajmal UK Developer (Muhammed Ajmal U.K.) — MCA Student &amp; Full-Stack AI Developer from Kerala, India. Architecting AI tools like ToolPix, web applications, and software products under the UTHAKKAN brand footprint.
-              </div>
-              <div style={{ marginTop: "1rem" }}>
                 <a
-                  href="/resume.pdf"
-                  download="Muhammed_Ajmal_UK_Resume.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="txt-link hover-un cl-txt-orange fs-14 fw-med"
-                  style={{ display: "inline-flex", alignItems: "center", gap: "0.6rem" }}
+                  href="mailto:ajmaluk.me@gmail.com"
+                  className="arrow-hover home__hero-scope-cta"
                 >
-                  <span>Download Resume (PDF)</span>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                    <polyline points="7 10 12 15 17 10"/>
-                    <line x1="12" y1="15" x2="12" y2="3"/>
-                  </svg>
+                  <span className="txt-link">How can I help?</span>
+                  <div className="ic-arr-wrap ic-20" style={{ "--size": 1.6 } as React.CSSProperties}>
+                    <div className="arr-main ic" style={{ "--size": 1.6 } as React.CSSProperties}>
+                      <svg width="100%" viewBox="0 0 20 20" fill="none">
+                        <path d="M14.375 5.625L5.625 14.375" stroke="currentColor" strokeWidth="1.875" strokeMiterlimit="10" strokeLinecap="square" strokeLinejoin="round" />
+                        <path d="M6.25 5H15V13.75" stroke="currentColor" strokeWidth="1.875" strokeMiterlimit="10" strokeLinecap="square" />
+                      </svg>
+                    </div>
+                    <div className="arr-clone ic" style={{ "--size": 1.6 } as React.CSSProperties}>
+                      <svg width="100%" viewBox="0 0 20 20" fill="none">
+                        <path d="M14.375 5.625L5.625 14.375" stroke="currentColor" strokeWidth="1.875" strokeMiterlimit="10" strokeLinecap="square" strokeLinejoin="round" />
+                        <path d="M6.25 5H15V13.75" stroke="currentColor" strokeWidth="1.875" strokeMiterlimit="10" strokeLinecap="square" />
+                      </svg>
+                    </div>
+                  </div>
                 </a>
               </div>
-              <span className="line" />
+
+              <div className="home__hero-intro-wrap">
+                <div className="cl-txt-sub home__hero-intro">
+                  Full-Stack AI Developer &amp; MCA Student at CET, Kerala, India. Architecting AI tools like ToolPix, web applications, and software products under the UTHAKKAN brand.
+                </div>
+                <div>
+                  <a
+                    href="/resume.pdf"
+                    download="Muhammed_Ajmal_UK_Resume.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="txt-link hover-un cl-txt-orange fs-14 fw-med"
+                    style={{ display: "inline-flex", alignItems: "center", gap: "0.6rem" }}
+                  >
+                    <span>Download Resume (PDF)</span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                      <polyline points="7 10 12 15 17 10"/>
+                      <line x1="12" y1="15" x2="12" y2="3"/>
+                    </svg>
+                  </a>
+                </div>
+                <span className="line" />
+              </div>
             </div>
 
             <div className="home__hero-title-wrap">
               <div className="home__hero-greating-wrap">
                 <div className="home__hero-greating-inner">
                   <p className="home__hero-greating">Hi there! this is</p>
-                  <h1 className="heading h5 fw-med home__hero-name">
-                    <span className="cl-txt-title">Muhammed Ajmal U K</span>{" "}
-                    <span className="cl-txt-sub">(Ajmal UK Developer &bull; UTHAKKAN)</span>
+                  <h1 className="heading h4 fw-med home__hero-name">
+                    <span className="cl-txt-title">Ajmal U K</span>
                   </h1>
                 </div>
               </div>

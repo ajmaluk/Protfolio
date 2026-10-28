@@ -227,11 +227,11 @@ export function ProjectsSection({ isProjectsPage = false }: ProjectsSectionProps
           <h2 className="fix-font home__project-title grid">
             <div className="heading h2 upper fw-bold home__project-title-txt"><span>Projects I</span></div>
             <div className="heading h2 upper fw-bold home__project-title-txt"><span>worked on</span></div>
-            <div className="heading h2 upper fw-bold cl-txt-disable home__project-title-txt">
+            <div className="heading h2 upper fw-bold cl-txt-sub home__project-title-txt">
               <span>23-26</span>
               <div className="heading h3 fw-semi cl-txt-orange copyright">®</div>
             </div>
-            <div className="fs-20 cl-txt-desc fw-reg home__project-title-label">(Portfolio)</div>
+            <div className="fs-20 cl-txt-sub fw-reg home__project-title-label">(Portfolio)</div>
           </h2>
 
           <div ref={mainRef} className="home__project-main" style={{ "--totalHeight": `${displayProjects.length * 100}vh` } as React.CSSProperties}>
@@ -286,7 +286,7 @@ export function ProjectsSection({ isProjectsPage = false }: ProjectsSectionProps
                         <div className="cl-txt-title home__project-pagination-current">
                           <span>{String(activeIndex + 1).padStart(2, "0")}</span>
                         </div>
-                        <span className="cl-txt-disable">/{String(displayProjects.length).padStart(2, "0")}</span>
+                        <span className="cl-txt-sub">/{String(displayProjects.length).padStart(2, "0")}</span>
                         <div className="line home__project-pagination-progress">
                           <div 
                             className="home__project-pagination-progress-inner"
@@ -299,28 +299,75 @@ export function ProjectsSection({ isProjectsPage = false }: ProjectsSectionProps
                         </div>
                       </div>
 
-                      <Link
-                        href={isProjectsPage ? `/projects/${displayProjects[activeIndex]?.slug || ""}` : "/projects"}
-                        className="cl-txt-orange fs-20 fw-med arrow-hover home__project-link mod-mb"
-                      >
-                        <span className="txt-link cl-txt-orange">
-                          {isProjectsPage ? "View case study" : "All projects"}
-                        </span>
-                        <div className="ic-arr-wrap ic-20" style={{ "--size": 1.6 } as React.CSSProperties}>
-                          <div className="arr-main ic" style={{ "--size": 1.6 } as React.CSSProperties}>
-                            <svg width="100%" viewBox="0 0 20 20" fill="none">
-                              <path d="M14.375 5.625L5.625 14.375" stroke="currentColor" strokeWidth="1.875" strokeMiterlimit="10" strokeLinecap="square" strokeLinejoin="round" />
-                              <path d="M6.25 5H15V13.75" stroke="currentColor" strokeWidth="1.875" strokeMiterlimit="10" strokeLinecap="square" />
-                            </svg>
+                      <div className="home__project-header-right">
+                        <Link
+                          href={isProjectsPage ? `/projects/${displayProjects[activeIndex]?.slug || ""}` : "/projects"}
+                          className="cl-txt-orange fs-20 fw-med arrow-hover home__project-link mod-mb"
+                          aria-label={isProjectsPage ? "View project case study" : "View all projects"}
+                        >
+                          <span className="txt-link cl-txt-orange">
+                            {isProjectsPage ? "View case study" : "All projects"}
+                          </span>
+                          <div className="ic-arr-wrap ic-20" style={{ "--size": 1.6 } as React.CSSProperties}>
+                            <div className="arr-main ic" style={{ "--size": 1.6 } as React.CSSProperties}>
+                              <svg width="100%" viewBox="0 0 20 20" fill="none">
+                                <path d="M14.375 5.625L5.625 14.375" stroke="currentColor" strokeWidth="1.875" strokeMiterlimit="10" strokeLinecap="square" strokeLinejoin="round" />
+                                <path d="M6.25 5H15V13.75" stroke="currentColor" strokeWidth="1.875" strokeMiterlimit="10" strokeLinecap="square" />
+                              </svg>
+                            </div>
+                            <div className="arr-clone ic" style={{ "--size": 1.6 } as React.CSSProperties}>
+                              <svg width="100%" viewBox="0 0 20 20" fill="none">
+                                <path d="M14.375 5.625L5.625 14.375" stroke="currentColor" strokeWidth="1.875" strokeMiterlimit="10" strokeLinecap="square" strokeLinejoin="round" />
+                                <path d="M6.25 5H15V13.75" stroke="currentColor" strokeWidth="1.875" strokeMiterlimit="10" strokeLinecap="square" />
+                              </svg>
+                            </div>
                           </div>
-                          <div className="arr-clone ic" style={{ "--size": 1.6 } as React.CSSProperties}>
-                            <svg width="100%" viewBox="0 0 20 20" fill="none">
-                              <path d="M14.375 5.625L5.625 14.375" stroke="currentColor" strokeWidth="1.875" strokeMiterlimit="10" strokeLinecap="square" strokeLinejoin="round" />
-                              <path d="M6.25 5H15V13.75" stroke="currentColor" strokeWidth="1.875" strokeMiterlimit="10" strokeLinecap="square" />
-                            </svg>
+                        </Link>
+
+                        {/* Arrows visible only on mobile/tablet */}
+                        <div className="home__project-navigation">
+                          <div
+                            className={cn("home__project-navigation-arrow prev", activeIndex === 0 && "disable")}
+                            onClick={() => activeIndex > 0 && handleDotClick(activeIndex - 1)}
+                            role="button"
+                            tabIndex={activeIndex === 0 ? -1 : 0}
+                            aria-label="Previous project"
+                            aria-disabled={activeIndex === 0}
+                            onKeyDown={(e) => {
+                              if ((e.key === "Enter" || e.key === " ") && activeIndex > 0) {
+                                e.preventDefault();
+                                handleDotClick(activeIndex - 1);
+                              }
+                            }}
+                          >
+                            <div className="ic ic-20">
+                              <svg width="100%" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path d="M2.6 8.00003H14M6.19998 3.80005L2 8.00003L6.19998 12.2" stroke="currentColor" strokeWidth="1.13137" strokeMiterlimit="10" strokeLinecap="square"></path>
+                              </svg>
+                            </div>
+                          </div>
+                          <div
+                            className={cn("home__project-navigation-arrow next", activeIndex === displayProjects.length - 1 && "disable")}
+                            onClick={() => activeIndex < displayProjects.length - 1 && handleDotClick(activeIndex + 1)}
+                            role="button"
+                            tabIndex={activeIndex === displayProjects.length - 1 ? -1 : 0}
+                            aria-label="Next project"
+                            aria-disabled={activeIndex === displayProjects.length - 1}
+                            onKeyDown={(e) => {
+                              if ((e.key === "Enter" || e.key === " ") && activeIndex < displayProjects.length - 1) {
+                                e.preventDefault();
+                                handleDotClick(activeIndex + 1);
+                              }
+                            }}
+                          >
+                            <div className="ic ic-20">
+                              <svg width="100%" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path d="M13.4 8.00003H2M9.79997 3.80005L14 8.00003L9.79997 12.2" stroke="currentColor" strokeWidth="1.13137" strokeMiterlimit="10" strokeLinecap="square"></path>
+                              </svg>
+                            </div>
                           </div>
                         </div>
-                      </Link>
+                      </div>
                     </div>
 
                     <h3 className="visually-hidden">
@@ -424,7 +471,7 @@ export function ProjectsSection({ isProjectsPage = false }: ProjectsSectionProps
 
                   {/* Role listing block */}
                   <div className="home__project-role">
-                    <p className="cl-txt-desc fw-med home__project-label">Role</p>
+                    <p className="cl-txt-sub fw-med home__project-label">Role</p>
                     <div className="home__project-role-listing">
                       {displayProjects.map((proj, idx) => (
                         <div key={proj.id} className={cn("home__project-role-listing-inner", idx === activeIndex && "active")}>
@@ -439,7 +486,7 @@ export function ProjectsSection({ isProjectsPage = false }: ProjectsSectionProps
 
                 {/* Description & Link */}
                 <div className="home__project-desc">
-                  <p className="cl-txt-desc fw-med home__project-label">Description</p>
+                  <p className="cl-txt-sub fw-med home__project-label">Description</p>
                   <div style={{ position: "relative" }}>
                     {displayProjects.map((proj, idx) => (
                       <p key={idx} className={cn("fs-20 cl-txt-sub home__project-desc-txt", idx === activeIndex && "active")}>
@@ -470,50 +517,6 @@ export function ProjectsSection({ isProjectsPage = false }: ProjectsSectionProps
                       </div>
                     </div>
                   </Link>
-                </div>
-
-                {/* Arrows visible only on mobile/tablet */}
-                <div className="home__project-navigation">
-                  <div
-                    className={cn("home__project-navigation-arrow prev", activeIndex === 0 && "disable")}
-                    onClick={() => activeIndex > 0 && handleDotClick(activeIndex - 1)}
-                    role="button"
-                    tabIndex={activeIndex === 0 ? -1 : 0}
-                    aria-label="Previous project"
-                    aria-disabled={activeIndex === 0}
-                    onKeyDown={(e) => {
-                      if ((e.key === "Enter" || e.key === " ") && activeIndex > 0) {
-                        e.preventDefault();
-                        handleDotClick(activeIndex - 1);
-                      }
-                    }}
-                  >
-                    <div className="ic ic-20">
-                      <svg width="100%" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                        <path d="M2.6 8.00003H14M6.19998 3.80005L2 8.00003L6.19998 12.2" stroke="currentColor" strokeWidth="1.13137" strokeMiterlimit="10" strokeLinecap="square"></path>
-                      </svg>
-                    </div>
-                  </div>
-                  <div
-                    className={cn("home__project-navigation-arrow next", activeIndex === displayProjects.length - 1 && "disable")}
-                    onClick={() => activeIndex < displayProjects.length - 1 && handleDotClick(activeIndex + 1)}
-                    role="button"
-                    tabIndex={activeIndex === displayProjects.length - 1 ? -1 : 0}
-                    aria-label="Next project"
-                    aria-disabled={activeIndex === displayProjects.length - 1}
-                    onKeyDown={(e) => {
-                      if ((e.key === "Enter" || e.key === " ") && activeIndex < displayProjects.length - 1) {
-                        e.preventDefault();
-                        handleDotClick(activeIndex + 1);
-                      }
-                    }}
-                  >
-                    <div className="ic ic-20">
-                      <svg width="100%" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                        <path d="M13.4 8.00003H2M9.79997 3.80005L14 8.00003L9.79997 12.2" stroke="currentColor" strokeWidth="1.13137" strokeMiterlimit="10" strokeLinecap="square"></path>
-                      </svg>
-                    </div>
-                  </div>
                 </div>
 
               </div>

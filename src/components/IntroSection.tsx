@@ -460,6 +460,7 @@ export function IntroSection() {
               className="btn-circle arrow-hover home__intro-btn"
               aria-label="Learn more about Muhammed Ajmal U K on the About page"
             >
+              <span className="sr-only">Learn more about Muhammed Ajmal U K on the About page</span>
               <div className="ic-arr-wrap" style={{ "--size": 3.2 } as React.CSSProperties}>
                 <div className="arr-main ic" style={{ "--size": 3.2 } as React.CSSProperties}>
                   <svg width="100%" viewBox="0 0 20 20" fill="none">

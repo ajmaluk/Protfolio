@@ -18,7 +18,6 @@ export function FooterSection({ showCharacter = true }: FooterSectionProps) {
                   className="fw-med txt-link hover-un footer__link"
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="Visit Muhammed Ajmal U K's LinkedIn profile"
                 >
                   <span className="footer__link-icon" aria-hidden="true">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -30,11 +29,25 @@ export function FooterSection({ showCharacter = true }: FooterSectionProps) {
                   <span className="footer__link-text">LinkedIn</span>
                 </a>
                 <a
+                  href="https://in.linkedin.com/company/uthakkan"
+                  className="fw-med txt-link hover-un footer__link cl-txt-orange"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span className="footer__link-icon" aria-hidden="true">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                      <rect x="2" y="9" width="4" height="12"/>
+                      <circle cx="4" cy="4" r="2"/>
+                    </svg>
+                  </span>
+                  <span className="footer__link-text">UTHAKKAN</span>
+                </a>
+                <a
                   href="https://github.com/ajmaluk"
                   className="fw-med txt-link hover-un footer__link"
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="Visit Muhammed Ajmal U K's GitHub profile"
                 >
                   <span className="footer__link-icon" aria-hidden="true">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
@@ -48,7 +61,6 @@ export function FooterSection({ showCharacter = true }: FooterSectionProps) {
                   className="fw-med txt-link hover-un footer__link"
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="Visit Muhammed Ajmal U K on Instagram"
                 >
                   <span className="footer__link-icon" aria-hidden="true">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -68,7 +80,6 @@ export function FooterSection({ showCharacter = true }: FooterSectionProps) {
                 <a
                   href="mailto:ajmaluk.me@gmail.com"
                   className="fw-med txt-link hover-un footer__link"
-                  aria-label="Email Muhammed Ajmal U K"
                 >
                   <span className="footer__link-icon" aria-hidden="true">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -84,13 +95,11 @@ export function FooterSection({ showCharacter = true }: FooterSectionProps) {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="fw-med txt-link hover-un footer__link cl-txt-orange"
-                  aria-label="Download Muhammed Ajmal U K's Resume PDF"
                 >
                   <span className="footer__link-icon" aria-hidden="true">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
                       <polyline points="7 10 12 15 17 10"/>
-                      <line x1="12" y1="15" x2="12" y2="3"/>
                     </svg>
                   </span>
                   <span className="footer__link-text">Download Resume (PDF)</span>
@@ -105,12 +114,11 @@ export function FooterSection({ showCharacter = true }: FooterSectionProps) {
             <a
               href="mailto:ajmaluk.me@gmail.com"
               className="fs-24 fw-reg footer__cta-title txt-link hover-un"
-              aria-label="Email Muhammed Ajmal U K to connect"
             >
               Let&apos;s build something impactful together
             </a>
             <p className="fs-14" style={{ marginTop: "1.2rem" }}>
-              <a href="/contact" className="txt-link hover-un cl-txt-sub" aria-label="See all contact options">
+              <a href="/contact" className="txt-link hover-un cl-txt-sub">
                 or see all contact options →
               </a>
             </p>
@@ -132,7 +140,7 @@ export function FooterSection({ showCharacter = true }: FooterSectionProps) {
 
         <div className="container">
           <p className="fs-12 cl-txt-disable" style={{ paddingTop: "2.4rem", textAlign: "center" }}>
-            © {new Date().getFullYear()} Muhammed Ajmal U K (Ajmal U K / Uthakkan) — Full-Stack AI Developer, Kerala, India. All rights reserved.
+            © {new Date().getFullYear()} Muhammed Ajmal U K (Ajmal UK Developer / UTHAKKAN) — Full-Stack AI Developer &amp; Software Engineer. All rights reserved.
           </p>
         </div>
 
@@ -161,7 +169,6 @@ export function FooterSection({ showCharacter = true }: FooterSectionProps) {
                       <a
                         href="mailto:ajmaluk.me@gmail.com"
                         className="footer__marquee-link"
-                        aria-label="Email Muhammed Ajmal U K"
                       >
                         ajmaluk.me<span className="cl-txt-orange">@</span>gmail.com
                       </a>

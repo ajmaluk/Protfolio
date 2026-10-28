@@ -1,12 +1,31 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
+
+const emptySubscribe = () => () => {};
 
 export function SiteLoader() {
+  const isSkip = useSyncExternalStore(
+    emptySubscribe,
+    () => {
+      try {
+        return Boolean(
+          sessionStorage.getItem("site_loaded") ||
+          window.matchMedia("(prefers-reduced-motion: reduce)").matches
+        );
+      } catch {
+        return false;
+      }
+    },
+    () => false
+  );
+
   const [isLoaded, setIsLoaded] = useState(false);
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
+    if (isSkip) return;
+
     // Add is-loading class to body to prevent default scroll
     document.documentElement.classList.add("is-loading");
     document.body.classList.add("is-loading");
@@ -33,11 +52,16 @@ export function SiteLoader() {
       }
       document.documentElement.classList.remove("is-loading");
       document.body.classList.remove("is-loading");
-    }, 1000); // 1s display duration
+      try {
+        sessionStorage.setItem("site_loaded", "1");
+      } catch {
+        // ignore
+      }
+    }, 350); // Snappy display duration
 
     const destroyTimeout = setTimeout(() => {
       setVisible(false);
-    }, 2600); // 1s + 1.6s animation exit
+    }, 1150); // 350ms + 800ms animation exit
 
     return () => {
       window.removeEventListener("lenis-ready", onLenisReady as EventListener);
@@ -50,8 +74,9 @@ export function SiteLoader() {
         lenis.start();
       }
     };
-  }, []);
-  if (!visible) return null;
+  }, [isSkip]);
+
+  if (isSkip || !visible) return null;
 
   return (
     <div className={`site-loader ${isLoaded ? "is-loaded" : ""}`} role="status" aria-live="polite">

@@ -29,8 +29,21 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title,
     description: post.description,
-    keywords: [post.title, ...post.tags, "Muhammed Ajmal U K", "Ajmal U K", "Uthakkan"],
-    authors: [{ name: "Muhammed Ajmal U K", url: "https://ajmal.uthakkan.in" }],
+    keywords: [
+      post.title,
+      ...post.tags,
+      "Muhammed Ajmal U K",
+      "Ajmal UK Developer",
+      "Ajmal U.K. ToolPix",
+      "Muhammed Ajmal U.K. software",
+      "UTHAKKAN",
+      "Ajmal U K",
+      "Uthakkan",
+    ],
+    authors: [
+      { name: "Muhammed Ajmal U K (Ajmal UK Developer)", url: "https://ajmal.uthakkan.in" },
+      { name: "UTHAKKAN", url: "https://in.linkedin.com/company/uthakkan" },
+    ],
     alternates: {
       canonical,
       types: {
@@ -120,12 +133,27 @@ export default async function BlogPostPage({ params }: PageProps) {
       "@type": "Person",
       "@id": "https://ajmal.uthakkan.in/#person",
       name: "Muhammed Ajmal U K",
+      alternateName: [
+        "Ajmal UK Developer",
+        "Ajmal U.K. ToolPix",
+        "Muhammed Ajmal U.K. software",
+        "Ajmal U K",
+        "Ajmal UK",
+        "Ajmal Uthakkan",
+        "UTHAKKAN",
+        "ajmaluk",
+      ],
+      jobTitle: "Full-Stack AI Developer & Software Engineer",
       url: "https://ajmal.uthakkan.in",
     },
     publisher: { "@id": "https://ajmal.uthakkan.in/#organization" },
     mainEntityOfPage: {
       "@type": "WebPage",
       "@id": currentUrl,
+    },
+    speakable: {
+      "@type": "SpeakableSpecification",
+      cssSelector: [".blog-article-hero__title", ".blog-article-hero__desc"],
     },
   };
 

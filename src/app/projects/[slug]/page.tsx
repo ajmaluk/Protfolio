@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!project) return {};
 
   const title = project.name;
-  const description = `${project.name}: ${project.summary} Built by Muhammed Ajmal U K (Ajmal U K / Uthakkan).`;
+  const description = `${project.name}: ${project.summary} Engineered by Muhammed Ajmal U.K. (Ajmal UK Developer / UTHAKKAN).`;
   const canonical = `https://ajmal.uthakkan.in/projects/${project.slug}`;
 
   return {
@@ -37,8 +37,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     keywords: [
       project.name,
       `${project.name} Muhammed Ajmal U K`,
-      `${project.name} Ajmal U K`,
-      `${project.name} Uthakkan`,
+      `${project.name} Ajmal UK Developer`,
+      `${project.name} Ajmal U.K. ToolPix`,
+      `${project.name} UTHAKKAN`,
+      "Muhammed Ajmal U.K. software",
+      "Ajmal UK Developer",
+      "UTHAKKAN",
       ...project.services,
     ],
     authors: [{ name: "Muhammed Ajmal U K", url: "https://ajmal.uthakkan.in" }],
@@ -138,9 +142,27 @@ export default async function ProjectDetailPage({ params }: PageProps) {
       "@type": "Person",
       "@id": "https://ajmal.uthakkan.in/#person",
       name: "Muhammed Ajmal U K",
-      alternateName: ["Ajmal U K", "Ajmal Uthakkan", "Ajmal", "Uthakkan", "ajmaluk"],
+      alternateName: [
+        "Ajmal UK Developer",
+        "Ajmal U.K. ToolPix",
+        "Muhammed Ajmal U.K. software",
+        "Ajmal U K",
+        "Ajmal UK",
+        "Ajmal Uthakkan",
+        "UTHAKKAN",
+        "ajmaluk",
+      ],
+      jobTitle: "Full-Stack AI Developer & Software Engineer",
       url: "https://ajmal.uthakkan.in",
     },
+    creator: { "@id": "https://ajmal.uthakkan.in/#person" },
+    publisher: { "@id": "https://ajmal.uthakkan.in/#organization" },
+    brand: {
+      "@type": "Brand",
+      name: "UTHAKKAN",
+      url: "https://in.linkedin.com/company/uthakkan",
+    },
+    featureList: project.services.join(", "),
     offers: {
       "@type": "Offer",
       price: "0",

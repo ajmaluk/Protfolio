@@ -121,7 +121,7 @@ export function HeroSection() {
 
             <div className="home__hero-intro-wrap">
               <div className="cl-txt-sub home__hero-intro">
-                MCA Student &amp; Full-Stack AI Developer from Kerala, India — specialized in building AI tools, web applications, mobile apps, and scalable digital products.
+                Ajmal UK Developer (Muhammed Ajmal U.K.) — MCA Student &amp; Full-Stack AI Developer from Kerala, India. Architecting AI tools like ToolPix, web applications, and software products under the UTHAKKAN brand footprint.
               </div>
               <div style={{ marginTop: "1rem" }}>
                 <a
@@ -149,7 +149,7 @@ export function HeroSection() {
                   <p className="home__hero-greating">Hi there! this is</p>
                   <h1 className="heading h5 fw-med home__hero-name">
                     <span className="cl-txt-title">Muhammed Ajmal U K</span>{" "}
-                    <span className="cl-txt-sub">(Ajmal U K / Uthakkan)</span>
+                    <span className="cl-txt-sub">(Ajmal UK Developer &bull; UTHAKKAN)</span>
                   </h1>
                 </div>
               </div>
@@ -204,10 +204,12 @@ export function HeroSection() {
               <div className="home__hero-bg-main-inner-bg">
                 <Image
                   src="/images/home-hero-bg.webp"
-                  alt="Muhammed Ajmal U K - AI & Full-Stack Developer background"
+                  alt="Muhammed Ajmal U K (Ajmal UK Developer) - AI & Full-Stack Developer background"
                   width={1920}
                   height={1167}
-                  priority
+                  sizes="100vw"
+                  loading="lazy"
+                  priority={false}
                 />
               </div>
               <div className="home__hero-bg-main-inner-man" data-canvas-wrap>
@@ -215,10 +217,12 @@ export function HeroSection() {
                 <div className="home__hero-bg-main-inner placeholder" ref={characterRef}>
                   <Image
                     src="/images/home-hero-trans.webp"
-                    alt="Muhammed Ajmal U K (Ajmal U K) portrait illustration"
+                    alt="Muhammed Ajmal U K (Ajmal UK Developer / UTHAKKAN) portrait illustration"
                     width={1600}
                     height={1067}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
                     priority
+                    fetchPriority="high"
                   />
                 </div>
               </div>

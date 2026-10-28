@@ -4,15 +4,21 @@ import { FooterSection } from "@/components/FooterSection";
 import { getAllProjects } from "@/data/projects";
 
 export const metadata: Metadata = {
-  title: "Projects by Ajmal U K | Software & AI Portfolio",
+  title: "Muhammed Ajmal U.K. Software Projects | Ajmal UK Developer | UTHAKKAN",
   description:
-    "Explore software projects built by Muhammed Ajmal U K (Ajmal U K / Uthakkan) — ToolPix AI, KallanCop Game, DVMA Dementia Assistant, and Explore Together.",
+    "Explore software projects and AI tools by Muhammed Ajmal U.K. (Ajmal UK Developer / UTHAKKAN) — featuring Ajmal U.K. ToolPix, KallanCop Game, DVMA Dementia Assistant, and CodePix.",
   keywords: [
+    "Muhammed Ajmal U.K. software",
+    "Muhammed Ajmal UK software",
+    "Ajmal UK Developer",
+    "Ajmal U.K. ToolPix",
+    "Ajmal UK ToolPix",
+    "UTHAKKAN",
+    "UTHAKKAN Projects",
+    "Ajmal Uthakkan Software",
     "Ajmal U K Projects",
     "Ajmal UK",
     "Muhammed Ajmal U K Projects",
-    "Ajmal Uthakkan Software",
-    "Uthakkan Projects",
     "ToolPix AI",
     "KallanCop Play Store",
     "Dementia Virtual Memory Assistant",
@@ -30,18 +36,18 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Projects by Ajmal U K | Software & AI Portfolio",
+    title: "Muhammed Ajmal U.K. Software Projects | Ajmal UK Developer | UTHAKKAN",
     description:
-      "Explore software projects built by Muhammed Ajmal U K (Ajmal U K / Uthakkan) — ToolPix AI, KallanCop Game, DVMA Dementia Assistant, and Explore Together.",
+      "Explore software projects built by Muhammed Ajmal U.K. (Ajmal UK Developer / UTHAKKAN) — ToolPix AI, KallanCop Game, DVMA Dementia Assistant, and Explore Together.",
     url: "https://ajmal.uthakkan.in/projects",
     type: "website",
-    images: [{ url: "https://ajmal.uthakkan.in/seo/og-image.jpg", width: 1200, height: 630, alt: "Muhammed Ajmal U K (Ajmal U K) Projects" }],
+    images: [{ url: "https://ajmal.uthakkan.in/seo/og-image.jpg", width: 1200, height: 630, alt: "Muhammed Ajmal U.K. Software Projects - Ajmal UK Developer" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Projects by Ajmal U K | Software & AI Portfolio",
+    title: "Muhammed Ajmal U.K. Software Projects | Ajmal UK Developer | UTHAKKAN",
     description:
-      "Explore software projects built by Muhammed Ajmal U K (Ajmal U K / Uthakkan).",
+      "Explore software projects built by Muhammed Ajmal U.K. (Ajmal UK Developer / UTHAKKAN).",
     images: ["https://ajmal.uthakkan.in/seo/og-image.jpg"],
   },
 };
@@ -70,9 +76,9 @@ export default function ProjectsPage() {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
     "@id": "https://ajmal.uthakkan.in/projects",
-    name: "Software Projects by Muhammed Ajmal U K",
+    name: "Software Projects by Muhammed Ajmal U.K. — Ajmal UK Developer (UTHAKKAN)",
     description:
-      "Explore software projects built by Muhammed Ajmal U K (Ajmal U K / Uthakkan) — ToolPix AI, KallanCop Game, DVMA Dementia Assistant, and Explore Together.",
+      "Explore software projects engineered by Muhammed Ajmal U.K. (Ajmal UK Developer / UTHAKKAN) — ToolPix AI, KallanCop Game, DVMA Dementia Assistant, and Explore Together.",
     author: { "@id": "https://ajmal.uthakkan.in/#person" },
   };
 
@@ -106,7 +112,7 @@ export default function ProjectsPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }}
       />
       <main id="main-content" className="page transition-fade" data-namespace="projects" data-infinite tabIndex={-1}>
-        <h1 className="visually-hidden">Software Projects &amp; Case Studies by Muhammed Ajmal U K</h1>
+        <h1 className="visually-hidden">Muhammed Ajmal U.K. Software Projects &amp; AI Engineering by Ajmal UK Developer (UTHAKKAN)</h1>
         <ProjectsSection isProjectsPage={true} />
         <FooterSection />
       </main>

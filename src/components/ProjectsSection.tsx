@@ -266,8 +266,7 @@ export function ProjectsSection({ isProjectsPage = false }: ProjectsSectionProps
                             alt={`${proj.name} cover`}
                             width={132}
                             height={88}
-                            loading={idx === 0 ? "eager" : "lazy"}
-                            priority={idx === 0}
+                            loading="lazy"
                           />
                         </div>
                         <div className="home__project-slide-item-progress">
@@ -399,8 +398,7 @@ export function ProjectsSection({ isProjectsPage = false }: ProjectsSectionProps
                                 aria-hidden={idx !== activeIndex}
                                 width={1280}
                                 height={853}
-                                loading={idx === 0 ? "eager" : "lazy"}
-                                priority={idx === 0}
+                                loading="lazy"
                               />
                             </div>
                           </Link>

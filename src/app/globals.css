@@ -4,14 +4,14 @@
   --cl-dm-bg: #0c0d10;
   --cl-dm-title: #fff;
   --cl-dm-subtitle: rgba(255, 255, 255, .7);
-  --cl-dm-body: rgba(255, 255, 255, .5);
-  --cl-dm-desc: rgba(255, 255, 255, .3);
-  --cl-dm-disable: rgba(255, 255, 255, .15);
+  --cl-dm-body: rgba(255, 255, 255, .55);
+  --cl-dm-desc: rgba(255, 255, 255, .65);
+  --cl-dm-disable: rgba(255, 255, 255, .5);
   --cl-dm-border: rgba(255, 255, 255, .1);
   --cl-lm-bg: #fffbf9;
   --cl-lm-txt: #1d1d1d;
-  --cl-lm-desc: rgba(29, 29, 29, .5);
-  --cl-lm-disable: rgba(29, 29, 29, .3);
+  --cl-lm-desc: rgba(29, 29, 29, .7);
+  --cl-lm-disable: rgba(29, 29, 29, .6);
   --cl-lm-border: #c4c4c4;
   --cl-orange: #ff3d00;
   --cl-white: #fff;
@@ -2177,8 +2177,9 @@ h6,
 .reveal-word {
   display: inline-block;
   white-space: pre;
-  will-change: opacity, color;
-  transition: opacity 0.15s ease-out, color 0.15s ease-out;
+  color: #ffffff;
+  will-change: opacity;
+  transition: opacity 0.15s ease-out;
 }
 
 @media screen and (max-width: 991px) {
@@ -3581,22 +3582,26 @@ h6,
 @media screen and (max-width: 991px) {
   .home__project-navigation {
     display: flex;
+    gap: 8px;
+    margin: 0;
   }
 }
 
 .home__project-navigation-arrow {
   padding: .6rem;
   transition: color .4s ease-in-out;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 991px) {
   .home__project-navigation-arrow {
-    padding: 1.2rem;
-    min-width: 4.4rem;
-    min-height: 4.4rem;
+    padding: 12px;
+    min-width: 48px;
+    min-height: 48px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    touch-action: manipulation;
   }
 }
 
@@ -5918,6 +5923,19 @@ h6,
   flex-shrink: 0;
 }
 
+.projects-detail__nav-counter-link {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  text-decoration: none;
+  color: inherit;
+  transition: opacity 0.2s ease;
+}
+
+.projects-detail__nav-counter-link:hover {
+  opacity: 0.8;
+}
+
 @media screen and (max-width: 767px) {
   .projects-detail__nav-counter {
     display: none;
@@ -6804,9 +6822,15 @@ html.is-loading {
   width: 100vw;
   height: 100vh;
   background-color: var(--cl-dm-bg);
-  transition: transform 1.6s cubic-bezier(0.85, 0, 0.15, 1);
+  transition: transform 0.8s cubic-bezier(0.85, 0, 0.15, 1);
   will-change: transform;
   z-index: 100000;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loader-panel {
+    transition: none !important;
+  }
 }
 
 .loader-panel--top-right {

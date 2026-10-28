@@ -5,10 +5,18 @@ import { AboutProjectsSlider } from "@/components/AboutProjectsSlider";
 import { AboutFAQ } from "@/components/AboutFAQ";
 
 export const metadata: Metadata = {
-  title: "About Ajmal U K | Muhammed Ajmal U K (Uthakkan) - Full-Stack AI Developer",
+  title: "About Ajmal UK Developer | Muhammed Ajmal U.K. (UTHAKKAN) — AI Developer",
   description:
-    "Learn about Muhammed Ajmal U K (Ajmal U K / Uthakkan) — MCA student at College of Engineering Trivandrum (CET), Full-Stack AI Developer, certifications, technical stack, and software projects.",
+    "Learn about Muhammed Ajmal U.K. (Ajmal UK Developer / Ajmal U.K. ToolPix / UTHAKKAN) — MCA student at College of Engineering Trivandrum (CET), AI Developer, certifications, technical stack, and software projects.",
   keywords: [
+    "Ajmal UK Developer",
+    "Ajmal U.K. ToolPix",
+    "Ajmal UK ToolPix",
+    "Muhammed Ajmal U.K. software",
+    "Muhammed Ajmal UK software",
+    "UTHAKKAN",
+    "Uthakkan",
+    "Ajmal Uthakkan",
     "Ajmal U K",
     "Ajmal UK",
     "About Ajmal U K",
@@ -16,7 +24,7 @@ export const metadata: Metadata = {
     "Ajmal U K Profile",
     "Ajmal Uthakkan Bio",
     "Uthakkan Profile",
-    "Uthakkan",
+    "AI Developer",
     "Ajmal MCA Student CET",
     "Full-Stack AI Developer Kerala",
     "Software Engineer Kerala India",
@@ -33,18 +41,18 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "About Ajmal U K | Muhammed Ajmal U K (Uthakkan) - Full-Stack AI Developer",
+    title: "About Ajmal UK Developer | Muhammed Ajmal U.K. (UTHAKKAN) — AI Developer",
     description:
-      "Learn about Muhammed Ajmal U K (Ajmal U K / Uthakkan) — MCA student at CET & Full-Stack AI Developer.",
+      "Learn about Muhammed Ajmal U.K. (Ajmal UK Developer / UTHAKKAN) — MCA student at CET & Full-Stack AI Developer.",
     type: "profile",
     url: "https://ajmal.uthakkan.in/about",
-    images: [{ url: "https://ajmal.uthakkan.in/seo/og-image.jpg", width: 1200, height: 630, alt: "Muhammed Ajmal U K (Ajmal U K)" }],
+    images: [{ url: "https://ajmal.uthakkan.in/seo/og-image.jpg", width: 1200, height: 630, alt: "Ajmal UK Developer (Muhammed Ajmal U K) - UTHAKKAN" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "About Ajmal U K | Muhammed Ajmal U K (Uthakkan) - Full-Stack AI Developer",
+    title: "About Ajmal UK Developer | Muhammed Ajmal U.K. (UTHAKKAN) — AI Developer",
     description:
-      "Muhammed Ajmal U K (Ajmal U K / Uthakkan) — MCA Student at CET & Full-Stack AI Developer.",
+      "Muhammed Ajmal U.K. (Ajmal UK Developer / UTHAKKAN) — MCA Student at CET & Full-Stack AI Developer.",
     images: ["https://ajmal.uthakkan.in/seo/og-image.jpg"],
   },
 };
@@ -188,16 +196,24 @@ const services = [
 
 const faqs = [
   {
-    q: "Who is Muhammed Ajmal U K?",
-    a: "Muhammed Ajmal U K (also known as Ajmal U K, ajmaluk, or Uthakkan) is an MCA student at College of Engineering Trivandrum (CET) and a Full-Stack AI Developer from Kannur, Kerala, India. He builds production-ready AI tools, web applications, and mobile apps, and is the creator of ToolPix AI, KallanCop, DVMA Dementia Assistant, CodePix, Climbo, and Explore Together.",
+    q: "Who is Ajmal UK Developer (Muhammed Ajmal U K)?",
+    a: "Muhammed Ajmal U K (known professionally as Ajmal UK Developer and founder of UTHAKKAN) is an MCA scholar at College of Engineering Trivandrum (CET) and a Full-Stack AI Developer from Kannur, Kerala, India. He builds production-ready AI tools, full-stack software architectures, and mobile apps including ToolPix AI, KallanCop, and DVMA.",
   },
   {
-    q: "What technologies does Ajmal U K work with?",
-    a: "Python, Flask, JavaScript, TypeScript, React, Next.js, Flutter, Firebase, Supabase, MongoDB, MySQL, Gemini API, and various LLM/AI integrations. He works across the full stack — from cloud deployment and backend APIs to mobile apps and frontend interfaces.",
+    q: "What is UTHAKKAN?",
+    a: "UTHAKKAN is the distinct brand footprint and independent software studio founded by Muhammed Ajmal U K (Ajmal UK Developer). Under UTHAKKAN (linkedin.com/company/uthakkan), he develops high-impact AI platforms, mobile applications, and web software products.",
   },
   {
-    q: "What projects has Ajmal U K built?",
-    a: "His notable projects include ToolPix AI (an AI tools platform with 600K+ organic search clicks and 14M+ impressions), KallanCop (an offline multiplayer game published on the Google Play Store), DVMA (a dementia care assistant app using Gemini AI), CodePix (a gamified coding education platform), Climbo (a browser physics racing game), and Explore Together (a travel matchmaking app).",
+    q: "Who created Ajmal U.K. ToolPix?",
+    a: "Ajmal U.K. ToolPix was designed and engineered by Muhammed Ajmal U K as an AI-powered image editing and utility platform. Reaching over 600K organic Google Search clicks and 14M+ impressions, it demonstrates his expertise in technical SEO, high-performance Python/Flask backends, and practical AI tooling.",
+  },
+  {
+    q: "What software has Muhammed Ajmal U.K. built?",
+    a: "Notable Muhammed Ajmal U.K. software includes ToolPix AI (AI utility platform), KallanCop (offline multiplayer mobile game published on the Google Play Store), DVMA Dementia Assistant (Gemini AI mobile application for healthcare), CodePix (gamified interactive coding platform), Climbo (physics racing browser game), and Explore Together.",
+  },
+  {
+    q: "What technologies does Ajmal UK Developer work with?",
+    a: "Python, Flask, JavaScript, TypeScript, React, Next.js, Flutter, Firebase, Supabase, MongoDB, MySQL, Gemini API, and cutting-edge LLM/AI integrations across full-stack web, cloud, and mobile development.",
   },
   {
     q: "Where does Ajmal U K study?",
@@ -205,7 +221,7 @@ const faqs = [
   },
   {
     q: "How can I contact or hire Muhammed Ajmal U K?",
-    a: "You can reach him at ajmaluk.me@gmail.com, connect on LinkedIn (linkedin.com/in/ajmaluk), or view his code on GitHub (github.com/ajmaluk). His resume is available for download on this website.",
+    a: "You can reach him directly at ajmaluk.me@gmail.com, connect on LinkedIn (linkedin.com/in/ajmaluk), follow UTHAKKAN on LinkedIn (linkedin.com/company/uthakkan), or review open-source code on GitHub (github.com/ajmaluk).",
   },
 ];
 
@@ -233,10 +249,11 @@ export default function AboutPage() {
     "@context": "https://schema.org",
     "@type": "AboutPage",
     "@id": "https://ajmal.uthakkan.in/about",
-    name: "About Muhammed Ajmal U K",
+    name: "About Muhammed Ajmal U K — Ajmal UK Developer (UTHAKKAN)",
     description:
-      "Learn about Muhammed Ajmal U K (Ajmal U K / Uthakkan) — MCA student at College of Engineering Trivandrum (CET), Full-Stack AI Developer, certifications, technical stack, and software projects.",
+      "Learn about Muhammed Ajmal U K (Ajmal UK Developer / Ajmal U.K. ToolPix / UTHAKKAN) — MCA student at College of Engineering Trivandrum (CET), AI Developer, certifications, technical stack, and software projects.",
     mainEntity: { "@id": "https://ajmal.uthakkan.in/#person" },
+    about: { "@id": "https://ajmal.uthakkan.in/#person" },
     speakable: {
       "@type": "SpeakableSpecification",
       cssSelector: [".about__hero-intro", ".about__bio-text"],
@@ -280,10 +297,10 @@ export default function AboutPage() {
                 Muhammed <span className="cl-txt-orange">Ajmal U K</span>
               </h1>
               <p className="heading h4 upper fw-med cl-txt-sub" style={{ marginBottom: "3.2rem" }}>
-                AI &amp; Full-Stack Developer
+                Ajmal UK Developer &bull; AI &amp; Full-Stack Software Engineer &bull; UTHAKKAN
               </p>
               <p className="about__hero-intro heading h5 cl-txt-sub">
-                Hi! I&apos;m <strong className="cl-txt-title">Muhammed Ajmal U K</strong>, an MCA student and Software Engineer from Kerala, India. I specialize in building production-ready AI tools, full-stack web applications, mobile apps, and scalable digital products.
+                Hi! I&apos;m <strong className="cl-txt-title">Muhammed Ajmal U K</strong> (known online as <strong>Ajmal UK Developer</strong> and founder of <strong>UTHAKKAN</strong>), an MCA scholar at College of Engineering Trivandrum (CET) and an AI Developer from Kerala, India. I specialize in engineering production-ready AI tools, full-stack software architectures, and mobile applications.
               </p>
               <div style={{ marginTop: "2.4rem" }}>
                 <a
@@ -327,10 +344,10 @@ export default function AboutPage() {
               <h2 className="heading h4 upper fw-bold cl-txt-title">Career Objective &amp; Profile Summary</h2>
               <div className="line about__bio-line" />
               <p className="about__bio-text cl-txt-sub">
-                MCA student and Software Engineer passionate about designing and developing AI-powered applications and full-stack software solutions. Experienced in building production-ready web and mobile applications using Python, Flutter, Flask, Firebase, REST APIs, and LLM integrations. Strong interest in AI agents, cloud technologies, and developing innovative software products with real-world impact.
+                MCA scholar and AI Developer passionate about designing and developing intelligent software products under his brand footprint, UTHAKKAN. Experienced in building high-performance web and mobile software using Python, Flutter, Flask, Firebase, REST APIs, and LLM integrations. Strong expertise in technical SEO, AI agents, cloud architectures, and scalable full-stack development.
               </p>
               <p className="about__bio-text cl-txt-sub">
-                From publishing privacy-first offline multiplayer games on the Google Play Store (KallanCop) to building high-traffic AI productivity platforms reaching 600K+ search clicks (ToolPix) and cognitive-support healthcare mobile apps (DVMA), I continuously focus on hands-on software development, scalable engineering, and user-centered product craft.
+                From architecting Ajmal U.K. ToolPix (reaching 600K+ organic Google Search clicks and 14M+ impressions) to publishing offline multiplayer mobile games on the Google Play Store (KallanCop) and cognitive-support healthcare software (DVMA Dementia Assistant), Muhammed Ajmal U.K. software focuses on high-impact engineering, intuitive user experiences, and measurable real-world outcomes.
               </p>
             </div>
           </div>

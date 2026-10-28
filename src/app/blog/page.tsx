@@ -4,10 +4,14 @@ import { getAllPosts } from "@/data/blog";
 import { BlogGrid } from "@/components/blog/BlogGrid";
 
 export const metadata: Metadata = {
-  title: "Blog & Articles | Ajmal U K (Muhammed Ajmal)",
+  title: "Blog & Engineering Articles | Ajmal UK Developer | UTHAKKAN",
   description:
-    "Articles and insights by Muhammed Ajmal U K (Ajmal U K / Uthakkan) on AI development, SEO growth, Flutter apps, and building real products.",
+    "Engineering insights and case studies by Muhammed Ajmal U.K. (Ajmal UK Developer / UTHAKKAN) on AI development, ToolPix SEO growth, Flutter apps, and building real products.",
   keywords: [
+    "Ajmal UK Developer",
+    "Ajmal U.K. ToolPix",
+    "Muhammed Ajmal U.K. software",
+    "UTHAKKAN",
     "Ajmal U K Blog",
     "Ajmal UK",
     "Muhammed Ajmal U K Articles",
@@ -28,9 +32,9 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Blog & Articles | Ajmal U K (Muhammed Ajmal)",
+    title: "Blog & Engineering Articles | Ajmal UK Developer | UTHAKKAN",
     description:
-      "Articles on AI development, SEO growth, Flutter apps, and building real products by Muhammed Ajmal U K.",
+      "Articles on AI development, ToolPix SEO growth, Flutter apps, and building real products by Muhammed Ajmal U.K. (Ajmal UK Developer / UTHAKKAN).",
     url: "https://ajmal.uthakkan.in/blog",
     type: "website",
     images: [
@@ -38,15 +42,15 @@ export const metadata: Metadata = {
         url: "https://ajmal.uthakkan.in/seo/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Muhammed Ajmal U K (Ajmal U K) Blog",
+        alt: "Muhammed Ajmal U.K. (Ajmal UK Developer) Blog - UTHAKKAN",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Blog & Articles | Ajmal U K (Muhammed Ajmal)",
+    title: "Blog & Engineering Articles | Ajmal UK Developer | UTHAKKAN",
     description:
-      "Articles on AI development, SEO growth, Flutter apps, and building real products.",
+      "Articles on AI development, ToolPix SEO growth, Flutter apps, and building real products.",
     images: ["https://ajmal.uthakkan.in/seo/og-image.jpg"],
   },
 };
@@ -77,10 +81,11 @@ export default function BlogPage() {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
     "@id": "https://ajmal.uthakkan.in/blog",
-    name: "Blog by Muhammed Ajmal U K",
+    name: "Engineering Blog by Muhammed Ajmal U.K. — Ajmal UK Developer (UTHAKKAN)",
     description:
-      "Articles on AI development, SEO growth, Flutter mobile apps, and building real products by Muhammed Ajmal U K (Ajmal U K / Uthakkan).",
+      "Articles and case studies on AI development, ToolPix SEO growth, Flutter mobile applications, and software engineering by Muhammed Ajmal U.K. (Ajmal UK Developer / UTHAKKAN).",
     author: { "@id": "https://ajmal.uthakkan.in/#person" },
+    publisher: { "@id": "https://ajmal.uthakkan.in/#organization" },
   };
 
   const itemListJsonLd = {

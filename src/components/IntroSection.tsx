@@ -17,7 +17,7 @@ const companies: Company[] = [
   {
     src: "/images/toolpix.svg",
     alt: "ToolPix AI",
-    description: "AI-powered image editing, design & creative tools platform built for seamless productivity.",
+    description: "Ajmal U.K. ToolPix — AI-powered image editing, design & creative tools platform built for seamless productivity with over 600K organic search clicks.",
     url: "https://toolpix.pythonanywhere.com",
     tags: ["AI Platform", "Python/Flask", "SEO"],
     thumbnail: "/images/toolpix.webp",
@@ -108,7 +108,7 @@ const educationData = [
   },
 ];
 
-const introMainText = "I build production-ready digital products that solve real-world problems. By combining AI API integrations, full-stack web architectures, mobile development, and clean user-focused design, I create scalable tools and platforms that deliver seamless digital experiences. My goal is to develop impactful software that makes technology simple, practical, and accessible for everyone.";
+const introMainText = "As Ajmal UK Developer and software engineer behind UTHAKKAN, I engineer production-ready AI tools, full-stack architectures, and mobile software that solve real-world problems. By combining AI models, responsive web apps, and clean user-focused design, I deliver scalable digital products that make technology simple, practical, and accessible for everyone.";
 
 export function IntroSection() {
   const [activeAwardIndex, setActiveAwardIndex] = useState(0);
@@ -232,12 +232,10 @@ export function IntroSection() {
           const normalizedProgress = i / totalWords;
           if (progress >= normalizedProgress) {
             word.style.opacity = "1.0";
-            word.style.color = "#ffffff";
           } else {
             const distance = normalizedProgress - progress;
-            const opacity = Math.max(0.4, Math.min(1, 1 - distance * 3.5));
-            word.style.opacity = opacity.toString();
-            word.style.color = opacity > 0.85 ? "#ffffff" : "rgba(255, 255, 255, 0.45)";
+            const opacity = Math.max(0.35, Math.min(1, 1 - distance * 3.5));
+            word.style.opacity = opacity.toFixed(2);
           }
         });
       }
@@ -457,7 +455,11 @@ export function IntroSection() {
                 </span>
               ))}
             </div>
-            <Link href="/about" className="btn-circle arrow-hover home__intro-btn">
+            <Link
+              href="/about"
+              className="btn-circle arrow-hover home__intro-btn"
+              aria-label="Learn more about Muhammed Ajmal U K on the About page"
+            >
               <div className="ic-arr-wrap" style={{ "--size": 3.2 } as React.CSSProperties}>
                 <div className="arr-main ic" style={{ "--size": 3.2 } as React.CSSProperties}>
                   <svg width="100%" viewBox="0 0 20 20" fill="none">

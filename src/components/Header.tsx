@@ -165,6 +165,8 @@ export function Header() {
           <span className="cl-txt-disable fs-14">/</span>
           <a href="https://in.linkedin.com/in/ajmaluk" className="txt-link hover-un header__social fs-14" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">li</a>
           <span className="cl-txt-disable fs-14">/</span>
+          <a href="https://in.linkedin.com/company/uthakkan" className="txt-link hover-un header__social fs-14" target="_blank" rel="noopener noreferrer" aria-label="UTHAKKAN LinkedIn Company">uthakkan</a>
+          <span className="cl-txt-disable fs-14">/</span>
           <a href="https://github.com/ajmaluk" className="txt-link hover-un header__social fs-14" target="_blank" rel="noopener noreferrer" aria-label="GitHub">gh</a>
           <span className="cl-txt-disable fs-14">/</span>
           <a href="https://instagram.com/ajmaluk.me" className="txt-link hover-un header__social fs-14" target="_blank" rel="noopener noreferrer" aria-label="Instagram">ig</a>
@@ -263,6 +265,7 @@ export function Header() {
                 <div className="header__menu-overlay-socials">
                   <p className="header__menu-overlay-label">Socials</p>
                   <a href="https://in.linkedin.com/in/ajmaluk" className="header__menu-overlay-social-link" target="_blank" rel="noopener noreferrer" onClick={closeMenu}>LinkedIn</a>
+                  <a href="https://in.linkedin.com/company/uthakkan" className="header__menu-overlay-social-link" target="_blank" rel="noopener noreferrer" onClick={closeMenu}>UTHAKKAN</a>
                   <a href="https://github.com/ajmaluk" className="header__menu-overlay-social-link" target="_blank" rel="noopener noreferrer" onClick={closeMenu}>GitHub</a>
                   <a href="https://instagram.com/ajmaluk.me" className="header__menu-overlay-social-link" target="_blank" rel="noopener noreferrer" onClick={closeMenu}>Instagram</a>
                 </div>

@@ -1,89 +1,101 @@
 "use client";
 
-import { useState } from "react";
+import { useSyncExternalStore, useState, useCallback } from "react";
 
 interface BlogReactionsProps {
   slug: string;
 }
 
+const subscribe = (callback: () => void) => {
+  window.addEventListener("storage", callback);
+  window.addEventListener("local-storage-change", callback);
+  return () => {
+    window.removeEventListener("storage", callback);
+    window.removeEventListener("local-storage-change", callback);
+  };
+};
+
 export function BlogReactions({ slug }: BlogReactionsProps) {
-  const [claps, setClaps] = useState<number>(() => {
-    if (typeof window === "undefined") return 12;
-    try {
-      const saved = localStorage.getItem(`blog_claps_${slug}`);
-      return saved ? parseInt(saved, 10) : 12;
-    } catch {
-      return 12;
-    }
-  });
-
-  const [hasClapped, setHasClapped] = useState<boolean>(() => {
-    if (typeof window === "undefined") return false;
-    try {
-      return Boolean(localStorage.getItem(`blog_claps_${slug}`));
-    } catch {
-      return false;
-    }
-  });
-
-  const [reactions, setReactions] = useState<{ [key: string]: boolean }>(() => {
-    if (typeof window === "undefined") return { insightful: false, inspiring: false };
-    try {
-      return {
-        insightful: Boolean(localStorage.getItem(`blog_react_insight_${slug}`)),
-        inspiring: Boolean(localStorage.getItem(`blog_react_inspire_${slug}`)),
-      };
-    } catch {
-      return { insightful: false, inspiring: false };
-    }
-  });
-
-  const [counts, setCounts] = useState<{ insightful: number; inspiring: number }>({
-    insightful: 8,
-    inspiring: 5,
-  });
-
+  const [extraClaps, setExtraClaps] = useState(0);
   const [animatingEmoji, setAnimatingEmoji] = useState<string | null>(null);
 
-  const handleClap = () => {
-    const newClaps = claps + 1;
-    setClaps(newClaps);
-    setHasClapped(true);
+  const baseClaps = useSyncExternalStore(
+    subscribe,
+    () => {
+      try {
+        const saved = localStorage.getItem(`blog_claps_${slug}`);
+        return saved ? parseInt(saved, 10) : 12;
+      } catch {
+        return 12;
+      }
+    },
+    () => 12
+  );
+
+  const hasInsightful = useSyncExternalStore(
+    subscribe,
+    () => {
+      try {
+        return localStorage.getItem(`blog_react_insightful_${slug}`) === "true";
+      } catch {
+        return false;
+      }
+    },
+    () => false
+  );
+
+  const hasInspiring = useSyncExternalStore(
+    subscribe,
+    () => {
+      try {
+        return localStorage.getItem(`blog_react_inspiring_${slug}`) === "true";
+      } catch {
+        return false;
+      }
+    },
+    () => false
+  );
+
+  const totalClaps = baseClaps + extraClaps;
+  const hasClapped = totalClaps > 12;
+
+  const handleClap = useCallback(() => {
+    const next = totalClaps + 1;
+    setExtraClaps((prev) => prev + 1);
     setAnimatingEmoji("👏");
     setTimeout(() => setAnimatingEmoji(null), 800);
 
     try {
-      localStorage.setItem(`blog_claps_${slug}`, String(newClaps));
+      localStorage.setItem(`blog_claps_${slug}`, String(next));
+      window.dispatchEvent(new Event("local-storage-change"));
     } catch {
       // Ignore
     }
-  };
+  }, [slug, totalClaps]);
 
-  const handleToggleReaction = (type: "insightful" | "inspiring", emoji: string) => {
-    const isCurrentlyActive = reactions[type];
-    const newActive = !isCurrentlyActive;
+  const handleToggleReaction = useCallback(
+    (type: "insightful" | "inspiring", emoji: string) => {
+      const isCurrentlyActive = type === "insightful" ? hasInsightful : hasInspiring;
+      const nextState = !isCurrentlyActive;
 
-    setReactions((prev) => ({ ...prev, [type]: newActive }));
-    setCounts((prev) => ({
-      ...prev,
-      [type]: prev[type] + (newActive ? 1 : -1),
-    }));
-
-    if (newActive) {
-      setAnimatingEmoji(emoji);
-      setTimeout(() => setAnimatingEmoji(null), 800);
-    }
-
-    try {
-      if (newActive) {
-        localStorage.setItem(`blog_react_${type}_${slug}`, "true");
-      } else {
-        localStorage.removeItem(`blog_react_${type}_${slug}`);
+      if (nextState) {
+        setAnimatingEmoji(emoji);
+        setTimeout(() => setAnimatingEmoji(null), 800);
       }
-    } catch {
-      // Ignore
-    }
-  };
+
+      try {
+        if (nextState) {
+          localStorage.setItem(`blog_react_${type}_${slug}`, "true");
+        } else {
+          localStorage.removeItem(`blog_react_${type}_${slug}`);
+        }
+        window.dispatchEvent(new Event("local-storage-change"));
+      } catch {
+        // Ignore
+      }
+    },
+    [slug, hasInsightful, hasInspiring]
+  );
 
   return (
     <div className="blog-reactions">
@@ -105,21 +117,21 @@ export function BlogReactions({ slug }: BlogReactionsProps) {
         >
           <span className="blog-reactions__emoji">👏</span>
           <span className="blog-reactions__label">Clap</span>
-          <span className="blog-reactions__count">{claps}</span>
+          <span className="blog-reactions__count">{totalClaps}</span>
         </button>
 
         <button
           type="button"
           onClick={() => handleToggleReaction("insightful", "💡")}
           className={`blog-reactions__btn ${
-            reactions.insightful ? "blog-reactions__btn--active" : ""
+            hasInsightful ? "blog-reactions__btn--active" : ""
           }`}
           aria-label="Mark as insightful"
         >
           <span className="blog-reactions__emoji">💡</span>
           <span className="blog-reactions__label">Insightful</span>
           <span className="blog-reactions__count">
-            {counts.insightful + (reactions.insightful ? 1 : 0)}
+            {8 + (hasInsightful ? 1 : 0)}
           </span>
         </button>
 
@@ -127,14 +139,14 @@ export function BlogReactions({ slug }: BlogReactionsProps) {
           type="button"
           onClick={() => handleToggleReaction("inspiring", "🚀")}
           className={`blog-reactions__btn ${
-            reactions.inspiring ? "blog-reactions__btn--active" : ""
+            hasInspiring ? "blog-reactions__btn--active" : ""
           }`}
           aria-label="Mark as inspiring"
         >
           <span className="blog-reactions__emoji">🚀</span>
           <span className="blog-reactions__label">Inspiring</span>
           <span className="blog-reactions__count">
-            {counts.inspiring + (reactions.inspiring ? 1 : 0)}
+            {5 + (hasInspiring ? 1 : 0)}
           </span>
         </button>
       </div>

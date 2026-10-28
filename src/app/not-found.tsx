@@ -4,7 +4,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Page Not Found",
   description:
-    "The page you are looking for does not exist on the portfolio of Muhammed Ajmal U K (Ajmal U K / Uthakkan).",
+    "The page you are looking for does not exist on the portfolio of Muhammed Ajmal U K (Ajmal UK Developer / UTHAKKAN).",
   robots: { index: false },
   alternates: {
     canonical: "https://ajmal.uthakkan.in/",

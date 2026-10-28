@@ -15,19 +15,6 @@ export function ProjectNav({ next, prev, count, currentIndex }: ProjectNavProps)
     <nav className="projects-detail__nav" aria-label="Project navigation">
       <div className="container">
         <div className="projects-detail__nav-inner">
-          <div className="projects-detail__nav-side">
-            <Link href="/" className="projects-detail__nav-link" aria-label="Back to home">
-              <span className="projects-detail__nav-direction" aria-hidden="true">
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                  <path d="M2 10H18M10 2L2 10L10 18" stroke="currentColor" strokeWidth="1.875" strokeMiterlimit="10" strokeLinecap="square" strokeLinejoin="round" />
-                </svg>
-              </span>
-              <span className="projects-detail__nav-meta">
-                <span className="projects-detail__nav-label">Home</span>
-              </span>
-            </Link>
-          </div>
-
           <div className="projects-detail__nav-side projects-detail__nav-side--prev">
             {prev ? (
               <Link href={`/projects/${prev.slug}`} className="projects-detail__nav-link" aria-label={`Previous project: ${prev.name}`}>
@@ -44,22 +31,31 @@ export function ProjectNav({ next, prev, count, currentIndex }: ProjectNavProps)
                 </span>
               </Link>
             ) : (
-              <div className="projects-detail__nav-link projects-detail__nav-link--disabled" aria-hidden="true">
-                <span className="projects-detail__nav-direction" />
-                <span className="projects-detail__nav-meta">
-                  <span className="projects-detail__nav-label">No more projects</span>
+              <Link href="/projects" className="projects-detail__nav-link" aria-label="View all projects">
+                <span className="projects-detail__nav-direction" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M18 10H2M10 2L2 10L10 18" stroke="currentColor" strokeWidth="1.875" strokeMiterlimit="10" strokeLinecap="square" strokeLinejoin="round" />
+                  </svg>
                 </span>
-              </div>
+                <span className="projects-detail__nav-meta">
+                  <span className="projects-detail__nav-label">Portfolio</span>
+                  <span className="projects-detail__nav-name heading h4 upper fw-bold">
+                    All Projects
+                  </span>
+                </span>
+              </Link>
             )}
           </div>
 
           <div className="projects-detail__nav-counter">
-            <span className="projects-detail__nav-counter-current">
-              {String(currentIndex + 1).padStart(2, "0")}
-            </span>
-            <span className="projects-detail__nav-counter-total">
-              / {String(count).padStart(2, "0")}
-            </span>
+            <Link href="/projects" className="projects-detail__nav-counter-link" aria-label="View all projects">
+              <span className="projects-detail__nav-counter-current">
+                {String(currentIndex + 1).padStart(2, "0")}
+              </span>
+              <span className="projects-detail__nav-counter-total">
+                / {String(count).padStart(2, "0")}
+              </span>
+            </Link>
           </div>
 
           <div className="projects-detail__nav-side projects-detail__nav-side--next">
@@ -78,12 +74,19 @@ export function ProjectNav({ next, prev, count, currentIndex }: ProjectNavProps)
                 </span>
               </Link>
             ) : (
-              <div className="projects-detail__nav-link projects-detail__nav-link--right projects-detail__nav-link--disabled" aria-hidden="true">
+              <Link href="/projects" className="projects-detail__nav-link projects-detail__nav-link--right" aria-label="View all projects">
                 <span className="projects-detail__nav-meta">
-                  <span className="projects-detail__nav-label">End of projects</span>
+                  <span className="projects-detail__nav-label">Portfolio</span>
+                  <span className="projects-detail__nav-name heading h4 upper fw-bold">
+                    All Projects
+                  </span>
                 </span>
-                <span className="projects-detail__nav-direction" />
-              </div>
+                <span className="projects-detail__nav-direction" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M2 10H18M10 2L18 10L10 18" stroke="currentColor" strokeWidth="1.875" strokeMiterlimit="10" strokeLinecap="square" strokeLinejoin="round" />
+                  </svg>
+                </span>
+              </Link>
             )}
           </div>
         </div>

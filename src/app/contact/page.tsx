@@ -3,15 +3,18 @@ import Link from "next/link";
 import { FooterSection } from "@/components/FooterSection";
 
 export const metadata: Metadata = {
-  title: "Contact",
+  title: "Contact Ajmal UK Developer | Muhammed Ajmal U K | UTHAKKAN",
   description:
-    "Contact Muhammed Ajmal U K (Ajmal U K / Uthakkan) — Full-Stack AI Developer from Kerala, India. Available for freelance projects, internships, and collaborations. Email ajmaluk.me@gmail.com.",
+    "Contact Muhammed Ajmal U K (Ajmal UK Developer / UTHAKKAN) — Full-Stack AI Developer from Kerala, India. Available for freelance projects, AI software development, and collaborations. Email ajmaluk.me@gmail.com.",
   keywords: [
+    "Contact Ajmal UK Developer",
     "Contact Ajmal U K",
     "Muhammed Ajmal U K Contact",
+    "Ajmal U.K. ToolPix",
+    "Muhammed Ajmal U.K. software",
+    "UTHAKKAN Contact",
     "Hire AI Developer Kerala",
     "Freelance Full-Stack Developer India",
-    "Uthakkan Contact",
   ],
   alternates: {
     canonical: "https://ajmal.uthakkan.in/contact",
@@ -25,18 +28,18 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Contact | Muhammed Ajmal U K | Uthakkan",
+    title: "Contact Ajmal UK Developer | Muhammed Ajmal U K | UTHAKKAN",
     description:
-      "Get in touch with Muhammed Ajmal U K — Full-Stack AI Developer from Kerala, India. Open for freelance projects, internships, and collaborations.",
+      "Get in touch with Muhammed Ajmal U K (Ajmal UK Developer / UTHAKKAN) — Full-Stack AI Developer from Kerala, India. Open for freelance projects, internships, and collaborations.",
     url: "https://ajmal.uthakkan.in/contact",
     type: "website",
-    images: [{ url: "https://ajmal.uthakkan.in/seo/og-image.jpg", width: 1200, height: 630, alt: "Contact Muhammed Ajmal U K" }],
+    images: [{ url: "https://ajmal.uthakkan.in/seo/og-image.jpg", width: 1200, height: 630, alt: "Contact Ajmal UK Developer" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Contact | Muhammed Ajmal U K | Uthakkan",
+    title: "Contact Ajmal UK Developer | Muhammed Ajmal U K | UTHAKKAN",
     description:
-      "Get in touch with Muhammed Ajmal U K — Full-Stack AI Developer from Kerala, India.",
+      "Get in touch with Muhammed Ajmal U K (Ajmal UK Developer / UTHAKKAN) — Full-Stack AI Developer from Kerala, India.",
     images: ["https://ajmal.uthakkan.in/seo/og-image.jpg"],
   },
 };
@@ -55,11 +58,12 @@ export default function ContactPage() {
     "@context": "https://schema.org",
     "@type": "ContactPage",
     "@id": "https://ajmal.uthakkan.in/contact",
-    name: "Contact Muhammed Ajmal U K",
+    name: "Contact Muhammed Ajmal U K — Ajmal UK Developer (UTHAKKAN)",
     description:
-      "Contact page of Muhammed Ajmal U K (Ajmal U K / Uthakkan), Full-Stack AI Developer from Kannur, Kerala, India.",
+      "Contact page of Muhammed Ajmal U K (Ajmal UK Developer / UTHAKKAN), Full-Stack AI Developer from Kannur, Kerala, India.",
     url: "https://ajmal.uthakkan.in/contact",
     mainEntity: { "@id": "https://ajmal.uthakkan.in/#person" },
+    about: { "@id": "https://ajmal.uthakkan.in/#person" },
   };
 
   const channels = [
@@ -76,11 +80,18 @@ export default function ContactPage() {
       note: "For quick questions or scheduling a call (IST, UTC+5:30).",
     },
     {
-      label: "LinkedIn",
+      label: "LinkedIn Profile",
       value: "linkedin.com/in/ajmaluk",
       href: "https://in.linkedin.com/in/ajmaluk",
       external: true,
       note: "Professional profile — experience, education, and certifications.",
+    },
+    {
+      label: "UTHAKKAN (Brand)",
+      value: "linkedin.com/company/uthakkan",
+      href: "https://in.linkedin.com/company/uthakkan",
+      external: true,
+      note: "Primary brand footprint for software products and engineering announcements.",
     },
     {
       label: "GitHub",

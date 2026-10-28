@@ -31,7 +31,7 @@ export function GET(): Response {
       <pubDate>${pubDate}</pubDate>
       <description>${escapeXml(post.description)}</description>
       <category>${escapeXml(post.category)}</category>
-      <author>ajmaluk.me@gmail.com (Muhammed Ajmal U K)</author>
+      <author>ajmaluk.me@gmail.com (Muhammed Ajmal U K - Ajmal UK Developer)</author>
       <enclosure url="${escapeXml(imageUrl)}" type="image/webp" />
     </item>`;
     })
@@ -40,10 +40,10 @@ export function GET(): Response {
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Muhammed Ajmal U K — Blog</title>
+    <title>Muhammed Ajmal U K (Ajmal UK Developer) — Blog | UTHAKKAN</title>
     <link>${BASE_URL}/blog</link>
     <atom:link href="${BASE_URL}/feed.xml" rel="self" type="application/rss+xml" />
-    <description>Articles by Muhammed Ajmal U K (Ajmal U K / Uthakkan) on AI development, SEO growth, Flutter mobile apps, and building real products.</description>
+    <description>Articles by Muhammed Ajmal U K (Ajmal UK Developer / UTHAKKAN) on AI development, ToolPix SEO growth, Flutter mobile apps, and building real products.</description>
     <language>en-in</language>
     <lastBuildDate>${buildDate}</lastBuildDate>
     <image>
